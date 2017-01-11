@@ -1,0 +1,13 @@
+<uicfg desc="单位选择树">
+	<title>单位选择树</title>
+	<iconCls>org-icon</iconCls>
+	<autoHeight type="object">true</autoHeight>
+	<autoWidth type="object">false</autoWidth>
+	<autoScroll type="object">false</autoScroll>
+	<nodeClick type="object">false</nodeClick>
+	<loader>
+		<dataUrl>
+			system/listOrganizationTree.html
+		</dataUrl>
+	</loader>
+</uicfg>

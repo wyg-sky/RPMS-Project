@@ -1,0 +1,148 @@
+<uicfg desc="仓库基本信息编辑">
+	<loadtUrl>base/loadStorage.html</loadtUrl>
+	<submitUrl>base/saveStorage.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>systemType</name>
+		<hidden type="object">true</hidden>
+		<fieldLabel>模块Code</fieldLabel>
+		<allowBlank type="object">false</allowBlank>
+		<value type="object">FW.moduleCode</value>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>isLock</name>
+		<fieldLabel>锁定状态</fieldLabel>
+		<hidden type="object">true</hidden>
+		<value>0</value>
+	</items>
+	<items>
+		<xtype>lioncodefield</xtype>
+		<name>storageCd</name>
+		<fieldLabel>仓库编码</fieldLabel>
+		<allowBlank type="object">!this.manager.editable</allowBlank>
+		<readOnly type="boolean">true</readOnly>
+		<type>2</type>
+		<autoLoad type="object">true</autoLoad>
+		<params>
+			<className>Storage</className>
+			<codeProperty>storageCd</codeProperty>
+			<length>2</length>
+			<prefix type="object">"CK" + FW.organizationCode</prefix>
+		</params>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>storageName</name>
+		<fieldLabel>仓库名称</fieldLabel>
+		<maxLength type="integer">30</maxLength>
+		<maxLengthText>仓库名称最大允许输入30个字符</maxLengthText>
+		<allowBlank type="object">!this.manager.editable</allowBlank>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>storageType</name>
+		<fieldLabel>仓库类型</fieldLabel>
+		<keyType>mate_storage_type</keyType>
+		<allowBlank type="object">!this.manager.editable</allowBlank>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>所属单位</fieldLabel>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<readOnly type="object">true</readOnly>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>locationName</name>
+		<fieldLabel>仓库地点</fieldLabel>
+		<maxLength type="integer">30</maxLength>
+		<maxLengthText>仓库地点最大允许输入30个字符</maxLengthText>
+		<allowBlank type="object">!this.manager.editable</allowBlank>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>area</name>
+		<fieldLabel>所属地区</fieldLabel>
+		<maxLength type="integer">30</maxLength>
+		<maxLengthText>仓库地点最大允许输入30个字符</maxLengthText>
+		<allowBlank type="object">!this.manager.editable</allowBlank>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>valid</name>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType> 
+		<value>1</value>
+		<allowBlank type="object">!this.manager.editable</allowBlank>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<name>capitalLimit</name>
+		<fieldLabel>资金限额</fieldLabel>
+		<anchor>88%</anchor>
+		<unitText>(元)</unitText>
+		<regex type="object">/^(\d+(\.\d+)?)|(\-1)$/</regex>
+		<regexText>请正确输入数字</regexText>
+		<unitWidth type="object">20</unitWidth>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<name>createUser</name>
+		<hidden type="object">!this.manager.isView</hidden>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<hidden type="object">!this.manager.isView</hidden>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改人</fieldLabel>
+		<name>modifyUser</name>
+		<hidden type="object">!this.manager.isView</hidden>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<hidden type="object">!this.manager.isView</hidden>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>remark</name>
+		<fieldLabel>备注</fieldLabel>
+		<columnWidth type="integer">3</columnWidth>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+
+</uicfg>

@@ -1,0 +1,117 @@
+<uicfg desc="创新制度管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy></orderBy>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<store>
+		<url>rpms/listInnovateInstitution.html</url>
+		<autoLoad type="object">true</autoLoad>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>platCenter.id</name>
+		</fields>
+		<fields>
+            <name>platCenter.platName</name>
+        </fields>
+		<fields>
+			<name>platInstitution.id</name>
+		</fields>
+		<fields>
+            <name>platInstitution.platName</name>
+        </fields>
+		<fields>
+			<name>grade</name>
+		</fields>
+		<fields>
+			<name>type</name>
+		</fields>
+		<fields>
+			<name>fileName</name>
+		</fields>
+		<fields>
+			<name>publishDepartment</name>
+		</fields>
+		<fields>
+			<name>publishDate</name>
+		</fields>
+		<fields>
+			<name>revisePeriod</name>
+		</fields>
+		<fields>
+			<name>reviseDate</name>
+		</fields>
+		<fields>
+			<name>num</name>
+		</fields>
+		<fields>
+			<name>valid</name>
+		</fields>
+		<fields>
+			<name>organization</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>分中心</header>
+			<dataIndex>platCenter.platName</dataIndex>
+		</columns>
+		<columns>
+			<header>分中心机构</header>
+			<dataIndex>platInstitution.platName</dataIndex>
+		</columns>
+		<columns>
+			<header>级别</header>
+			<dataIndex>grade</dataIndex>
+			<keyType>rpms_grade</keyType>
+		</columns>
+		<columns>
+			<header>文件类别</header>
+			<dataIndex>type</dataIndex>
+			<keyType>rpms_institution_type</keyType>
+		</columns>
+		<columns>
+			<header>文件名称</header>
+			<dataIndex>fileName</dataIndex>
+			<width type="object">250</width>
+		</columns>
+		<columns>
+			<header>发布部门</header>
+			<dataIndex>publishDepartment</dataIndex>
+		</columns>
+		<columns>
+			<header>发布时间</header>
+			<dataIndex>publishDate</dataIndex>
+		</columns>
+		<!-- <columns>
+			<header>修订周期</header>
+			<dataIndex>revisePeriod</dataIndex>
+		</columns> -->
+		<columns>
+			<header>应修订时间</header>
+			<dataIndex>reviseDate</dataIndex>
+		</columns>
+		<!-- <columns>
+			<header>编号</header>
+			<dataIndex>num</dataIndex>
+		</columns> -->
+		<columns>
+			<header>是否有效</header>
+			<dataIndex>valid</dataIndex>
+			<keyType>cims_boolean</keyType>
+		</columns>
+		<!-- <columns>
+			<header>组织单位</header>
+			<dataIndex>organization</dataIndex>
+		</columns> -->
+	</cm>
+</uicfg>

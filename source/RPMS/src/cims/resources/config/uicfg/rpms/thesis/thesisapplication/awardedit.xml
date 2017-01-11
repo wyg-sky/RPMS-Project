@@ -1,0 +1,36 @@
+<uicfg desc="论文评比管理编辑主界面">
+	<objectName>businessObject</objectName>
+	<objectLineName>thesisApplicationLine</objectLineName>
+	<winWidth type="integer">850</winWidth>
+	<winHeight type="integer">500</winHeight>
+	<component>
+		<items>
+			<object>awardEditTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/thesis/thesisapplication/awardedittbar</viewPath>
+		</items>
+		<items>
+			<object>awardEditForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/thesis/thesisapplication/awardeditform</viewPath>
+		</items>
+		<items>
+			<object>fileLineGrid</object>
+			<xtype>lionuploadfile</xtype>
+			<isLine type="boolean">true</isLine>
+			<lineName>documents</lineName> 
+			<fkId type="object">this.mainId</fkId>
+			<height type="object">100</height>
+			<fkName>obj.docFk</fkName>
+			<allowUpload type="object">this.editable</allowUpload>
+			<allowDelete type="object">this.editable</allowDelete>
+			<!-- <fileTypeId type="object">"4028b88145d429440145d43c925d0017"</fileTypeId> -->
+			<fileTypeText type="object">"获奖证书"</fileTypeText>
+		</items>
+	</component>
+	<container>
+		<items>awardEditTbar</items>
+		<items>awardEditForm</items>
+		<items>fileLineGrid</items>
+	</container>
+</uicfg>

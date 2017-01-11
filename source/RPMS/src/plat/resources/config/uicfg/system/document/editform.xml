@@ -1,0 +1,104 @@
+<uicfg desc="文档分类编辑">
+	<loadtUrl>system/loadDocumentType.html</loadtUrl>
+	<submitUrl>system/saveDocumentType.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">2</columns>
+	<height type="integer">240</height>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>typeName</name>
+		<fieldLabel>名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncomboboxtree</xtype>
+		<fieldLabel>上级分类</fieldLabel>
+		<propertyName>parent</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>typeName</hiddenDisplayName>
+		<allowBlank type="boolean">true</allowBlank>
+		<tree>
+			<loader>
+				<dataUrl>system/listDocumentTypeTree.html</dataUrl>
+			</loader>
+		</tree>
+		<listeners type="object">{
+			'select':function(combox,fireValue,node){
+				this.manager.editForm.findField("sortOrder").load({parentId : fireValue});
+			},
+			scope:this
+		}
+		</listeners>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>filePath</name>
+		<fieldLabel>文件路径</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>fileRate</name>
+		<fieldLabel>上传频率</fieldLabel>
+		<keyType>sys_file_rate</keyType>
+	</items>
+	<items>
+		<xtype>lionsortfield</xtype>
+		<name>sortOrder</name>
+		<fieldLabel>排序</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<autoLoad type="object">this.manager.actionMode == '1'</autoLoad>
+		<params>
+			<className>DocumentType</className>
+			<parentId type="object">this.manager.docTypeId=='noClick'?'':this.manager.docTypeId</parentId>
+			<codeProperty>sortOrder</codeProperty>
+		</params>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>创建人</fieldLabel>
+		<propertyName>createUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>修改人</fieldLabel>
+		<propertyName>modifyUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>remark</name>
+		<fieldLabel>备注</fieldLabel>
+		<columnWidth type="integer">2</columnWidth>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+</uicfg>

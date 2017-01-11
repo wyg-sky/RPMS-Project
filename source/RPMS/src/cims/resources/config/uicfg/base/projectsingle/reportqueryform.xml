@@ -1,0 +1,34 @@
+<uicfg desc = "单项工程情况">
+    <columns type="integer">5</columns>
+    <autoHeight type="boolean">true</autoHeight>
+    <defaultFunction type="object">this.manager.queryProjectSingleReport</defaultFunction>
+    <defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">70</labelWidth>
+    </defaults>
+    <items>
+        <xtype>lionblankfield</xtype>
+    </items>
+    <items>
+        <xtype>liondatefield</xtype>
+        <name>reportDate</name>
+        <fieldLabel>日期</fieldLabel>
+        <format>Y-m-d</format>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <name>projectCd</name>
+        <fieldLabel>工程编码</fieldLabel>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <name>projectName</name>
+        <fieldLabel>工程名称</fieldLabel>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <name>projectStatus</name>
+        <fieldLabel>工程状态</fieldLabel>
+        <keyType>prds_project_status</keyType>
+    </items>
+</uicfg>

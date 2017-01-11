@@ -1,0 +1,47 @@
+<uicfg desc="生成页面编辑表单">
+	<columns type="object">2</columns>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>type</name>
+		<fieldLabel>布局类型</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<store type="object">new Ext.data.SimpleStore({
+            fields : ['id','text'],
+            data : [['list','list布局'],['edit','edit布局'],['other','自定义布局']]
+        })</store>
+		<listeners type="object">{
+			'select' : function(combo, record, index) {
+				var systemName = '';
+				var packageName = '';
+				Ext.Ajax.request({
+					url : 'system/getSystemNameAndPackageName.html',
+					method : 'post',
+					scope : this,
+					async : false,
+					success : function(response,options) {
+						var json = Ext.util.JSON.decode(response.responseText || "{}");
+						if(json.success) {
+							systemName = json.systemName;
+							packageName = json.packageName;
+						}
+					}
+				});
+				if('other' != record.get('id')){
+					this.findField('viewPath').setValue(systemName + '/' + packageName + '/' + record.get('id'));
+					Ext.apply(this.manager.paramsGrid.store.baseParams, {type : record.get('id')});
+					this.manager.paramsGrid.store.load();
+				} else {
+					this.findField('viewPath').setValue(systemName + '/' + packageName + '/');
+					this.manager.paramsGrid.store.remove(this.manager.paramsGrid.store.getRange());
+				}
+			},
+			scope : this
+		}</listeners>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>viewPath</name>
+		<fieldLabel>文件路径</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+</uicfg>

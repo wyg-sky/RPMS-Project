@@ -1,0 +1,174 @@
+<uicfg desc="分类定义管理录入表单">
+	<loadtUrl>base/loadClassify.html</loadtUrl>
+	<submitUrl>base/saveClassify.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<height type="integer">200</height>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<items>
+		<xtype>lioncodefield</xtype>
+		<name>classifyCd</name>
+		<fieldLabel>分类编号</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+		<type>3</type>
+		<autoLoad type ="object">true</autoLoad>
+		<params>
+			<className>Classify</className>
+			<parentId type="object">this.manager.parentId</parentId>
+			<codeProperty>classifyCd</codeProperty>
+			<length>2</length>
+		</params>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>classifyName</name>
+		<fieldLabel>分类名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<maxLength type="integer">30</maxLength>
+		<maxLengthText>分类定义名称最大允许输入30个字符</maxLengthText>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<name>reportDate</name>
+		<fieldLabel>日期</fieldLabel>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombowindow</xtype>
+		<fieldLabel>父节点</fieldLabel>
+		<id>parent</id>
+		<propertyName>parent</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>classifyName</hiddenDisplayName>
+		<displayField>classifyName</displayField>
+		<window>
+			<viewPathOfUi>base/classify/list</viewPathOfUi>
+			<title>分类定义选择</title>
+		</window>
+		<value type="object">
+			{value: this.manager.parentId, text: this.manager.parentName}
+		</value>
+		<listeners type="object">{
+			'after_comfirm_click':function(recode){
+				this.manager.editForm.findField("classifyCd").load({parentId : recode[0].get('id')});
+			},
+			'change':function(){
+        		this.manager.parentChange();
+        	},
+			scope:this
+		}
+		</listeners>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>classifyTypeCd</hiddenName>
+		<fieldLabel>类型</fieldLabel>
+		<keyType>classify_type</keyType>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+        <name>unit</name>
+		<fieldLabel>计量单位</fieldLabel>
+        <keyType>rpms_unit</keyType>
+	</items>
+	<items>
+		<xtype>lionsortfield</xtype>
+		<name>sort</name>
+		<fieldLabel>排序</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<autoLoad type="boolean">true</autoLoad>
+		<params>
+			<className>Classify</className>
+			<parentId type="object">this.manager.parentId</parentId>
+			<codeProperty>sort</codeProperty>
+		</params>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>valid</hiddenName>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+		<value>1</value>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createUser</name>
+		<fieldLabel>创建人</fieldLabel>
+		<value type="object">FW.userName</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>remark</name>
+		<fieldLabel>备注</fieldLabel>
+		<columnWidth type="integer">4</columnWidth>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="boolean">true</hidden>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>systemType</name>
+		<hidden type="boolean">true</hidden>
+		<value type="object">this.manager.modulecode</value>
+	</items>
+	<items>
+		<xtype>lioncomboboxtree</xtype>
+		<fieldLabel>系统分类</fieldLabel>
+		<propertyName>module</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<allowBlank type="boolean">true</allowBlank>
+		<hidden type="boolean">true</hidden>
+		<value type="object">
+			{value : this.manager.moduleId, text : this.manager.moduleName}
+		</value>
+		<tree>
+			<loader>
+				<dataUrl>system/listModuleTree.html</dataUrl>
+			</loader>
+		</tree>
+		<listeners type="object">{
+			'select': this.manager.systemTypeSelect,
+			scope:this.manager
+		}</listeners>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyUser</name>
+		<fieldLabel>修改人</fieldLabel>
+		<value type="object">FW.userName</value>
+		<hidden type="boolean">true</hidden>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+		<hidden type="boolean">true</hidden>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+</uicfg>

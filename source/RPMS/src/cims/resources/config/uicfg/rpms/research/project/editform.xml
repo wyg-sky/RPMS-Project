@@ -1,0 +1,415 @@
+<uicfg desc="项目立项管理编辑表单">
+    <loadtUrl>rpms/loadProject.html</loadtUrl>
+    <submitUrl>rpms/saveProject.html</submitUrl>
+    <objectName>businessObject</objectName>
+    <columns type="object">4</columns>
+    <defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">100</labelWidth>
+    </defaults>
+    <items>
+        <xtype>lioncodefield</xtype>
+        <fieldLabel>项目登记编号</fieldLabel>
+        <readOnly type="boolean">true</readOnly>
+        <allowBlank type="boolean">false</allowBlank>
+        <name>projectCode</name>
+        <type>2</type>
+        <params>
+            <className>Project</className>
+            <codeProperty>projectCode</codeProperty>
+            <length>3</length>
+        </params>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>项目名称</fieldLabel>
+        <allowBlank type="boolean">false</allowBlank>
+        <name>projectName</name>
+        <columnWidth type="integer">3</columnWidth>
+    </items>
+    <items>
+        <xtype>orgtree</xtype>
+        <fieldLabel>单位</fieldLabel>
+        <propertyName>organization</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <value type="object">
+            {"value" : FW.organizationId, "text" : FW.organizationName}
+        </value>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                this.findField("platInstitution.id").setValue({value:'',text:''});
+                this.findField("platInstitution.id").clearValue();
+            },
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },
+            scope:this
+        }
+        </listeners>
+        <value type="object">
+			{"value" : PlatUtil.currentCenterId, "text" : PlatUtil.currentCenterName}
+		</value>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>机构</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                this.manager.createProjectCode();
+            },
+            'focus':function(tree) {
+                tree.cascadeTree(this.manager.editForm.findField("platCenter.id"));
+            },scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>lioncomboboxyearfield</xtype>
+        <name>projectAnnual</name>
+        <fieldLabel>项目年度</fieldLabel>
+        <format>Y</format>
+        <value type="object">new Date().format('Y')</value>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                this.manager.createProjectCode();
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>specialty</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>专业</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                    <type>"zy"</type>
+                </baseParams >
+            </loader>
+        </tree>
+        <listeners type="object">{
+            'select':function(){
+                this.manager.editForm.findField("business.id").setValue({value:'',text:''});
+                this.manager.editForm.findField("business.id").clearValue();
+                this.manager.createProjectCode();
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>business</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>业务</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                	<parentId> </parentId>
+                </baseParams >
+            </loader>
+            <root>
+                <id>root_id</id>
+                <text>专业业务</text>
+            </root>
+        </tree>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.findField("specialty.id"));
+            },scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>项目类型</fieldLabel>
+        <name>proejctType</name>
+        <keyType>rpms_project_type</keyType>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>研发重点</fieldLabel>
+        <name>researchFocus</name>
+        <keyType>rpms_project_key</keyType>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>研发方式</fieldLabel>
+        <name>researchWay</name>
+        <keyType>rpms_research_type</keyType>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+    <items>
+        <xtype>liondatefield</xtype>
+        <fieldLabel>计划开始时间</fieldLabel>
+        <name>startTime</name>
+        <format>Y-m-d</format>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+    <items>
+        <xtype>liondatefield</xtype>
+        <fieldLabel>计划结束时间</fieldLabel>
+        <name>endTime</name>
+        <format>Y-m-d</format>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>填报人</fieldLabel>
+        <name>reportUser</name>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+    <items>
+        <xtype>liondatefield</xtype>
+        <fieldLabel>填报时间</fieldLabel>
+        <format>Y-m-d</format>
+        <name>reportTime</name>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+    <items>
+         <xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+        <fieldLabel>已投入总经费</fieldLabel>
+        <name>investmentTotal</name>
+     </items>
+     <items>
+         <xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+        <fieldLabel>已实现经济效益</fieldLabel>
+        <name>ysxjjxy</name>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>创建人</fieldLabel>
+        <name>createUser</name>
+        <value type="object">FW.userName</value>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <name>createTime</name>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>创建时间</fieldLabel>
+        <value type="object">new Date().format('Y-m-d H:i:s')</value>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>状态</fieldLabel>
+        <name>status</name>
+        <keyType>rpms_designate_status</keyType>
+        <allowBlank type="object">false</allowBlank>
+        <readOnly type="boolean">true</readOnly>
+        <value type="object">'0001'</value>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>项目目前进展</fieldLabel>
+        <name>projectStage</name>
+        <keyType>rpms_dispatch_stage</keyType>
+        <readOnly type="boolean">true</readOnly>
+        <value type="object">'0001'</value>
+    </items>
+    <items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>chargeDepartnent</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <fieldLabel>技术专业审查部门</fieldLabel>
+        <labelWidth type="integer">120</labelWidth>
+        <allowBlank type="object">false</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listOrgTree.html</dataUrl>
+                <baseParams>
+                    <hql>"  and org.organiztionType ='0002'" </hql>
+                </baseParams >
+            </loader>
+            <root>
+                <id>root_id</id>
+            </root>
+        </tree>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>调度时间</fieldLabel>
+        <name>ddsj</name>
+        <readOnly type="object">true</readOnly>
+        <hidden type="object">(this.manager.actionMode == '1' || this.manager.actionMode == '2')</hidden>
+    </items>
+    <items>
+        <xtype>lionnumberfield</xtype>
+        <fieldLabel>累计统计</fieldLabel>
+        <name>ljtj</name>
+        <readOnly type="object">true</readOnly>
+        <hidden type="object">(this.manager.actionMode == '1' || this.manager.actionMode == '2')</hidden>
+    </items>
+    <items>
+        <xtype>lionnumberfield</xtype>
+        <fieldLabel>累计归集</fieldLabel>
+        <name>ljgj</name>
+        <readOnly type="object">true</readOnly>
+        <hidden type="object">(this.manager.actionMode == '1' || this.manager.actionMode == '2')</hidden>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>山能认可</fieldLabel>
+        <name>snrk</name>
+        <readOnly type="object">true</readOnly>
+        <hidden type="object">(this.manager.actionMode == '1' || this.manager.actionMode == '2')</hidden>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>税务认可</fieldLabel>
+        <name>swrk</name>
+        <readOnly type="object">true</readOnly>
+        <hidden type="object">(this.manager.actionMode == '1' || this.manager.actionMode == '2')</hidden>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>项目管理员及联系电话</fieldLabel>
+        <labelWidth type="integer">140</labelWidth>
+        <name>glAndPhone</name>
+        <columnWidth type="integer">4</columnWidth>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+    <items>
+        <xtype>liontextarea</xtype>
+        <fieldLabel>项目研究内容</fieldLabel>
+        <name>researchContent</name>
+        <height>40</height>
+        <columnWidth type="integer">4</columnWidth>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+    <items>
+        <xtype>liontextarea</xtype>
+        <fieldLabel>项目进度</fieldLabel>
+        <name>projectProgress</name>
+        <height>40</height>
+        <columnWidth type="integer">4</columnWidth>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>技术专业审查人</fieldLabel>
+         <readOnly type="boolean">true</readOnly>
+        <name>examineUser</name>
+        <hidden type="object">this.manager.actionMode == '1'</hidden>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>技术专业推荐项目类型</fieldLabel>
+        <labelWidth type="integer">130</labelWidth>
+         <readOnly type="boolean">true</readOnly>
+        <name>recommendType</name>
+        <keyType>rpms_recommend_type</keyType>
+        <allowBlank type="object">true</allowBlank>
+        <hidden type="object">this.manager.actionMode == '1'</hidden>
+    </items>
+     <items>
+        <xtype>liondatefield</xtype>
+        <fieldLabel>技术专业审查时间</fieldLabel>
+        <labelWidth type="integer">120</labelWidth>
+         <readOnly type="boolean">true</readOnly>
+        <name>examineTime</name>
+        <format>Y-m-d</format>
+        <hidden type="object">this.manager.actionMode == '1'</hidden>
+    </items>
+    <items>
+        <xtype>liontextarea</xtype>
+        <fieldLabel>技术专业审查意见</fieldLabel>
+         <readOnly type="boolean">true</readOnly>
+        <name>examineSug</name>
+        <columnWidth type="integer">4</columnWidth>
+        <height>40</height>
+        <hidden type="object">this.manager.actionMode == '1'</hidden>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>管理专业审查人</fieldLabel>
+         <readOnly type="boolean">true</readOnly>
+        <name>approveUser</name>
+        <hidden type="object">this.manager.actionMode == '1'</hidden>
+    </items>
+    <items>
+        <xtype>liondatefield</xtype>
+        <fieldLabel>管理专业审查时间</fieldLabel>
+        <labelWidth type="integer">120</labelWidth>
+         <readOnly type="boolean">true</readOnly>
+        <name>approveTime</name>
+        <format>Y-m-d</format>
+        <hidden type="object">this.manager.actionMode == '1'</hidden>
+    </items>
+    <items>
+        <xtype>liontextarea</xtype>
+        <fieldLabel>管理专业审查意见</fieldLabel>
+         <readOnly type="boolean">true</readOnly>
+        <name>approveSug</name>
+        <columnWidth type="integer">4</columnWidth>
+        <height>40</height>
+        <hidden type="object">this.manager.actionMode == '1'</hidden>
+    </items>
+    <items>
+        <xtype>liontextarea</xtype>
+        <fieldLabel>退回意见</fieldLabel>
+         <readOnly type="boolean">true</readOnly>
+        <name>backMsg</name>
+        <height>40</height>
+        <columnWidth type="integer">4</columnWidth>
+        <hidden type="object">this.manager.actionMode == '1'</hidden>
+    </items>
+    <items>
+        <xtype>liontextarea</xtype>
+        <fieldLabel>备注</fieldLabel>
+        <name>remark</name>
+        <height>40</height>
+        <columnWidth type="integer">4</columnWidth>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>项目状态</fieldLabel>
+        <name>projectStatus</name>
+        <keyType>rpms_project_status</keyType>
+        <readOnly type="boolean">true</readOnly>
+        <value type="object">'0001'</value>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+        <xtype>lionhiddenfield</xtype>
+        <fieldLabel>唯一标识</fieldLabel>
+        <name>id</name>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>技术水平</fieldLabel>
+        <name>technology</name>
+        <keyType>rpms_project_level</keyType>
+        <allowBlank type="object">true</allowBlank>
+        <hidden type="object">true</hidden>
+    </items>
+</uicfg>

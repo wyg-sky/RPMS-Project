@@ -1,0 +1,9 @@
+*{ padding:0; margin:0;}
+html,body{ height:100%;}
+img{ border:none;}
+body{ background:url(../../images/login_body.gif) repeat-x #d2e2f6; font:12px Verdana, Arial, Helvetica, sans-serif; color:#000;}
+A:link { COLOR: #000000; TEXT-DECORATION: none }
+A:visited { COLOR: #333333; TEXT-DECORATION: none }
+A:hover { COLOR: #8da9e2; TEXT-DECORATION: underline }
+.p12_black { FONT-SIZE: 9pt; LINE-HEIGHT: 14pt; color: #000000 } 
+.p14_black { font-size: 14px; line-height: 16pt; color: #000000} 

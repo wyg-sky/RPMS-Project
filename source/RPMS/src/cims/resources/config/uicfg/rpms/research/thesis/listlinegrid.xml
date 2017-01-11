@@ -1,0 +1,74 @@
+<uicfg desc="论文列表">
+	<rownum type="boolean">true</rownum>
+	<orderBy>awardsTime desc</orderBy>
+	<editable type="object">true</editable>
+	<showLookButton type="object">false</showLookButton>
+	<showEditButton type="object">false</showEditButton>
+	<showCopyButton type="object">false</showCopyButton>
+	<allowPage type="boolean">false</allowPage>
+    <formViewPath>rpms/research/thesis/listlinegridform</formViewPath>
+	<clicksToEdit type="integer">1</clicksToEdit>
+	<store>
+		<url>rpms/listResearchThesisLine.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>mainId</name>
+		</fields>
+		<fields>
+			<name>awardsName</name>
+		</fields>
+		<fields>
+			<name>awardsItem</name>
+		</fields>
+		<fields>
+			<name>awardsRank</name>
+		</fields>
+		<fields>
+			<name>awardsTime</name>
+		</fields>
+		<fields>
+			<name>awardsUnit</name>
+		</fields>
+		<fields>
+			<name>remark</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>获奖名称</header>
+			<dataIndex>awardsName</dataIndex>
+		</columns>
+		<columns>
+			<header>奖项名称</header>
+			<dataIndex>awardsItem</dataIndex>
+		</columns>
+		<columns>
+			<header>奖励等级</header>
+			<dataIndex>awardsRank</dataIndex>
+		    <keyType>rpms_awards_rank</keyType>
+		</columns>
+		<columns>
+			<header>颁发时间</header>
+			<dataIndex>awardsItem</dataIndex>
+		</columns>
+		<columns>
+			<header>颁发单位</header>
+			<dataIndex>awardsUnit</dataIndex>
+		</columns>
+	</cm>
+    <tbar>
+			<xtype>liontoolbar</xtype>
+			<hidden type="object">!this.editable || this.hiddenLine</hidden>
+        	<manager type="object">this.manager</manager>
+			<viewPath>rpms/research/thesis/listlinetbar</viewPath>
+    </tbar>
+</uicfg>

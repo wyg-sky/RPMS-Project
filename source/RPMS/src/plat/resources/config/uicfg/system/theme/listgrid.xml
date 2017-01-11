@@ -1,0 +1,91 @@
+<uicfg desc="系统风格管理">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>sortOrder asc</orderBy>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<showDeleteButton type="object">true</showDeleteButton>
+	<formViewPath>system/theme/listgridform</formViewPath>
+	<masterColumnId>code</masterColumnId>
+	<allowPage type="boolean">false</allowPage>
+	<store>
+		<xtype>liontreestore</xtype>
+		<parentFieldName>parent</parentFieldName>
+		<leafFieldName>leaf</leafFieldName>
+		<autoLoad type="object">false</autoLoad>
+		<url>system/listTheme.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>code</name>
+		</fields>
+		<fields>
+			<name>name</name>
+		</fields>
+		<fields>
+			<name>parent</name>
+		</fields>
+		<fields>
+			<name>imageUrl</name>
+		</fields>
+		<fields>
+			<name>valid</name>
+		</fields>
+		<fields>
+			<name>sortOrder</name>
+		</fields>
+		<fields>
+			<name>leaf</name>
+		</fields>
+		<fields>
+			<name>description</name>
+		</fields>
+		<fields>
+			<name>createUser.userName</name>
+		</fields>
+		<fields>
+			<name>createTime</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<id>code</id>
+			<header>编码</header>
+			<dataIndex>code</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>风格名称</header>
+			<dataIndex>name</dataIndex>
+			<width type="integer">100</width>
+		</columns>
+		<columns>
+			<header>示例图片</header>
+			<dataIndex>imageUrl</dataIndex>
+			<width type="integer">150</width>
+		</columns>
+		<columns>
+			<header>是否有效</header>
+			<dataIndex>valid</dataIndex>
+			<keyType>cims_effective</keyType>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>排序</header>
+			<dataIndex>sortOrder</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>描述</header>
+			<dataIndex>description</dataIndex>
+		</columns>
+	</cm>
+</uicfg>

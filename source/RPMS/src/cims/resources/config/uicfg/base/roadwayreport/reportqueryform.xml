@@ -1,0 +1,39 @@
+<uicfg desc="巷道基本信息管理查询表单">
+	<columns type="integer">5</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.queryReport</defaultFunction>
+	<defaults>
+		<layout>column</layout>
+		<labelWidth type="integer">70</labelWidth>
+	</defaults>
+	<items>
+        <xtype>liondatefield</xtype>
+        <name>reportDate</name>
+        <fieldLabel>日期</fieldLabel>
+        <format>Y-m-d</format>
+    </items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>reportStatus</name>
+		<fieldLabel>当前状态</fieldLabel>
+		<keyType>prds_commit_status</keyType>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>roadwayType</name>
+		<fieldLabel>巷道类别</fieldLabel>
+		<keyType>prds_roadway_type</keyType>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>produceStatus</name>
+		<fieldLabel>生产状态</fieldLabel>
+		<keyType>prds_status</keyType>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>isValid</name>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+	</items>
+</uicfg>

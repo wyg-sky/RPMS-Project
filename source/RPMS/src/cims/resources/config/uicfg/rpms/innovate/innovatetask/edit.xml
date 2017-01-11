@@ -1,0 +1,39 @@
+<uicfg desc="工作任务管理编辑主界面">
+	<objectName>businessObject</objectName>
+	<objectLineName>innovateTaskLine</objectLineName>
+	<winWidth type="integer">850</winWidth>
+	<component>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/innovate/innovatetask/edittbar</viewPath>
+		</items>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<title>内容</title>
+			<viewPath>rpms/innovate/innovatetask/editform</viewPath>
+		</items>
+		<items>
+			<object>fileLineGrid</object>
+			<title>附件上传</title>
+			<xtype>lionuploadfile</xtype>
+			<isLine type="boolean">true</isLine>
+			<lineName>documents</lineName> 
+			<fkId type="object">this.mainId</fkId>
+			<height type="object">475</height>
+			<fkName>obj.docFk</fkName>
+			<allowUpload type="object">this.editable</allowUpload>
+			<allowDelete type="object">this.editable</allowDelete>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>
+			<xtype>tabpanel</xtype>
+			 <activeTab type="object">0</activeTab>
+			<items>editForm</items>
+			<items>fileLineGrid</items>
+		</items>
+	</container>
+</uicfg>

@@ -1,0 +1,66 @@
+<uicfg desc="文档管理主界面">
+	<objectName>businessObject</objectName>
+	<editView>system/document/view</editView>
+	<deleteUrl>system/deleteDocument.html</deleteUrl>
+	<component>
+		<items>
+			<object>dataGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<region>center</region>
+			<viewPath>system/document/listgrid</viewPath>
+		</items>
+		<items>
+			<object>queryForm</object>
+			<xtype>lionform</xtype>
+			<region>north</region>
+			<viewPath>system/document/listqueryform</viewPath>
+			<runMode>4</runMode>
+		</items>
+		<items>
+			<object>listTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>system/document/listtbar</viewPath>
+		</items>
+		<items>
+			<object>listTypeTree</object>
+			<xtype>panel</xtype>
+			<region>west</region>
+			<bodyStyle>border-width:0 1px 0 1px;</bodyStyle>
+			<autoScroll type="object">true</autoScroll>
+		    <width type="object">220</width>
+		    <split type="object">true</split>
+		    <minSize type="object">220</minSize>
+		    <maxSize type="object">220</maxSize>
+		    <collapsible type="object">false</collapsible>
+		    <lines type="object">false</lines>
+		    <collapseMode>mini</collapseMode>
+		    <listeners>
+		    	<afterlayout type="object">
+		    		this.typeTreeLayout
+		    	</afterlayout>
+		    	<scope type="object">this</scope>
+		    </listeners>
+			<items>
+				<xtype>liontoolbar</xtype>
+				<border type="boolean">false</border>
+				<manager type="object">this</manager>
+				<viewPath>system/document/treetbar</viewPath>
+			</items>
+			<items>
+				<xtype>liontree</xtype>
+				<viewPath>system/document/listtypetree</viewPath>
+			</items>
+		</items>
+	</component>
+	<container>
+		<items>listTbar</items>
+		<items>
+			<xtype>panel</xtype>
+			<layout>border</layout>
+			<border type="boolean">false</border>
+			<items>queryForm</items>
+			<items>listTypeTree</items>
+			<items>dataGrid</items>
+		</items>
+	</container>
+</uicfg>

@@ -1,0 +1,157 @@
+<uicfg desc="单项工程管理编辑">
+	<loadtUrl>base/loadProjectSingle.html</loadtUrl>
+	<submitUrl>base/saveProjectSingle.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<editable type="object">true</editable>
+	<columns type="object">4</columns>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+	    <xtype>lionmonthfield</xtype>
+		<name>reportDate</name>
+		<hidden type="object">true</hidden>
+		<fieldLabel>日期</fieldLabel>
+		<format>Y-m-d</format>
+		<value type="object">new Date().format('Y-m-d')</value>
+		<allowBlank type="object">false</allowBlank>
+    </items>
+	<items>
+	    <xtype>lioncombobox</xtype>
+		<name>reportStatus</name>
+		<hidden type="object">true</hidden>
+		<fieldLabel>上报状态</fieldLabel>
+		<keyType>prds_commit_status</keyType>
+		<value>0001</value>
+		<readOnly type="boolean">true</readOnly>
+		<style>border:0;background: #d9d9d9</style>
+		<allowBlank type="object">true</allowBlank>
+    </items>
+    <items>
+	    <xtype>liontextfield</xtype>
+		<name>projectCd</name>
+		<fieldLabel>工程编码</fieldLabel>
+		<allowBlank type="object">false</allowBlank>
+    </items>
+    <items>
+	    <xtype>liontextfield</xtype>
+		<name>projectName</name>
+		<fieldLabel>工程名称</fieldLabel>
+		<allowBlank type="object">false</allowBlank>
+    </items>
+    <items>
+	    <xtype>liontextfield</xtype>
+		<name>projectSimp</name>
+		<fieldLabel>工程简拼</fieldLabel>
+    </items>
+    <items>
+	    <xtype>lioncombobox</xtype>
+		<name>projectType</name>
+		<fieldLabel>工程类型</fieldLabel>
+		<keyType>prds_project_lvl</keyType>
+    </items>
+    <items>
+	    <xtype>lioncombobox</xtype>
+		<name>projectStatus</name>
+		<fieldLabel>工程状态</fieldLabel>
+		<keyType>prds_project_status</keyType>
+		<value>0001</value>
+		<allowBlank type="object">true</allowBlank>
+    </items>
+    <items>
+	    <xtype>lionmonthfield</xtype>
+		<name>beginDate</name>
+		<fieldLabel>开始时间</fieldLabel>
+		<format>Y-m-d</format>
+		<value type="object">new Date().format('Y-m-d')</value>
+    </items>
+    <items>
+	    <xtype>lionmonthfield</xtype>
+		<name>endDate</name>
+		<fieldLabel>结束时间</fieldLabel>
+		<format>Y-m-d</format>
+		<value type="object">new Date().format('Y-m-d')</value>
+    </items>
+    <items>
+	    <xtype>liontextfield</xtype>
+		<name>projectHead</name>
+		<fieldLabel>负责人</fieldLabel>
+    </items>
+    <items>
+	    <xtype>liontextfield</xtype>
+		<name>constructionUnit</name>
+		<fieldLabel>施工单位</fieldLabel>
+    </items>
+    <items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<hidden type="object">true</hidden>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<name>createUser</name>
+		<value type="object">FW.userName</value>
+		<style>border:0;background: #d9d9d9</style>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+		<style>border:0;background: #d9d9d9</style>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改人</fieldLabel>
+		<name>modifyUser</name>
+		<value type="object">FW.userName</value>
+		<style>border:0;background: #d9d9d9</style>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+		<style>border:0;background: #d9d9d9</style>
+	</items>
+	 <items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>审批人</fieldLabel>
+		<name>reportUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+    <items>
+	    <xtype>lioncombobox</xtype>
+		<name>valid</name>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+		<value type="object">1</value>
+		<allowBlank type="object">true</allowBlank>
+    </items>
+    <items>
+		<xtype>liontextarea</xtype>
+		<name>reportSuggestion</name>
+		<fieldLabel>审批意见</fieldLabel>
+		<columnWidth type="integer">3</columnWidth>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>remark</name>
+		<fieldLabel>备注</fieldLabel>
+		<columnWidth type="integer">3</columnWidth>
+	</items>
+</uicfg>

@@ -1,0 +1,41 @@
+<uicfg desc="论文评比管理编辑主界面">
+	<objectName>businessObject</objectName>
+	<objectLineName>thesisApplicationLine</objectLineName>
+	<winWidth type="integer">850</winWidth>
+	<component>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/thesis/thesisapplication/edittbar</viewPath>
+		</items>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<title>评比资料</title>
+			<viewPath>rpms/thesis/thesisapplication/editform</viewPath>
+		</items>
+		<items>
+			<object>fileLineGrid</object>
+			<xtype>lionuploadfile</xtype>
+			<isLine type="boolean">true</isLine>
+			<lineName>documents</lineName> 
+			<fkId type="object">this.mainId</fkId>
+			<height type="object">485</height>
+			<fkName>obj.docFk</fkName>
+			<allowUpload type="object">this.editable</allowUpload>
+			<allowDelete type="object">this.editable</allowDelete>
+			<title>附件上传</title>
+			<!-- <fileTypeId type="object">"4028b88145d429440145d43c925d0017"</fileTypeId> -->
+			<!-- <fileTypeText type="object">"项目合同"</fileTypeText> -->
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>
+			<xtype>tabpanel</xtype>
+			 <activeTab type="object">0</activeTab>
+			<items>editForm</items>
+			<items>fileLineGrid</items>
+		</items>
+	</container>
+</uicfg>

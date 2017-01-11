@@ -1,0 +1,27 @@
+<uicfg desc="专业词典查询表单">
+	<columns type="integer">5</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>专业编号</fieldLabel>
+		<name>specialtyCode</name>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>专业名称</fieldLabel>
+		<name>specialtyName</name>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+</uicfg>

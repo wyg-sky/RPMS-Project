@@ -1,0 +1,16 @@
+<uicfg desc="单位树">
+	<region>west</region>
+	<title>部门树</title>
+    <bodyStyle>border-width:0 1px 0 0;</bodyStyle>
+    <width type="object">195</width>
+    <split type="object">true</split>
+    <minSize type="object">195</minSize>
+    <maxSize type="object">195</maxSize>
+    <collapseMode>mini</collapseMode>
+	<loader>
+		<dataUrl type="object"><![CDATA[
+			'loadModuleChildren.html?info.moduleId=' + FW.moduleId
+		]]>
+		</dataUrl>
+	</loader>
+</uicfg>

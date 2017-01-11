@@ -1,0 +1,1461 @@
+html {
+	scrollBar-face-color: #DFE8F6;
+	scrollBar-hightLight-color: #ffffff;
+	scrollBar-3dLight-color: #DFE8F6;
+	scrollBar-darkshadow-color: #DFE8F6;
+	scrollBar-shadow-color: #ffffff;
+	scrollBar-arrow-color: #ffffff;
+	scrollBar-track-color: #f5f5f5;
+	scrollBar-base-color: #DFE8F6;
+}
+
+.module_tree_cls {
+	line-height : 22px !important;
+}
+
+.module_tree_iconCls {
+	padding-top: 3px !important;
+}
+
+/*liongrouptab的样式*/
+.x-grouptabs-panel {
+    background-color: #4E78B1;
+    border: solid 15px #4E78B1;
+}
+.x-tab-panel-left .x-grouptabs-panel-header,
+.x-tab-panel-right .x-grouptabs-panel-header {
+    float: left;
+    border: 0;
+    background: transparent;
+}
+.x-tab-panel-right .x-grouptabs-panel-header {
+    float:right;
+}
+.x-tab-panel-left .x-grouptabs-bwrap {
+    float: right;
+    position: relative;
+}
+.x-tab-panel-right .x-grouptabs-bwrap {
+    float: left;
+    position: relative;
+}
+.x-tab-panel-left ul.x-grouptabs-strip,
+.x-tab-panel-right ul.x-grouptabs-strip {
+    width: auto;
+	display: block;
+}
+.x-tab-panel-left ul.x-grouptabs-strip li,
+.x-tab-panel-right ul.x-grouptabs-strip li {
+    padding: 6px 0 2px 6px;
+    float: none;
+    margin: 0;
+    position: relative;
+    clear: both;
+}
+.x-tab-panel-left .x-tab-panel-header ul.x-grouptabs-strip a.x-grouptabs-text,
+.x-tab-panel-right .x-tab-panel-header ul.x-grouptabs-strip a.x-grouptabs-text{
+	font-size: 13px;
+	line-height: 18px;
+	cursor: pointer;
+}
+
+.x-tab-panel-left .x-tab-panel-header ul.x-grouptabs-strip a.x-grouptabs-text{
+    padding-left: 18px;
+}
+.x-tab-panel-right .x-tab-panel-header ul.x-grouptabs-strip a.x-grouptabs-text{
+    padding-right: 18px;
+}
+
+.x-tab-panel-left .x-tab-panel-header ul.x-grouptabs-sub a.x-grouptabs-text,
+.x-tab-panel-right .x-tab-panel-header ul.x-grouptabs-sub a.x-grouptabs-text{
+	font-size: 12px;
+    padding: 0;  
+}
+
+.x-tab-panel-left .x-tab-panel-header ul.x-grouptabs-sub a.x-grouptabs-text{
+	margin-left: 4px;
+}
+.x-tab-panel-right .x-tab-panel-header ul.x-grouptabs-sub a.x-grouptabs-text{
+	margin-right: 4px;
+}
+
+.x-grouptabs-panel .x-grouptabs-strip a.x-grouptabs-text{
+    overflow: hidden;
+    white-space: nowrap;
+	display: block;
+    color: #DFE8F6;
+    font-family: tahoma, arial, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+}
+.x-tab-panel-right .x-grouptabs-strip a.x-grouptabs-text {
+    text-align: right;
+}
+
+.x-grouptabs-panel .x-grouptabs-strip-active a.x-grouptabs-text {
+    color: #395B8E;
+}
+
+.x-grouptabs-panel ul.x-grouptabs-sub a.x-grouptabs-text {
+	font-weight: normal;
+}
+.x-tab-joint {
+    position: absolute;
+    width: 3px;
+    top: 1px;
+    background: #fff;
+    z-index: 8999;
+}
+
+.x-grouptabs-panel .x-grouptabs-panel-body {
+    border: 1px solid #999;
+}
+
+.x-grouptabs-panel ul.x-grouptabs-strip li {
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+	border-left: 1px solid transparent;
+}
+
+.x-grouptabs-panel ul.x-grouptabs-strip li.x-grouptabs-strip-active {
+    border: 0;
+    background: #fff;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+}
+
+.x-tab-panel-left ul.x-grouptabs-strip li.x-grouptabs-strip-active {
+    border-left: 1px solid #999;
+}
+.x-tab-panel-right ul.x-grouptabs-strip li.x-grouptabs-strip-active {
+    border-right: 1px solid #999;
+}
+
+.x-grouptabs-panel li.x-grouptabs-strip-active ul.x-grouptabs-sub li.x-grouptabs-strip-active{
+    background-color: #EDEEF0;
+}
+
+.x-grouptabs-panel li.x-grouptabs-strip-active ul.x-grouptabs-sub {
+    background-color: transparent;
+}
+
+.x-grouptabs-panel li.x-grouptabs-strip-active ul.x-grouptabs-sub li {
+    border-color: transparent;
+}
+
+/* Tab corners */
+.x-grouptabs-panel .x-grouptabs-corner {
+    background-image: url('../images/default/tabs/x-grouptabs-corners.gif');
+    display: none;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+    font-size: 1px;
+    line-height: 6px;
+    overflow: hidden;
+    zoom:1;
+}
+.x-grouptabs-panel .x-grouptabs-strip-active .x-grouptabs-corner {
+    display: block;
+}
+.x-grouptabs-panel .x-grouptabs-main.x-grouptabs-strip-active ul.x-grouptabs-sub .x-grouptabs-corner {
+	display: none;
+}
+
+.x-grouptabs-panel .x-grouptabs-corner-top-left {
+    background-position: top left;
+    left: 0; top: 0;
+}
+.x-grouptabs-panel .x-grouptabs-corner-bottom-left {
+    background-position: bottom left;
+    left: 0; bottom: 0;
+}
+.x-grouptabs-panel .x-grouptabs-corner-top-right {
+    background-position: top right;
+    right: 0; top: 0;
+}
+.x-grouptabs-panel .x-grouptabs-corner-bottom-right {
+    background-position: bottom right;
+    right: 0; bottom: 0;
+}
+.x-grouptabs-panel li.x-grouptabs-strip-active .x-grouptabs-corner-bottom-left{
+    bottom: -4px; left: -4px;
+}
+.x-grouptabs-panel li.x-grouptabs-strip-active .x-grouptabs-corner-bottom-right{
+    bottom: -4px; right: -4px;
+}
+.x-grouptabs-panel li.x-grouptabs-strip-active .x-grouptabs-corner-top-left{
+    top: -4px; left: -4px;
+}
+.x-grouptabs-panel li.x-grouptabs-strip-active .x-grouptabs-corner-top-right{
+    top: -4px; right: -4px;
+}
+
+.x-grouptabs-panel ul.x-grouptabs-sub li.x-tab-with-icon a.x-grouptabs-text {
+    background-repeat: no-repeat;
+    padding-left: 20px;
+}
+
+/* General tab styling */
+.x-grouptabs-panel .x-grouptabs-expand {
+	background: transparent url('../images/elbow-plus-nl.gif') no-repeat;
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	left: 7px;
+	top: 6px;
+}
+
+.ext-ie6 .x-grouptabs-panel .x-grouptabs-expand,
+.ext-border-box .x-grouptabs-panel .x-grouptabs-expand {
+	left: 0;
+}
+
+.x-grouptabs-expanded .x-grouptabs-expand {
+	background-image: url('../images/elbow-minus-nl.gif');
+}
+
+/* GroupTabs sub group styling */
+.x-grouptabs-sub {
+	display: none;
+	margin-top: 4px;
+}
+
+.x-grouptabs-expanded .x-grouptabs-sub {
+	display: block;
+}
+
+.x-grouptabs-panel ul.x-grouptabs-sub li {
+	height: 18px;
+	margin: 0 0 2px;
+    padding: 0;
+}
+
+.x-grouptabs-panel ul.x-grouptabs-sub .x-grouptabs-main-item {
+	display: none;
+}
+
+.x-tab-with-icon{
+   border-style:none !important;
+}
+
+/*lionmultiselect的样式*/
+.ux-mselect{
+    overflow:auto;
+    background:white;
+    position:relative; /* for calculating scroll offsets */
+    zoom:1;
+    overflow:auto;	
+}
+.ux-mselect-item{
+    font:normal 12px tahoma, arial, helvetica, sans-serif;
+    padding:2px;
+    border:1px solid #fff;
+    white-space: nowrap;
+    cursor:pointer;
+}
+.ux-mselect-selected{
+	border:1px dotted #a3bae9 !important;
+    background:#DFE8F6;
+    cursor:pointer;
+}
+
+.x-view-drag-insert-above { 
+    border-top:1px dotted #3366cc; 
+} 
+.x-view-drag-insert-below { 
+    border-bottom:1px dotted #3366cc; 
+} 
+
+.ext-ie .ux-form-multiselect .x-fieldset legend {
+    margin-bottom: 0;
+}
+
+
+/*gridsummary的样式*/
+.x-grid3-summary-row {
+    /*border-left:1px solid #fff;
+    border-right:1px solid #fff;*/
+    color:#333;
+    background: #ffffff;
+}
+.x-grid3-summary-row .x-grid3-cell-inner {
+    font-weight:bold;
+    padding-bottom:4px;
+}
+.x-grid3-cell-first .x-grid3-cell-inner {
+    padding-left:16px;
+}
+.x-grid-hide-summary .x-grid3-summary-row {
+    display:none;
+}
+.x-grid3-summary-msg {
+    padding:4px 16px;
+    font-weight:bold;
+}
+/*treecolumn的样式*/
+.x-column-tree .x-tree-node {
+    zoom:1;
+}
+.x-column-tree .x-tree-node-el {
+    zoom:1;
+}
+.x-column-tree .x-tree-selected {
+    background: #d9e8fb;
+}
+.x-column-tree  .x-tree-node a {
+    line-height:18px;
+    vertical-align:middle;
+}
+.x-column-tree  .x-tree-node a span{
+	
+}
+.x-column-tree  .x-tree-node .x-tree-selected a span{
+	background:transparent;
+	color:#000;
+}
+.x-tree-col {
+    float:left;
+    overflow:hidden;
+    padding:0 1px;
+    zoom:1;
+}
+
+.x-tree-col-text, .x-tree-hd-text {
+    overflow:hidden;
+    -o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+    padding:3px 3px 3px 5px;
+    white-space: nowrap;
+    font:normal 11px arial, tahoma, helvetica, sans-serif;
+}
+
+.x-tree-hd-text {
+    font-weight: bold;
+}
+
+.x-tree-headers {
+    background: #f9f9f9 url(../images/default/grid/grid3-hrow.gif) repeat-x 0 bottom;
+	cursor:default;
+    zoom:1;
+}
+
+.x-tree-hd {
+    float:left;
+    overflow:hidden;
+    border-left:1px solid #eee;
+    border-right:1px solid #d0d0d0;
+}
+
+/*liontoolbar的样式*/
+.x-toolbar td,.x-toolbar span,.x-toolbar input,.x-toolbar div,.x-toolbar select,.x-toolbar label{
+    font:normal 11px microsoft YaHei;
+    font-weight:normal;
+    line-height:15px;
+}
+
+.x-lion-toolbar {
+    background-color: #D0DEF0;
+    background-image: url("../images/default/toolbar/bg.gif");
+    border: 1 none #3b5a82;
+    border-width: 1px 0 0 1px;
+    border-style: solid;
+}
+
+/*treegrid的样式*/
+.ux-maximgb-treegrid-breadcrumbs {
+	color: #15428B;
+	border-bottom: 1px solid #D0D0D0;
+	font: normal 11px arial, tahoma, helvetica, sans-serif;
+	-moz-outline: none;
+	-moz-user-focus: normal;
+	line-height: 15px;
+	padding: 4px 3px 4px 6px;
+}
+
+.ux-maximgb-treegrid-brditem {
+	color: #15428B;
+}
+
+.ux-maximgb-treegrid-uiwrap {
+	float: left;
+	position: relative;
+	height: 18px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.ux-maximgb-treegrid-elbow-empty {
+	position: absolute;
+	height: 18px;
+	width: 16px;
+	overflow: hidden;
+}
+
+.ux-maximgb-treegrid-elbow-line {
+	position: absolute;
+	height: 18px;
+	width: 16px;
+	overflow: hidden;
+	background: url(../images/default/tree/elbow-line.gif) repeat-x;
+}
+
+.ux-maximgb-treegrid-elbow {
+	position: absolute;
+	height: 18px;
+	width: 16px;
+	overflow: hidden;
+	background: url(../images/default/tree/elbow.gif) no-repeat;
+}
+
+.ux-maximgb-treegrid-elbow-end {
+	position: absolute;
+	height: 18px;
+	width: 16px;
+	overflow: hidden;
+	background: url(../images/default/tree/elbow-end.gif) no-repeat;
+}
+
+.ux-maximgb-treegrid-elbow-active {
+	cursor: pointer;
+}
+
+.ux-maximgb-treegrid-elbow-minus {
+	position: absolute;
+	height: 18px;
+	width: 16px;
+	overflow: hidden;
+	background: url(../images/default/tree/elbow-minus.gif) no-repeat
+		;
+}
+
+.ux-maximgb-treegrid-elbow-end-minus {
+	position: absolute;
+	height: 18px;
+	width: 16px;
+	overflow: hidden;
+	background: url(../images/default/tree/elbow-end-minus.gif)
+		no-repeat;
+}
+
+.ux-maximgb-treegrid-elbow-plus {
+	position: absolute;
+	height: 18px;
+	width: 16px;
+	overflow: hidden;
+	background: url(../images/default/tree/elbow-plus.gif) no-repeat;
+}
+
+.ux-maximgb-treegrid-elbow-end-plus {
+	position: absolute;
+	height: 18px;
+	width: 16px;
+	overflow: hidden;
+	background: url(../images/default/tree/elbow-end-plus.gif)
+		no-repeat;
+}
+/*treegrid的level样式*/
+.ux-maximgb-treegrid-level-0 {
+	
+}
+
+.ux-maximgb-treegrid-level-1 {
+	background-color: #DFE7FF;
+}
+
+.ux-maximgb-treegrid-level-2 {
+	background-color: #BFCFFF;
+}
+
+.ux-maximgb-treegrid-level-3 {
+	background-color: #9FB7FF;
+}
+
+.ux-maximgb-treegrid-level-4 {
+	background-color: #809FFF;
+}
+
+.ux-maximgb-treegrid-level-5 {
+	background-color: #6087FF;
+}
+
+.ux-maximgb-treegrid-level-6 {
+	background-color: #4070FF;
+}
+
+.ux-maximgb-treegrid-level-7 {
+	background-color: #2058FF;
+}
+
+.ux-maximgb-treegrid-level-8 {
+	background-color: #0040FF;
+}
+
+/*编辑gird的form插件*/
+.ext-ie .x-row-editor .x-form-text {
+    margin:0 !important;
+}
+.x-row-editor-header {
+    height:2px;
+    overflow:hidden;
+    background: transparent url(../images/default/grid/row-editor-bg.gif) repeat-x 0 0;
+}
+.x-row-editor-footer {
+    height:2px;
+    overflow:hidden;
+    background: transparent url(../images/default/grid/row-editor-bg.gif) repeat-x 0 -2px;
+}
+.ext-ie .x-row-editor-footer {
+    margin-top:-1px;
+}
+
+.x-row-editor-body {
+    overflow:hidden;
+    zoom:1;
+    background: #dfe8f7;
+    padding-top:1px;
+}
+.x-row-editor .x-btns {
+    position:absolute;
+    top:28px;
+    left:20px;
+    padding-left:5px;
+    background: transparent url(../images/default/grid/row-editor-btns.gif) no-repeat 0 0;
+}
+.x-row-editor .x-btns .x-plain-bwrap {
+    padding-right:5px;
+    background: transparent url(../images/default/grid/row-editor-btns.gif) no-repeat right -31px;
+}
+.x-row-editor .x-btns .x-plain-body {
+    background: transparent url(../images/default/grid/row-editor-btns.gif) repeat-x 0 -62px;
+    height:31px;
+}
+.x-row-editor .x-btns .x-table-layout-cell {
+    padding:3px;
+}
+
+/* Fixes for IE6/7 trigger fields */
+.ext-ie6 .x-row-editor .x-form-field-wrap .x-form-trigger, .ext-ie7 .x-row-editor .x-form-field-wrap .x-form-trigger {
+  top: 1px;
+}
+
+.ext-ie6 .x-row-editor .x-form-field-trigger-wrap, .ext-ie7 .x-row-editor .x-form-field-trigger-wrap {
+  margin-top: -1px;
+}
+
+.errorTip .x-tip-body ul{
+    list-style-type:disc;
+    margin-left:15px;
+}
+
+/*日期时分秒*/
+.ext-ie .x-date-time-menu{
+    height: 216px;
+}
+.ext-strict .ext-ie .x-date-time-menu, .ext-border-box .ext-ie8 .x-date-time-menu{
+    height: 214px;
+}
+
+.ext-strict .ext-ie7 .x-date-time-menu{
+    height: 212px;
+}
+
+.ext-strict .ext-ie8 .x-date-time-menu{
+    height: auto;
+}
+
+.x-date-time-menu .x-menu-list{
+    padding: 0;
+}
+
+/*gird校验标红*/
+.x-grid-invalid {
+    border: 1px solid;
+    background:repeat-x bottom;
+	background-color:#fff;
+	background-image:url(../images/default/grid/invalid_line.gif);
+	border-color:#c30;
+}
+/*文本框边框 全无*/
+.no-border-text {
+    border:0;
+    background: #ffffff;
+}
+
+/*文本框边框 只有底部有*/
+.bottom-border-text {
+    border-left:0 !important;
+    border-top:0 !important;
+    border-right:0 !important;
+    background: #DFE8F6 !important;
+    background-image: none !important;
+}
+.readonly-background {
+    background: #edf2fb !important;
+}
+
+/*顶部标签边框颜色、去掉下内边距（移除分割线）、去掉底部边框（移除了分割线多出来了）*/
+.x-tab-panel-header {
+	border-color: #bbc5d5;
+	padding-bottom: 0;
+	border-bottom: 0;
+}
+
+/*顶部标签无背景时，移除分割线*/
+.x-tab-panel-header-plain .x-tab-strip-spacer {
+	border: none;
+	height: 0;
+	background: #fff;
+	line-height: 0;
+}
+
+/*顶部标签体的边框颜色、背景和内边距*/
+.x-tab-panel-body-top {
+	border-color: #bbc5d5;
+	background: url(../images/itsm/tabs/itsm-tab-bg.gif) repeat-x #f7f9fd;
+	padding: 6px;
+}
+
+/*顶部标签背景、边框颜色、右移*/
+ul.x-tab-strip-top {
+	background: #f7f9fd;
+	border-color: #bbc5d5;
+	padding-left: 3px;
+}
+
+/*顶部标签滚动时不右移*/
+.x-tab-scrolling ul.x-tab-strip-top {
+	padding-left: 0;
+}
+
+/*顶部标签右外边距内线，形成遮挡*/
+ul.x-tab-strip.x-tab-strip-top li {
+	position: relative;
+	margin-right: -25px;
+	margin-bottom: 0; /* 所有浏览器，为的是FF*/
+	margin-bottom: 0\0; /* IE8*/
+	*margin-bottom: -1px; /* IE7和IE6，为的是IE8兼容模式，IE7没有达到预想的效果*/
+	_margin-bottom: 0px; /* IE6*/
+}
+
+.x-tab-strip a {
+	cursor: default;
+}
+
+/*顶部标签普通样式*/
+.x-tab-strip-top .x-tab-right {
+	background: url(../images/itsm/tabs/itsm-tab-left.png) no-repeat top
+		left;
+	padding-left: 15px;
+	_background: url(../images/itsm/tabs/itsm-tab-left.gif) no-repeat -2px
+		left;
+}
+
+.x-tab-strip-top .x-tab-left {
+	background: url(../images/itsm/tabs/itsm-tab-right.png) no-repeat top
+		right;
+	padding-right: 50px;
+	_background: url(../images/itsm/tabs/itsm-tab-right.gif) no-repeat -2px
+		right;
+}
+
+.x-tab-strip-top .x-tab-strip-inner {
+	background: url(../images/itsm/tabs/itsm-tab-middle.png) repeat-x top
+		center;
+	_background: url(../images/itsm/tabs/itsm-tab-middle.gif) repeat-x 0
+		-2px;
+}
+
+/*顶部标签鼠标悬浮样式*/
+.x-tab-strip-top .x-tab-strip-over .x-tab-right {
+	background: url(../images/itsm/tabs/itsm-tab-left-over.png) no-repeat
+		top left;
+	padding-left: 15px;
+	_background: url(../images/itsm/tabs/itsm-tab-left-over.gif) no-repeat
+		-2px left;
+}
+
+.x-tab-strip-top .x-tab-strip-over .x-tab-left {
+	background: url(../images/itsm/tabs/itsm-tab-right-over.png) no-repeat
+		top right;
+	padding-right: 50px;
+	_background: url(../images/itsm/tabs/itsm-tab-right-over.gif) no-repeat
+		-2px right;
+}
+
+.x-tab-strip-top .x-tab-strip-over .x-tab-strip-inner {
+	background: url(../images/itsm/tabs/itsm-tab-middle-over.png) repeat-x
+		top center;
+	_background: url(../images/itsm/tabs/itsm-tab-middle-over.gif) repeat-x
+		0 -2px;
+}
+
+/*顶部标签激活样式*/
+.x-tab-strip-top .x-tab-strip-active .x-tab-right {
+	background: url(../images/itsm/tabs/itsm-tab-left-active.png) no-repeat
+		top left;
+	padding-left: 15px;
+	_background: url(../images/itsm/tabs/itsm-tab-left-active.gif) no-repeat
+		-2px left;
+}
+
+.x-tab-strip-top .x-tab-strip-active .x-tab-left {
+	background: url(../images/itsm/tabs/itsm-tab-right-active.png) no-repeat
+		top right;
+	padding-right: 50px;
+	_background: url(../images/itsm/tabs/itsm-tab-right-active.gif)
+		no-repeat -2px right;
+}
+
+.x-tab-strip-top .x-tab-strip-active .x-tab-strip-inner {
+	background: url(../images/itsm/tabs/itsm-tab-middle-active.png) repeat-x
+		top center;
+	_background: url(../images/itsm/tabs/itsm-tab-middle-active.gif)
+		repeat-x 0 -2px;
+}
+
+/*使激活的标签在最上层*/
+.x-tab-strip-active {
+	cursor: default;
+	position: relative;
+	z-index: 1000 !important;
+}
+
+/*顶部标签关闭按钮位置移动*/
+.x-tab-strip-top .x-tab-strip-closable .x-tab-left {
+	padding-right: 50px;
+}
+
+/*顶部标签关闭按钮背景、位置、增大宽高*/
+.x-tab-strip.x-tab-strip-top .x-tab-strip-closable a.x-tab-strip-close {
+	background: url(../images/itsm/tabs/itsm-tab-close.gif) 2px 2px
+		no-repeat;
+	top: 6px;
+	right: 32px;
+	width: 16px;
+	height: 16px;
+}
+
+.x-tab-strip.x-tab-strip-top .x-tab-strip-closable a.x-tab-strip-close:hover
+	{
+	background: url(../images/itsm/tabs/itsm-tab-close-over.gif) 2px 2px
+		no-repeat;
+}
+
+/*标签页滚动按钮图像*/
+.x-tab-scroller-left {
+	background: transparent
+		url(../images/itsm/tabs/itsm-scroll-left-enable.png) no-repeat top
+		right;
+	border-color: #bbc5d5;
+}
+
+.x-tab-scroller-left-over {
+	background-position: top right;
+}
+
+.x-tab-scroller-left-disabled {
+	background: transparent
+		url(../images/itsm/tabs/itsm-scroll-left-disable.png) no-repeat top
+		right;
+	border-color: #bbc5d5;
+}
+
+.x-tab-scroller-right {
+	background: transparent
+		url(../images/itsm/tabs/itsm-scroll-right-enable.png) no-repeat top
+		left;
+	border-color: 1px solid #bbc5d5;
+}
+
+.x-tab-scroller-right-over {
+	background-position: top left;
+}
+
+.x-tab-scroller-right-disabled {
+	background: transparent
+		url(../images/itsm/tabs/itsm-scroll-right-disable.png) no-repeat top
+		left;
+	border-color: #bbc5d5;
+}
+
+/*标签字体颜色*/
+.x-tab-strip span.x-tab-strip-text {
+	color: #091179;
+}
+
+/*顶部标签固定行高，解决底部边框可能未被隐藏的问题；增加文字上外边距，IE下不至于很难看*/
+.x-tab-strip-top .x-tab-right span.x-tab-strip-text {
+	line-height: 1.2em;
+	margin-top: 5px;
+}
+
+/*底部标签背景、边框颜色*/
+.x-tab-panel-footer {
+	background: #f6f7fb;
+	border-color: #bbc5d5;
+}
+
+/*底部标签背景、边框颜色*/
+ul.x-tab-strip-bottom {
+	background: url(../images/itsm/tabs/itsm-tab-strip-btm-bg.gif) #fff
+		repeat-x top;
+	border-color: #bbc5d5;
+}
+
+/*底部标签普通样式*/
+.x-tab-strip-bottom .x-tab-right {
+	background: url(../images/itsm/tabs/itsm-tab-btm-inactive-right-bg.gif)
+		no-repeat bottom right;
+}
+
+.x-tab-strip-bottom .x-tab-left {
+	background: url(../images/itsm/tabs/itsm-tab-btm-inactive-left-bg.gif)
+		no-repeat bottom left;
+}
+
+/*底部标签激活样式*/
+.x-tab-strip-bottom .x-tab-strip-active .x-tab-right {
+	background: url(../images/itsm/tabs/itsm-tab-btm-right-bg.gif) no-repeat
+		bottom left;
+}
+
+.x-tab-strip-bottom .x-tab-strip-active .x-tab-left {
+	background: url(../images/itsm/tabs/itsm-tab-btm-left-bg.gif) no-repeat
+		bottom right;
+}
+
+/*底部标签关闭按钮图像*/
+.x-tab-strip.x-tab-strip-bottom .x-tab-strip-closable a.x-tab-strip-close
+	{
+	background-image: url(../images/itsm/tabs/itsm-tab-close-bottom.gif);
+}
+
+.x-tab-strip.x-tab-strip-bottom .x-tab-strip-closable a.x-tab-strip-close:hover
+	{
+	background-image: url(../images/itsm/tabs/itsm-tab-close-bottom.gif);
+}
+
+/*列表顶部背景、增加下边框*/
+.x-grid3-header {
+	/*background: #f9f9f9 url(../images/itsm/grid/itsm-grid3-hrow.gif)
+		repeat-x;*/
+	border-bottom: 1px solid #c8cbde;
+}
+
+/*列表顶部鼠标悬浮边框颜色、背景*/
+td.x-grid3-hd-over,td.sort-desc,td.sort-asc,td.x-grid3-hd-menu-open {
+	border-color: #acc3e1;
+}
+
+td.x-grid3-hd-over .x-grid3-hd-inner,td.sort-desc .x-grid3-hd-inner,td.sort-asc .x-grid3-hd-inner,td.x-grid3-hd-menu-open .x-grid3-hd-inner
+	{
+	background-image: url(../images/itsm/grid/itsm-grid3-hrow-over.gif);
+}
+
+.x-grid3-hd-btn {
+	background-image: url(../images/itsm/grid/itsm-grid3-hd-btn.gif);
+}
+
+/*选框背景*/
+.x-grid3-body .x-grid3-td-checker {
+	/*background-image: url(../images/itsm/grid/itsm-grid3-special-col-bg.gif);*/
+}
+
+/*行展开条背景*/
+.x-grid3-body .x-grid3-td-expander {
+	background-image: url(../images/itsm/grid/itsm-grid3-special-col-bg.gif);
+}
+
+/*列表行鼠标悬浮边框、背景*/
+.x-grid3-row-over {
+	background: #eeeff4 url(../images/itsm/grid/itsm-row-over.gif) repeat-x
+		left top;
+}
+
+/*面板边框颜色*/
+.x-panel {
+	border-color: #a1b8da;
+}
+
+/*面板顶部字体、边框颜色、背景（紫色系）、高度统一为28px时计算出的高度*/
+.x-panel-header {
+	color: #3a388b;
+	border-color: #a1b8da;
+	background: url(../images/itsm/panel/itsm-panel-header-bg.gif) repeat-x;
+	height: 17px;
+}
+
+/*面板体边框颜色*/
+.x-panel-body {
+	border-color: #a1b8da;
+}
+
+/*面板底部工具栏边框颜色和背景*/
+.x-panel-bbar .x-toolbar {
+	border-color: #a1b8da;
+	background: url(../images/itsm/toolbar/itsm-bbar-bg.gif) repeat-x;
+}
+
+/*面板顶部工具栏边框颜色和背景（默认灰色系的，与紫色系的顶部搭配）*/
+.x-panel-tbar .x-toolbar {
+	border-color: #a1b8da;
+	background: #e8ecf5;
+}
+
+/*没有顶部的面板顶部工具栏边框颜色和背景（较深）*/
+.x-panel-tbar-noheader .x-toolbar {
+	border-color: #a1b8da;
+	background: transparent url(../images/itsm/toolbar/itsm-tbar-bg.gif)
+		repeat-x;
+}
+
+/*有框架的面板中的面板顶部工具栏边框颜色和背景（较浅）*/
+.x-panel-mc .x-panel-tbar .x-toolbar {
+	border-color: #9fc0ee;
+	background: #eaeffe;
+}
+
+/*没有顶部的面板顶部边框颜色*/
+.x-panel-body-noheader {
+	border-color: #a1b8da;
+}
+
+/*有框架的面板中的面板顶部边框颜色*/
+.x-panel-mc .x-panel-body {
+	border-color: #9fc0ee;
+}
+
+/*有框架的面板顶部字体颜色、背景（蓝色系）、边框颜色*/
+.x-panel-tl .x-panel-header {
+	color: #3a388b;
+	padding: 5px 6px 4px;
+}
+
+.x-panel-tc {
+	background-image:
+		url(../images/itsm/panel/itsm-panel-header-bg-blue.gif);
+}
+
+.x-panel-tl {
+	background-image: url(../images/itsm/panel/itsm-corners-sprite.gif);
+	border-color: #9fc0ee;
+}
+
+.x-panel-tr {
+	background-image: url(../images/itsm/panel/itsm-corners-sprite.gif);
+}
+
+/*没有边框的面板顶部边框颜色*/
+.x-panel-noborder .x-panel-header-noborder {
+	border-color: #a1b8da;
+}
+
+/*没有边框的面板顶部工具栏边框颜色*/
+.x-panel-noborder .x-panel-tbar-noborder .x-toolbar {
+	border-color: #a1b8da;
+}
+
+/*没有边框的面板底部工具栏边框颜色*/
+.x-panel-noborder .x-panel-bbar-noborder .x-toolbar {
+	border-color: #a3bce1;
+}
+
+/*窗口顶部文字颜色*/
+.x-window-tl .x-window-header {
+	color: #3a388b;
+}
+
+/*窗口顶部背景*/
+.x-window-tc {
+	background: transparent url(../images/itsm/window/itsm-top-bottom.png)
+		repeat-x;
+}
+
+.x-window-tl {
+	background: transparent url(../images/itsm/window/itsm-left-corners.png)
+		no-repeat;
+}
+
+.x-window-tr {
+	background: transparent
+		url(../images/itsm/window/itsm-right-corners.png) no-repeat right 0;
+}
+
+/*窗口底部背景*/
+.x-window-bc {
+	background: transparent url(../images/itsm/window/itsm-top-bottom.png)
+		repeat-x 0 bottom;
+}
+
+.x-window-bl {
+	background: transparent url(../images/itsm/window/itsm-left-corners.png)
+		no-repeat 0 bottom;
+}
+
+.x-window-br {
+	background: transparent
+		url(../images/itsm/window/itsm-right-corners.png) no-repeat right
+		bottom;
+}
+
+/*窗口中间边框颜色、背景*/
+.x-window-mc {
+	border-color: #a1b8da;
+	background: #fff;
+}
+
+.x-window-ml {
+	background: transparent url(../images/itsm/window/itsm-left-right.png)
+		repeat-y;
+}
+
+.x-window-mr {
+	background: transparent url(../images/itsm/window/itsm-right-left.png)
+		repeat-y right 0;
+}
+
+/*提示窗口中间背景*/
+body.x-body-masked .x-window-plain .x-window-mc {
+	background: transparent url(../images/itsm/window/itsm-top-bottom.png)
+		repeat-x 0 -11px;
+}
+
+/*面板中的按钮背景*/
+.x-panel-btns-ct .x-btn-left {
+	width: 6px;
+	height: 22px;
+	background: url(../images/itsm/button/itsm-btn-sprite.gif) no-repeat;
+}
+
+.x-panel-btns-ct .x-btn-right {
+	width: 6px;
+	height: 22px;
+	background: url(../images/itsm/button/itsm-btn-sprite.gif) no-repeat
+		right -22px;
+}
+
+.x-panel-btns-ct .x-btn-center {
+	background: url(../images/itsm/button/itsm-btn-sprite.gif) repeat-x 0
+		-44px;
+}
+
+/*面板中的按钮鼠标悬浮时的背景*/
+.x-panel-btns-ct .x-btn-over .x-btn-left {
+	background-position: 0 -66px;
+}
+
+.x-panel-btns-ct .x-btn-over .x-btn-right {
+	background-position: right -88px;
+}
+
+.x-panel-btns-ct .x-btn-over .x-btn-center {
+	background-position: 0 -110px;
+}
+
+/*面板中的按钮点击后的背景*/
+.x-panel-btns-ct .x-btn-click .x-btn-left {
+	background-position: 0 -132px;
+}
+
+.x-panel-btns-ct .x-btn-click .x-btn-right {
+	background-position: right -154px;
+}
+
+.x-panel-btns-ct .x-btn-click .x-btn-center {
+	background-position: 0 -176px;
+}
+
+/*面板中的按钮焦点时背景*/
+.x-panel-btns-ct .x-btn-focus .x-btn-left {
+	background-position: 0 -198px;
+}
+
+.x-panel-btns-ct .x-btn-focus .x-btn-right {
+	background-position: right -220px;
+}
+
+.x-panel-btns-ct .x-btn-focus .x-btn-center {
+	background-position: 0 -242px;
+}
+
+/*x-panel-itsm导航背景*/
+.x-panel-itsm-light-header {
+	overflow: hidden;
+	zoom: 1;
+	color: #15428b;
+	font: bold 11px tahoma, arial, verdana, sans-serif;
+	padding: 5px 3px 4px 5px;
+	border: 0px solid #99bbe8;
+	line-height: 16px;
+	background: transparent url(../images/itsm/panel/light-hd-short.png)
+		repeat-x right 0;
+}
+
+/*BorderLayout背景*/
+.x-border-layout-ct {
+	background: #f7f9fd;
+}
+
+/*工具按钮图标*/
+.x-tool {
+	background: transparent url(../images/itsm/panel/itsm-tool-sprites.gif)
+		no-repeat;
+}
+
+.x-tool-toggle {
+	background-position: 0 -60px;
+}
+
+.x-tool-toggle-over {
+	background-position: -15px -60px;
+}
+
+.x-panel-collapsed .x-tool-toggle {
+	background-position: 0 -75px;
+}
+
+.x-panel-collapsed .x-tool-toggle-over {
+	background-position: -15px -75px;
+}
+
+.x-tool-close {
+	background-position: 0 -0;
+}
+
+.x-tool-close-over {
+	background-position: -15px 0;
+}
+
+.x-tool-minimize {
+	background-position: 0 -15px;
+}
+
+.x-tool-minimize-over {
+	background-position: -15px -15px;
+}
+
+.x-tool-maximize {
+	background-position: 0 -30px;
+}
+
+.x-tool-maximize-over {
+	background-position: -15px -30px;
+}
+
+.x-tool-restore {
+	background-position: 0 -45px;
+}
+
+.x-tool-restore-over {
+	background-position: -15px -45px;
+}
+
+.x-tool-gear {
+	background-position: 0 -90px;
+}
+
+.x-tool-gear-over {
+	background-position: -15px -90px;
+}
+
+.x-tool-pin {
+	background-position: 0 -135px;
+}
+
+.x-tool-pin-over {
+	background-position: -15px -135px;
+}
+
+.x-tool-unpin {
+	background-position: 0 -150px;
+}
+
+.x-tool-unpin-over {
+	background-position: -15px -150px;
+}
+
+.x-tool-right {
+	background-position: 0 -165px;
+}
+
+.x-tool-right-over {
+	background-position: -15px -165px;
+}
+
+.x-tool-left {
+	background-position: 0 -180px;
+}
+
+.x-tool-left-over {
+	background-position: -15px -180px;
+}
+
+.x-tool-up {
+	background-position: 0 -210px;
+}
+
+.x-tool-up-over {
+	background-position: -15px -210px;
+}
+
+.x-tool-down {
+	background-position: 0 -195px;
+}
+
+.x-tool-down-over {
+	background-position: -15px -195px;
+}
+
+.x-tool-refresh {
+	background-position: 0 -225px;
+}
+
+.x-tool-refresh-over {
+	background-position: -15px -225px;
+}
+
+.x-tool-minus {
+	background-position: 0 -255px;
+}
+
+.x-tool-minus-over {
+	background-position: -15px -255px;
+}
+
+.x-tool-plus {
+	background-position: 0 -240px;
+}
+
+.x-tool-plus-over {
+	background-position: -15px -240px;
+}
+
+.x-tool-search {
+	background-position: 0 -270px;
+}
+
+.x-tool-search-over {
+	background-position: -15px -270px;
+}
+
+.x-tool-save {
+	background-position: 0 -285px;
+}
+
+.x-tool-save-over {
+	background-position: -15px -285px;
+}
+
+.x-tool-help {
+	background-position: 0 -300px;
+}
+
+.x-tool-help-over {
+	background-position: -15px -300px;
+}
+
+.x-tool-print {
+	background-position: 0 -315px;
+}
+
+.x-tool-print-over {
+	background-position: -15px -315px;
+}
+
+/*Ext.form.Combobox的按钮图标*/
+.x-form-field-wrap .x-form-trigger {
+	background-image: transparent url(../images/itsm/form/itsm-trigger.gif)
+}
+
+.x-form-field-wrap .x-form-date-trigger {
+	background-image: url(../images/itsm/form/itsm-date-trigger.gif);
+}
+
+.x-form-field-wrap .x-form-clear-trigger {
+	background-image: url(../images/itsm/form/itsm-clear-trigger.gif);
+}
+
+.x-form-field-wrap .x-form-search-trigger {
+	background-image: url(../images/itsm/form/itsm-search-trigger.gif);
+}
+
+.x-form-field-wrap .x-form-trigger-over {
+	background-position: -17px 0;
+}
+
+.x-form-field-wrap .x-form-trigger-click {
+	background-position: -34px 0;
+}
+
+.x-trigger-wrap-focus .x-form-trigger {
+	background-position: -51px 0;
+}
+
+.x-trigger-wrap-focus .x-form-trigger-over {
+	background-position: -68px 0;
+}
+
+.x-trigger-wrap-focus .x-form-trigger-click {
+	background-position: -85px 0;
+}
+
+/*面板顶部高度统一为28px时计算出的高度*/
+.x-accordion-hd {
+	height: 19px;
+}
+
+/*作为导航的面板图片*/
+.itsm-nav {
+	background: url(../images/itsm/panel/itsm-panel-header-bg-nav.gif)
+		no-repeat top right;
+}
+
+.itsm-nav.x-accordion-hd {
+	background: url(../images/itsm/panel/itsm-panel-header-bg-nav.gif)
+		no-repeat right -1px;
+}
+
+/*Portal样式补丁，去掉Portal面板顶部的下边框*/
+.x-portlet.x-panel-noborder .x-panel-header-noborder {
+	border-bottom-width: 0;
+}
+
+/*折叠按钮*/
+.x-layout-mini {
+	width: 5px;
+	height: 31px;
+	opacity: 1;
+	-moz-opacity: 1;
+	filter: alpha(opacity = 100);
+}
+
+.x-layout-split-west .x-layout-mini {
+	background-image: url(../images/itsm/layout/mini-left.gif);
+}
+
+.x-layout-split-east .x-layout-mini {
+	background-image: url(../images/itsm/layout/mini-right.gif);
+}
+
+.x-layout-split-north .x-layout-mini {
+	height: 5px;
+	width: 31px;
+	background-image: url(../images/itsm/layout/mini-top.gif);
+}
+
+.x-layout-split-south .x-layout-mini {
+	height: 5px;
+	width: 31px;
+	background-image: url(../images/itsm/layout/mini-bottom.gif);
+}
+
+.x-layout-cmini-west .x-layout-mini {
+	background-image: url(../images/itsm/layout/mini-right.gif);
+}
+
+.x-layout-cmini-east .x-layout-mini {
+	background-image: url(../images/itsm/layout/mini-left.gif);
+}
+
+.x-layout-cmini-north .x-layout-mini {
+	height: 5px;
+	width: 31px;
+	background-image: url(../images/itsm/layout/mini-bottom.gif);
+}
+
+.x-layout-cmini-south .x-layout-mini {
+	height: 5px;
+	width: 31px;
+	background-image: url(../images/itsm/layout/mini-top.gif);
+}
+
+/*增加鼠标悬浮的样式*/
+.x-layout-split-west .x-layout-mini-over.x-layout-mini {
+	background-image: url(../images/itsm/layout/mini-left-over.gif);
+}
+
+.x-layout-split-east .x-layout-mini-over.x-layout-mini {
+	background-image: url(../images/itsm/layout/mini-right-over.gif);
+}
+
+.x-layout-split-north .x-layout-mini-over.x-layout-mini {
+	height: 5px;
+	width: 31px;
+	background-image: url(../images/itsm/layout/mini-top-over.gif);
+}
+
+.x-layout-split-south .x-layout-mini-over.x-layout-mini {
+	height: 5px;
+	width: 31px;
+	background-image: url(../images/itsm/layout/mini-bottom-over.gif);
+}
+
+.x-layout-cmini-west .x-layout-mini-over.x-layout-mini {
+	background-image: url(../images/itsm/layout/mini-right-over.gif);
+}
+
+.x-layout-cmini-east .x-layout-mini-over.x-layout-mini {
+	background-image: url(../images/itsm/layout/mini-left-over.gif);
+}
+
+.x-layout-cmini-north .x-layout-mini-over.x-layout-mini {
+	height: 5px;
+	width: 31px;
+	background-image: url(../images/itsm/layout/mini-bottom-over.gif);
+}
+
+.x-layout-cmini-south .x-layout-mini-over.x-layout-mini {
+	height: 5px;
+	width: 31px;
+	background-image: url(../images/itsm/layout/mini-top-over.gif);
+}
+
+/*普通右键菜单边框、背景*/
+.x-menu {
+	border: 1px solid #a6adc2;
+	background-image: url(../images/itsm/menu/itsm-menu.gif);
+}
+
+.x-menu-item-active {
+	background-image: url(../images/itsm/menu/itsm-item-over.gif);
+	border-color: #a2c7f7;
+}
+
+/*首页顶部菜单*/
+.temp-menu {
+	border: 1px solid #4482cb;
+	z-index: 15000;
+	zoom: 1;
+	background: url(../images/itsm/menu/itsm-blue-menu.jpg) no-repeat top
+		left;
+	padding: 0px;
+}
+
+.temp-menu-icon {
+	background: url(../images/itsm/menu/itsm-blue-menu-icon.gif) no-repeat
+		5px 7px !important;
+	margin-right: 12px;
+}
+
+.temp-menu a.x-menu-item {
+	color: white;
+}
+
+.temp-menu .x-menu-item-active {
+	background: #2b6ebc;
+	border: 1px solid #2b6ebc;
+}
+
+/*修复IE6下用户树的滚动条问题*/
+.ext-ie #user_panel .x-tree .x-panel-body {
+	_position: relative;
+}
+
+.ext-ie #user_panel .x-tree .x-tree-root-ct {
+	_position: absolute;
+}
+
+.itsm-form-label {
+	padding: 3px 0;
+}

@@ -1,0 +1,29 @@
+<uicfg desc="代码主表编辑表单按钮">
+	<items>-></items>
+	<items>
+		<text>查询</text>
+		<iconCls>search-d-icon</iconCls>
+		<handler type="object">function(){
+			var queryKey = this.manager.treeQueryForm.findField('queryKey').getValue();
+			if(queryKey != this.manager.queryKey) {
+				this.manager.queryKey = queryKey;
+				this.manager.typeTreeReload();
+			}
+			this.closeClick();
+		}</handler>
+	</items>
+	<items>
+		<text>清空</text>
+		<iconCls>ff-clear-icon</iconCls>
+		<handler type="object">function(){
+			this.manager.queryKey = "";
+			this.manager.typeTreeReload();
+			this.closeClick();
+		}</handler>
+	</items>
+	<items>
+		<text>关闭</text>
+		<iconCls>close-icon</iconCls>
+		<handler type="object">this.closeClick</handler>
+	</items>
+</uicfg>

@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+	default-lazy-init="true">
+	
+	<!-- 框架开始 -->
+	<bean id="loginManager" class="com.lion.system.framework.manager.impl.LoginManagerImpl">
+		<property name="userDao" ref="userDao" />
+		<property name="moduleDao" ref="moduleDao" />
+		<property name="codeDao" ref="codeDao" />
+		<property name="shortCutDao" ref="shortCutDao" />
+		<property name="userSettingDao" ref="userSettingDao" />
+		<property name="themeDao" ref="themeDao" />
+	</bean>
+	<bean id="loginAction" class="com.lion.system.framework.action.LoginAction" scope="prototype">
+		<property name="loginManager" ref="loginManager" />
+		<property name="operateLogManager" ref="operateLogManager" />
+	</bean>
+
+	<bean id="logoutAction" class="com.lion.system.framework.action.LogoutAction" scope="prototype">
+		<property name="operateLogManager" ref="operateLogManager" />
+	</bean>
+	
+	<bean id="portalManageAction" class="com.lion.system.framework.action.PortalManageAction" scope="prototype"></bean>
+	
+	<bean id="businessModelDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.framework.model.BusinessModel" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="WidgetsAction" class="com.lion.system.widgets.action.WidgetsAction" scope="prototype"/>
+	<bean id="LionImageFieldAction" class="com.lion.system.widgets.action.LionImageFieldAction" scope="prototype"/>
+	
+	<bean id="WeatherReportAction" class="com.lion.system.weather.action.WeatherReportAction" scope="prototype"/>
+	
+	<bean class="com.lion.core.util.SpringContextUtil" lazy-init="false"></bean>
+	<!-- 框架结束 -->
+	
+	<!-- 单位开始 -->
+	<bean id="organization" class="com.lion.system.organization.model.Organization" scope="prototype"></bean>
+	<bean id="organizationDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.organization.model.Organization" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="organizationManager" class="com.lion.system.organization.manager.impl.OrganizationManagerImp">
+		<constructor-arg ref="organizationDao"/>
+	</bean>
+	<bean name="OrganizationAction" class="com.lion.system.organization.action.OrganizationAction" scope="prototype">
+		<constructor-arg ref="organization" />
+		<constructor-arg ref="organizationManager" />
+	</bean>
+	<!-- 单位结束 -->
+	
+	<!-- 部门开始 -->
+	<bean id="department" class="com.lion.system.department.model.Department" scope="prototype"></bean>
+	<bean id="departmentDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.department.model.Department" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="departmentManager" class="com.lion.system.department.manager.impl.DepartmentManagerImpl">
+		<constructor-arg ref="departmentDao" />
+	</bean>
+	<bean id="DepartmentAction" class="com.lion.system.department.action.DepartmentAction" scope="prototype">
+		<constructor-arg ref="department" />
+		<constructor-arg ref="departmentManager" />
+	</bean>
+	<!-- 部门结束 -->
+	
+	<!-- 用户开始 -->
+	<bean id="user" class="com.lion.system.user.model.User" scope="prototype"></bean>
+	<bean id="userDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.user.model.User" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="userManager" class="com.lion.system.user.manager.impl.UserManagerImpl">
+		<constructor-arg ref="userDao" />
+		<property name="userSettingDao" ref="userSettingDao" />
+		<property name="themeDao" ref="themeDao" />
+		<property name="shortCutManager" ref="shortCutManager" />
+	</bean>
+	<bean id="UserAction" class="com.lion.system.user.action.UserAction" scope="prototype">
+		<constructor-arg ref="user" />
+		<constructor-arg ref="userManager" />
+	</bean>
+	<!-- 用户结束 -->
+	
+	<!-- 简化用户 -->
+	<bean id="userViewDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.user.model.UserView"/>
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="userViewManager" class="com.lion.core.manager.impl.GenericManagerImpl">
+		<constructor-arg ref="userViewDao" />
+	</bean>
+	<!-- 简化用户结束 -->
+	<!-- 用户设置开始 -->
+	<bean id="userSetting" class="com.lion.system.user.model.UserSetting" scope="prototype"></bean>
+	<bean id="userSettingDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.user.model.UserSetting" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- 用户设置结束 -->
+	
+	<!-- 角色开始 -->
+	<bean id="role" class="com.lion.system.role.model.Role" scope="prototype"></bean>
+	<bean id="roleDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.role.model.Role" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="roleManager" class="com.lion.system.role.manager.impl.RoleManagerImpl">
+		<constructor-arg ref="roleDao" />
+		<property name="moduleDao" ref="moduleDao" />
+		<property name="resourceDao" ref="resourceDao" />
+		<property name="departmentDao" ref="departmentDao" />
+		<property name="organizationDao" ref="organizationDao" />
+		<property name="userDao" ref="userDao" />
+	</bean>
+	<bean id="RoleAction" class="com.lion.system.role.action.RoleAction" scope="prototype">
+		<constructor-arg ref="role" />
+		<constructor-arg ref="roleManager" />
+	</bean>
+	<!-- 角色结束 -->
+	
+	<!-- 模块开始 -->
+	<bean id="module" class="com.lion.system.module.model.Module" scope="prototype"></bean>
+	<bean id="moduleDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.module.model.Module" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="moduleManager" class="com.lion.system.module.manager.impl.ModuleManagerImpl">
+		<constructor-arg ref="moduleDao" />
+		<property name="shortCutManager" ref="shortCutManager" />
+	</bean>
+	<bean id="ModuleAction" class="com.lion.system.module.action.ModuleAction" scope="prototype">
+		<constructor-arg ref="module" />
+		<constructor-arg ref="moduleManager" />		
+	</bean>
+	<!-- 模块结束 -->
+	
+	<!-- 资源开始 -->
+	<bean id="resource" class="com.lion.system.resource.model.Resource" scope="prototype"></bean>
+	<bean id="resourceDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.resource.model.Resource" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="resourceManager" class="com.lion.system.resource.manager.impl.ResourceManagerImpl">
+		<constructor-arg ref="resourceDao" />
+	</bean>
+	<bean id="ResourceAction" class="com.lion.system.resource.action.ResourceAction" scope="prototype">
+		<constructor-arg ref="resource" />
+		<constructor-arg ref="resourceManager" />
+	</bean>
+	<!-- 资源结束 -->
+	
+	<!-- 代码开始 -->
+	<bean id="code" class="com.lion.system.code.model.Code" scope="prototype"></bean>
+	<bean id="codeDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.code.model.Code" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="codeManager" class="com.lion.system.code.manager.impl.CodeManagerImpl">
+		<constructor-arg ref="codeDao" />
+	</bean>
+	<bean id="CodeAction" class="com.lion.system.code.action.CodeAction" scope="prototype">
+		<constructor-arg ref="code" />
+		<constructor-arg ref="codeManager" />
+	</bean>
+	
+	<bean id="codeLine" class="com.lion.system.code.model.CodeLine" scope="prototype"></bean>
+	<bean id="codeLineDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.code.model.CodeLine" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="codeLineManager" class="com.lion.system.code.manager.impl.CodeLineManagerImpl">
+		<constructor-arg ref="codeLineDao" />
+	</bean>
+	<bean id="CodeLineAction" class="com.lion.system.code.action.CodeLineAction" scope="prototype">
+		<constructor-arg ref="codeLine" />
+		<constructor-arg ref="codeLineManager" />
+	</bean>
+	<!-- 代码结束 -->
+	<!-- 编码生成开始 -->
+   <bean id="codeGenerator" class="com.lion.system.codegenerator.model.CodeGenerator" scope="prototype"></bean>
+	<bean id="codeGeneratorDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.codegenerator.model.CodeGenerator" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="codeGeneratorManager" class="com.lion.system.codegenerator.manager.impl.CodeGeneratorManagerImpl">
+		<constructor-arg ref="codeGeneratorDao" />
+	</bean>
+	<bean id="CodeGeneratorAction" class="com.lion.system.codegenerator.action.CodeGeneratorAction" scope="prototype">
+		<constructor-arg ref="codeGenerator" />
+		<constructor-arg ref="codeGeneratorManager" />
+	</bean>
+	<!-- 编码生成结束 -->
+   <!-- 单点链接开始 -->
+	<bean id="singlesystem" class="com.lion.system.singlesystem.model.SingleSystem" scope="prototype"></bean>
+	<bean id="singlesystemDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.singlesystem.model.SingleSystem" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="singlesystemManager" class="com.lion.system.singlesystem.manager.imp.SingleSystemManagerImp">
+		<constructor-arg ref="singlesystemDao"/>
+	</bean>
+	<bean name="SingleSystemAction" class="com.lion.system.singlesystem.action.SingleSystemAction" scope="prototype">
+		<constructor-arg ref="singlesystem" />
+		<constructor-arg ref="singlesystemManager" />
+	</bean>
+	<!-- 单点链接结束 -->
+	
+	<!-- 系统风格定义开始 -->
+	<bean id="theme" class="com.lion.system.theme.model.Theme" scope="prototype"></bean>
+	<bean id="themeDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.theme.model.Theme" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="themeManager" class="com.lion.system.theme.manager.impl.ThemeManagerImp">
+		<constructor-arg ref="themeDao"/>
+	</bean>
+	<bean id="ThemeAction" class="com.lion.system.theme.action.ThemeAction" scope="prototype">
+		<constructor-arg ref="theme"></constructor-arg>
+		<constructor-arg ref="themeManager" />
+	</bean>
+	
+	<!-- 系统风格定义结束 -->
+	<!-- 栏目开始 -->
+	<bean id="catalog" class="com.lion.system.catalog.model.Catalog" scope="prototype"></bean>
+	<bean id="catalogDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.catalog.model.Catalog" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="catalogManager" class="com.lion.system.catalog.manager.impl.CatalogManagerImpl">
+		<constructor-arg ref="catalogDao" />
+	</bean>
+	<bean id="CatalogAction" class="com.lion.system.catalog.action.CatalogAction" scope="prototype">
+		<constructor-arg ref="catalog" />
+		<constructor-arg ref="catalogManager" />
+	</bean>
+	
+	<bean id="catalogBeanService" class="com.lion.system.catalog.service.impl.CatalogServiceImpl">
+		<property name="catalogManager" ref="catalogManager" />
+	</bean>
+	
+	<jaxws:endpoint id="catalogService" implementor="#catalogBeanService" address="/catalogService">
+		<jaxws:inInterceptors>
+			<ref bean="authInterceptor"/>
+		</jaxws:inInterceptors>
+	</jaxws:endpoint>
+	<!-- 栏目结束 -->
+	
+	<bean id="catalogRole" class="com.lion.system.catalog.model.CatalogRole" scope="prototype"></bean>
+	<bean id="catalogRoleDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.catalog.model.CatalogRole" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="catalogRoleManager" class="com.lion.system.catalog.manager.impl.CatalogRoleManagerImpl">
+		<constructor-arg ref="catalogRoleDao" />
+	</bean>
+	<bean id="CatalogRoleAction" class="com.lion.system.catalog.action.CatalogRoleAction" scope="prototype">
+		<constructor-arg ref="catalogRole" />
+		<constructor-arg ref="catalogRoleManager" />
+	</bean>
+	
+	<!-- 联系人开始 -->
+	<bean id="contacts" class="com.lion.system.sms.model.Contacts" scope="prototype"></bean>
+	<bean id="contactsDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.sms.model.Contacts" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="contactsManager" class="com.lion.system.sms.manager.impl.ContactsManagerImpl">
+		<constructor-arg ref="contactsDao" />
+	</bean>
+	<bean id="ContactsAction" class="com.lion.system.sms.action.ContactsAction" scope="prototype">
+		<constructor-arg ref="contacts" />
+		<constructor-arg ref="contactsManager" />
+	</bean>
+	<!-- 栏目结束 -->
+	
+	<!-- 栏目开始 -->
+	<bean id="messages" class="com.lion.system.sms.model.Messages" scope="prototype"></bean>
+	<bean id="messagesDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.sms.model.Messages" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="messagesManager" class="com.lion.system.sms.manager.impl.MessagesManagerImpl">
+		<constructor-arg ref="messagesDao" />
+	</bean>
+	<bean id="MessagesAction" class="com.lion.system.sms.action.MessagesAction" scope="prototype">
+		<constructor-arg ref="messages" />
+		<constructor-arg ref="messagesManager" />
+	</bean>
+	<!-- 栏目结束 -->
+	
+	<!-- 栏目开始 -->
+	<bean id="phrases" class="com.lion.system.sms.model.Phrases" scope="prototype"></bean>
+	<bean id="phrasesDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.sms.model.Phrases" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="phrasesManager" class="com.lion.system.sms.manager.impl.PhrasesManagerImpl">
+		<constructor-arg ref="phrasesDao" />
+	</bean>
+	<bean id="PhrasesAction" class="com.lion.system.sms.action.PhrasesAction" scope="prototype">
+		<constructor-arg ref="phrases" />
+		<constructor-arg ref="phrasesManager" />
+	</bean>
+	<!-- 栏目结束 -->
+	
+	<!-- 快捷方式开始 -->
+	<bean id="shortCut" class="com.lion.system.shortcut.model.ShortCut" scope="prototype"></bean>
+	<bean id="shortCutDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.shortcut.model.ShortCut" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="shortCutManager" class="com.lion.system.shortcut.manager.impl.ShortCutManagerImpl">
+		<constructor-arg ref="shortCutDao" />
+		<property name="moduleManager" ref="moduleManager" />
+	</bean>
+	<bean id="ShortCutAction" class="com.lion.system.shortcut.action.ShortCutAction" scope="prototype">
+		<constructor-arg ref="shortCut" />
+		<constructor-arg ref="shortCutManager" />
+	</bean>
+	<!-- 快捷方式结束 -->
+	
+	<!-- 消息管理开始 -->
+	<bean id="notice" class="com.lion.system.notice.model.Notice" scope="prototype"></bean>
+	<bean id="noticeDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.notice.model.Notice" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="noticeManager" class="com.lion.system.notice.manager.impl.NoticeManagerImpl">
+		<constructor-arg ref="noticeDao" />
+		<property name="userNoticeManager" ref="userNoticeManager" />
+		<property name="noticeTypeManager" ref="noticeTypeManager" />
+	</bean>
+	<bean id="NoticeAction" class="com.lion.system.notice.action.NoticeAction" scope="prototype">
+		<constructor-arg ref="notice" />
+		<constructor-arg ref="noticeManager" />
+	</bean>
+	<!-- 消息管理结束 -->
+	
+	<!-- 消息类型管理开始 -->
+	<bean id="noticeType" class="com.lion.system.notice.model.NoticeType" scope="prototype"></bean>
+	<bean id="noticeTypeDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.notice.model.NoticeType" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="noticeTypeManager" class="com.lion.system.notice.manager.impl.NoticeTypeManagerImpl">
+		<constructor-arg ref="noticeTypeDao" />
+		<property name="noticeManager" ref="noticeManager" />
+	</bean>
+	<bean id="NoticeTypeAction" class="com.lion.system.notice.action.NoticeTypeAction" scope="prototype">
+		<constructor-arg ref="noticeType" />
+		<constructor-arg ref="noticeTypeManager" />
+	</bean>
+	<!-- 消息类型管理结束 -->
+	
+	<!-- 用户消息管理开始 -->
+	<bean id="userNotice" class="com.lion.system.notice.model.UserNotice" scope="prototype"></bean>
+	<bean id="userNoticeDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.notice.model.UserNotice" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="userNoticeManager" class="com.lion.system.notice.manager.impl.UserNoticeManagerImpl">
+		<constructor-arg ref="userNoticeDao" />
+		<property name="userManager" ref="userManager" />
+	</bean>
+	<bean id="UserNoticeAction" class="com.lion.system.notice.action.UserNoticeAction" scope="prototype">
+		<constructor-arg ref="userNotice" />
+		<constructor-arg ref="userNoticeManager" />
+	</bean>
+	<!-- 用户消息管理结束 -->
+	
+	<!-- 文档管理开始 -->
+	<bean id="document" class="com.lion.system.document.model.Document" scope="prototype"></bean>
+	<bean id="documentDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.document.model.Document" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="documentManager" class="com.lion.system.document.manager.impl.DocumentManagerImpl">
+		<constructor-arg ref="documentDao" />
+		<property name="documentTypeDao" ref="documentTypeDao" />
+	</bean>
+	<bean id="DocumentAction" class="com.lion.system.document.action.DocumentAction" scope="prototype">
+		<constructor-arg ref="document" />
+		<constructor-arg ref="documentManager" />
+	</bean>
+	<!-- 文档管理结束 -->
+	
+	<!-- 文档分类开始 -->
+	<bean id="documentType" class="com.lion.system.document.model.DocumentType" scope="prototype"></bean>
+	<bean id="documentTypeDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.document.model.DocumentType" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="documentTypeManager" class="com.lion.system.document.manager.impl.DocumentTypeManagerImpl">
+		<constructor-arg ref="documentTypeDao" />
+		<property name="documentManager" ref="documentManager" />
+	</bean>
+	<bean id="DocumentTypeAction" class="com.lion.system.document.action.DocumentTypeAction" scope="prototype">
+		<constructor-arg ref="documentType" />
+		<constructor-arg ref="documentTypeManager" />
+	</bean>
+	<!-- 文档分类结束 -->
+	
+	<bean id="generateInfo" class="com.lion.code.objects.generateinfo.model.GenerateInfo" scope="prototype"></bean>
+	<bean id="generateInfoDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.code.objects.generateinfo.model.GenerateInfo" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="generateInfoManager" class="com.lion.code.objects.generateinfo.manager.impl.GenerateInfoManagerImpl">
+		<constructor-arg ref="generateInfoDao" />
+		<property name="roleDao" ref="roleDao" />
+		<property name="moduleManager" ref="moduleManager" />
+		<property name="codeGeneratorManager" ref="codeGeneratorManager" />
+		<property name="widgetBaseManager" ref="widgetBaseManager" />
+		<property name="codeDutyManager" ref="codeDutyManager" />
+	</bean>
+	<bean id="GenerateInfoAction" class="com.lion.code.objects.generateinfo.action.GenerateInfoAction" scope="prototype">
+		<constructor-arg ref="generateInfo" />
+		<constructor-arg ref="generateInfoManager" />
+	</bean>
+		
+	<bean id="widgetBase" class="com.lion.code.widgets.model.WidgetBase" scope="prototype"></bean>
+	<bean id="widgetBaseDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.code.widgets.model.WidgetBase" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="widgetBaseManager" class="com.lion.code.widgets.manager.impl.WidgetBaseManagerImpl">
+		<constructor-arg ref="widgetBaseDao" />
+	</bean>
+	<bean id="WidgetBaseAction" class="com.lion.code.widgets.action.WidgetBaseAction" scope="prototype">
+		<constructor-arg ref="widgetBase" />
+		<constructor-arg ref="widgetBaseManager" />
+	</bean>
+	
+	<bean id="widgetParam" class="com.lion.code.widgets.model.WidgetParam" scope="prototype"></bean>
+	<bean id="widgetParamDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.code.widgets.model.WidgetParam" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="widgetParamManager" class="com.lion.code.widgets.manager.impl.WidgetParamManagerImpl">
+		<constructor-arg ref="widgetParamDao" />
+		<property name="widgetBaseManager" ref="widgetBaseManager" />
+	</bean>
+	<bean id="WidgetParamAction" class="com.lion.code.widgets.action.WidgetParamAction" scope="prototype">
+		<constructor-arg ref="widgetParam" />
+		<constructor-arg ref="widgetParamManager" />
+	</bean>
+	
+	<bean id="property" class="com.lion.code.widgets.model.Property" scope="prototype"></bean>
+	<bean id="propertyDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.code.widgets.model.Property" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="propertyManager" class="com.lion.code.widgets.manager.impl.PropertyManagerImpl">
+		<constructor-arg ref="propertyDao" />
+	</bean>
+	<bean id="PropertyAction" class="com.lion.code.widgets.action.PropertyAction" scope="prototype">
+		<constructor-arg ref="property" />
+		<constructor-arg ref="propertyManager" />
+	</bean>
+	
+	<!--任务表开始-->
+ 	<bean id="codeDuty" class="com.lion.code.objects.codeduty.model.CodeDuty" scope="prototype"></bean>
+	<bean id="codeDutyDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.code.objects.codeduty.model.CodeDuty" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="codeDutyManager" class="com.lion.code.objects.codeduty.manager.impl.CodeDutyManagerImpl">
+		<constructor-arg ref="codeDutyDao" />
+	</bean>
+	<bean id="CodeDutyAction" class="com.lion.code.objects.codeduty.action.CodeDutyAction" scope="prototype">
+		<constructor-arg ref="codeDuty" />
+		<constructor-arg ref="codeDutyManager" />
+	</bean>
+	<!--任务表结束-->
+	
+	<!--任务子表开始-->
+ 	<bean id="codeDutyLine" class="com.lion.code.objects.codeduty.model.CodeDutyLine" scope="prototype"></bean>
+	<bean id="codeDutyLineDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.code.objects.codeduty.model.CodeDutyLine" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="codeDutyLineManager" class="com.lion.code.objects.codeduty.manager.impl.CodeDutyLineManagerImpl">
+		<constructor-arg ref="codeDutyLineDao" />
+	</bean>
+	<bean id="CodeDutyLineAction" class="com.lion.code.objects.codeduty.action.CodeDutyLineAction" scope="prototype">
+		<constructor-arg ref="codeDutyLine" />
+		<constructor-arg ref="codeDutyLineManager" />
+	</bean>
+	<!--任务子表结束-->
+	
+	<!--任务表开始-->
+ 	<bean id="operateLog" class="com.lion.system.operatelog.model.OperateLog" scope="prototype"></bean>
+	<bean id="operateLogDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.operatelog.model.OperateLog" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="operateLogManager" class="com.lion.system.operatelog.manager.impl.OperateLogManagerImpl">
+		<constructor-arg ref="operateLogDao" />
+	</bean>
+	<bean id="OperateLogAction" class="com.lion.system.operatelog.action.OperateLogAction" scope="prototype">
+		<constructor-arg ref="operateLog" />
+		<constructor-arg ref="operateLogManager" />
+	</bean>
+	<!--任务表结束-->
+	
+	<!--数据导出开始-->
+	<bean id="ExcelAction" class="com.lion.system.excel.action.ExcelAction" scope="prototype"/>
+	<!--数据导出结束-->
+	
+	<!--数据导入开始-->
+ 	<bean id="importSetting" class="com.lion.system.excel.model.ImportSetting" scope="prototype"></bean>
+	<bean id="importSettingDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.excel.model.ImportSetting" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="importSettingManager" class="com.lion.system.excel.manager.impl.ImportSettingManagerImpl">
+		<constructor-arg ref="importSettingDao" />
+	</bean>
+	<bean id="ImportSettingAction" class="com.lion.system.excel.action.ImportSettingAction" scope="prototype">
+		<constructor-arg ref="importSetting" />
+		<constructor-arg ref="importSettingManager" />
+	</bean>
+	
+	<bean id="importSettingLine" class="com.lion.system.excel.model.ImportSettingLine" scope="prototype"></bean>
+	<bean id="importSettingLineDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.system.excel.model.ImportSettingLine" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="importSettingLineManager" class="com.lion.system.excel.manager.impl.ImportSettingLineManagerImpl">
+		<constructor-arg ref="importSettingLineDao" />
+	</bean>
+	<bean id="ImportSettingLineAction" class="com.lion.system.excel.action.ImportSettingLineAction" scope="prototype">
+		<constructor-arg ref="importSettingLine" />
+		<constructor-arg ref="importSettingLineManager" />
+	</bean>
+	<!--数据导入结束-->
+	
+	<!-- 门户开始 -->
+	<bean id="object" class="java.lang.Object" scope="prototype"></bean>
+	<bean id="portalDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="java.lang.Object" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="portalManager" class="com.lion.system.framework.manager.impl.PortalManagerImpl">
+		<constructor-arg ref="portalDao" />
+	</bean>
+	<bean id="PortalAction" class="com.lion.system.framework.action.PortalAction" scope="prototype">
+		<constructor-arg ref="object" />
+		<constructor-arg ref="portalManager" />
+	</bean>
+	<!-- 门户结束 -->
+	<!-- 公用的下拉选择Manager开始-->
+	<bean id="objectDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="java.lang.Object" /> 
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="objectManager" class="com.lion.system.common.manager.impl.BusinessManagerImpl">
+		<constructor-arg ref="objectDao" />
+	</bean>
+	<bean id="tldManager" class="com.lion.system.tld.manager.impl.TldManagerImpl">
+		<constructor-arg ref="objectDao" />
+	</bean>
+	<!-- 公用的下拉选择Manager结束-->
+	<!-- js动态加载开始 -->
+	<bean id="jsLoaderAction" class="com.lion.core.webapp.action.JsLoaderAction" scope="prototype"></bean>
+	<!-- js动态加载结束 -->
+</beans>

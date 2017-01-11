@@ -1,0 +1,376 @@
+
+img {
+	border: none;
+}
+
+.modbox .el {
+	display:;
+}
+
+.modbox .csl,.modbox .es {
+	display: none;
+}
+
+.modbox_e .el {
+	display: none;
+}
+
+.modbox_e .csl,.modbox .es {
+	display:;
+}
+
+.dm {
+	position: relative;
+	width: 0px;
+	height: 0px;
+}
+
+.fres {
+	width: expression(_gel("ffresults").offsetWidth+"px");
+	overflow: hidden;
+}
+
+.panelo {
+	
+}
+
+.panelc {
+	
+}
+
+.mod {
+	
+}
+
+.unmod {
+	
+}
+
+form {
+	display: inline;
+}
+
+.c {
+	clear: both;
+}
+
+a:link {
+	color: #F1F1F1;
+}
+
+a:visited {
+	color: #CECECE;
+}
+
+a:active {
+	color: #ffffff;
+}
+
+.q {
+	color: #0000cc;
+}
+
+a.ab {
+	color: #0000cc;
+}
+
+h2.modtitle {
+	border : 0px;
+	width: 100%;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin: 0em;
+	font-size: 100%;
+	font-weight: normal;
+	border: none;
+}
+
+.modbox,.modbox_e {
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-right: 3px;
+	margin-left: 3px;
+	background-color: white;
+}
+
+.modbox-extend-top {
+	margin-top: 3px;
+	margin-bottom: 6px;
+}
+
+.modbox-extend-middle {
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+.modbox-extend-bottom {
+	margin-top: 6px;
+	margin-bottom: 3px;
+}
+
+.modbox-noborder {
+	border: 0px;
+}
+
+.el,.csl {
+	color: #7777cc;
+}
+
+.tlc {
+	table-layout: fixed;
+	cursor: pointer;
+	cursor: hand
+}
+
+.tlc col {
+	font-size: 82%
+}
+
+.tlc td {
+	font-size: 82%;
+	empty-cells: show
+}
+
+.tls {
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.tls a {
+	text-decoration: none;
+	color: black;
+}
+
+.tld {
+	white-space: nowrap;
+	text-align: right;
+	width: 8ex;
+}
+
+.tlq {
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+#c_1,#c_2,#c_3 {
+	vertical-align: top;
+}
+
+.mhdr {
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+	background: #F5F5F5;
+	font-size: 82%;
+}
+
+.mttl {
+	text-align:left;
+	font-weight: bold;
+	font-size: 14px;
+	height: 3px;
+	line-height: 30px;
+}
+/*标题样式*/
+.mttli_edit {
+	font-weight: bold;
+	font-size: 14px;
+	color:#ffffff;
+	padding-left: 35px;
+	padding-right: 5px;
+	padding-top: 0px;
+	text-decoration: none;
+	overflow: hidden;
+	cursor: move;
+}
+
+.mttli {
+	font-weight: bold;
+	font-size: 14px;
+	color:#FFFFFF;
+	padding-left: 4px;
+	padding-right: 5px;
+	padding-top: 0px;
+	text-decoration: none;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.medit {
+	width: 10%;
+	background-color: #e5ecf9;
+	white-space: nowrap;
+	text-align: right;
+	vertical-align: top;
+	padding-right: 2px;
+}
+
+.medit,.medit a:visited,.medit a:link,.medit a:active {
+	color: #77c;
+}
+
+.mdel {
+	border: 0;
+	width: 16px;
+	height: 13px;
+	margin-top: 2px;
+	vertical-align: top;
+}
+
+.mc {
+	background-color: #ffffff;
+	width: 100%;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	font-size: 82%;
+}
+
+.mpromo {
+	border: 1px solid #3366cc;
+	text-align: center;
+	vertical-align: middle;
+	margin-bottom: 20px;
+	padding: 5px;
+	background-color: #e5ecf9;
+}
+
+.apromo,.cpromo {
+	border: 1px solid #3366cc;
+	background-color: #e5ecf9;
+	padding: 2px 5px 2px 5px;
+	white-space: nowrap;
+	cursor: hand;
+	cursor: pointer;
+	font-size: 82%;
+	text-decoration: underline;
+	color: #0000cc;
+}
+
+.apromo {
+	float: left;
+}
+
+.cpromo {
+	margin: -1px -2px 0 0;
+	float: right;
+}
+
+#setupbox,#demobox {
+	border: 1px solid #3366cc;
+	width: 95%;
+	margin-bottom: 10px;
+}
+
+.bt {
+	font-weight: bold;
+	font-size: 16px;
+	color: #3366cc;
+}
+
+.setuptd {
+	padding-right: 25px;
+	padding-left: 25px;
+	font-size: smaller;
+}
+
+.mg {
+	font-size: smaller;
+	color: #676767;
+}
+
+.mg A {
+	color: #7777cc;
+}
+
+#promomod {
+	border: 1px solid #3366cc;
+	vertical-align: middle;
+	margin-bottom: 20px;
+	padding: 5px;
+	font-size: smaller;
+}
+
+.mlist_open,.mlist_closed {
+	padding-bottom: 5px;
+}
+
+.mlisthead {
+	font-size: 0.8em;
+	white-space: nowrap;
+	padding-left: 14px;
+	text-decoration: none;
+}
+
+.mlisthead {
+	color: #000000;
+}
+
+.mlist_open .mlisthead {
+	background: url(/ig/images/arrow-d.gif) no-repeat top left;
+}
+
+.mlist_closed .mlisthead {
+	background: url(/ig/images/arrow-r.gif) no-repeat top left;
+}
+
+.mlist_open .psc {
+	display:;
+}
+
+.mlist_closed .psc {
+	display: none;
+}
+
+.psc {
+	padding-top: 5px;
+	padding-left: 15px;
+}
+
+.mtable td {
+	vertical-align: top;
+}
+
+.mitem {
+	clear: both;
+}
+
+.mname {
+	font-size: 0.8em;
+	white-space: nowrap;
+	padding-right: 4px;
+	float: left;
+	padding-top: 3px;
+}
+
+.mnamewrap {
+	font-size: 0.8em;
+	white-space: wrap;
+	padding-right: 4px;
+	float: left;
+	padding-top: 3px;
+}
+
+.addbtn,.gobtn {
+	margin: 0px;
+	padding: 0px;
+	margin-right: 2px;
+	font-size: 75%;
+}
+
+.addbtn {
+	float: right;
+}
+
+.fres {
+	font-size: 82%;
+	padding: 5px 0 5px 0;
+}
+
+.fnores {
+	font-size: 82%;
+}
+
+.fresurl {
+	overflow: hidden;
+	color: #008800;
+}

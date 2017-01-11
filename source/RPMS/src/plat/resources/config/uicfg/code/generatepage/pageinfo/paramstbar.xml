@@ -1,0 +1,24 @@
+<uicfg desc="组件参数管理按钮">
+	<items>-></items>
+	<items>
+		<text>新增自定义参数</text>
+		<iconCls>new-new-icon</iconCls>
+		<handler type="object">function(){
+			this.manager.addLine(this.manager.paramsGrid);
+		}</handler>
+	</items>
+	<items>
+		<text>新增</text>
+		<iconCls>new-new-icon</iconCls>
+		<handler type="object">function(){
+			this.manager.addLineObject(this.manager.paramsGrid, null, null, "BaseInfo");
+		}</handler>
+	</items>
+	<items>
+		<text>删除</text>
+		<iconCls>delete-selected-icon</iconCls>
+		<handler type="object">function(){
+			this.manager.deleteObject(this.manager.paramsGrid);
+		}</handler>
+	</items>
+</uicfg>

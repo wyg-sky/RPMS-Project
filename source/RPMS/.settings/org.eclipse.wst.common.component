@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="RPMS">
+        <wb-resource deploy-path="/" source-path="/WebRoot"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/plat/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/cmes/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/cmes/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/cims/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/cims/java"/>
+        <property name="java-output-path" value="/PcmsSys/build/classes"/>
+        <property name="context-root" value="RPMS"/>
+    </wb-module>
+</project-modules>

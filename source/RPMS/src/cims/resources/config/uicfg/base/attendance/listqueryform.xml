@@ -1,0 +1,33 @@
+<uicfg desc="班次信息管理查询表单">
+	<columns type="integer">5</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<defaults>
+		<layout>column</layout>
+		<labelWidth type="integer">70</labelWidth>
+	</defaults>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+	    <xtype>liontextfield</xtype>
+		<name>shiftCd</name>
+		<fieldLabel>班次编号</fieldLabel>
+    </items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>shiftName</name>
+		<fieldLabel>班次名称</fieldLabel>
+		<keyType>prds_shift</keyType> 
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>reportStatus</hiddenName>
+		<fieldLabel>状态</fieldLabel>
+		<keyType>prds_commit_status</keyType>
+	</items>
+</uicfg>

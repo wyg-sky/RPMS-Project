@@ -1,0 +1,69 @@
+<uicfg desc="快捷方式管理编辑">
+	<loadtUrl>system/loadShortCut.html</loadtUrl>
+	<submitUrl>system/saveShortCut.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<editable type="object">true</editable>
+	<columns type="object">2</columns>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>name</name>
+		<fieldLabel>名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>type</hiddenName>
+		<fieldLabel>类型</fieldLabel>
+		<keyType>sys_shortcut_type</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>url</name>
+		<fieldLabel>URL</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>icon</name>
+		<fieldLabel>图标</fieldLabel>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>创建人</fieldLabel>
+		<propertyName>createUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>修改人</fieldLabel>
+		<propertyName>modifyUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>description</name>
+		<fieldLabel>描述</fieldLabel>
+		<columnWidth type="integer">2</columnWidth>
+	</items>
+</uicfg>

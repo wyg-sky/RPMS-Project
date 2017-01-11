@@ -1,0 +1,74 @@
+<uicfg desc="编码管理编辑">
+	<loadtUrl>system/loadCodeGenerator.html</loadtUrl>
+	<submitUrl>system/saveCodeGenerator.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<editable type="object">true</editable>
+	<columns type="object">3</columns>
+	<defaults type="object">{
+		border : false,
+		layout : "column",
+		labelWidth : 80
+	}</defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>name</name>
+		<fieldLabel>业务名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>code</name>
+		<fieldLabel>编码</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>prefix</name>
+		<fieldLabel>业务前缀</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<name>currentValue</name>
+		<fieldLabel>单据序列号</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<name>version</name>
+		<fieldLabel>版本号</fieldLabel>
+		<hidden type="boolean">true</hidden>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>创建人</fieldLabel>
+		<propertyName>createUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>修改人</fieldLabel>
+		<propertyName>modifyUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+	</items>
+</uicfg>

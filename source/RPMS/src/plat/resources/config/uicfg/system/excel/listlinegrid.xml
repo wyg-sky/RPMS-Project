@@ -1,0 +1,154 @@
+<uicfg desc="数据导入配置明细列表">
+	<rownum type="boolean">true</rownum>
+	<editable type="boolean">true</editable>
+	<showLookButton type="boolean">false</showLookButton>
+	<showEditButton type="boolean">false</showEditButton>
+	<showCopyButton type="boolean">false</showCopyButton>
+	<allowPage type="boolean">false</allowPage>
+	<store>
+		<url>system/listImportSettingLine.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>mainId</name>
+		</fields>
+		<fields>
+			<name>columnName</name>
+		</fields>
+		<fields>
+			<name>columnText</name>
+		</fields>
+		<fields>
+			<name>allowBlank</name>
+		</fields>
+		<fields>
+			<name>importType</name>
+		</fields>
+		<fields>
+			<name>excelColumn</name>
+		</fields>
+		<fields>
+			<name>keyType</name>
+		</fields>
+		<fields>
+			<name>results</name>
+		</fields>
+		<fields>
+			<name>joinColumn</name>
+		</fields>
+		<fields>
+			<name>saveColumn</name>
+		</fields>
+		<fields>
+			<name>methodName</name>
+		</fields>
+		<fields>
+			<name>param</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>数据表列名</header>
+			<dataIndex>columnName</dataIndex>
+			<width type="integer">70</width>
+		</columns>
+		<columns>
+			<header>数据表列注释</header>
+			<dataIndex>columnText</dataIndex>
+			<width type="integer">70</width>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>允许为空</header>
+			<dataIndex>allowBlank</dataIndex>
+			<keyType>cims_boolean</keyType>
+			<width type="integer">45</width>
+		</columns>
+		<columns>
+			<header>导入方式</header>
+			<dataIndex>importType</dataIndex>
+			<keyType>system_import_type</keyType>
+			<width type="integer">60</width>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<hiddenName>importType</hiddenName>
+				<keyType>system_import_type</keyType>
+				<allowBlank type="boolean">false</allowBlank>
+				<listeners type="object">{
+					'select' : function(combo, record, index) {
+						this.importTypeSelect(record);
+					},
+					scope : this.manager
+				}</listeners>
+			</editor>
+		</columns>
+		<columns>
+			<header>Excel列号</header>
+			<dataIndex>excelColumn</dataIndex>
+			<width type="integer">60</width>
+			<editor>
+				<xtype>liontextfield</xtype>
+				<regex type="object">/^[a-zA-Z]+$|^[0-9]+$/</regex>
+				<regexText>只能输入数字或字母且二者不能同时输入</regexText>
+			</editor>
+		</columns>
+		<columns>
+			<header>键值对类型</header>
+			<dataIndex>keyType</dataIndex>
+			<width type="integer">90</width>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>结果集/表名</header>
+			<dataIndex>results</dataIndex>
+			<width type="integer">170</width>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>关联字段</header>
+			<dataIndex>joinColumn</dataIndex>
+			<width type="integer">60</width>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>保存字段</header>
+			<dataIndex>saveColumn</dataIndex>
+			<width type="integer">60</width>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>方法名称</header>
+			<dataIndex>methodName</dataIndex>
+			<width type="integer">90</width>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>参数</header>
+			<dataIndex>param</dataIndex>
+			<width type="integer">40</width>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+		</columns>
+	</cm>
+</uicfg>

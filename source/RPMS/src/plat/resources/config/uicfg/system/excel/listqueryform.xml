@@ -1,0 +1,22 @@
+<uicfg desc="数据导入配置查询字段">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>name</name>
+		<fieldLabel>名称</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>code</name>
+		<fieldLabel>编码</fieldLabel>
+	</items>
+</uicfg>

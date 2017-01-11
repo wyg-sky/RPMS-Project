@@ -1,0 +1,97 @@
+<uicfg desc="代码主表编辑">
+	<loadtUrl>system/loadCode.html</loadtUrl>
+	<submitUrl>system/saveCode.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">2</columns>
+	<height type="integer">250</height>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>code</name>
+		<fieldLabel>编码</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>name</name>
+		<fieldLabel>名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>codetree</xtype>
+		<fieldLabel>分类</fieldLabel>
+		<hiddenName>type</hiddenName>
+		<hiddenDisplayName>itemText</hiddenDisplayName>
+		<valueField>itemValue</valueField>
+		<params>
+			<code>sys_code_type</code>
+		</params>
+		<allowBlank type="boolean">false</allowBlank>
+		<convert><![CDATA[function(v) {if(v) {return {value:v, text:FW.genCodeText('sys_code_type', v)}}}]]></convert>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>codeClass</hiddenName>
+		<fieldLabel>级别</fieldLabel>
+		<keyType>sys_levelType</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>valid</hiddenName>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+		<value>1</value>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<name>sortorder</name>
+		<fieldLabel>顺序</fieldLabel>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>创建人</fieldLabel>
+		<propertyName>createUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>修改人</fieldLabel>
+		<propertyName>modifyUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>description</name>
+		<fieldLabel>描述</fieldLabel>
+		<columnWidth type="integer">2</columnWidth>
+	</items>
+</uicfg>

@@ -1,0 +1,43 @@
+<uicfg desc="生成信息编辑">
+	<component>
+		<items>
+			<object>baseInfo</object>
+			<xtype>panel</xtype>
+			<title>基本信息</title>
+			<items>
+				<object>editTbar</object>
+				<xtype>liontoolbar</xtype>
+				<manager type="object">this</manager>
+				<viewPath>code/generator/baseinfo/edittbar</viewPath>
+			</items>
+			<items>
+				<object>editForm</object>
+				<xtype>lionform</xtype>
+				<manager type="object">this</manager>
+				<viewPath>code/generator/baseinfo/editform</viewPath>
+			</items>
+			<items>
+				<object>listtbar</object>
+				<xtype>liontoolbar</xtype>
+				<manager type="object">this</manager>
+				<viewPath>code/generator/baseinfo/listtbar</viewPath>
+			</items>
+			<items>
+				<object>dataGrid</object>
+				<xtype>lioneditorgrid</xtype>
+				<height type="integer">400</height>
+				<manager type="object">this</manager>
+				<bodyStyle type="object">'border-width:0px 0px 0px 0px;'</bodyStyle>
+				<viewPath>code/generator/baseinfo/listgrid</viewPath>
+			</items>
+		</items>
+	</component>
+	<container>
+		<items>
+			<xtype>tabpanel</xtype>
+			<border type="boolean">true</border>
+			<activeTab type="object">0</activeTab>
+			<items>baseInfo</items>
+		</items>
+	</container>
+</uicfg>

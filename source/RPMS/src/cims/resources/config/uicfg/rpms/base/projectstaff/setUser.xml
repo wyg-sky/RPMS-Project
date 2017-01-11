@@ -1,0 +1,22 @@
+<uicfg desc="设置人员">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">900</winWidth>
+	<component>
+		<items>
+			<object>userIddata</object>
+			<xtype>lioneditorgrid</xtype>
+			<height type="object">480</height>
+			<region>south</region>
+			<viewPath>rpms/base/projectstaff/userIdlist</viewPath>
+			<tbar>
+				<xtype>liontoolbar</xtype>
+				<border type="boolean">false</border>
+				<manager type="object">this</manager>
+				<viewPath>rpms/base/projectstaff/userIdlisttbar</viewPath>
+			</tbar>
+		</items>
+	</component>
+	<container>
+		<items>userIddata</items>
+	</container>
+</uicfg>

@@ -1,0 +1,35 @@
+<uicfg desc="创新平台管理编辑主界面">
+	<objectName>businessObject</objectName>
+	<objectLineName>researchPlatLine</objectLineName>
+	<winWidth type="integer">1000</winWidth>
+	<winHeight type="integer">630</winHeight>
+	<component>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/base/researchplat/edittbar</viewPath>
+		</items>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/base/researchplat/editform</viewPath>
+		</items>
+		<items>
+			<object>fileLineGrid</object>
+			<xtype>lionuploadfile</xtype>
+			<isLine type="boolean">true</isLine>
+			<lineName>documents</lineName>
+			<fkId type="object">this.mainId</fkId>
+			<height type="object">200</height>
+			<fkName>obj.docFk</fkName>
+			<allowUpload type="object">this.editable</allowUpload>
+			<allowDelete type="object">this.editable</allowDelete>
+			<fileTypeParent>2c9089b3540f5916015412be0c8300d6</fileTypeParent>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+		<items>fileLineGrid</items>
+	</container>
+</uicfg>

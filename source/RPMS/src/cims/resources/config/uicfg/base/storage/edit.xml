@@ -1,0 +1,42 @@
+<uicfg desc="仓库基本信息">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">900</winWidth>
+	<winHeight type="integer">500</winHeight>
+	<component>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>base/storage/editform</viewPath>
+			<autoWidth type="object">true</autoWidth>
+		</items>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>base/storage/edittbar</viewPath>
+			<autoWidth type="object">true</autoWidth>
+		</items>
+		<items>
+			<object>listtlinebar</object>
+			<xtype>liontoolbar</xtype>
+			<hidden type="object">!this.editable</hidden>
+			<viewPath>base/storage/listlinetbar</viewPath>
+			<autoWidth type="object">true</autoWidth>
+		</items>
+		<items>
+			<object>dataLineGrid</object>
+			<isLine type="boolean">true</isLine>
+			<lineName>storageLine</lineName>
+			<fkName>obj.mainId</fkName>
+			<xtype>lioneditorgrid</xtype>
+			<viewPath>base/storage/listlinegrid</viewPath>
+			<height type="object">250</height>
+			<autoWidth type="object">true</autoWidth>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+		<items>listtlinebar</items>
+		<items>dataLineGrid</items>
+	</container>
+</uicfg>

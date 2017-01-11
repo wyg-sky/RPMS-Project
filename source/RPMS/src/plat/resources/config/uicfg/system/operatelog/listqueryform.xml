@@ -1,0 +1,37 @@
+<uicfg desc="操作日志管理查询字段">
+	<columns type="integer">5</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>operatorName</name>
+		<fieldLabel>用户名称</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>operateType</hiddenName>
+		<fieldLabel>操作类型</fieldLabel>
+		<keyType>sys_operatelog_type</keyType>
+		<operator>=</operator>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>operateStatus</hiddenName>
+		<fieldLabel>操作状态</fieldLabel>
+		<keyType>sys_operatelog_status</keyType>
+		<operator>=</operator>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<queryField>to_char(operateTime,'yyyy-mm-dd')</queryField>
+		<fieldLabel>操作时间</fieldLabel>
+		<format>Y-m-d</format>
+		<operator>=</operator>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>operateDescription</name>
+		<fieldLabel>操作描述</fieldLabel>
+	</items>
+</uicfg>

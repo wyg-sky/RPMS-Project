@@ -1,0 +1,66 @@
+<uicfg desc="设备供应商查询表单">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<defaults>
+		<border type="object">false</border>
+		<layout>column</layout>
+		<labelWidth type="object">70</labelWidth>
+	</defaults>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>factoryCd</name>
+		<fieldLabel>供应商编码</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>factoryName</name>
+		<fieldLabel>供应商名称</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>factoryType</name>
+		<fieldLabel>厂商类别</fieldLabel>
+		<keyType>mate_factory_type</keyType>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>dataType</name>
+		<fieldLabel>数据类型</fieldLabel>
+		<keyType>mate_dataType</keyType>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>valid</name>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+		<operator>=</operator>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>groupValid</name>
+		<hidden type="object">true</hidden>
+		<fieldLabel>集团是否有效</fieldLabel>
+		<operator>=</operator>
+	</items>
+	<buttonAlign>center</buttonAlign>
+	<buttons>
+		<text>查询</text>
+		<width type="integer">50</width>
+		<iconCls>search-d-icon</iconCls>
+		<handler type="object">function() {this.manager.query()}</handler>
+		<scope type="object">this</scope>
+	</buttons>
+	<buttons>
+		<text>重置</text>
+		<width type="integer">50</width>
+		<iconCls>ff-clear-icon</iconCls>
+		<handler type="object">function() {
+			this.manager.clearQuery();
+			this.manager.queryForm.findField("valid").setValue("1");
+		    this.manager.query();
+		}</handler>
+		<scope type="object">this</scope>
+	</buttons>
+</uicfg>

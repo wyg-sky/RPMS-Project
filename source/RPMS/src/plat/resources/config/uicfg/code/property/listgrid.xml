@@ -1,0 +1,77 @@
+<uicfg desc="属性管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>propertyPath asc</orderBy>
+	<editable type="object">false</editable>
+	<store>
+		<url>system/listProperty.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>propertyName</name>
+		</fields>
+		<fields>
+			<name>propertyPath</name>
+		</fields>
+		<fields>
+			<name>propertyType</name>
+		</fields>
+		<fields>
+			<name>defaultValue</name>
+		</fields>
+		<fields>
+			<name>defaultValueType</name>
+		</fields>
+		<fields>
+			<name>type</name>
+		</fields>
+		<fields>
+			<name>widgetId.id</name>
+		</fields>
+		<fields>
+			<name>widgetId.name</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>属性名称</header>
+			<dataIndex>propertyName</dataIndex>
+		</columns>
+		<columns>
+			<header>属性路径</header>
+			<dataIndex>propertyPath</dataIndex>
+		</columns>
+		<columns>
+			<header>属性类型</header>
+			<dataIndex>propertyType</dataIndex>
+			<keyType>sys_param_type</keyType>
+		</columns>
+		<columns>
+			<header>缺省值</header>
+			<dataIndex>defaultValue</dataIndex>
+		</columns>
+		<columns>
+			<header>缺省值类型</header>
+			<dataIndex>defaultValueType</dataIndex>
+			<keyType>sys_defaultValue_type</keyType>
+		</columns>
+		<columns>
+			<header>所属组件分类</header>
+			<dataIndex>type</dataIndex>
+			<keyType>sys_widget_type</keyType>
+		</columns>
+		<columns>
+			<header>所属组件</header>
+			<dataIndex>widgetId.name</dataIndex>
+			<cascadeIndex>widgetId.id</cascadeIndex>
+		</columns>
+	</cm>
+</uicfg>

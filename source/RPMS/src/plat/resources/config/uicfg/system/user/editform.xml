@@ -1,0 +1,270 @@
+<uicfg desc="用户管理录入表单">
+	<loadtUrl>system/loadUser.html</loadtUrl>
+	<submitUrl>system/saveUser.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">4</columns>
+	<height type="integer">310</height>
+	<params type="object"><![CDATA[
+			this.manager.userInfo? {id : FW.userId} : null
+		]]>
+	</params>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>version</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>password</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>passwordReal</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>flag</name>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<hidden type="object">true</hidden>
+		<name>isBusy</name>
+		<fieldLabel>是否忙</fieldLabel>
+		<value>0</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>userName</name>
+		<fieldLabel>姓名</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<readOnly type="object">this.manager.userInfo</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>loginName</name>
+		<fieldLabel>登录名</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<readOnly type="object">this.manager.userInfo</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>code</name>
+		<fieldLabel>工号</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<maxLength>50</maxLength>
+		<maxLengthText>编号的字数不能超过50</maxLengthText>
+		<readOnly type="object">this.manager.userInfo</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>bopomofo</name>
+		<fieldLabel>姓名全拼</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>bpmf</name>
+		<fieldLabel>姓名简拼</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>checkCode</name>
+		<fieldLabel>考勤号</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>sex</hiddenName>
+		<fieldLabel>性别</fieldLabel>
+		<keyType>cims_sex</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<name>birthday</name>
+		<fieldLabel>生日</fieldLabel>
+		<format>Y-m-d</format>
+		<convert type="object">FW.convertDate</convert>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>schoolRecord</hiddenName>
+		<fieldLabel>学历</fieldLabel>
+		<keyType>cims_school_record</keyType>
+	</items>
+	<items>
+		<xtype>orgtree</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<readOnly type="object">this.manager.userInfo</readOnly>
+		<listeners type="object">{
+			'select':function(combox, fireValue, node){
+				this.manager.editForm.findField("department.id").clearValue();
+			},scope:this
+		}</listeners>
+	</items>
+	<items>
+		<xtype>depttree</xtype>
+		<fieldLabel>部门</fieldLabel>
+		<propertyName>department</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<readOnly type="object">this.manager.userInfo</readOnly>
+		<listeners type="object">{
+			'focus':function(tree) {
+				tree.cascadeOrgTree(this.manager.editForm.findField("organization.id"));
+			},scope:this
+		}</listeners>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>jobTitle</name>
+		<fieldLabel>职位</fieldLabel>
+		<readOnly type="object">this.manager.userInfo</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>positionLevel</hiddenName>
+		<fieldLabel>职务级别</fieldLabel>
+		<keyType>cims_position_level</keyType>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>jobName</name>
+		<fieldLabel>职称</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>country</name>
+		<fieldLabel>国家</fieldLabel>
+		<keyType>cims_country_type</keyType>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>city</name>
+		<fieldLabel>城市</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>address</name>
+		<fieldLabel>地址</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>phone</name>
+		<fieldLabel>座机</fieldLabel>
+		<regex type="object">/^(((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)$/</regex>
+		<regexText>座机号格式输入错误</regexText>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>mobile</name>
+		<fieldLabel>手机</fieldLabel>
+		<regex type="object">/^\d{11}$/</regex>
+		<regexText>请输入11位手机号</regexText>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>homePhone</name>
+		<fieldLabel>家庭电话</fieldLabel>
+		<regex type="object">/^(((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)$/</regex>
+		<regexText>家庭电话号码格式输入错误</regexText>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>email</name>
+		<fieldLabel>email</fieldLabel>
+		<regex type="object">/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/</regex>
+		<regexText>邮件格式错误</regexText>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>isEnabled</hiddenName>
+		<fieldLabel>是否启用</fieldLabel>
+		<keyType>cims_boolean</keyType>
+		<value>1</value>
+		<allowBlank type="object">false</allowBlank>
+		<readOnly type="object">this.manager.userInfo</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>isExpired</hiddenName>
+		<fieldLabel>是否过期</fieldLabel>
+		<keyType>cims_boolean</keyType>
+		<value>0</value>
+		<allowBlank type="object">false</allowBlank>
+		<readOnly type="object">this.manager.userInfo</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>isLocked</hiddenName>
+		<fieldLabel>是否锁定</fieldLabel>
+		<keyType>cims_boolean</keyType>
+		<value>0</value>
+		<allowBlank type="object">false</allowBlank>
+		<readOnly type="object">this.manager.userInfo</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>isPortal</hiddenName>
+		<fieldLabel>是否门户</fieldLabel>
+		<keyType>cims_boolean</keyType>
+		<value>0</value>
+		<allowBlank type="object">false</allowBlank>
+		<readOnly type="object">this.manager.userInfo</readOnly>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>创建人</fieldLabel>
+		<propertyName>createUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>修改人</fieldLabel>
+		<propertyName>modifyUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>remark</name>
+		<fieldLabel>备注</fieldLabel>
+		<columnWidth type="integer">4</columnWidth>
+	</items>
+</uicfg>

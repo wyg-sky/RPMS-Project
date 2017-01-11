@@ -1,0 +1,34 @@
+<uicfg desc="实例列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>pojo</objectName>
+	<editable type="object">false</editable>
+	<allowPage type="boolean">false</allowPage>
+	<store>
+		<url>system/listAllPojos.html</url>
+		<fields>
+			<name>name</name>
+		</fields>
+		<fields>
+			<name>path</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>名称</header>
+			<dataIndex>name</dataIndex>
+			<width type="integer">40</width>
+		</columns>
+		<columns>
+			<header>路径</header>
+			<dataIndex>path</dataIndex>
+			<width type="integer">150</width>
+		</columns>
+	</cm>
+</uicfg>

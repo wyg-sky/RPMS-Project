@@ -1,0 +1,60 @@
+<uicfg desc="生成页面编辑表单">
+	<columns type="object">2</columns>
+	<items>
+		<xtype>lioncombowindow</xtype>
+		<fieldLabel>组件</fieldLabel>
+		<propertyName>widget</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<displayField>name</displayField>
+		<allowBlank type="boolean">false</allowBlank>
+		<window>
+			<viewPathOfUi>code/widgetbase/list</viewPathOfUi>
+			<title>组件选择</title>
+			<hql> and obj.type in ('0001', '0002', '0003', '0004') </hql>
+		</window>
+		<listeners type="object">{
+			'after_comfirm_click' : function(records) {
+				this.findField('xtype').setValue(records[0].get('xtype'));
+				this.findField('type').setValue(records[0].get('type'));
+				Ext.apply(this.manager.dataLineGrid.store.baseParams,{
+					className : 'BaseInfo'
+				});
+				this.manager.query(null,this.manager.dataLineGrid,false,['mainId'],['='],[records[0].get('id')]);
+				Ext.Ajax.request({
+					url : 'system/getSystemNameAndPackageName.html',
+					method : 'post',
+					scope : this,
+					success : function(response,options) {
+						var json = Ext.util.JSON.decode(response.responseText || "{}");
+						if(json.success) {
+							this.findField('name').setValue(json.moduleName + records[0].get('name'));
+						} else {
+							this.findField('name').setValue(records[0].get('name'));
+						}
+					}
+				});
+			},
+			scope : this
+		}</listeners>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>name</name>
+		<fieldLabel>名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>xtype</name>
+		<fieldLabel>xtype</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>type</hiddenName>
+		<fieldLabel>组件类型</fieldLabel>
+		<keyType>sys_widget_type</keyType>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+</uicfg>

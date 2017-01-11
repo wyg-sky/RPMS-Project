@@ -1,0 +1,58 @@
+<uicfg desc="联系人管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<editable type="object">false</editable>
+	<formViewPath>system/sms/contacts/listgridform</formViewPath>
+	<showDeleteButton type="object">true</showDeleteButton>
+	<store>
+		<url>system/listContacts.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>userId.userName</name>
+		</fields>
+		<fields>
+			<name>userType</name>
+		</fields>
+		<fields>
+			<name>userTelephones</name>
+		</fields>
+		<fields>
+			<name>createUser.userName</name>
+		</fields>
+		<fields>
+			<name>createTime</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>联系人</header>
+			<dataIndex>userId.userName</dataIndex>
+		</columns>
+		<columns>
+			<header>类别</header>
+			<dataIndex>userType</dataIndex>
+			<keyType>sys_user_type</keyType>
+		</columns>
+		<columns>
+			<header>手机号</header>
+			<dataIndex>userTelephones</dataIndex>
+		</columns>
+		<columns>
+			<header>创建人</header>
+			<dataIndex>createUser.userName</dataIndex>
+		</columns>
+		<columns>
+			<header>创建时间</header>
+			<dataIndex>createTime</dataIndex>
+		</columns>
+	</cm>
+</uicfg>

@@ -1,0 +1,20 @@
+<uicfg desc="组件管理">
+	<objectName>businessObject</objectName>
+	<editView>code/generatepage/edit</editView>
+	<component>
+		<items>
+			<object>dataGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<viewPath>code/generatepage/listgrid</viewPath>
+		</items>
+		<items>
+			<object>listTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>code/generatepage/listtbar</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>listTbar</items>
+		<items>dataGrid</items>
+	</container>
+</uicfg>

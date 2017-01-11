@@ -1,0 +1,13 @@
+<uicfg desc="用户管理选择角色工具栏">
+	<items>-></items>
+	<items>
+		<text>新增</text>
+		<iconCls>create-icon</iconCls>
+		<handler type="object">this.addLineClick</handler>
+	</items>
+	<items>
+		<text>删除</text>
+		<iconCls>delete-selected-icon</iconCls>
+		<handler type="object">this.deleteLineClick</handler>
+	</items>
+</uicfg>

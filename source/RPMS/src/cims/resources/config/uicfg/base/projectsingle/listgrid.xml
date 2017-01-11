@@ -1,0 +1,74 @@
+<uicfg desc="单项工程管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>modifyTime desc</orderBy>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<showEditButton type="object">Ext.isAllowed('mate_projectsingle_edit')</showEditButton>
+	<showDeleteButton type="object">Ext.isAllowed('mate_projectsingle_delete')</showDeleteButton>
+	<store>
+		<url>base/listProjectSingle.html</url>
+		<fields>
+		    <name>id</name>
+		</fields>
+		<fields>
+		    <name>projectCd</name>
+		</fields>
+		<fields>
+		    <name>projectName</name>
+		</fields>
+		<fields>
+		    <name>projectType</name>
+		</fields>
+		<fields>
+		    <name>projectStatus</name>
+		</fields>
+		<fields>
+		    <name>beginDate</name>
+		</fields>
+		<fields>
+		    <name>projectHead</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+		    <header>工程编码</header>
+		    <dataIndex>projectCd</dataIndex>
+		    <width type="integer">140</width>
+		</columns>
+		<columns>
+		    <header>工程名称</header>
+		    <dataIndex>projectName</dataIndex>
+		    <width type="integer">120</width>
+		</columns>
+		<columns>
+		    <header>工程类型</header>
+		    <dataIndex>projectType</dataIndex>
+		    <keyType>mate_project_lvl</keyType>
+		    <width type="integer">80</width>
+		</columns>
+		<columns>
+		    <header>工程状态</header>
+		    <dataIndex>projectStatus</dataIndex>
+		    <keyType>mate_project_status</keyType>
+		    <width type="integer">60</width>
+		</columns>
+		<columns>
+		    <header>开始日期</header>
+		    <dataIndex>beginDate</dataIndex>
+		    <width type="integer">80</width>
+		</columns>
+		<columns>
+		    <header>负责人</header>
+		    <dataIndex>projectHead</dataIndex>
+		    <width type="integer">60</width>
+		</columns>
+	</cm>
+</uicfg>

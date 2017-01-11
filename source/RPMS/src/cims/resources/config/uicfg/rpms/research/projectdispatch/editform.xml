@@ -1,0 +1,637 @@
+<uicfg desc="项目调度管理编辑表单">
+    <loadtUrl>rpms/loadProjectDispatch.html</loadtUrl>
+    <submitUrl>rpms/saveProjectDispatch.html</submitUrl>
+    <objectName>businessObject</objectName>
+    <defaultFocusIndex>-1</defaultFocusIndex>
+    <columns type="object">4</columns>
+    <defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">100</labelWidth>
+    </defaults>
+    <items>
+        <xtype>lioncombowindow</xtype>
+        <fieldLabel>项目登记编号</fieldLabel>
+        <propertyName>projectId</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>projectCode</hiddenDisplayName>
+        <displayField>projectCode</displayField>
+        <allowBlank type="boolean">false</allowBlank>
+        <window>
+            <viewPathOfUi>rpms/research/project/list</viewPathOfUi>
+            <title>项目编号</title>
+            <hql type="object">" and obj.status ='0004' "</hql>
+        </window>
+        <listeners type="object">{
+            'after_comfirm_click':function(records){
+                this.manager.editForm.findField("projectId.projectName").setValue(records[0].get('projectName'));
+                this.manager.editForm.findField("projectId.projectAnnual").setValue(records[0].get('projectAnnual'));
+                this.manager.editForm.findField("projectId.organization.name").setValue(records[0].get('organization.name'));
+            },
+            'change':function(){
+                if(this.manager.editForm.findField("projectId.id").getValue() == ""){
+                    this.manager.editForm.findField("projectId.projectName").setValue("");
+                }
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>项目名称</fieldLabel>
+        <allowBlank type="boolean">true</allowBlank>
+        <name>projectId.projectName</name>
+        <columnWidth type="integer">3</columnWidth>
+    </items>
+    <items>
+        <xtype>lioncomboboxyearfield</xtype>
+        <name>projectId.projectAnnual</name>
+        <fieldLabel>立项年度</fieldLabel>
+        <format>Y</format>
+        <readOnly type="boolean">true</readOnly>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>单位</fieldLabel>
+        <name>projectId.organization.name</name>
+        <readOnly type="boolean">true</readOnly>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>项目类型</fieldLabel>
+        <name>projectId.proejctType</name>
+        <keyType>rpms_project_type</keyType>
+        <readOnly type="boolean">true</readOnly>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>调度月份</fieldLabel>
+        <name>dispatchMonth</name>
+        <format>Y-m</format>
+         <readOnly type="object">true</readOnly>
+         <editable type="boolean">false</editable>
+        <value type="object">new Date().format('Y-m')</value>
+    </items>
+    <items>
+    	<xtype>lioncombobox</xtype>
+        <keyType>rpms_dispatch_stage</keyType>
+        <fieldLabel>项目进展阶段</fieldLabel>
+        <allowBlank type="boolean">false</allowBlank>
+        <name>projectStage</name>
+        <value type="object">0001</value>
+    </items>
+    <items>
+        <xtype>liontextunitfield</xtype>
+        <fieldLabel>项目进度完成率</fieldLabel>
+        <name>completionRate</name>
+        <anchor>80%</anchor>
+        <unitText>(%)</unitText>
+        <allowBlank type="boolean">false</allowBlank>
+        <regex type="object">/^(100|[1-9]\d|\d)$/</regex>
+        <regexText>请输入正确的百分比，最大100</regexText>
+        <value>0</value>
+    </items>
+    <items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>工资薪金</fieldLabel>
+		<name>gzxj</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>五险一金</fieldLabel>
+		<name>wxyj</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>材料费</fieldLabel>
+		<name>clf</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>燃料费</fieldLabel>
+		<name>rlf</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>动力费</fieldLabel>
+		<name>dlf</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>试制费</fieldLabel>
+		<name>szf</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>样品样机费</fieldLabel>
+		<name>ypyjf</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>检测费</fieldLabel>
+		<name>jcf</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>维修费</fieldLabel>
+		<name>wxf</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>租赁费</fieldLabel>
+		<name>zlf</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>仪器折旧</fieldLabel>
+		<name>yqzj</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>设备折旧</fieldLabel>
+		<name>sbzj</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>软件摊销</fieldLabel>
+		<name>rjtx</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>专利摊销</fieldLabel>
+		<name>zltx</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>非专利技术摊销</fieldLabel>
+		<name>fzljstx</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>设计费</fieldLabel>
+		<name>sjf</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>规程制定费</fieldLabel>
+		<name>gczdf</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>新药床试验费</fieldLabel>
+		<name>xycsyf</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>勘探试验费</fieldLabel>
+		<name>ktsyf</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>项目鉴定费</fieldLabel>
+		<name>xmjdf</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>专利费用</fieldLabel>
+		<name>zlfy</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>其他费用</fieldLabel>
+		<name>qtfy</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>合同费</fieldLabel>
+		<name>htf</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>无形资产摊销</fieldLabel>
+		<name>wxzctx</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>建筑物折旧费</fieldLabel>
+		<name>jzwzjf</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>购置设备原价</fieldLabel>
+		<name>gzsbyj</name>
+		<value>0</value>
+		<listeners type="object">{
+            'change' : this.manager.genTjhjSum,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>来自政府资金</fieldLabel>
+		<name>lzzfzj</name>
+		<value>0</value>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>统计合计</fieldLabel>
+		<name>tjhj</name>
+		<value>0</value>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>归集合计</fieldLabel>
+		<name>gjhj</name>
+		<value>0</value>
+	</items>
+    <items>
+        <xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+        <fieldLabel>已投入总经费</fieldLabel>
+        <name>investmentTotal</name>
+        <value>0</value>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+         <xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+        <fieldLabel>下季度预计投入经费</fieldLabel>
+        <name>investmentNext</name>
+        <value>0</value>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+         <xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+        <fieldLabel>财务归集研发费用</fieldLabel>
+        <name>caiwuCost</name>
+        <value>0</value>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+         <xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+        <fieldLabel>合同总额</fieldLabel>
+        <name>contractAll</name>
+        <value>0</value>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+         <xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+        <fieldLabel>合同支出额</fieldLabel>
+        <name>contractInvestment</name>
+        <value>0</value>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+         <xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+        <fieldLabel>下季度预计投入合同额</fieldLabel>
+        <name>contractNext</name>
+        <value>0</value>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+         <xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+        <fieldLabel>外部资金总额</fieldLabel>
+        <name>subsidiesAll</name>
+        <value>0</value>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+         <xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+        <fieldLabel>外部资金已到位</fieldLabel>
+        <name>subsidiesTotal</name>
+        <value>0</value>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+         <xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+        <fieldLabel>累计资本化投入</fieldLabel>
+        <name>capitalTotal</name>
+        <value>0</value>
+        <hidden type="object">true</hidden>
+    </items>
+     <items>
+         <xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+        <fieldLabel>已实现经济效益</fieldLabel>
+        <allowBlank  type="object"> false </allowBlank>
+        <name>ysxjjxy</name>
+        <value>0</value>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>填报人</fieldLabel>
+        <name>reportUser</name>
+    </items>
+    <items>
+        <xtype>liondatefield</xtype>
+        <fieldLabel>填报时间</fieldLabel>
+        <format>Y-m-d</format>
+        <name>reportTime</name>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>审批人</fieldLabel>
+        <name>approveUser</name>
+    </items>
+    <items>
+        <xtype>liondatefield</xtype>
+        <fieldLabel>审批时间</fieldLabel>
+        <name>approveTime</name>
+        <format>Y-m-d</format>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>状态</fieldLabel>
+        <name>status</name>
+        <keyType>rpms_evaluation_status</keyType>
+        <allowBlank type="object">false</allowBlank>
+        <readOnly type="boolean">true</readOnly>
+        <value type="object">'0001'</value>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>创建人</fieldLabel>
+        <name>createUser</name>
+        <value type="object">FW.userName</value>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <name>createTime</name>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>创建时间</fieldLabel>
+        <value type="object">new Date().format('Y-m-d H:i:s')</value>
+    </items>
+    <items>
+        <xtype>liontextarea</xtype>
+        <columnWidth type="integer">4</columnWidth>
+        <fieldLabel>形象进度</fieldLabel>
+        <name>projectProgress</name>
+        <height>80</height>
+    </items>
+    <items>
+        <xtype>liontextarea</xtype>
+        <columnWidth type="integer">4</columnWidth>
+        <fieldLabel>备注</fieldLabel>
+        <name>remark</name>
+        <height>40</height>
+    </items>
+    <items>
+        <xtype>lionnumberfield</xtype>
+        <fieldLabel>外部资金下季度预计到位</fieldLabel>
+        <name>subsidiesNext</name>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+        <xtype>lionhiddenfield</xtype>
+        <fieldLabel></fieldLabel>
+        <name>type</name>
+        <hidden type="object">true</hidden>
+        <value type="object">'0001'</value>
+    </items>
+    <items>
+        <xtype>lionhiddenfield</xtype>
+        <fieldLabel>唯一标识</fieldLabel>
+        <name>id</name>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+        <xtype>lionreadonlyfield</xtype>
+        <fieldLabel>单位</fieldLabel>
+        <propertyName>organization</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <hidden type="object">true</hidden>
+        <value type="object">
+            {"value" : FW.organizationId, "text" : FW.organizationName}
+        </value>
+    </items>
+</uicfg>

@@ -1,0 +1,26 @@
+<uicfg desc="用户消息管理编辑">
+	<loadtUrl>system/loadUserNotice.html</loadtUrl>
+	<submitUrl>system/saveUserNotice.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<editable type="object">true</editable>
+	<columns type="object">2</columns>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>notice.title</name>
+		<fieldLabel>消息标题</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>notice.content</name>
+		<fieldLabel>消息内容</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+		<columnWidth type="integer">2</columnWidth>
+	</items>
+</uicfg>

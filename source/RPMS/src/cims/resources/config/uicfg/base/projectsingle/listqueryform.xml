@@ -1,0 +1,42 @@
+<uicfg desc="单项工程管理查询表单">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>projectCd</name>
+		<fieldLabel>工程编码</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>projectName</name>
+		<fieldLabel>工程名称</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>projectStatus</name>
+		<fieldLabel>工程状态</fieldLabel>
+		<keyType>mate_project_status</keyType>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>projectHead</name>
+		<fieldLabel>负责人</fieldLabel>
+	</items>
+	<buttonAlign>center</buttonAlign>
+	<buttons>
+		<text>查询</text>
+		<width type="integer">50</width>
+		<iconCls>search-d-icon</iconCls>
+		<handler type="object">function() {this.manager.query()}</handler>
+		<scope type="object">this</scope>
+	</buttons>
+	<buttons>
+		<text>重置</text>
+		<width type="integer">50</width>
+		<iconCls>ff-clear-icon</iconCls>
+		<handler type="object">function() {this.manager.clearQuery()}</handler>
+		<scope type="object">this</scope>
+	</buttons>
+</uicfg>

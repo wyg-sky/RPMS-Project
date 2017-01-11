@@ -1,0 +1,1003 @@
+html {border-right: transparent 0px; padding-right: 0px; background-position: left top; border-top: transparent 0px; padding-left: 0px; padding-bottom: 0px; margin: 0px; border-left: transparent 0px; padding-top: 0px; border-bottom: transparent 0px; background-repeat: no-repeat; font-family: tahoma,verdana,segoe,sans-serif,瀹嬩綋;font-size: 14px;}
+body {border-right: transparent 0px; padding-right: 0px; background-position: left top; border-top: transparent 0px; padding-left: 0px; padding-bottom: 0px; margin: 0px; border-left: transparent 0px; padding-top: 0px; border-bottom: transparent 0px; background-repeat: no-repeat; font-family: tahoma,verdana,segoe,sans-serif,瀹嬩綋;font-size: 14px;}
+
+/*menu container*/
+.menucontainer{width:100%;height:80px;background:#fff url(default/images/top_bg.png) no-repeat 0 0;}
+.topbg{width:100%;height:80px;top:0px;}
+.topbg .topbgleft{position:absolute;top:0px;width:809px;height:80px;background:#fff url(default/images/top_bg_left.png) no-repeat 0 0;}
+.topbg .topbgcenter{position:absolute;top:0px;margin-left:809px !important;width:100%;height:80px;background:#fff url(default/images/top_bg_center.png) repeat-x 0 0;}
+.topbg .topbgright{position:absolute;top:0px;right:0px;width:143px;height:80px;background:#fff url(default/images/top_bg_right.png) no-repeat 0 0;}
+.logo {float:left; width:211px;top:20px; left:40px;height:67px;background:url(default/images/logo.png);background-repeat:no-repeat;position:absolute;_background:url(default/images/logo.gif);_background-repeat:no-repeat;}
+.banner { margin-left:25% !important;width:80%;top:48px;clear: both; height:auto;position:absolute;}
+.clr {z-index:2;float:left; width:100%;top:80px; height:5px;background:url(default/images/bg.png);background-repeat:repeat-x;position:absolute;}
+/*basic menu styling*/
+.topmenu {position:absolute;z-index:4;top:2px;right:4px;float:right;font-family:arial,verdana,sans-serif,瀹嬩綋;width:98%;font-size:14px;}
+.topmenu ul {float:right;padding:0;margin:0 2px;list-style-type:none;}
+.topmenu ul li {float:left;padding:1px 0 0 1px;margin:0 2px;border:1px solid transparent;}
+/*style of main items normal state*/
+.topmenu ul li a {text-align:center;display:block;text-decoration:none;color:#a4bde6;padding:0px 5px;line-height:18px;valign:middle;}
+.topmenu ul li a em {background:transparent url(default/images/btn-arrow.gif) no-repeat right 0;padding:2px 12px 0 0;}
+.topmenu ul li div {background:url(default/images/vline.gif) no-repeat center center;height:16px;width:2px;margin:2px 0px 0 0px;}
+.topmenu .top-text {float:left;text-align:center;text-decoration:none;color:#a4bde6;width:auto;padding:2px 3px 0px;line-height:18px;}
+/*main nav over state*/
+.topmenu ul li:hover {background:#5e8fde;border:1px solid #073789;}
+.topmenu ul li.topmenu-split:hover {background:none;border:1px solid transparent;}
+.topmenu ul li.has-sub:hover {position:relative;border-bottom-width:0;}
+.topmenu ul li:hover a {background:url(default/images/topmenu-bg.gif) repeat-x 0 0;}
+/*hide sub nav items*/
+.topmenu ul li ul {display:none;}
+/*show drop-down list*/
+.topmenu ul li:hover ul {display:block;position:absolute;top:18px;left:-3px;border:1px solid #073789;border-top-width:0;background:url(default/images/submenu-bg.gif) no-repeat 0 0;padding:3px 4px;}
+/*drop-down on state*/
+.topmenu ul li:hover ul li {background:transparent;margin:1px 0 0;padding:0;white-space:nowrap;border:1px solid transparent;height:18px;}
+.topmenu ul li:hover ul li a {background:url(default/images/submenu-spot.gif) no-repeat 4px center;margin:0;padding:2px 12px 0 16px;color:#e3ebf7;line-height:16px;}
+.topmenu ul li:hover ul li.submenu-split {height:2px !important;width:100%;margin:0;background:url(default/images/submenu-split.gif) no-repeat center 0 !important;}
+/*sub drop-down over state*/
+.topmenu ul li:hover ul li:hover {background:url(default/images/submenu-bg-over.gif) repeat-x 0 0;border-width:1px;border-style:solid;border-color:#6291d9;border-top-color:#174593;}
+.topmenu ul li:hover ul li.submenu-split:hover {background:url(default/images/submenu-split.gif) no-repeat center 0;border:1px solid transparent;}
+/*basic menu styling*/
+.navmenu {height:32px;margin:0px 0; float:left;font-family: arial,verdana,sans-serif,瀹嬩綋;width:100%;position:relative;font-size:14px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+.navmenu ul {padding:0;margin:0px 0;list-style-type:none;float:left;position:relative;}
+.navmenu ul li {width:auto;margin:0px 0;float:left;position:relative;display:inline;padding:0;}
+/*style of main items normal state*/
+.navmenu ul li a{float:left;color:#fff;font-family:"瀹嬩綋";display:block;text-decoration:none;text-align:center;width:auto;line-height:28px;padding:0px 16px 0px 16px;}
+.navmenu ul li:hover a {width:auto;background-image:url(default/images/top_btn-bg.gif);background-position: center; color:#002685;padding:0px 16px 0px 16px;text-align:center; vertical-align:top}
+.navmenu ul li:hover a:hover {width:auto;background-image:url(default/images/top_btn-bg.gif);background-position: center; color:#002685;padding:0px 16px 0px 16px;text-align:center;vertical-align:top}
+.navmenu ul li div{background-image:url(default/images/vline.gif);background-position:center;background-repeat:no-repeat;display:block;height:7px;width:2px;margin:10px 4px 0 4px;}
+.navmenu .nav-active{width:auto;background-image:url(default/images/top_btn-bg.gif);background-position: center; color:#002685;padding:0px 16px 0px 16px;text-align:center; vertical-align:top;font-weight:bold}
+
+.div_hide {display:none}
+.footer {float:right;}
+.div_work {z-index: 5;position: absolute;left:0px;top:92px;width:100%;height:auto;overflow:auto;clear: both;}html {border-right: transparent 0px; padding-right: 0px; background-position: left top; border-top: transparent 0px; padding-left: 0px; padding-bottom: 0px; margin: 0px; border-left: transparent 0px; padding-top: 0px; border-bottom: transparent 0px; background-repeat: no-repeat; font-family: tahoma,verdana,segoe,sans-serif}
+
+.minutecss{padding:4px;height:100%;border-top: 1px solid #a3bad9;background: #dfecfb url(../ext/resources/images/default/shared/glass-bg.gif) repeat-x left top;}
+.y-hour-middle,.y-hour-left,.y-hour-right{font:bold 11px "sans serif", tahoma, verdana, helvetica;overflow:hidden;}
+.y-hour-right, .y-hour-left{width:18px;}
+.y-hour-right{text-align:right;}
+.y-hour-middle{padding-top:2px;padding-bottom:2px;color:#0000ff;}
+.y-hour-right a, .y-hour-left a{display:block;width:16px;height:16px;background-position: center;background-repeat: no-repeat;cursor:pointer;}
+.y-hour-right a {background-image: url(./default/images/arrowRight.gif);margin-right:2px;}
+.y-hour-left a{background-image: url(./default/images/arrowLeft.gif);margin-left:2px;}    
+.y-minute-middle,.y-minute-left,.y-minute-right {font:bold 11px "sans serif", tahoma, verdana, helvetica;overflow:hidden;}
+.y-minute-right, .y-minute-left {width:18px;}
+.y-minute-right{text-align:right;}
+.y-minute-middle {padding-top:2px;padding-bottom:2px;color:#0000ff;}
+.y-minute-right a, .y-minute-left a{display:block;width:16px;height:16px;background-position: center;background-repeat: no-repeat;cursor:pointer;}
+.y-minute-right a {background-image: url(./default/images/arrowRight.gif);margin-right:2px;}
+.y-minute-left a{background-image: url(./default/images/arrowLeft.gif);margin-left:2px;}
+.y-seconds-middle,.y-seconds-left,.y-seconds-right {font:bold 11px "sans serif", tahoma, verdana, helvetica;overflow:hidden;}
+.y-seconds-right, .y-seconds-left {width:18px;}
+.y-seconds-right{text-align:right;}
+.y-seconds-middle {padding-top:2px;padding-bottom:2px;color:#0000ff;}
+.y-seconds-right a, .y-seconds-left a{display:block;width:16px;height:16px;background-position: center;background-repeat: no-repeat;cursor:pointer;}
+.y-seconds-right a {background-image: url(./default/images/arrowRight.gif);margin-right:2px;}
+.y-seconds-left a{background-image: url(./default/images/arrowLeft.gif);margin-left:2px;}
+#desktop-body {
+	background: #3d71b8 url(../images/desktop.png) no-repeat left top;
+    font: normal 12px tahoma, arial, verdana, sans-serif;
+    position: absolute;
+    top:0;
+    left:0;
+	border: 0 none;
+	display: none;
+	height: 100%;
+	z-index: 20000;
+    zoom: 1;
+    width: 100%;
+    height: 100%;
+}
+.nobordertext {
+    border:0;
+    #background: #DFE9F7;
+    background: #ffffff;
+}
+.notice-tip-title {
+	padding:2px 0px 4px 0px;
+	margin:0 auto;
+	display:block;
+	line-height:22px;
+	text-align:center;
+	font-size:14px;
+	font-weight:bold;
+	color:blue;
+	cursor: pointer;
+}
+.notice-tip {
+	padding:4px;
+	line-height:22px;
+	font-size:12px;
+	color:black;
+	cursor: pointer;
+	word-break:break-all;
+}
+
+.notice-tip-border {
+	padding:4px;
+	line-height:22px;
+	font-size:12px;
+	color:black;
+	cursor: pointer;
+	word-break:break-all;
+	border-bottom:1px dashed blue;
+}
+
+.notice-tip:hover{
+	color:red;
+}
+.notice-tip-border:hover{
+	color:red;
+}
+.x-grid3-row-with-body {
+background:#E7E5E5;
+}
+
+.x-grid3-row-with-body .x-grid3-row-body {
+padding: 0 2 3 16;
+font-weight:bold;
+}
+.x-grid3-row-with-body:over {
+background:#FF00FF;
+}
+.x-grid3-row-outstanding {
+	background: #DADADA;
+	/*color:#55DD33;*/
+}
+.msg .x-box-mc {
+    font-size:14px;
+}
+#msg-div {
+    position:absolute;
+    left:35%;
+    top:10px;
+    width:250px;
+    z-index:20000;
+}
+
+#loading-mask{
+	position:absolute;
+	left:0;
+	top:0;
+    width:100%;
+    height:100%;
+    z-index:20000;
+    background-color:white;
+}
+
+#loading{
+	position:absolute;
+	left:40%;
+	top:40%;
+	padding:2px;
+	z-index:20001;
+    height:auto;
+}
+
+#loading img {
+    margin-bottom:5px;
+}
+#loading .loading-indicator{
+	background:white;
+	color:#555;
+	font:bold 13px tahoma,arial,helvetica;
+	padding:10px;
+	margin:0;
+    text-align:center;
+    height:auto;
+}
+
+/**Ext style patch*/
+.x-form-element-nopadding{padding-left:15px;position:relative;}
+.x-form-item-nobgcolor{background-color:#FFF;font:normal 12px tahoma,arial,helvetica,sans-serif;display:block;zoom:1;}
+.x-grid3-header-offset{padding-left:0px;width:auto;}
+
+/** top bar icons */
+.topbar-style-icon { background-image: url(default/images/menu/m_dty_16x.png) !important }
+.change-password-icon { background-image: url(default/images/icons/16_16/change-password.gif) !important }
+
+/** basic icons */
+.transition-icon { background-image: url(default/images/icons/16_16/transition.png) !important }
+.choosed-transition-icon { background-image: url(default/images/icons/16_16/choosed-transition.png) !important }
+
+/** basic icons */
+
+.new-new-icon{background-image:url(default/images/new-new-icon.gif)!important}
+.new-delete-icon{background-image:url(default/images/new-delete-icon.gif)!important}
+.new-search-icon{background-image:url(default/images/new-search-icon.gif)!important}
+.new-supersearch-icon{background-image:url(default/images/new-supersearch-icon.png)!important}
+.new-edit-icon{background-image:url(default/images/new-edit-icon.gif)!important}
+.new-copy-icon{background-image:url(default/images/new-copy-icon.gif)!important}
+.new-send-icon{background-image:url(default/images/new-send-icon.gif)!important}
+.new-check-icon{background-image:url(default/images/new-check-icon.gif)!important}
+.new-checkinfo-icon{background-image:url(default/images/new-checkinfo-icon.gif)!important}
+.new-huidiao-icon{background-image:url(default/images/new-huidiao-icon.gif)!important}
+.new-adjust-icon{background-image:url(default/images/new-adjust-icon.png)!important}
+.new-dahuidan-icon{background-image:url(default/images/new-dahuidan-icon.png)!important}
+.new-equipsend-icon{background-image:url(default/images/new-equipsend-icon.png)!important}
+.new-equipout-icon{background-image:url(default/images/new-equipout-icon.png)!important}
+.new-confirmreceive-icon{background-image:url(default/images/new-confirmreceive-icon.png)!important}
+.new-transfermanage-icon{background-image:url(default/images/new-transfermanage-icon.png)!important}
+.new-taozhangaccount-icon{background-image:url(default/images/new-taozhangaccount-icon.png)!important}
+.new-viewdetail-icon{background-image:url(default/images/new-viewdetail-icon.png)!important}
+.new-gather-icon{background-image:url(default/images/new-gather-icon.png)!important}
+.new-resourcemanage-icon{background-image:url(default/images/new-resourcemanage-icon.png)!important}
+.new-recource-icon{background-image:url(default/images/new-recource-icon.png)!important}
+.new-usermanage-icon{background-image:url(default/images/new-usermanage-icon.png)!important}
+.new-edituser-icon{background-image:url(default/images/new-edituser-icon.png)!important}
+
+.new-bi-icon{background-image:url(default/images/new-bi-icon.png)!important}
+.new-finish-icon{background-image:url(default/images/new-finish-icon.png)!important}
+.new-genequipment-icon{background-image:url(default/images/new-genequipment-icon.png)!important}
+.new-newplan-icon{background-image:url(default/images/new-newplan-icon.gif)!important}
+
+
+.expand-icon{background-image:url(../ext/resources/images/default/layout/ns-expand.gif)!important}
+.collapse-icon{background-image:url(../ext/resources/images/default/layout/ns-collapse.gif)!important}
+.expand-icon{background-image:url(../ext/resources/images/default/layout/ns-expand.gif)!important}
+.create-icon{background-image:url(default/images/new-new-icon.gif)!important}
+.delete-icon{background-image:url(default/images/new-delete-icon.gif)!important}
+.delete-all-icon{background-image:url(default/images/icons/16_16/delete-all.gif)!important}
+.delete-selected-icon{background-image:url(default/images/new-delete-icon.gif)!important}
+.modify-icon{background-image:url(default/images/icons/16_16/modify.gif)!important}
+.view-icon{background-image:url(default/images/icons/16_16/view.gif)!important}
+.save-icon{background-image:url(default/images/icons/16_16/save.gif)!important}
+.confirm-icon{background-image:url(default/images/icons/16_16/btn_confirm.gif)!important}
+.save-all-icon{background-image:url(default/images/icons/16_16/save-all.gif)!important}
+.save-as-icon{background-image:url(default/images/icons/16_16/save-as.gif)!important}
+.submit-icon{background-image:url(default/images/icons/16_16/submit.gif)!important}
+.reset-icon{background-image:url(default/images/icons/16_16/reset.gif)!important}
+.cancel-icon{background-image:url(default/images/icons/16_16/cancel.gif)!important}
+.tools-icon{background-image:url(default/images/icons/16_16/tools.gif)!important}
+.import-icon{background-image:url(default/images/icons/16_16/import.gif)!important}
+.export-icon{background-image:url(default/images/icons/16_16/export.gif)!important}
+.template-icon{background-image:url(default/images/icons/16_16/template.png)!important}
+.undo-icon{background-image:url(default/images/icons/16_16/undo.png)!important}
+.redo-icon{background-image:url(default/images/icons/16_16/redo.png)!important}
+.copy-icon{background-image:url(default/images/icons/16_16/copy.png)!important}
+.cut-icon{background-image:url(default/images/icons/16_16/cut.png)!important}
+.paste-icon{background-image:url(default/images/icons/16_16/paste.png)!important}
+.list-icon{background-image:url(default/images/icons/16_16/list.png)!important}
+.tree-icon{background-image:url(default/images/icons/16_16/tree.png)!important}
+.refresh-icon{background-image:url(default/images/icons/16_16/refresh.png)!important}
+.forward-icon{background-image:url(default/images/icons/16_16/forward.png)!important}
+.back-icon{background-image:url(default/images/icons/16_16/back.png)!important}
+.previous-icon{background-image:url(default/images/icons/16_16/previous.png)!important}
+.next-icon{background-image:url(default/images/icons/16_16/next.png)!important}
+.up-icon{background-image:url(default/images/icons/16_16/up.png)!important}
+.down-icon{background-image:url(default/images/icons/16_16/down.png)!important}
+.left-icon{background-image:url(default/images/icons/16_16/left.png)!important}
+.right-icon{background-image:url(default/images/icons/16_16/right.png)!important}
+.help-icon{background-image:url(default/images/icons/16_16/help.png)!important}
+.tips-icon{background-image:url(default/images/icons/16_16/tips.png)!important}
+.search-icon{background-image:url(default/images/new-search-icon.gif)!important}
+.model-home-icon{background-image:url(default/images/icons/16_16/model-home.png)!important}
+.browser-icon{background-image:url(default/images/icons/16_16/browser.gif)!important}
+.check-icon{background-image:url(default/images/icons/16_16/check.png)!important}
+.check-all-icon{background-image:url(default/images/icons/16_16/check-all.png)!important}
+.uncheck-icon{background-image:url(default/images/icons/16_16/uncheck.png)!important}
+/** icons of workflow manager and form manager and graph designer */
+.load-page-icon{background-image:url(default/images/icons/16_16/load-defautlPage-icon.gif)!important}
+.cmdb-ctg-set-icon{background-image:url(default/images/icons/16_16/cmdb-ctg-set-icon.gif)!important}
+.ff-form-icon{background-image:url(default/images/icons/16_16/ff-form.png)!important}
+.ff-view-icon{background-image:url(default/images/icons/16_16/ff-view.png)!important}
+.ff-key-value-icon{background-image:url(default/images/icons/16_16/ff-key-value.png)!important}
+.ff-frame-template-icon{background-image:url(default/images/icons/16_16/ff-frame-template.png)!important}
+.ff-component-template-icon{background-image:url(default/images/icons/16_16/ff-component-template.png)!important}
+.ff-action-icon{background-image:url(default/images/icons/16_16/ff-action.png)!important}
+.ff-handle-icon{background-image:url(default/images/icons/16_16/ff-handle.png)!important}
+.ff-application-icon{background-image:url(default/images/icons/16_16/ff-application.png)!important}
+.ff-model-icon{background-image:url(default/images/icons/16_16/ff-model.png)!important}
+.ff-release-icon{background-image:url(default/images/icons/16_16/ff-release.png)!important}
+.ff-activation-icon{background-image:url(default/images/icons/16_16/ff-activation.png)!important}
+.ff-designer-icon{background-image:url(default/images/icons/16_16/ff-designer.png)!important}
+.ff-move-up-icon{background-image:url(default/images/icons/16_16/ff-move-up.gif)!important}
+.ff-move-down-icon{background-image:url(default/images/icons/16_16/ff-move-down.gif)!important}
+.ff-insert-up-icon{background-image:url(default/images/icons/16_16/ff-insert-up.png)!important}
+.ff-insert-down-icon{background-image:url(default/images/icons/16_16/ff-insert-down.png)!important}
+.ff-insert-left-icon{background-image:url(default/images/icons/16_16/ff-insert-left.png)!important}
+.ff-insert-right-icon{background-image:url(default/images/icons/16_16/ff-insert-right.png)!important}
+.ff-edit-code-icon{background-image:url(default/images/icons/16_16/ff-edit-code.gif)!important}
+.ff-clear-icon{background-image:url(default/images/icons/16_16/ff-clear.png)!important}
+.ff-format-icon{background-image:url(default/images/icons/16_16/ff-format.png)!important}
+.ff-render-again-icon{background-image:url(default/images/icons/16_16/ff-render-again.png)!important}
+.ff-variable-icon{background-image:url(default/images/icons/16_16/ff-variable.png)!important}
+.ff-basic-components-icon{background-image:url(default/images/icons/16_16/ff-basic-components.png)!important}
+.ff-biz-components-icon{background-image:url(default/images/icons/16_16/ff-biz-components.png)!important}
+.ff-biz-template-icon{background-image:url(default/images/icons/16_16/ff-biz-template.png)!important}
+.ff-dom-tree-icon{background-image:url(default/images/icons/16_16/ff-dom-tree.png)!important}
+.ff-properties-icon{background-image:url(default/images/icons/16_16/ff-properties.png)!important}
+.ff-events-icon{background-image:url(default/images/icons/16_16/ff-events.png)!important}
+.ff-container-icon{background-image:url(default/images/icons/16_16/ff-container.png)!important}
+.ff-elements-icon{background-image:url(default/images/icons/16_16/ff-elements.png)!important}
+.ff-toolbar-icon{background-image:url(default/images/icons/16_16/ff-toolbar.png)!important}
+.ff-layout-icon{background-image:url(default/images/icons/16_16/ff-layout.png)!important}
+.ff-component-icon{background-image:url(default/images/icons/16_16/ff-component.png)!important}
+.ff-tbar-icon{background-image:url(default/images/icons/16_16/ff-tbar.png)!important}
+.ff-bbar-icon{background-image:url(default/images/icons/16_16/ff-bbar.png)!important}
+.ff-window-icon{background-image:url(default/images/icons/16_16/ff-window.png)!important}
+.ff-panel-icon{background-image:url(default/images/icons/16_16/ff-panel.png)!important}
+.ff-tab-panel-icon{background-image:url(default/images/icons/16_16/ff-tab-panel.png)!important}
+.ff-form-icon{background-image:url(default/images/icons/16_16/ff-form.png)!important}
+.ff-field-set-icon{background-image:url(default/images/icons/16_16/ff-field-set.png)!important}
+.ff-grid-icon{background-image:url(default/images/icons/16_16/ff-grid.png)!important}
+.ff-checkbox-icon{background-image:url(default/images/icons/16_16/ff-checkbox.png)!important}
+.ff-checkbox-group-icon{background-image:url(default/images/icons/16_16/ff-checkbox-group.png)!important}
+.ff-combo-icon{background-image:url(default/images/icons/16_16/ff-combo.png)!important}
+.ff-hidden-icon{background-image:url(default/images/icons/16_16/ff-hidden.png)!important}
+.ff-number-field-icon{background-image:url(default/images/icons/16_16/ff-number-field.png)!important}
+.ff-radio-icon{background-image:url(default/images/icons/16_16/ff-radio.png)!important}
+.ff-radio-group-icon{background-image:url(default/images/icons/16_16/ff-radio-group.png)!important}
+.ff-text-area-icon{background-image:url(default/images/icons/16_16/ff-text-area.png)!important}
+.ff-text-field-icon{background-image:url(default/images/icons/16_16/ff-text-field.png)!important}
+.ff-password-icon{background-image:url(default/images/icons/16_16/ff-password.png)!important}
+.ff-date-field-icon{background-image:url(default/images/icons/16_16/ff-date-field.png)!important}
+.ff-time-field-icon{background-image:url(default/images/icons/16_16/ff-time-field.png)!important}
+.ff-button-icon{background-image:url(default/images/icons/16_16/ff-button.png)!important}
+.ff-text-icon{background-image:url(default/images/icons/16_16/ff-text.png)!important}
+.ff-label-icon{background-image:url(default/images/icons/16_16/ff-label.png)!important}
+.ff-savePage-icon{background-image:url(default/images/icons/16_16/form-savePage.gif)!important}
+.ff-closePage-icon{background-image:url(default/images/icons/16_16/form-closePage.gif)!important}
+.ff-redoPage-icon{background-image:url(default/images/icons/16_16/form-redoPage.gif)!important}
+.ff-submitPage-icon{background-image:url(default/images/icons/16_16/form-submitPage.gif)!important}
+.workflow-mng-icon{background-image:url(default/images/icons/16_16/workflow-mng.png)!important}
+.workflow-monitor-icon{background-image:url(default/images/icons/16_16/workflow-monitor.png)!important}
+.workflow-icon{background-image:url(default/images/icons/16_16/workflow.gif)!important}
+.version-icon{background-image:url(default/images/icons/16_16/version.png)!important}
+.binded-icon{background-image:url(default/images/icons/16_16/binded.png)!important}
+.not-binded-icon{background-image:url(default/images/icons/16_16/not-binded.png)!important}
+.readonly-view-icon{background-image:url(default/images/icons/16_16/readonly-view.png)!important}
+.choose-icon{background-image:url(default/images/icons/16_16/choose.png)!important}
+.start-icon{background-image:url(default/images/icons/16_16/start.png)!important}
+.end-icon{background-image:url(default/images/icons/16_16/end.png)!important}
+.task-node-icon{background-image:url(default/images/icons/16_16/task-node.png)!important}
+.decision-node-icon{background-image:url(default/images/icons/16_16/decision-node.png)!important}
+.fork-node-icon{background-image:url(default/images/icons/16_16/fork-node.png)!important}
+.join-node-icon{background-image:url(default/images/icons/16_16/join-node.png)!important}
+.line-icon{background-image:url(default/images/icons/16_16/line.png)!important}
+/** icons of other modules */
+.add-ci-icon{background-image:url(default/images/icons/16_16/add-ci.gif)!important}
+.add-components-icon{background-image:url(default/images/icons/16_16/add-components.png)!important}
+.add-related-ci-icon{background-image:url(default/images/icons/16_16/add-related-ci.png)!important}
+.add-contract-icon{background-image:url(default/images/icons/16_16/add-contract.gif)!important}
+.add-cost-icon{background-image:url(default/images/icons/16_16/add-cost.png)!important}
+.create-beaseline-icon{background-image:url(default/images/icons/16_16/create-beaseline.png)!important}
+.create-ticket-icon{background-image:url(default/images/icons/16_16/create-ticket.gif)!important}
+.service-request-icon{background-image:url(default/images/icons/16_16/service-request.png)!important}
+.incident-request-icon{background-image:url(default/images/icons/16_16/incident-request.gif)!important}
+.problem-request-icon{background-image:url(default/images/icons/16_16/problem-request.gif)!important}
+.change-request-icon{background-image:url(default/images/icons/16_16/change-request.gif)!important}
+.release-request-icon{background-image:url(default/images/icons/16_16/release-request.png)!important}
+.daily-task-icon{background-image:url(default/images/icons/16_16/dailyTask.gif)!important}
+.audit-task-icon{background-image:url(default/images/icons/16_16/audit.gif)!important}
+.inspection-task-icon{background-image:url(default/images/icons/16_16/inspection.gif)!important}
+.maintenance-task-icon{background-image:url(default/images/icons/16_16/maintenance.gif)!important}
+.functionMenu-icon{background-image:url(default/images/icons/16_16/functionMenu.gif)!important}
+.refresh-task-icon{background-image:url(default/images/icons/16_16/refreshTask.gif)!important}
+.complete-task-icon{background-image:url(default/images/icons/16_16/completeTask.gif)!important}
+.download-work-order-icon{background-image:url(default/images/icons/16_16/downloadWorkOrder.gif)!important}
+.create-taskplan-icon{background-image:url(default/images/icons/16_16/createTaskPlan.gif)!important}
+.view-taskplan-list-icon{background-image:url(default/images/icons/16_16/viewTaskPlanList.gif)!important}
+.change-view-icon{background-image:url(default/images/icons/16_16/changeView.gif)!important}
+.my-department-use-sa-icon{background-image:url(default/images/icons/16_16/myDepartmentUseSA.gif)!important}
+.my-department-maintain-sa-icon{background-image:url(default/images/icons/16_16/myDepartmentMaintainSA.gif)!important}
+.i-use-sa-icon{background-image:url(default/images/icons/16_16/iUseSA.gif)!important}
+.i-maintain-sa-icon{background-image:url(default/images/icons/16_16/iMaintainSA.gif)!important}
+.similar-creation-icon{background-image:url(default/images/icons/16_16/similar-creation.gif)!important}
+.view-view-icon{background-image:url(default/images/icons/16_16/view-view.png)!important}
+.view-components-icon{background-image:url(default/images/icons/16_16/view-components.png)!important}
+.view-cost-icon{background-image:url(default/images/icons/16_16/view-cost.gif)!important}
+.history-icon{background-image:url(default/images/icons/16_16/history.gif)!important}
+.maintenance-plan-icon{background-image:url(default/images/icons/16_16/maintenance-plan.png)!important}
+.operate-icon{background-image:url(default/images/icons/16_16/operate.gif)!important}
+.operate-run-icon{background-image:url(default/images/icons/16_16/run.gif)!important}
+.operate-stop-icon{background-image:url(default/images/icons/16_16/stop.gif)!important}
+.operate-abandon-icon{background-image:url(default/images/icons/16_16/abandon.gif)!important}
+.operate-maintain-icon{background-image:url(default/images/icons/16_16/maintain.gif)!important}
+.operate-test-icon{background-image:url(default/images/icons/16_16/test.gif)!important}
+.operate-return-icon{background-image:url(default/images/icons/16_16/return.gif)!important}
+.edit-cost-icon{background-image:url(default/images/icons/16_16/edit-cost.gif)!important}
+.edit-brand-icon{background-image:url(default/images/icons/16_16/edit-brand.gif)!important}
+.edit-model-icon{background-image:url(default/images/icons/16_16/edit-model.png)!important}
+.send-message-icon{background-image:url(default/images/icons/16_16/send-message.gif)!important}
+.add-user-icon{background-image:url(default/images/icons/16_16/add-user.gif)!important}
+.user-icon{background-image:url(default/images/icons/16_16/user.gif)!important}
+.maintainer-icon{background-image:url(default/images/icons/16_16/maintainer.gif)!important}
+.responsible-icon{background-image:url(default/images/icons/16_16/responsible.gif)!important}
+.keeper-icon{background-image:url(default/images/icons/16_16/keeper.gif)!important}
+.auditor-icon{background-image:url(default/images/icons/16_16/auditor.gif)!important}
+.execute-status-icon{background-image:url(default/images/icons/16_16/execute-status.png)!important}
+.payment-code-icon{background-image:url(default/images/icons/16_16/payment-code.png)!important}
+.payment-cycle-icon{background-image:url(default/images/icons/16_16/payment-cycle.png)!important}
+.attachment-icon{background-image:url(default/images/icons/16_16/upload.png)!important}
+.upload-icon{background-image:url(default/images/icons/16_16/upload.gif)!important}
+.upload-stop-icon{background-image:url(default/images/icons/16_16/upload_stop.gif)!important}
+.download-icon{background-image:url(default/images/icons/16_16/download.png)!important}
+.delete-attachment-icon{background-image:url(default/images/icons/16_16/delete-attachment.png)!important}
+.user-online-icon{background-image:url(default/images/icons/16_16/user-online.png)!important}
+.user-outline-icon{background-image:url(default/images/icons/16_16/user-outline.png)!important}
+.user-manager-icon{background-image:url(default/images/icons/16_16/user-manager.png)!important}
+.department-icon{background-image:url(default/images/icons/16_16/department.png)!important}
+.job-title-icon{background-image:url(default/images/icons/16_16/job-title.gif)!important}
+.role-icon{background-image:url(default/images/icons/16_16/role.gif)!important}
+.resource-icon{background-image:url(default/images/icons/16_16/resource.png)!important}
+.module-icon{background-image:url(default/images/icons/16_16/module.png)!important}
+.skill-icon{background-image:url(default/images/icons/16_16/skill.png)!important}
+.skill-category-icon{background-image:url(default/images/icons/16_16/skill-category.png)!important}
+.busy-icon{background-image:url(default/images/icons/16_16/busy.png)!important}
+.free-icon{background-image:url(default/images/icons/16_16/free.png)!important}
+/*.change-password-icon{background-image:url(default/images/icons/16_16/change-password.png)!important}*/
+.create-version-icon{background-image:url(default/images/icons/16_16/create-version.png)!important}
+.distribute-filter-icon{background-image:url(default/images/icons/16_16/distribute-filter.png)!important}
+.translate-icon{background-image:url(default/images/icons/16_16/translate.png)!important}
+.execute-icon{background-image:url(default/images/icons/16_16/execute.png)!important}
+.restore-config-icon{background-image:url(default/images/icons/16_16/restore-config.gif)!important}
+.color-up-icon{background-image:url(default/images/icons/16_16/color-up.png)!important}
+.compare-icon{background-image:url(default/images/icons/16_16/compare.gif)!important}
+.define-base-line-icon{background-image:url(default/images/icons/16_16/define-base-line.gif)!important}
+.bv-description-icon{background-image:url(default/images/icons/16_16/bv-description.gif)!important}
+.preview-icon{background-image:url(default/images/icons/16_16/preview.gif)!important}
+.hide-icon{background-image:url(default/images/icons/16_16/hide.gif)!important}
+
+.auth-icon{background-image:url(default/images/icons/16_16/auth.png)!important}
+.biz-auth-icon{background-image:url(default/images/icons/16_16/biz-auth.png)!important}
+.oper-auth-icon{background-image:url(default/images/icons/16_16/oper-auth.png)!important}
+.org-icon{background-image:url(default/images/icons/16_16/org.gif)!important}
+.mng-icon{background-image:url(default/images/icons/16_16/mng.png)!important}
+.all-user-icon{background-image:url(default/images/icons/16_16/all-user.gif)!important}
+.uninternal-user-icon{background-image:url(default/images/icons/16_16/uninternal-user.gif)!important}
+.internal-user-icon{background-image:url(default/images/icons/16_16/internal-user.gif)!important}
+.group-icon{background-image:url(default/images/icons/16_16/group.gif)!important}
+.switch-icon{background-image:url(default/images/icons/16_16/switch.png)!important}
+.start-icon{background-image:url(default/images/icons/16_16/start.png)!important}
+.close-icon{background-image:url(default/images/icons/16_16/close.gif)!important}
+.schedule-icon{background-image:url(default/images/icons/16_16/schedule.gif)!important}
+.sync-relay-icon{background-image:url(default/images/icons/16_16/sync-relay.gif)!important}
+.async-relay-icon{background-image:url(default/images/icons/16_16/async-relay.gif)!important}
+.change-shift-icon{background-image:url(default/images/icons/16_16/change-shift.gif)!important}
+.my-schedule-icon{background-image:url(default/images/icons/16_16/my-schedule.gif)!important}
+.period-icon{background-image:url(default/images/icons/16_16/period.gif)!important}
+.duty-group-icon{background-image:url(default/images/icons/16_16/duty-group.png)!important}
+.position-icon{background-image:url(default/images/icons/16_16/position.png)!important}
+.status-icon{background-image:url(default/images/icons/16_16/status.gif)!important}
+.calendar-icon{background-image:url(default/images/icons/16_16/calendar.png)!important}
+.worklog-icon{background-image:url(default/images/icons/16_16/worklog.gif)!important}
+.assess-method-icon{background-image:url(default/images/icons/16_16/assess-method.png)!important}
+.assess-process-icon{background-image:url(default/images/icons/16_16/assess-process.png)!important}
+.assess-weight-icon{background-image:url(default/images/icons/16_16/assess-weight.png)!important}
+.finish-icon{background-image:url(default/images/icons/16_16/finish.png)!important}
+.category-icon{background-image:url(default/images/icons/16_16/category.png)!important}
+.type-icon{background-image:url(default/images/icons/16_16/type.png)!important}
+.item-icon{background-image:url(default/images/icons/16_16/item.png)!important}
+.close-code-icon{background-image:url(default/images/icons/16_16/close-code.png)!important}
+.verify-icon{background-image:url(default/images/icons/16_16/verify.png)!important}
+.approve-icon{background-image:url(default/images/icons/16_16/approve.gif)!important}
+.pass-icon{background-image:url(default/images/icons/16_16/pass.png)!important}
+.unvalid-icon{background-image:url(default/images/icons/16_16/delete.gif)!important}
+.reject-icon{background-image:url(default/images/icons/16_16/reject.png)!important}
+.pause-icon{background-image:url(default/images/icons/16_16/pause.png)!important}
+.hang-icon{background-image:url(default/images/icons/16_16/hang.png)!important}
+.restart-icon{background-image:url(default/images/icons/16_16/restart.png)!important}
+.print-icon{background-image:url(default/images/icons/16_16/print.gif)!important}
+
+
+.senior-mode-icon{background-image:url(default/images/icons/16_16/senior-mode.gif)!important}
+.simple-mode-icon{background-image:url(default/images/icons/16_16/simple-mode.png)!important}
+.attribute-icon{background-image:url(default/images/icons/16_16/attribute.png)!important}
+.public-attribute-icon{background-image:url(default/images/icons/16_16/public-attribute.png)!important}
+.private-attribute-icon{background-image:url(default/images/icons/16_16/private-attribute.png)!important}
+.custom-model-icon{background-image:url(default/images/icons/16_16/custom-model.png)!important}
+.known-error-icon{background-image:url(default/images/icons/16_16/known-error.png)!important}
+.transition-icon{background-image:url(default/images/icons/16_16/transition.png)!important}
+.choosed-transition-icon{background-image:url(default/images/icons/16_16/choosed-transition.png)!important}
+.ticket-icon{background-image:url(default/images/icons/16_16/ticket.png)!important}
+.merge-icon{background-image:url(default/images/icons/16_16/merge.png)!important}
+.split-icon{background-image:url(default/images/icons/16_16/split.png)!important}
+
+
+.favorite-icon{background-image:url(default/images/icons/16_16/favorite.png)!important}
+.set-head-icon{background-image:url(default/images/icons/16_16/set-head.png)!important}
+.overdue-icon{background-image:url(default/images/icons/16_16/overdue.png)!important}
+.is-top-yes-icon{background-image:url(default/images/icons/16_16/set-head.gif)!important}
+.is-top-no-icon{background-image:url(default/images/icons/16_16/is-top-no.gif)!important}
+.view-all-icon{background-image:url(default/images/icons/16_16/view-all.gif)!important}
+.user-locked-icon{background-image:url(default/images/icons/16_16/user-locked.png)!important}
+.user-unlocked-icon{background-image:url(default/images/icons/16_16/user-unlocked.png)!important}
+
+
+
+/******************************************** disabled icons ***********************************/
+/** basic icons */
+.create-d-icon{background-image:url(default/images/icons/16_16/disabled/createD.png)!important}
+.delete-d-icon{background-image:url(default/images/icons/16_16/disabled/deleteD.png)!important}
+.delete-all-d-icon{background-image:url(default/images/icons/16_16/disabled/delete-allD.png)!important}
+.delete-selected-d-icon{background-image:url(default/images/icons/16_16/disabled/delete-selectedD.png)!important}
+.modify-d-icon{background-image:url(default/images/icons/16_16/disabled/modifyD.png)!important}
+.view-d-icon{background-image:url(default/images/icons/16_16/disabled/viewD.png)!important}
+.save-d-icon{background-image:url(default/images/icons/16_16/disabled/saveD.png)!important}
+.save-all-d-icon{background-image:url(default/images/icons/16_16/disabled/save-allD.png)!important}
+.save-as-d-icon{background-image:url(default/images/icons/16_16/disabled/save-asD.png)!important}
+.submit-d-icon{background-image:url(default/images/icons/16_16/disabled/submitD.png)!important}
+.reset-d-icon{background-image:url(default/images/icons/16_16/disabled/resetD.png)!important}
+.cancel-d-icon{background-image:url(default/images/icons/16_16/disabled/cancelD.png)!important}
+.tools-d-icon{background-image:url(default/images/icons/16_16/disabled/toolsD.png)!important}
+.import-d-icon{background-image:url(default/images/icons/16_16/disabled/importD.png)!important}
+.export-d-icon{background-image:url(default/images/icons/16_16/disabled/exportD.png)!important}
+.template-d-icon{background-image:url(default/images/icons/16_16/disabled/templateD.png)!important}
+.undo-d-icon{background-image:url(default/images/icons/16_16/disabled/undoD.png)!important}
+.redo-d-icon{background-image:url(default/images/icons/16_16/disabled/redoD.png)!important}
+.copy-d-icon{background-image:url(default/images/icons/16_16/disabled/copyD.png)!important}
+.cut-d-icon{background-image:url(default/images/icons/16_16/disabled/cutD.png)!important}
+.paste-d-icon{background-image:url(default/images/icons/16_16/disabled/pasteD.png)!important}
+.list-d-icon{background-image:url(default/images/icons/16_16/disabled/listD.png)!important}
+.tree-d-icon{background-image:url(default/images/icons/16_16/disabled/treeD.png)!important}
+.refresh-d-icon{background-image:url(default/images/icons/16_16/disabled/refreshD.png)!important}
+.forward-d-icon{background-image:url(default/images/icons/16_16/disabled/forwardD.png)!important}
+.back-d-icon{background-image:url(default/images/icons/16_16/disabled/backD.png)!important}
+.previous-d-icon{background-image:url(default/images/icons/16_16/disabled/previousD.png)!important}
+.next-d-icon{background-image:url(default/images/icons/16_16/disabled/nextD.png)!important}
+.up-d-icon{background-image:url(default/images/icons/16_16/disabled/upD.png)!important}
+.down-d-icon{background-image:url(default/images/icons/16_16/disabled/downD.png)!important}
+.left-d-icon{background-image:url(default/images/icons/16_16/disabled/leftD.png)!important}
+.right-d-icon{background-image:url(default/images/icons/16_16/disabled/rightD.png)!important}
+.help-d-icon{background-image:url(default/images/icons/16_16/disabled/helpD.png)!important}
+.tips-d-icon{background-image:url(default/images/icons/16_16/disabled/tipsD.png)!important}
+.search-d-icon{background-image:url(default/images/new-supersearch-icon.png)!important}
+.browser-d-icon{background-image:url(default/images/icons/16_16/disabled/browserD.png)!important}
+.check-d-icon{background-image:url(default/images/icons/16_16/disabled/checkD.png)!important}
+.check-all-d-icon{background-image:url(default/images/icons/16_16/disabled/check-allD.png)!important}
+.uncheck-d-icon{background-image:url(default/images/icons/16_16/disabled/uncheckD.png)!important}
+/** icons of workflow manager and form manager and graph designer */
+.ff-form-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-formD.png)!important}
+.ff-view-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-viewD.png)!important}
+.ff-key-value-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-key-valueD.png)!important}
+.ff-frame-template-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-frame-templateD.png)!important}
+.ff-component-template-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-component-templateD.png)!important}
+.ff-action-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-actionD.png)!important}
+.ff-handle-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-handleD.png)!important}
+.ff-application-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-applicationD.png)!important}
+.ff-model-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-modelD.png)!important}
+.ff-release-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-releaseD.png)!important}
+.ff-activation-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-activationD.png)!important}
+.ff-designer-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-designerD.png)!important}
+.ff-move-up-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-move-upD.png)!important}
+.ff-move-down-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-move-downD.png)!important}
+.ff-insert-up-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-insert-upD.png)!important}
+.ff-insert-down-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-insert-downD.png)!important}
+.ff-insert-left-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-insert-leftD.png)!important}
+.ff-insert-right-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-insert-rightD.png)!important}
+.ff-edit-code-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-edit-codeD.png)!important}
+.ff-clear-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-clearD.png)!important}
+.ff-format-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-formatD.png)!important}
+.ff-render-again-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-render-againD.png)!important}
+.ff-variable-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-variableD.png)!important}
+.ff-basic-components-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-basic-componentsD.png)!important}
+.ff-biz-components-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-biz-componentsD.png)!important}
+.ff-biz-template-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-biz-templateD.png)!important}
+.ff-dom-tree-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-dom-treeD.png)!important}
+.ff-properties-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-propertiesD.png)!important}
+.ff-events-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-eventsD.png)!important}
+.ff-container-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-containerD.png)!important}
+.ff-elements-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-elementsD.png)!important}
+.ff-toolbar-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-toolbarD.png)!important}
+.ff-layout-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-layoutD.png)!important}
+.ff-component-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-componentD.png)!important}
+.ff-tbar-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-tbarD.png)!important}
+.ff-bbar-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-bbarD.png)!important}
+.ff-window-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-windowD.png)!important}
+.ff-panel-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-panelD.png)!important}
+.ff-tab-panel-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-tab-panelD.png)!important}
+.ff-form-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-formD.png)!important}
+.ff-field-set-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-field-setD.png)!important}
+.ff-grid-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-gridD.png)!important}
+.ff-checkbox-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-checkboxD.png)!important}
+.ff-checkbox-group-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-checkbox-groupD.png)!important}
+.ff-combo-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-comboD.png)!important}
+.ff-hidden-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-hiddenD.png)!important}
+.ff-number-field-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-number-fieldD.png)!important}
+.ff-radio-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-radioD.png)!important}
+.ff-radio-group-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-radio-groupD.png)!important}
+.ff-text-area-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-text-areaD.png)!important}
+.ff-text-field-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-text-fieldD.png)!important}
+.ff-password-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-passwordD.png)!important}
+.ff-date-field-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-date-fieldD.png)!important}
+.ff-time-field-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-time-fieldD.png)!important}
+.ff-button-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-buttonD.png)!important}
+.ff-text-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-textD.png)!important}
+.ff-label-d-icon{background-image:url(default/images/icons/16_16/disabled/ff-labelD.png)!important}
+.workflow-mng-d-icon{background-image:url(default/images/icons/16_16/disabled/workflow-mngD.png)!important}
+.workflow-monitor-d-icon{background-image:url(default/images/icons/16_16/disabled/workflow-monitorD.png)!important}
+.workflow-d-icon{background-image:url(default/images/icons/16_16/disabled/workflowD.png)!important}
+.version-d-icon{background-image:url(default/images/icons/16_16/disabled/versionD.png)!important}
+.binded-d-icon{background-image:url(default/images/icons/16_16/disabled/bindedD.png)!important}
+.not-binded-d-icon{background-image:url(default/images/icons/16_16/disabled/not-bindedD.png)!important}
+.readonly-view-d-icon{background-image:url(default/images/icons/16_16/disabled/readonly-viewD.png)!important}
+.choose-d-icon{background-image:url(default/images/icons/16_16/disabled/chooseD.png)!important}
+.start-d-icon{background-image:url(default/images/icons/16_16/disabled/startD.png)!important}
+.end-d-icon{background-image:url(default/images/icons/16_16/disabled/endD.png)!important}
+.task-node-d-icon{background-image:url(default/images/icons/16_16/disabled/task-nodeD.png)!important}
+.decision-node-d-icon{background-image:url(default/images/icons/16_16/disabled/decision-nodeD.png)!important}
+.fork-node-d-icon{background-image:url(default/images/icons/16_16/disabled/fork-nodeD.png)!important}
+.join-node-d-icon{background-image:url(default/images/icons/16_16/disabled/join-nodeD.png)!important}
+.line-d-icon{background-image:url(default/images/icons/16_16/disabled/lineD.png)!important}
+/** icons of other modules */
+.add-ci-d-icon{background-image:url(default/images/icons/16_16/disabled/add-ciD.png)!important}
+.add-components-d-icon{background-image:url(default/images/icons/16_16/disabled/add-componentsD.png)!important}
+.add-related-ci-d-icon{background-image:url(default/images/icons/16_16/disabled/add-related-ciD.png)!important}
+.add-contract-d-icon{background-image:url(default/images/icons/16_16/disabled/add-contractD.png)!important}
+.add-cost-d-icon{background-image:url(default/images/icons/16_16/disabled/add-costD.png)!important}
+.create-beaseline-d-icon{background-image:url(default/images/icons/16_16/disabled/create-beaselineD.png)!important}
+.create-ticket-d-icon{background-image:url(default/images/icons/16_16/disabled/create-ticketD.png)!important}
+.service-request-d-icon{background-image:url(default/images/icons/16_16/disabled/service-requestD.png)!important}
+.incident-request-d-icon{background-image:url(default/images/icons/16_16/disabled/incident-requestD.png)!important}
+.problem-request-d-icon{background-image:url(default/images/icons/16_16/disabled/problem-requestD.png)!important}
+.change-request-d-icon{background-image:url(default/images/icons/16_16/disabled/change-requestD.png)!important}
+.release-request-d-icon{background-image:url(default/images/icons/16_16/disabled/release-requestD.png)!important}
+.task-d-icon{background-image:url(default/images/icons/16_16/disabled/taskD.png)!important}
+.audit-task-d-icon{background-image:url(default/images/icons/16_16/audit-taskD.png)!important}
+.inspection-task-d-icon{background-image:url(default/images/icons/16_16/inspection-taskD.png)!important}
+.maintenance-task-d-icon{background-image:url(default/images/icons/16_16/maintenance-taskD.png)!important}
+.similar-creation-d-icon{background-image:url(default/images/icons/16_16/disabled/similar-creationD.png)!important}
+.view-view-d-icon{background-image:url(default/images/icons/16_16/disabled/view-viewD.png)!important}
+.view-components-d-icon{background-image:url(default/images/icons/16_16/disabled/view-componentsD.png)!important}
+.view-cost-d-icon{background-image:url(default/images/icons/16_16/disabled/view-costD.png)!important}
+.history-d-icon{background-image:url(default/images/icons/16_16/disabled/historyD.png)!important}
+.maintenance-plan-d-icon{background-image:url(default/images/icons/16_16/disabled/maintenance-planD.png)!important}
+.edit-cost-d-icon{background-image:url(default/images/icons/16_16/disabled/edit-costD.png)!important}
+.edit-brand-d-icon{background-image:url(default/images/icons/16_16/disabled/edit-brandD.png)!important}
+.edit-model-d-icon{background-image:url(default/images/icons/16_16/disabled/edit-modelD.png)!important}
+.send-message-d-icon{background-image:url(default/images/icons/16_16/disabled/send-messageD.png)!important}
+.user-d-icon{background-image:url(default/images/icons/16_16/disabled/userD.png)!important}
+.maintainer-d-icon{background-image:url(default/images/icons/16_16/disabled/maintainerD.png)!important}
+.responsible-d-icon{background-image:url(default/images/icons/16_16/disabled/responsibleD.png)!important}
+.execute-status-d-icon{background-image:url(default/images/icons/16_16/disabled/execute-statusD.png)!important}
+.payment-code-d-icon{background-image:url(default/images/icons/16_16/disabled/payment-codeD.png)!important}
+.payment-cycle-d-icon{background-image:url(default/images/icons/16_16/disabled/payment-cycleD.png)!important}
+.attachment-d-icon{background-image:url(default/images/icons/16_16/disabled/uploadD.png)!important}
+.download-d-icon{background-image:url(default/images/icons/16_16/disabled/downloadD.png)!important}
+.delete-attachment-d-icon{background-image:url(default/images/icons/16_16/disabled/delete-attachmentD.png)!important}
+.user-online-d-icon{background-image:url(default/images/icons/16_16/disabled/user-onlineD.png)!important}
+.user-outline-d-icon{background-image:url(default/images/icons/16_16/disabled/user-outlineD.png)!important}
+.user-manager-d-icon{background-image:url(default/images/icons/16_16/disabled/user-managerD.png)!important}
+.department-d-icon{background-image:url(default/images/icons/16_16/disabled/departmentD.png)!important}
+.job-title-d-icon{background-image:url(default/images/icons/16_16/disabled/job-titleD.png)!important}
+.role-d-icon{background-image:url(default/images/icons/16_16/disabled/roleD.png)!important}
+.role-c-icon{background-image:url(default/images/icons/16_16/set-charge.gif)!important}
+
+.resource-d-icon{background-image:url(default/images/icons/16_16/disabled/resourceD.png)!important}
+.module-d-icon{background-image:url(default/images/icons/16_16/disabled/moduleD.png)!important}
+.skill-d-icon{background-image:url(default/images/icons/16_16/disabled/skillD.png)!important}
+.skill-category-d-icon{background-image:url(default/images/icons/16_16/disabled/skill-categoryD.png)!important}
+.busy-d-icon{background-image:url(default/images/icons/16_16/disabled/busyD.png)!important}
+.free-d-icon{background-image:url(default/images/icons/16_16/disabled/freeD.png)!important}
+.change-password-d-icon{background-image:url(default/images/icons/16_16/disabled/change-passwordD.png)!important}
+.create-version-d-icon{background-image:url(default/images/icons/16_16/disabled/create-versionD.png)!important}
+.distribute-filter-d-icon{background-image:url(default/images/icons/16_16/disabled/distribute-filterD.png)!important}
+.translate-d-icon{background-image:url(default/images/icons/16_16/disabled/translateD.png)!important}
+.execute-d-icon{background-image:url(default/images/icons/16_16/disabled/executeD.png)!important}
+.restore-config-d-icon{background-image:url(default/images/icons/16_16/disabled/restore-configD.png)!important}
+.color-up-d-icon{background-image:url(default/images/icons/16_16/disabled/color-upD.png)!important}
+.compare-d-icon{background-image:url(default/images/icons/16_16/disabled/compareD.png)!important}
+.define-base-line-d-icon{background-image:url(default/images/icons/16_16/disabled/define-base-lineD.png)!important}
+
+.auth-d-icon{background-image:url(default/images/icons/16_16/disabled/authD.png)!important}
+.biz-auth-d-icon{background-image:url(default/images/icons/16_16/disabled/biz-authD.png)!important}
+.oper-auth-d-icon{background-image:url(default/images/icons/16_16/disabled/oper-authD.png)!important}
+.org-d-icon{background-image:url(default/images/icons/16_16/disabled/orgD.png)!important}
+.mng-d-icon{background-image:url(default/images/icons/16_16/disabled/mngD.png)!important}
+.user-d-icon{background-image:url(default/images/icons/16_16/disabled/userD.png)!important}
+.all-user-d-icon{background-image:url(default/images/icons/16_16/disabled/all-userD.png)!important}
+.group-d-icon{background-image:url(default/images/icons/16_16/disabled/groupD.png)!important}
+.switch-d-icon{background-image:url(default/images/icons/16_16/disabled/switchD.png)!important}
+.start-d-icon{background-image:url(default/images/icons/16_16/disabled/startD.png)!important}
+.close-d-icon{background-image:url(default/images/icons/16_16/disabled/closeD.png)!important}
+.schedule-d-icon{background-image:url(default/images/icons/16_16/disabled/scheduleD.png)!important}
+.sync-relay-d-icon{background-image:url(default/images/icons/16_16/disabled/sync-relayD.png)!important}
+.async-relay-d-icon{background-image:url(default/images/icons/16_16/disabled/async-relayD.png)!important}
+.change-shift-d-icon{background-image:url(default/images/icons/16_16/disabled/change-shiftD.png)!important}
+.period-d-icon{background-image:url(default/images/icons/16_16/disabled/periodD.png)!important}
+.duty-group-d-icon{background-image:url(default/images/icons/16_16/disabled/duty-groupD.png)!important}
+.position-d-icon{background-image:url(default/images/icons/16_16/disabled/positionD.png)!important}
+.status-d-icon{background-image:url(default/images/icons/16_16/disabled/statusD.png)!important}
+.calendar-d-icon{background-image:url(default/images/icons/16_16/disabled/calendarD.png)!important}
+.worklog-d-icon{background-image:url(default/images/icons/16_16/disabled/worklogD.png)!important}
+.assess-method-d-icon{background-image:url(default/images/icons/16_16/disabled/assess-methodD.png)!important}
+.assess-process-d-icon{background-image:url(default/images/icons/16_16/disabled/assess-processD.png)!important}
+.assess-weight-d-icon{background-image:url(default/images/icons/16_16/disabled/assess-weightD.png)!important}
+.finish-d-icon{background-image:url(default/images/icons/16_16/disabled/finishD.png)!important}
+.category-d-icon{background-image:url(default/images/icons/16_16/disabled/categoryD.png)!important}
+.type-d-icon{background-image:url(default/images/icons/16_16/disabled/typeD.png)!important}
+.item-d-icon{background-image:url(default/images/icons/16_16/disabled/itemD.png)!important}
+.close-code-d-icon{background-image:url(default/images/icons/16_16/disabled/close-codeD.png)!important}
+.verify-d-icon{background-image:url(default/images/icons/16_16/disabled/verifyD.png)!important}
+.approve-d-icon{background-image:url(default/images/icons/16_16/disabled/approveD.png)!important}
+.pass-d-icon{background-image:url(default/images/icons/16_16/disabled/passD.png)!important}
+.reject-d-icon{background-image:url(default/images/icons/16_16/disabled/rejectD.png)!important}
+.pause-d-icon{background-image:url(default/images/icons/16_16/disabled/pauseD.png)!important}
+.hang-d-icon{background-image:url(default/images/icons/16_16/disabled/hangD.png)!important}
+.restart-d-icon{background-image:url(default/images/icons/16_16/disabled/restartD.png)!important}
+.print-d-icon{background-image:url(default/images/icons/16_16/disabled/printD.png)!important}
+
+
+
+.senior-mode-d-icon{background-image:url(default/images/icons/16_16/senior-modeD.png)!important}
+.simple-mode-d-icon{background-image:url(default/images/icons/16_16/simple-modeD.png)!important}
+.attribute-d-icon{background-image:url(default/images/icons/16_16/attributeD.png)!important}
+.public-attribute-d-icon{background-image:url(default/images/icons/16_16/public-attributeD.png)!important}
+.private-attribute-d-icon{background-image:url(default/images/icons/16_16/private-attributeD.png)!important}
+.custom-model-d-icon{background-image:url(default/images/icons/16_16/custom-modelD.png)!important}
+.known-error-d-icon{background-image:url(default/images/icons/16_16/known-errorD.png)!important}
+.transition-d-icon{background-image:url(default/images/icons/16_16/transitionD.png)!important}
+.choosed-transition-d-icon{background-image:url(default/images/icons/16_16/choosed-transitionD.png)!important}
+.ticket-d-icon{background-image:url(default/images/icons/16_16/ticketD.png)!important}
+.merge-d-icon{background-image:url(default/images/icons/16_16/mergeD.png)!important}
+.split-d-icon{background-image:url(default/images/icons/16_16/splitD.png)!important}
+
+
+.favorite-d-icon{background-image:url(default/images/icons/16_16/disabled/favoriteD.png)!important}
+.set-head-d-icon{background-image:url(default/images/icons/16_16/disabled/set-headD.png)!important}
+.overdue-d-icon{background-image:url(default/images/icons/16_16/disabled/overdueD.png)!important}
+.is-top-yes-d-icon{background-image:url(default/images/icons/16_16/disabled/is-top-yesD.png)!important}
+.is-top-no-d-icon{background-image:url(default/images/icons/16_16/disabled/is-top-noD.png)!important}
+.view-all-d-icon{background-image:url(default/images/icons/16_16/disabled/view-allD.png)!important}
+.user-locked-d-icon{background-image:url(default/images/icons/16_16/disabled/user-lockedD.png)!important}
+.user-unlocked-d-icon{background-image:url(default/images/icons/16_16/disabled/user-unlockedD.png)!important}
+
+
+
+.supplier-add-icon{background-image:url(default/images/menu/m_spp_16x.png)!important}
+.support-add-icon{background-image:url(default/images/icons/16_16/support-add.gif)!important}
+.permissions-set-icon{background-image:url(default/images/icons/16_16/ff-properties.png)!important}
+.permissions-oper-icon{background-image:url(default/images/icons/16_16/job-title.png)!important}
+.permissions-business-icon{background-image:url(default/images/icons/16_16/user-manager.png)!important}
+.highlight{
+    background-color:#ff0; color:#000;
+}
+.classone tr { 
+     background-color:expression((this.sectionRowIndex%2==0)?'#EDEDED':'white') 
+}
+
+.addTransition-icon{background-image: url(../topologic/images/topologic/transition.gif)!important}
+.saveViewBL-icon{background-image: url(../topologic/images/topologic/baseline-add.gif)!important}
+.mouseSelect-icon{background-image: url(../topologic/images/topologic/select.gif)!important}
+.support-inc-icon{background-image:url(default/images/menu/m_ir_16x.png)!important}
+.support-chg-icon{background-image:url(default/images/menu/m_cr_16x.png)!important}
+.support-pro-icon{background-image:url(default/images/menu/m_pr_16x.png)!important}
+.support-rr-icon{background-image:url(default/images/menu/m_rr_16x.png)!important}
+.ff-cmdb-icon{background-image:url(default/images/menu/m_cmdb_16x.png)!important}
+.ff-workflow-icon{background-image:url(default/images/preview-hide.gif)!important}
+.ff-oper-icon{background-image:url(../images/slm/orange.png)!important}
+.ff-ser-icon{background-image:url(../images/servicevalue/satisfaction.gif)!important}
+.ff-knowerror-icon{background-image:url(default/images/menu//m_sk_16x.png)!important}
+.ff-toolbox-table{rules=none;align="center";bordercolordark=white;bordercolorlight="#ffffff" }
+.ff-components-tb{padding-left:10px;height:25px;}
+.ff-components-tb:hover{background:#eeeeee;cursor:pointer;}
+.toolbox-ct {
+	background:#eee;
+	margin:1px;
+	border-color: #fafafa #dbdbdb #dbdbdb #fafafa;
+}
+.ff-component-panel{
+padding-top:10px; 
+padding-left :10px;
+width : 200px;
+}
+.ff-component{
+padding-top:3px; 
+margin-left:10px; 
+margin-top :2px;
+width : 80px;
+height :23px;
+float:left; 
+}
+.ff-component:hover{background:#eeeeee;cursor:pointer;}
+
+.grid-row-button {
+	padding-left: 4px;
+	cursor: pointer;
+}
+
+/*use for  nav style of background in glass*/
+.x-panel-header-glass {
+	cursor:pointer;
+	border: none;
+	color: #3a388b;
+	font: bold 12px 瀹嬩綋,tahoma, arial, verdana, sans-serif;
+	overflow: hidden;
+	padding: 5px 3px 5px 20px;
+	height: 14px;
+}
+
+.x-panel-header-glass-over {
+	background: url(../images/cmdb/navMouseOver.gif) no-repeat 0 0  !important;
+	border-right:1px solid #afc3e1;
+}
+
+.x-panel-header-glass-selected {
+	background: url(../images/cmdb/navChecked.gif) no-repeat 0 0  !important;
+	border-right:1px solid #afc3e1;
+}
+.x-panel-header-glass-over-no-border {
+	text-decoration:underline;
+}
+.x-panel-header-glass-selected-no-border {
+	background: url(../images/cmdb/navChecked.gif) no-repeat 0 0  !important;
+	border-right:1px solid #afc3e1;
+}
+
+.create-ip-seg-icon{background-image: url(default/images/icons/16_16/create-ip-seg.gif)!important}
+.create-single-ip-icon{background-image: url(default/images/icons/16_16/create-single-ip.gif)!important}
+.disable-ip-icon{background-image: url(default/images/icons/16_16/disable-ip.gif)!important}
+.enable-ip-icon{background-image: url(default/images/icons/16_16/enable-ip.gif)!important}
+.add-child-contact-icon{background-image: url(default/images/icons/16_16/add-child-contact.gif)!important}
+.calendar-transfer-icon{background-image:url(default/images/icons/16_16/transfer-shift.gif)!important}
+.calendar-statistics-icon{background-image:url(default/images/icons/16_16/statistics.gif)!important}
+.notice-icon{background-image:url(default/images/icons/16_16/notice.gif)!important}
+.announce-icon{background-image:url(default/images/icons/16_16/announce.gif)!important}
+
+
+
+
+.bp-state-icon{background-image:url(default/images/icons/16_16/bp_state.gif)!important}
+.bp-close-code-icon{background-image:url(default/images/icons/16_16/bp_close_code.gif)!important}
+.bp-press-icon{background-image:url(default/images/icons/16_16/bp_press.gif)!important}
+.bp-join-to-icon{background-image:url(default/images/icons/16_16/bp_join_to.gif)!important}
+.bp-fork-process-icon{background-image:url(default/images/icons/16_16/bp_fork_process.gif)!important}
+.bp-set-template-icon{background-image:url(default/images/icons/16_16/bp_setTemplate.gif)!important}
+.bp-ke-all-icon{background-image:url(default/images/icons/16_16/bp_ke_all.gif)!important}
+.bp-ke-using-icon{background-image:url(default/images/icons/16_16/bp_ke_using.gif)!important}
+.bp-ke-disabled-icon{background-image:url(default/images/icons/16_16/bp_ke_disabled.gif)!important}
+.bp-create-version-icon{background-image:url(default/images/icons/16_16/bp_create_version.gif)!important}
+.bp-release-icon{background-image:url(default/images/icons/16_16/bp_release.gif)!important}
+.bp-activation-icon{background-image:url(default/images/icons/16_16/bp_activation.gif)!important}
+.icon-menu-home {
+    background-image:url(../images/ext/menu_home.png) !important;
+}
+.icon-grid-title {
+    background-image:url(../images/ext/grid-title.png) !important;
+}
+.icon-form-title {
+    background-image:url(../images/ext/form-title.gif) !important;
+}
+.icon-module-print {
+    background-image:url(default/images/icons/16_16/print.gif) !important;
+}
+.icon-upload {
+    background-image:url(../images/cmdb/stockOutNav.gif) !important;
+}
+.icon-notice{
+    background-image:url(default/images/icons/16_16/notice.gif) !important;
+}
+.icon-user{
+    background-image:url(../images/ext/user.png) !important;
+}
+.icon-user-female{
+    background-image:url(../images/ext/user_female.png) !important;
+}
+.icon-user-manager{
+    background-image:url(../images/ext/user_suit.png) !important;
+}
+.icon-user-plain{
+    background-image:url(../images/ext/user_comment.png) !important;
+}
+.icon-chat{
+    background-image:url(../images/ext/chat.png) !important;
+}
+.icon-notice{
+    background-image:url(../images/portal/icon/notice.gif) !important;
+}
+.icon-setting{
+    background-image:url(../images/ext/setting.png) !important;
+}
+.icon-online{
+    background-image:url(../images/ext/online.png) !important;
+}
+.icon-chat-user{
+    background-image:url(../images/ext/chat.gif) !important;
+}
+.icon-module {
+    background-image:url(../images/ext/module_title.png ) !important;
+}
+.icon-module1 {
+    background-image:url(default/images/ico_1_16x16.png ) !important;
+}
+.icon-module2 {
+    background-image:url(default/images/ico_2_16x16.png ) !important;
+}
+.icon-module3 {
+    background-image:url(default/images/ico_3_16x16.png ) !important;
+}
+.icon-module4 {
+    background-image:url(default/images/ico_4_16x16.png ) !important;
+}
+.icon-module5 {
+    background-image:url(default/images/ico_5_16x16.png ) !important;
+}
+.icon-module6 {
+    background-image:url(default/images/ico_6_16x16.png ) !important;
+}
+.icon-module7 {
+    background-image:url(default/images/ico_7_16x16.png ) !important;
+}
+.icon-location {
+    background-image:url(default/images/icons/16_16/position.png ) !important;
+}
+.icon-win-systemstyle {
+    background-image:url( ../images/head/systemstyle.png ) !important;
+}
+
+/*table部分样式*/
+.tableborder {
+    background-color: #ADC5E5;
+    margin: 0;
+    padding: 0;
+}
+.tr_head {
+    text-align: left;
+    font-size: 12px;
+    background: url(../images/tab_top_center.gif) repeat-x center;
+    font-weight: bold;
+    line-height: 24px;
+    color: #2e759e;
+    text-align: center;
+}
+
+.tr_head_blue {
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 24px;
+    color: #2e759e;
+    text-align: center;
+    background-color: #f4f8fe;
+}
+
+.text_lan {
+    font-family: "宋体";
+    font-size: 12px;
+    text-align: center;
+    border-left:none;
+    font-size: 12px;
+    color: #396f99;
+    height: 26px;
+    line-height: 26px;
+    text-decoration: none;
+}
+
+
+.tr_change_color_white {
+    line-height: 24px;
+    background-color: #FFFFFF;
+    border-left: none; font-size : 12px;
+    color: #4f88b4;
+    text-align: center;
+    font-size: 12px;
+}
+
+.tr_change_color_blue {
+    line-height: 24px;
+    border-left: none;
+    background-color: #f4f8fe;
+    font-size: 12px;
+    color: #4f88b4;
+    text-align: center;
+}
+
+.text_caption {
+    font-family: "宋体";
+    font-size: 12px;
+    color: #0033CC;
+    text-decoration: none;
+}
+
+.altbg2 {
+    line-height: 24px;
+    background-color: #F2F6F9;
+    background-image: url("../images/table_top_bg.jpg");
+    background-repeat: repeat-x;
+    margin: 2px;
+}
+r
+.altbg2-1 {
+    line-height: 24px;
+    background-color: #fff;
+    margin: 2px;
+}

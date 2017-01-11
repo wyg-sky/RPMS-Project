@@ -1,0 +1,233 @@
+<uicfg desc="字段管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>column</objectName>
+	<editable type="object">true</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<showEditButton type="object">false</showEditButton>
+	<showLookButton type="object">false</showLookButton>
+	<allowPage type="boolean">false</allowPage>
+	<store>
+		<autoLoad type="boolean">false</autoLoad>
+		<url>system/listColumnsForModel.html</url>
+		<fields>
+			<name>noteName</name>
+		</fields>
+		<fields>
+			<name>columnName</name>
+		</fields>
+		<fields>
+			<name>javaName</name>
+		</fields>
+		<fields>
+			<name>sqlType</name>
+		</fields>
+		<fields>
+			<name>maxLength</name>
+		</fields>
+		<fields>
+			<name>decimalLength</name>
+		</fields>
+		<fields>
+			<name>javaType</name>
+		</fields>
+		<fields>
+			<name>javaTypeText</name>
+			<mapping>javaType</mapping>
+		</fields>
+		<fields>
+			<name>objectId</name>
+		</fields>
+		<fields>
+			<name>objectName</name>
+		</fields>
+		<fields>
+			<name>unique</name>
+		</fields>
+		<fields>
+			<name>allowBlank</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>列描述</header>
+			<dataIndex>noteName</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+				<allowBlank type="object">false</allowBlank>
+			</editor>
+		</columns>
+		<columns>
+			<header>列名</header>
+			<dataIndex>columnName</dataIndex>
+			<hidden type="boolean">true</hidden>
+		</columns>
+		<columns>
+			<header>java属性名称</header>
+			<dataIndex>javaName</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+				<allowBlank type="object">false</allowBlank>
+			</editor>
+		</columns>
+		<columns>
+			<header>字段类型</header>
+			<dataIndex>sqlType</dataIndex>
+		</columns>
+		<columns>
+			<header>最大长度</header>
+			<dataIndex>maxLength</dataIndex>
+			<hidden type="boolean">true</hidden>
+		</columns>
+		<columns>
+			<header>小数长度</header>
+			<dataIndex>decimalLength</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>属性类型</header>
+			<dataIndex>javaType</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+				<allowBlank type="object">false</allowBlank>
+			</editor>
+		</columns>
+		<columns>
+			<header>对象选择</header>
+			<dataIndex>javaTypeText</dataIndex>
+			<cascadeIndex>javaType</cascadeIndex>
+			<editor>
+				<xtype>lioncombowindow</xtype>
+				<propertyName>javaType</propertyName>
+				<hiddenName>path</hiddenName>
+				<hiddenDisplayName>name</hiddenDisplayName>
+				<displayField>name</displayField>
+				<valueField>path</valueField>
+				<window>
+					<viewPathOfUi>code/pojos/list</viewPathOfUi>
+					<title>对象选择</title>
+				</window>
+			</editor>
+		</columns>
+		<columns>
+			<header>隐藏字段</header>
+			<dataIndex>objectId</dataIndex>
+			<editor>
+				<xtype>lioncombolist</xtype>
+				<hiddenName>id</hiddenName>
+				<hiddenDisplayName>text</hiddenDisplayName>
+				<store>
+					<autoLoad type="boolean">false</autoLoad>
+					<url>system/listFieldsForSelect.html</url>
+				</store>
+			</editor>
+		</columns>
+		<columns>
+			<header>显示字段</header>
+			<dataIndex>objectName</dataIndex>
+			<editor>
+				<xtype>lioncombolist</xtype>
+				<hiddenName>id</hiddenName>
+				<hiddenDisplayName>text</hiddenDisplayName>
+				<store>
+					<autoLoad type="boolean">false</autoLoad>
+					<url>system/listFieldsForSelect.html</url>
+				</store>
+			</editor>
+		</columns>
+		<columns>
+			<header>唯一性约束</header>
+			<dataIndex>unique</dataIndex>
+			<keyType>cims_boolean</keyType>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<hiddenName>unique</hiddenName>
+				<keyType>cims_boolean</keyType>
+				<allowBlank type="object">false</allowBlank>
+			</editor>
+		</columns>
+		<columns>
+			<header>允许为空</header>
+			<dataIndex>allowBlank</dataIndex>
+			<keyType>cims_boolean</keyType>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<hiddenName>allowBlank</hiddenName>
+				<keyType>cims_boolean</keyType>
+				<allowBlank type="object">false</allowBlank>
+			</editor>
+		</columns>
+		<columns>
+			<header>上移</header>
+			<dataIndex>up</dataIndex>
+			<width type="integer">40</width>
+			<align>center</align>
+			<isPrint type="boolean">false</isPrint>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='images/shortcut/custom/move_up.gif' title='上移' alt='上移'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+		<columns>
+			<header>下移</header>
+			<dataIndex>down</dataIndex>
+			<width type="integer">40</width>
+			<align>center</align>
+			<isPrint type="boolean">false</isPrint>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='images/shortcut/custom/move_down.gif' title='下移' alt='下移'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+	</cm>
+	<listeners type="object">{
+		'cellclick' : function(grid, rowIndex, columnIndex, e) {
+			var fieldName = grid.getColumnModel().getDataIndex(columnIndex);
+			if (fieldName == grid.getFieldName('up')) {
+				if(rowIndex == 0) {
+					return;
+				}
+				var record = grid.getStore().getAt(rowIndex);
+				grid.getStore().remove(record);
+				grid.getStore().insert(rowIndex-1, record);
+				grid.getView().refresh();
+				grid.getSelectionModel().selectRow(rowIndex-1);
+			} else if (fieldName == grid.getFieldName('down')) {
+				var length = grid.getStore().getRange().length;
+				if(rowIndex == length - 1) {
+					return;
+				}
+				var record = grid.getStore().getAt(rowIndex);
+				grid.getStore().remove(record);
+				grid.getStore().insert(rowIndex+1, record);
+				grid.getView().refresh();
+				grid.getSelectionModel().selectRow(rowIndex+1);
+			} else if(fieldName == 'objectId' || fieldName == 'objectName'){
+				var record = grid.getStore().getAt(rowIndex);
+	        	var javaType = record.get('javaType');
+	        	if(javaType == null) {
+	        		Ext.MessageBox.show({
+						title : '提示',
+						msg : '请先选择对象！',
+						buttons : Ext.MessageBox.OK,
+						icon : Ext.MessageBox.WARNING
+					});
+	        		return false;
+	        	} else {
+	        		var column = grid.getColumnModel().getColumnAt(columnIndex);
+	        		Ext.apply(column.editor.store.baseParams, {className : javaType});
+					column.editor.store.load();
+	        	}
+			}
+		},
+		scope : this
+	}</listeners>
+</uicfg>

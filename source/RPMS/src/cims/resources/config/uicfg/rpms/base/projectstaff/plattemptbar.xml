@@ -1,0 +1,16 @@
+<uicfg desc="人员职责-平台绑定管理按钮">
+	<items>-></items>
+	<items>
+		<text>保存</text>
+		<iconCls>save-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<hidden type="object">false</hidden>
+		<handler type="object">this.manager.saveStaffPlats</handler>
+	</items>
+	<items>
+		<text>关闭</text>
+		<scope type="object">this.manager</scope>
+		<iconCls>close-icon</iconCls>
+		<handler type="object">this.manager.closeClickPlat</handler>
+	</items>
+</uicfg>

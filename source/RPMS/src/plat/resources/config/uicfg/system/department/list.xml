@@ -1,0 +1,48 @@
+<uicfg desc="部门管理">
+	<objectName>businessObject</objectName>
+	<editView>system/department/edit</editView>
+	<deleteUrl>system/deleteDepartment.html</deleteUrl>
+	<changeStatusUrl>system/changeDepartmentStatus.html</changeStatusUrl>
+	<component>
+		<items>
+			<object>dataGrid</object>
+			<xtype>liontreegrid</xtype>
+			<region>center</region>
+			<viewPath>system/department/listgrid</viewPath>
+		</items>
+		<items>
+			<object>listTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>system/department/listtbar</viewPath>
+		</items>
+		<items>
+			<object>listOrgTree</object>
+			<xtype>panel</xtype>
+			<isCreate type="object">this.runMode == '1'</isCreate>
+			<region>west</region>
+			<bodyStyle>border-width:0 1px 0 1px;</bodyStyle>
+			<autoScroll type="object">true</autoScroll>
+		    <width type="object">180</width>
+		    <split type="object">true</split>
+		    <minSize type="object">180</minSize>
+		    <maxSize type="object">180</maxSize>
+		    <collapsible type="object">false</collapsible>
+		    <lines type="object">false</lines>
+		    <collapseMode>mini</collapseMode>
+			<items>
+				<xtype>liontree</xtype>
+				<viewPath>system/department/listorgtree</viewPath>
+			</items>
+		</items>
+	</component>
+	<container>
+		<items>listTbar</items>
+		<items>
+			<xtype>panel</xtype>
+			<layout>border</layout>
+			<border type="boolean">false</border>
+			<items>listOrgTree</items>
+			<items>dataGrid</items>
+		</items>
+	</container>
+</uicfg>

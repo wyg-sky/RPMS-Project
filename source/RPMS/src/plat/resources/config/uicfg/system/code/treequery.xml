@@ -1,0 +1,29 @@
+<uicfg desc="代码分类查询">
+	<autoSeparator type="object">false</autoSeparator>
+	<items>
+		<xtype>label</xtype>
+		<text>关键字：</text>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>queryKey</name>
+		<width type="integer">140</width>
+	</items>
+	 <items>-></items>
+	<items>
+		<text>查询</text>
+		<iconCls>search-d-icon</iconCls>
+		<handler type="object">function() {
+			this.manager.queryCode(this.items.items[1].getValue());
+		}</handler>
+	</items>
+	 <items>-</items>
+	<items>
+		<text>清空</text>
+		<iconCls>ff-clear-icon</iconCls>
+		<handler type="object">function() {
+			this.items.items[1].setValue();
+			this.manager.queryCode();
+		}</handler>
+	</items>
+</uicfg>

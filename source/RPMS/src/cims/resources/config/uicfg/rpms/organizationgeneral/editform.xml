@@ -1,0 +1,269 @@
+<uicfg desc="单位概况管理编辑表单">
+	<loadtUrl>rpms/loadOrganizationGeneral.html</loadtUrl>
+	<submitUrl>rpms/saveOrganizationGeneral.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">4</columns>
+	 <defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">110</labelWidth>
+    </defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<hidden type="object">true</hidden>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>projectCode</fieldLabel>
+		<name>projectCode</name>
+		<hidden type="object">true</hidden>
+	</items>
+	 <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>省份</fieldLabel>
+        <name>shengfen</name>
+        <keyType>cims_city</keyType>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+	<items>
+        <xtype>plattree</xtype>
+        <propertyName>centerPlat</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <value type="object">
+			{"value" : PlatUtil.currentCenterId, "text" : PlatUtil.currentCenterName}
+		</value>
+		<listeners type="object">{
+            'select' : this.manager.genValue,
+            scope:this
+        }
+        </listeners>
+    </items>
+	<items>
+        <xtype>lioncomboboxyearfield</xtype>
+        <name>year</name>
+        <fieldLabel>年度</fieldLabel>
+        <format>Y</format>
+        <value type="object">new Date().format('Y')</value>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'select' : this.manager.genValue,
+            scope:this
+        }
+        </listeners>
+    </items>
+	<items>
+		<xtype>lionmonthfield</xtype>
+		<name>month</name>
+		<fieldLabel>月度</fieldLabel>
+		<format>Y-m</format>
+		 <value type="object">new Date().format('Y-m')</value>
+		<allowBlank type="object">false</allowBlank>
+		<listeners type="object">{
+            'select' : this.manager.genValue,
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>研发准备金</fieldLabel>
+		<name>yfzbj</name>
+		<allowBlank type="object">true</allowBlank>
+		<value>0</value>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>上年度主营业务收入</fieldLabel>
+		<name>sndzyywsr</name>
+		<labelWidth type="integer">140</labelWidth>
+		<allowBlank type="object">true</allowBlank>
+		<value>0</value>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>本年度主营业务收入预算</fieldLabel>
+		<name>bndzyywsrys</name>
+		<labelWidth type="integer">150</labelWidth>
+		<allowBlank type="object">true</allowBlank>
+		<value>0</value>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>研发经费投入指标</fieldLabel>
+		<name>yfjftrzb</name>
+		<allowBlank type="object">true</allowBlank>
+		<value>0</value>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>研发费用归集指标</fieldLabel>
+		<name>yffygjzb</name>
+		<allowBlank type="object">true</allowBlank>
+		<value>0</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>研发项目个数</fieldLabel>
+		<name>yfxmgs</name>
+		<allowBlank type="object">true</allowBlank>
+		<value>0</value>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>研发项目预算</fieldLabel>
+		<name>yfxmys</name>
+		<allowBlank type="object">true</allowBlank>
+		<value>0</value>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>研发经费统计</fieldLabel>
+		<name>yfjftj</name>
+		<allowBlank type="object">true</allowBlank>
+		<value>0</value>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>归集项目个数</fieldLabel>
+		<name>gjxmgs</name>
+		<allowBlank type="object">true</allowBlank>
+		<value>0</value>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>研发费用归集</fieldLabel>
+		<name>yffygj</name>
+		<allowBlank type="object">true</allowBlank>
+		<value>0</value>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>山能认可研发经费</fieldLabel>
+		<name>snrkyfjf</name>
+		<allowBlank type="object">true</allowBlank>
+		<value>0</value>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>视同利润金额</fieldLabel>
+		<name>stlrje</name>
+		<allowBlank type="object">true</allowBlank>
+		<value>0</value>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>税务认可研发经费</fieldLabel>
+		<name>swrkyfjf</name>
+		<allowBlank type="object">true</allowBlank>
+		<value>0</value>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>应减少所得税支出</fieldLabel>
+		<name>yjssdszc</name>
+		<allowBlank type="object">true</allowBlank>
+		<value>0</value>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+        <unitText>万元</unitText>
+        <regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<fieldLabel>实际减少所得税支出</fieldLabel>
+		<name>sjjssdszc</name>
+		<labelWidth type="integer">140</labelWidth>
+		<allowBlank type="object">true</allowBlank>
+		<value>0</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>填报人</fieldLabel>
+		<name>tbr</name>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>专项说明</fieldLabel>
+		<name>zxsm</name>
+		<columnWidth type="integer">4</columnWidth>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<name>createUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改人</fieldLabel>
+		<name>modifyUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>备注</fieldLabel>
+		<name>remark</name>
+		<columnWidth type="integer">4</columnWidth>
+	</items>
+</uicfg>

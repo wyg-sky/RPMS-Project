@@ -1,0 +1,35 @@
+<uicfg desc="科技活动费用查询表单">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.queryReport</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+        <hidden type="object">!this.manager.isgather</hidden>
+	</items>
+    <items>
+        <xtype>lionmonthfield</xtype>
+        <name>costsMonths</name>
+        <fieldLabel>月份</fieldLabel>
+        <format>Y-m</format>
+        <value type="object">new Date()</value>
+    </items>
+    <items>
+        <xtype>orgtree</xtype>
+        <fieldLabel>单位</fieldLabel>
+        <propertyName>organization</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <allowBlank type="object">true</allowBlank>
+        <hidden type="object">this.manager.isgather</hidden>
+        <value type="object">
+            {"value" : FW.organizationId, "text" : FW.organizationName}
+        </value>
+    </items>
+</uicfg>

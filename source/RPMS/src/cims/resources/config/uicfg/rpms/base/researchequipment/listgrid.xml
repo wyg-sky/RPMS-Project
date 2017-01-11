@@ -1,0 +1,177 @@
+<uicfg desc="创新设备管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>organization.id</orderBy>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<showEditButton type="object">Ext.isAllowed('rpms_researchequipment_edit')</showEditButton>
+	<statusCtrl>
+        <field>valid</field>
+        <value>1</value>
+        <editable type="boolean">false</editable>
+        <text>有效</text>
+    </statusCtrl>
+	<store>
+		<url>rpms/listResearchEquipment.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>equiCode</name>
+		</fields>
+		<fields>
+            <name>equiName</name>
+        </fields>
+		<fields>
+            <name>specialty.id</name>
+        </fields>
+        <fields>
+            <name>specialty.specialtyName</name>
+        </fields>
+		<fields>
+			<name>business.id</name>
+		</fields>
+		<fields>
+            <name>business.specialtyName</name>
+        </fields>
+		<fields>
+			<name>factory</name>
+		</fields>
+		<fields>
+            <name>organization.id</name>
+        </fields>
+        <fields>
+            <name>organization.name</name>
+        </fields>
+        <fields>
+            <name>platCenter.id</name>
+        </fields>
+        <fields>
+            <name>platCenter.platName</name>
+        </fields>
+        <fields>
+            <name>platInstitution.id</name>
+        </fields>
+        <fields>
+            <name>platInstitution.platName</name>
+        </fields>
+		<fields>
+			<name>purchaseTime</name>
+		</fields>
+		<fields>
+			<name>spec</name>
+		</fields>
+		<fields>
+			<name>manufactureDate</name>
+		</fields>
+		<fields>
+			<name>assetFund</name>
+		</fields>
+		<fields>
+			<name>equiStatus</name>
+		</fields>
+		<fields>
+			<name>valid</name>
+		</fields>
+        <fields>
+            <name>remark</name>
+        </fields>
+        <fields>
+            <name>useStatus</name>
+        </fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>设备编号</header>
+			<dataIndex>equiCode</dataIndex>
+			<width type="object">60</width>
+		</columns>
+		<columns>
+            <header>设备名称</header>
+            <dataIndex>equiName</dataIndex>
+            <width type="object">120</width>
+        </columns>
+        <columns>
+            <header>单位</header>
+            <dataIndex>organization.name</dataIndex>
+            <width type="object">70</width>
+        </columns>
+        <columns>
+            <header>分中心</header>
+            <dataIndex>platCenter.platName</dataIndex>
+            <width type="object">140</width>
+        </columns>
+        <columns>
+            <header>分中心机构</header>
+            <dataIndex>platInstitution.platName</dataIndex>
+            <width type="object">120</width>
+        </columns>
+        <columns>
+            <header>专业</header>
+            <dataIndex>specialty.specialtyName</dataIndex>
+            <width type="object">80</width>
+        </columns>
+        <columns>
+            <header>业务</header>
+            <dataIndex>business.specialtyName</dataIndex>
+            <width type="object">70</width>
+        </columns>
+        <columns>
+            <header>生产厂家</header>
+            <dataIndex>factory</dataIndex>
+            <width type="object">70</width>
+            <hidden type="object">true</hidden>
+        </columns>
+		<columns>
+			<header>购置时间</header>
+			<dataIndex>purchaseTime</dataIndex>
+			<width type="object">80</width>
+		</columns>
+		<columns>
+			<header>型号</header>
+			<dataIndex>spec</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>出厂日期</header>
+			<dataIndex>manufactureDate</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>设备原值</header>
+			<dataIndex>assetFund</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>设备状态</header>
+			<dataIndex>equiStatus</dataIndex>
+			<keyType>rpms_euqi_status</keyType>
+			<width type="object">60</width>
+		</columns>
+		<columns>
+            <header>使用状态</header>
+            <dataIndex>useStatus</dataIndex>
+            <keyType>rpms_use_status</keyType>
+            <width type="object">60</width>
+            <hidden type="object">true</hidden>
+        </columns>
+        <columns>
+            <header>是否有效</header>
+            <dataIndex>valid</dataIndex>
+            <keyType>cims_effective</keyType>
+            <width type="object">60</width>
+        </columns>
+        <columns>
+            <header>备注</header>
+            <dataIndex>remark</dataIndex>
+            <hidden type="object">true</hidden>
+        </columns>
+	</cm>
+</uicfg>

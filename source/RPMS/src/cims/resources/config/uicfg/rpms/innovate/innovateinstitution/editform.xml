@@ -1,0 +1,184 @@
+<uicfg desc="创新制度管理编辑表单">
+	<loadtUrl>rpms/loadInnovateInstitution.html</loadtUrl>
+	<submitUrl>rpms/saveInnovateInstitution.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<height type="integer">245</height>
+	<defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">90</labelWidth>
+    </defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>orgtree</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<hidden type="object">false</hidden>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                this.findField("platInstitution.id").setValue({value:'',text:''});
+                this.findField("platInstitution.id").clearValue();
+            },
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },
+            scope:this
+        }
+        </listeners>
+        <value type="object">
+			{"value" : PlatUtil.currentCenterId, "text" : PlatUtil.currentCenterName}
+		</value>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.findField("platCenter.id"));
+            },
+             'beforeselect':function(combo, record){
+            	return record.isLeaf();
+            },scope:this
+        }
+        </listeners>
+    </items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>级别</fieldLabel>
+		<name>grade</name>
+		<keyType>rpms_grade</keyType>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>文件类别</fieldLabel>
+		<name>type</name>
+		<keyType>rpms_institution_type</keyType>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>文件名称</fieldLabel>
+		<name>fileName</name>
+		 <allowBlank type="object">false</allowBlank>
+		<maxLength type="object">66</maxLength>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>发布部门</fieldLabel>
+		<name>publishDepartment</name>
+		<maxLength type="object">66</maxLength>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>发布时间</fieldLabel>
+		<name>publishDate</name>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+		<listeners type="object">{
+			'select':this.manager.computeDate,
+			scope:this.manager
+		}</listeners>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<fieldLabel>修订周期</fieldLabel>
+		<name>revisePeriod</name>
+		<maxLength type="object">4</maxLength>
+		<unitText>年</unitText>
+		<regex type="object">/^[1-9]\d*$/</regex>
+		<value>2</value>
+		<regexText>请输入正整数</regexText>
+		<allowBlank type="object">false</allowBlank>
+		<listeners type="object">{
+			'valid':this.manager.computeDate,
+			scope:this.manager
+		}</listeners>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>应修订时间</fieldLabel>
+		<name>reviseDate</name>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>文号</fieldLabel>
+		<name>num</name>
+		<maxLength type="object">13</maxLength>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>是否有效</fieldLabel>
+		<name>valid</name>
+		<keyType>cims_boolean</keyType>
+		<value>1</value>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>组织单位</fieldLabel>
+		<name>organization</name>
+		<hidden type="object">true</hidden>
+	</items>
+	
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<name>createUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改人</fieldLabel>
+		<name>modifyUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>备注</fieldLabel>
+		<name>remark</name>
+		<columnWidth type="integer">3</columnWidth>
+		<maxLength type="object">666</maxLength>
+	</items>
+</uicfg>

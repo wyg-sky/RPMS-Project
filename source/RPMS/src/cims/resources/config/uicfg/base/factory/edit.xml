@@ -1,0 +1,38 @@
+<uicfg desc="供应商编辑主界面">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">1000</winWidth>
+	<winHeight type="integer">600</winHeight>
+	<objectLineName>documents</objectLineName> 
+	<component>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>base/factory/editform</viewPath>
+			<autoWidth type="object">true</autoWidth>
+		</items>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>base/factory/edittbar</viewPath>
+			<autoWidth type="object">true</autoWidth>
+		</items>
+		<items>
+			<object>dataLineGrid</object>
+			<xtype>lionuploadfile</xtype>
+			<isLine type="boolean">true</isLine>
+			<lineName>documents</lineName> 
+			<fkId type="object">this.actionMode == '4' ? "" : this.mainId</fkId>
+			<fkName>obj.docFk</fkName>
+			<columnWidth type="integer">3</columnWidth>
+			<allowUpload type="object">this.editable</allowUpload>
+			<allowDelete type="object">this.editable</allowDelete>
+			<height type="object">100</height>
+			<autoWidth type="object">true</autoWidth>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+		<items>dataLineGrid</items>
+	</container>
+</uicfg>

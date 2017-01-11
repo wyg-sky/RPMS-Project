@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		
+		<!--工作面信息开始-->
+		<mapping class="com.lion.base.face.model.Face" />
+		<!--工作面信息结束-->
+		
+		<!--工作面历史信息开始-->
+		<mapping class="com.lion.base.face.model.FaceHistory" />
+		<!--工作面历史信息结束-->
+		
+		<!--设备仓库基本信息 开始-->
+		<mapping class="com.lion.base.storage.model.Storage" />
+		<mapping class="com.lion.base.storage.model.StorageLine" />
+		<!--设备仓库基本信息 开始-->
+		
+		<!--设备供应商开始-->
+		<mapping class="com.lion.base.factory.model.Factory" />
+		<!--设备供应商结束-->
+		
+		<!--设备位置开始-->
+		<mapping class="com.lion.base.location.model.Location" />
+		<!--设备位置结束-->
+		
+		<!--巷道基础信息开始-->
+		<mapping class="com.lion.base.roadway.model.Roadway" />
+		<!--巷道基础信息结束-->
+		
+		<!--巷道基础历史信息开始-->
+		<mapping class="com.lion.base.roadway.model.RoadwayHistory" />
+		<!--巷道基础历史信息结束-->
+		
+		<!--分类定义开始-->
+		<mapping class="com.lion.base.classify.model.Classify" />
+		<!--分类定义结束-->
+		
+		<!--班次信息开始-->
+		<mapping class="com.lion.base.attendance.model.Attendance" />
+		<!--班次信息结束-->
+		<!-- 单项工程管理开始  -->
+		<mapping class="com.lion.base.projectsingle.model.ProjectSingle"/>
+		<!-- 单项工程管理结束  -->
+		
+		<!-- 专业词典开始 -->
+		<mapping class="com.lion.rpms.base.specialtydictionary.model.SpecialtyDictionary"/>
+		<!-- 专业词典结束 -->
+	</session-factory>
+</hibernate-configuration>

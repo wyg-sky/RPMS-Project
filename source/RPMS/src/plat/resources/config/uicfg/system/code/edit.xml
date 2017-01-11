@@ -1,0 +1,20 @@
+<uicfg desc="代码主表编辑">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">680</winWidth>
+	<component>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>system/code/edittbar</viewPath>
+		</items>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>system/code/editform</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+	</container>
+</uicfg>

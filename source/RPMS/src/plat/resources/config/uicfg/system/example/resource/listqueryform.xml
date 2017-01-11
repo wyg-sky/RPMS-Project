@@ -1,0 +1,30 @@
+<uicfg desc="资源管理编辑">
+	<columns type="integer">4</columns>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>name</name>
+		<fieldLabel>资源名称</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>resourceType</name>
+		<fieldLabel>资源类型</fieldLabel>
+		<keyType>sex</keyType>		
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>operType</name>
+		<fieldLabel>操作类型</fieldLabel>
+		<keyType>sex</keyType>	
+	</items>
+	<items>
+		<xtype>orgtree</xtype>
+		<fieldLabel>所属模块</fieldLabel>
+		<propertyName>Module</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+
+
+</uicfg>

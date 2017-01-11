@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd 
+    http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+	default-lazy-init="true">
+
+	<!--工作面信息开始 -->
+	<bean id="face" class="com.lion.base.face.model.Face" scope="prototype"></bean>
+	<bean id="faceHistory" class="com.lion.base.face.model.FaceHistory"
+		scope="prototype"></bean>
+	<bean id="faceDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.base.face.model.Face" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="faceHistoryDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.base.face.model.FaceHistory" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="faceImportManager" class="com.lion.base.face.manager.impl.FaceImportManagerImpl">
+		<constructor-arg ref="faceDao" />
+		<property name="codeGeneratorManager" ref="codeGeneratorManager" />
+	</bean>
+	<bean id="faceManager" class="com.lion.base.face.manager.impl.FaceManagerImpl">
+		<constructor-arg ref="faceDao" />
+		<property name="faceHistoryManager" ref="faceHistoryManager" />
+		<property name="faceImportManager" ref="faceImportManager" />
+	</bean>
+	<bean id="faceHistoryManager" class="com.lion.base.face.manager.impl.FaceHistoryManagerImpl">
+		<constructor-arg ref="faceHistoryDao" />
+	</bean>
+	<bean id="FaceAction" class="com.lion.base.face.action.FaceAction"
+		scope="prototype">
+		<constructor-arg ref="face" />
+		<constructor-arg ref="faceManager" />
+	</bean>
+	<bean id="FaceHistoryAction" class="com.lion.base.face.action.FaceHistoryAction"
+		scope="prototype">
+		<constructor-arg ref="faceHistory" />
+		<constructor-arg ref="faceHistoryManager" />
+	</bean>
+	<!--工作面信息结束 -->
+	<!-- 设备供应商开始 -->
+	<bean id="factory" class="com.lion.base.factory.model.Factory"
+		scope="prototype"></bean>
+	<bean id="factoryDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.base.factory.model.Factory" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="factoryImportManager"
+		class="com.lion.base.factory.manager.impl.FactoryImportManagerImpl"
+		scope="prototype">
+		<constructor-arg ref="equipmentDao" />
+		<property name="codeGeneratorManager" ref="codeGeneratorManager" />
+	</bean>
+	<bean id="factoryManager" class="com.lion.base.factory.manager.impl.FactoryManagerImpl">
+		<constructor-arg ref="factoryDao" />
+		<property name="factoryImportManager" ref="factoryImportManager" />
+	</bean>
+	<bean id="FactoryAction" class="com.lion.base.factory.action.FactoryAction"
+		scope="prototype">
+		<constructor-arg ref="factory" />
+		<constructor-arg ref="factoryManager" />
+	</bean>
+
+
+
+	<!-- 设备仓库开始 -->
+	<bean id="storage" class="com.lion.base.storage.model.Storage"
+		scope="prototype"></bean>
+	<bean id="storageDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.base.storage.model.Storage" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="storageImportManager"
+		class="com.lion.base.storage.manager.impl.StorageImportManagerImpl"
+		scope="prototype">
+		<constructor-arg ref="storageDao" />
+	</bean>
+	<bean id="storageManager" class="com.lion.base.storage.manager.impl.StorageManagerImpl">
+		<constructor-arg ref="storageDao" />
+		<property name="storageImportManager" ref="storageImportManager" />
+	</bean>
+	<bean id="StorageAction" class="com.lion.base.storage.action.StorageAction"
+		scope="prototype">
+		<constructor-arg ref="storage" />
+		<constructor-arg ref="storageManager" />
+	</bean>
+	<bean id="storageLine" class="com.lion.base.storage.model.StorageLine"
+		scope="prototype"></bean>
+	<bean id="storageLineDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.base.storage.model.StorageLine" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="storageLineImportManager"
+		class="com.lion.base.storage.manager.impl.StorageLineImportManagerImpl"
+		scope="prototype">
+		<constructor-arg ref="storageLineDao" />
+	</bean>
+	<bean id="storageLineManager"
+		class="com.lion.base.storage.manager.impl.StorageLineManagerImpl">
+		<constructor-arg ref="storageLineDao" />
+		<property name="storageLineImportManager" ref="storageLineImportManager" />
+	</bean>
+	<bean id="StorageLineAction" class="com.lion.base.storage.action.StorageLineAction"
+		scope="prototype">
+		<constructor-arg ref="storageLine" />
+		<constructor-arg ref="storageLineManager" />
+	</bean>
+	<!-- 设备仓库基本信息结束 -->
+	<!-- 设备位置开始 -->
+	<bean id="location" class="com.lion.base.location.model.Location"
+		scope="prototype"></bean>
+	<bean id="locationDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.base.location.model.Location" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="locationImportManager"
+		class="com.lion.base.location.manager.impl.LocationImportManagerImpl">
+		<constructor-arg ref="locationDao" />
+		<property name="codeGeneratorManager" ref="codeGeneratorManager" />
+	</bean>
+	<bean id="locationManager" class="com.lion.base.location.manager.impl.LocationManagerImpl">
+		<constructor-arg ref="locationDao" />
+		<property name="locationImportManager" ref="locationImportManager" />
+	</bean>
+	<bean id="LocationAction" class="com.lion.base.location.action.LocationAction"
+		scope="prototype">
+		<constructor-arg ref="location" />
+		<constructor-arg ref="locationManager" />
+	</bean>
+	<!-- 设备位置结束 -->
+	<!--巷道基础信息开始 -->
+	<bean id="roadway" class="com.lion.base.roadway.model.Roadway"
+		scope="prototype"></bean>
+	<bean id="roadwayHistory" class="com.lion.base.roadway.model.RoadwayHistory"
+		scope="prototype"></bean>
+	<bean id="roadwayDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.base.roadway.model.Roadway" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="roadwayHistoryDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.base.roadway.model.RoadwayHistory" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="roadwayImportManager"
+		class="com.lion.base.roadway.manager.impl.RoadwayImportManagerImpl">
+		<constructor-arg ref="roadwayDao" />
+		<property name="codeGeneratorManager" ref="codeGeneratorManager" />
+	</bean>
+	<bean id="roadwayManager" class="com.lion.base.roadway.manager.impl.RoadwayManagerImpl">
+		<constructor-arg ref="roadwayDao" />
+		<property name="roadwayHistoryManager" ref="roadwayHistoryManager" />
+		<property name="roadwayImportManager" ref="roadwayImportManager" />
+	</bean>
+	<bean id="roadwayHistoryManager"
+		class="com.lion.base.roadway.manager.impl.RoadwayHistoryManagerImpl">
+		<constructor-arg ref="roadwayHistoryDao" />
+	</bean>
+	<bean id="RoadwayAction" class="com.lion.base.roadway.action.RoadwayAction"
+		scope="prototype">
+		<constructor-arg ref="roadway" />
+		<constructor-arg ref="roadwayManager" />
+	</bean>
+	<bean id="RoadwayHistoryAction" class="com.lion.base.roadway.action.RoadwayHistoryAction"
+		scope="prototype">
+		<constructor-arg ref="roadwayHistory" />
+		<constructor-arg ref="roadwayHistoryManager" />
+	</bean>
+	<!--巷道基础信息结束 -->
+	<!--分类定义开始-->
+ 	<bean id="classify" class="com.lion.base.classify.model.Classify" scope="prototype"></bean>
+	<bean id="classifyDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.base.classify.model.Classify" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="classifyManager" class="com.lion.base.classify.manager.impl.ClassifyManagerImpl">
+		<constructor-arg ref="classifyDao" />
+		<property name="moduleDao" ref="moduleDao" />
+	</bean>
+	<bean id="ClassifyAction" class="com.lion.base.classify.action.ClassifyAction" scope="prototype">
+		<constructor-arg ref="classify" />
+		<constructor-arg ref="classifyManager" />
+	</bean>
+	<!--分类定义结束-->
+	<!-- 班次信息开始 -->
+	<bean id="attendance" class="com.lion.base.attendance.model.Attendance"
+		scope="prototype"></bean>
+	<bean id="attendanceDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.base.attendance.model.Attendance" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="attendanceManager"
+		class="com.lion.base.attendance.manager.impl.AttendanceManagerImpl">
+		<constructor-arg ref="attendanceDao" />
+	</bean>
+	<bean id="AttendanceAction" class="com.lion.base.attendance.action.AttendanceAction"
+		scope="prototype">
+		<constructor-arg ref="attendance" />
+		<constructor-arg ref="attendanceManager" />
+	</bean>
+	<!-- 班次信息结束 -->
+	<!-- 单项工程管理开始 -->
+	<bean id="projectSingle" class="com.lion.base.projectsingle.model.ProjectSingle"
+		scope="prototype"></bean>
+	<bean id="projectSingleDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.base.projectsingle.model.ProjectSingle" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectSingleImportManager"
+		class="com.lion.base.projectsingle.manager.impl.ProjectSingleImportManagerImpl">
+		<constructor-arg ref="projectSingleDao" />
+		<property name="codeGeneratorManager" ref="codeGeneratorManager" />
+	</bean>
+	<bean id="projectSingleManager"
+		class="com.lion.base.projectsingle.manager.impl.ProjectSingleManagerImpl">
+		<constructor-arg ref="projectSingleDao" />
+		<property name="projectSingleImportManager" ref="projectSingleImportManager" />
+	</bean>
+	<bean id="ProjectSingleAction" class="com.lion.base.projectsingle.action.ProjectSingleAction"
+		scope="prototype">
+		<constructor-arg ref="projectSingle" />
+		<constructor-arg ref="projectSingleManager" />
+	</bean>
+	<!-- 单项工程管理开始 -->
+
+	<!-- 专业词典开始 -->
+	<bean id="specialtyDictionary"
+		class="com.lion.rpms.base.specialtydictionary.model.SpecialtyDictionary"
+		scope="prototype"></bean>
+	<bean id="specialtyDictionaryDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.base.specialtydictionary.model.SpecialtyDictionary" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="specialtyDictionaryManager"
+		class="com.lion.rpms.base.specialtydictionary.manager.impl.SpecialtyDictionaryManagerImpl">
+		<constructor-arg ref="specialtyDictionaryDao" />
+	</bean>
+	<bean id="SpecialtyDictionaryAction"
+		class="com.lion.rpms.base.specialtydictionary.action.SpecialtyDictionaryAction"
+		scope="prototype">
+		<constructor-arg ref="specialtyDictionary" />
+		<constructor-arg ref="specialtyDictionaryManager" />
+	</bean>
+	<!-- 专业词典结束 -->
+
+	<!-- 创新人才导入 开始 -->
+	<bean id="talentImportManager"
+		class="com.lion.rpms.common.importtalent.manager.impl.TalentImportManagerImpl">
+		<constructor-arg ref="objectDao" />
+		<property name="codeGeneratorManager" ref="codeGeneratorManager" />
+	</bean>
+	<bean id="TalentImportAction"
+		class="com.lion.rpms.common.importtalent.action.TalentImportAction"
+		scope="prototype">
+		<constructor-arg ref="talentImportManager" />
+	</bean>
+	<!-- 创新人才导入 结束 -->
+	<!-- 照片显示 开始 -->
+	<bean id="PhotoAction" class="com.lion.rpms.common.photo.PhotoAction" scope="prototype">
+	</bean>
+	<!-- 照片显示 结束 -->
+</beans>

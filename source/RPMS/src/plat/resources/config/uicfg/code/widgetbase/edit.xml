@@ -1,0 +1,35 @@
+<uicfg desc="组件管理编辑">
+	<objectName>businessObject</objectName>
+	<component>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>code/widgetbase/editform</viewPath>
+		</items>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>code/widgetbase/edittbar</viewPath>
+		</items>
+		<items>
+			<object>listtlinebar</object>
+			<xtype>liontoolbar</xtype>
+			<hidden type="object">!this.editable</hidden>
+			<viewPath>code/widgetbase/listtlinebar</viewPath>
+		</items>
+		<items>
+			<object>dataLineGrid</object>
+			<isLine type="boolean">true</isLine>
+			<lineName>widgetParam</lineName>
+			<xtype>lioneditorgrid</xtype>
+			<height type="object">250</height>
+			<viewPath>code/widgetbase/listlinegrid</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+		<items>listtlinebar</items>
+		<items>dataLineGrid</items>
+	</container>
+</uicfg>

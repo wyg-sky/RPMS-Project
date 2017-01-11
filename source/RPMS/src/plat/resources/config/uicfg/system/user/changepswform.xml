@@ -1,0 +1,53 @@
+<uicfg desc="修改密码">
+	<columns type="object">1</columns>
+	<height type="integer">160</height>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>userName</name>
+		<fieldLabel>姓名</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>loginName</name>
+		<fieldLabel>登录名</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>password</name>
+		<fieldLabel>密码</fieldLabel>
+		<inputType>password</inputType>
+		<minLength type="integer">6</minLength>
+		<maxLength type="integer">16</maxLength>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>rePassword</name>
+		<fieldLabel>重复密码</fieldLabel>
+		<inputType>password</inputType>
+		<minLength type="integer">6</minLength>
+		<maxLength type="integer">16</maxLength>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<buttonAlign>center</buttonAlign>
+	<buttons>
+		<text>保存</text>
+		<width type="integer">50</width>
+		<scope type="object">this.manager</scope>
+		<handler type="object">this.manager.saveChangePsw</handler>
+	</buttons>
+	<buttons>
+		<text>关闭</text>
+		<width type="integer">50</width>
+		<handler type="object">function() {this.ownerCt.close()}</handler>
+		<scope type="object">this</scope>
+	</buttons>
+</uicfg>

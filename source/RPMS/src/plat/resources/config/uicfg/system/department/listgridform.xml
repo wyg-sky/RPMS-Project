@@ -1,0 +1,157 @@
+<uicfg desc="部门管理编辑">
+	<loadtUrl>system/loadDepartment.html</loadtUrl>
+	<submitUrl>system/saveDepartment.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<editable type="object">true</editable>
+	<columns type="object">4</columns>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>leaf</name>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>grade</name>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>orgtree</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<listeners type="object">{
+			'select':function(combox,fireValue,node){
+				this.findField("parent.id").setValue({value:'',text:''});
+				this.findField("code").setValue('');
+				this.findField("sortOrder").setValue('');
+				var depttree = this.findField("parent.id");
+				this.manager.orgtreeSelect(depttree);
+			},
+			scope:this
+		}
+		</listeners>
+	</items>
+	<items>
+		<xtype>depttree</xtype>
+		<fieldLabel>上级部门</fieldLabel>
+		<propertyName>parent</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<allowBlank type="object">true</allowBlank>
+		<value type="object">{value: this.manager.parentId, text: this.manager.parentName}</value>
+		<listeners type="object">{
+			'select':function(combox,fireValue,node){
+				if(fireValue == this.findField("id").getValue()) {
+					combox.clearValue();
+					Ext.MessageBox.show({
+						title : '提示',
+						msg : '上级部门不能为当前部门！',
+						buttons : Ext.MessageBox.OK,
+						icon : Ext.MessageBox.WARNING ,
+						scope : this
+					});
+				}
+				this.findField("code").load({parentId : fireValue});
+				this.findField("sortOrder").load({parentId : fireValue});
+			},
+			'focus':function(tree) {
+				tree.cascadeOrgTree(this.manager.dataGrid.getGridForm().findField("organization.id"));
+			},
+			scope:this
+		}
+		</listeners>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>name</name>
+		<fieldLabel>名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>sapCode</name>
+		<fieldLabel>SAP编码</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>departmentType</hiddenName>
+		<fieldLabel>类别</fieldLabel>
+		<keyType>cims_department_type</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>flag</name>
+		<fieldLabel>标志</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncodefield</xtype>
+		<name>code</name>
+		<fieldLabel>编码</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<autoLoad type="boolean">false</autoLoad>
+		<type>3</type>
+		<params>
+			<className>Department</className>
+			<codeProperty>code</codeProperty>
+			<length>3</length>
+		</params>
+	</items>
+	<items>
+		<xtype>lionsortfield</xtype>
+		<name>sortOrder</name>
+		<fieldLabel>排序</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<autoLoad type="boolean">false</autoLoad>
+		<params>
+			<className>Department</className>
+			<codeProperty>sortOrder</codeProperty>
+		</params>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>valid</hiddenName>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>创建人</fieldLabel>
+		<propertyName>createUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>修改人</fieldLabel>
+		<propertyName>modifyUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>description</name>
+		<fieldLabel>备注</fieldLabel>
+		<columnWidth type="integer">4</columnWidth>
+	</items>
+</uicfg>

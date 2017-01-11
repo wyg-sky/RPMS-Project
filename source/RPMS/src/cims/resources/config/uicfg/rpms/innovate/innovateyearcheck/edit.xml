@@ -1,0 +1,21 @@
+<uicfg desc="年度考核标准管理编辑主界面">
+	<objectName>businessObject</objectName>
+	<objectLineName>innovateYearCheckLine</objectLineName>
+	<winWidth type="integer">750</winWidth>
+	<component>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/innovate/innovateyearcheck/edittbar</viewPath>
+		</items>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/innovate/innovateyearcheck/editform</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+	</container>
+</uicfg>

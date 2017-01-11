@@ -1,0 +1,21 @@
+<uicfg desc="单位概况管理编辑主界面">
+	<objectName>businessObject</objectName>
+	<objectLineName>organizationGeneralLine</objectLineName>
+	<winWidth type="integer">1050</winWidth>
+	<component>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/organizationgeneral/edittbar</viewPath>
+		</items>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/organizationgeneral/editform</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+	</container>
+</uicfg>

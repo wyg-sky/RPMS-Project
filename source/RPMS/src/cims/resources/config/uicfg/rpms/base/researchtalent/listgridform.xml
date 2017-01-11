@@ -1,0 +1,215 @@
+<uicfg desc="创新人才管理编辑表单">
+	<loadtUrl>rpms/loadResearchTalent.html</loadtUrl>
+	<submitUrl>rpms/saveResearchTalent.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<height type="integer">380</height>
+	<defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">80</labelWidth>
+    </defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+    <items>
+        <xtype>lioncodefield</xtype>
+        <fieldLabel>人员编号</fieldLabel>
+        <name>talentCode</name>
+        <readOnly type="boolean">true</readOnly>
+        <allowBlank type="boolean">false</allowBlank>
+        <autoLoad type="object">true</autoLoad>
+        <type>2</type>
+        <params>
+            <className>ResearchTalent</className>
+            <parentId type="object">this.manager.parentId</parentId>
+            <codeProperty>talentCode</codeProperty>
+            <length>4</length>
+        </params>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>姓名</fieldLabel>
+		<name>talentName</name>
+		<allowBlank type="boolean">false</allowBlank>
+		<maxLength type="integer">50</maxLength>
+        <maxLengthText>姓名最大允许输入50个字符</maxLengthText>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+        <fieldLabel>性别</fieldLabel>
+        <name>sex</name>
+        <keyType>cims_sex</keyType>
+        <editable type="object">false</editable>
+        <allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>出生年月</fieldLabel>
+		<name>birthDate</name>
+        <editable>false</editable>
+        <format>Y-m-d</format>
+        <value type="object">new Date()</value>
+        <allowBlank type="boolean">true</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>身份证号</fieldLabel>
+		<name>identyCard</name>
+		<maxLength type="integer">18</maxLength>
+        <maxLengthText>身份证号最大允许输入18个字符</maxLengthText>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>学历</fieldLabel>
+		<name>education</name>
+		<keyType>rpms_education</keyType>
+        <editable type="object">false</editable>
+	</items>
+    <items>
+        <xtype>lioncomboboxtree</xtype>
+        <fieldLabel>分中心</fieldLabel>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <editable type="object">false</editable>
+        <tree> 
+                <loader>
+                    <dataUrl>rpms/listResearchPlatTree.html</dataUrl>
+                </loader>
+        </tree>
+    </items>
+    <items>
+        <xtype>lioncomboboxtree</xtype>
+        <fieldLabel>分中心机构</fieldLabel>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <editable type="object">false</editable>
+        <tree> 
+                <loader>
+                    <dataUrl>rpms/listResearchPlatTree.html</dataUrl>
+                </loader>
+        </tree>
+    </items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>机构职务</fieldLabel>
+		<name>position</name>
+		<keyType>rpms_institution_duty</keyType>
+		<editable type="boolean">false</editable>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>专家等级</fieldLabel>
+		<name>grade</name>
+		<keyType>rpms_grade</keyType>
+        <editable type="boolean">false</editable>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>职称</fieldLabel>
+		<name>title</name>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>毕业院校</fieldLabel>
+		<name>graduationSchool</name>
+		<maxLength type="integer">50</maxLength>
+        <maxLengthText>毕业院校最大允许输入50个字符</maxLengthText>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>院士</fieldLabel>
+		<name>academician</name>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>是否享受津贴</fieldLabel>
+		<name>allowance</name>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>学者</fieldLabel>
+		<name>scholar</name>
+	</items>
+	<items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>学科专业</fieldLabel>
+        <name>discipline</name>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>是否有效</fieldLabel>
+        <name>valid</name>
+        <keyType>cims_effective</keyType>
+        <value>1</value>
+        <editable type="object">false</editable>
+        <readOnly type="object">true</readOnly>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>人才类型</fieldLabel>
+        <name>talentType</name>
+        <hidden type="object">false</hidden>
+    </items>
+    <items>
+        <xtype>lionreadonlyfield</xtype>
+        <fieldLabel>组织单位</fieldLabel>
+        <propertyName>organization</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <hidden type="object">false</hidden>
+        <value type="object">
+            {"value" : FW.organizationId, "text" : FW.organizationName}
+        </value>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>创建人</fieldLabel>
+        <name>createUser</name>
+        <value type="object">FW.userName</value>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <name>createTime</name>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>创建时间</fieldLabel>
+        <value type="object">new Date().format('Y-m-d H:i:s')</value>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改人</fieldLabel>
+		<name>modifyUser</name>
+		<value type="object">FW.userName</value>
+		<hidden type="object">false</hidden>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+		<hidden type="object">false</hidden>
+	</items>
+	<items>
+        <xtype>liontextarea</xtype>
+        <fieldLabel>人员简介</fieldLabel>
+        <name>introduction</name>
+        <columnWidth type="integer">3</columnWidth>
+        <maxLength type="integer">1000</maxLength>
+        <maxLengthText>人员简介最大允许输入1000个字符</maxLengthText>
+    </items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>备注</fieldLabel>
+		<name>remark</name>
+		<columnWidth type="integer">3</columnWidth>
+		<maxLength type="integer">1000</maxLength>
+        <maxLengthText>备注最大允许输入1000个字符</maxLengthText>
+	</items>
+</uicfg>

@@ -1,0 +1,35 @@
+<uicfg desc="资源管理编辑">
+	<columns type="integer">4</columns>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>name</name>
+		<fieldLabel>资源名称</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>resourceType</name>
+		<fieldLabel>资源类型</fieldLabel>
+		<keyType>sys_resource_type</keyType>		
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>operType</name>
+		<fieldLabel>操作类型</fieldLabel>
+		<keyType>sys_oper_type</keyType>	
+	</items>
+	<items>
+		<xtype>lioncomboboxtree</xtype>
+		<fieldLabel>所属模块</fieldLabel>
+		<propertyName>module.name</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<allowBlank type="boolean">true</allowBlank>
+		<tree>
+			<loader>
+				<dataUrl>system/listModuleTree.html</dataUrl>
+			</loader>
+		</tree>
+	</items>
+</uicfg>

@@ -1,0 +1,29 @@
+<decorators defaultdir="/decorators">
+	<excludes>
+   		<pattern>/*.htm</pattern>
+    	<pattern>/*.html</pattern>
+    	<pattern>/*.htm?*</pattern>
+    	<pattern>/*.html?*</pattern>
+        <pattern>/40*.jsp</pattern>
+        <pattern>/*ajax=true*</pattern>
+        <pattern>/scripts/*</pattern>
+        <pattern>/ext/*</pattern> 
+        <pattern>/images/*</pattern>
+        <pattern>/force-flow-designer/*</pattern>
+        <pattern>/*/*.jsp*</pattern>
+        <pattern>/*/*.html*</pattern>
+        <pattern>/_*</pattern>
+        <!-- 以下三行用来阻止SiteMesh对BiosReport生成的页面进行装饰 -->
+        <pattern>/ReportEmitter*</pattern>
+        <pattern>/ImgServlet*</pattern>
+        <pattern>/FillinServlet*</pattern>
+    </excludes> 
+	<decorator name="default" page="default.jsp">
+		<pattern>/login*</pattern>
+	</decorator>
+	<decorator name="extjs" page="extjs.jsp">
+		<pattern>/desktop.jsp</pattern>
+		<pattern>/modulemain.jsp</pattern>
+		<pattern>/main.jsp</pattern>
+	</decorator>
+</decorators>

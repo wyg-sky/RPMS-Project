@@ -1,0 +1,177 @@
+<uicfg desc="项目资金明细列表">
+    <rownum type="boolean">true</rownum>
+    <orderBy>id asc</orderBy>
+    <editable type="object">true</editable>
+    <showLookButton type="object">false</showLookButton>
+    <showEditButton type="object">false</showEditButton>
+    <showCopyButton type="object">false</showCopyButton>
+    <allowPage type="boolean">false</allowPage>
+    <clicksToEdit type="integer">1</clicksToEdit>
+    <bodyStyle type="object">'border-width:1px 1px 1px 1px;'</bodyStyle>
+    <store>
+        <url>rpms/listProjectFunds.html</url>
+        <baseParams>
+            <fieldValues type="object">this.mainId</fieldValues>
+            <operatorValues>=</operatorValues>  
+            <queryFields>obj.mainId</queryFields>
+        </baseParams>
+        <fields>
+            <name>id</name>
+        </fields>
+        <fields>
+            <name>mainId</name>
+        </fields>
+        <fields>
+            <name>totalBudget</name>
+        </fields>
+        <fields>
+            <name>firstBudget</name>
+        </fields>
+        <fields>
+            <name>secondBudget</name>
+        </fields>
+        <fields>
+            <name>firstCapitalAmount</name>
+        </fields>
+        <fields>
+            <name>secondCapitalAmount</name>
+        </fields>
+        <fields>
+            <name>specialAmount</name>
+        </fields>
+        <fields>
+            <name>infrastructureAmount</name>
+        </fields>
+        
+        <fields>
+            <name>contractFee</name>
+        </fields>
+        <fields>
+            <name>workingFunds</name>
+        </fields>
+        <fields>
+            <name>extraBudget</name>
+        </fields>
+        <fields>
+            <name>subsidies</name>
+        </fields>
+        <fields>
+            <name>economicBenefits</name>
+        </fields>
+        <fields>
+            <name>firstEconomicBenefits</name>
+        </fields>
+    </store>
+    <sm>
+        <xtype>checkboxsm</xtype>
+        <singleSelect type="boolean">false</singleSelect>
+    </sm>
+    <cm>
+        <defaults>
+            <sortable type="boolean">true</sortable>
+        </defaults>
+        <columns>
+            <hidden type="object">true</hidden>
+            <header>mainId</header>
+            <dataIndex>mainId</dataIndex>
+        </columns>
+        <columns>
+            <header><![CDATA["总预算<br/>经费"]]></header>
+            <resizable>true</resizable>
+            <dataIndex>totalBudget</dataIndex>
+            <editor>
+                <xtype>lionnumberfield</xtype>
+            </editor>
+        </columns>
+        <columns>
+            <header><![CDATA["第一研<br/>发年预算<br/>经费"]]></header>
+            <dataIndex>firstBudget</dataIndex>
+            <editor>
+                <xtype>lionnumberfield</xtype>
+            </editor>
+        </columns>
+        <columns>
+            <header><![CDATA["第二研<br/>发年预算<br/>经费"]]></header>
+            <dataIndex>secondBudget</dataIndex>
+            <editor>
+                <xtype>lionnumberfield</xtype>
+            </editor>
+        </columns>
+        <columns>
+            <header><![CDATA["第一研<br/>发年资本化<br/>投资总额"]]></header>
+            <dataIndex>firstCapitalAmount</dataIndex>
+            <editor>
+                <xtype>lionnumberfield</xtype>
+            </editor>
+        </columns>
+        <columns>
+            <header><![CDATA["第二研<br/>发年资本化<br/>投资总额"]]></header>
+            <dataIndex>secondCapitalAmount</dataIndex>
+            <editor>
+                <xtype>lionnumberfield</xtype>
+            </editor>
+        </columns>
+        <columns>
+            <header><![CDATA["列入集团<br/>公司专项<br/>计划资金"]]></header>
+            <dataIndex>specialAmount</dataIndex>
+            <editor>
+                <xtype>lionnumberfield</xtype>
+            </editor>
+        </columns>
+        <columns>
+            <header><![CDATA["列入集团<br/>公司基建<br/>计划资金"]]></header>
+            <dataIndex>infrastructureAmount</dataIndex>
+            <editor>
+                <xtype>lionnumberfield</xtype>
+            </editor>
+        </columns>
+        <columns>
+            <header>合同费</header>
+            <dataIndex>contractFee</dataIndex>
+            <editor>
+                <xtype>lionnumberfield</xtype>
+            </editor>
+        </columns>
+        <columns>
+            <header>工作经费</header>
+            <dataIndex>workingFunds</dataIndex>
+            <editor>
+                <xtype>lionnumberfield</xtype>
+            </editor>
+        </columns>
+        <columns>
+            <header><![CDATA["集团公司<br/>成本预算<br/>外投资"]]></header>
+            <dataIndex>extraBudget</dataIndex>
+            <editor>
+                <xtype>lionnumberfield</xtype>
+            </editor>
+        </columns>
+        <columns>
+            <header><![CDATA["外部<br/>补助资金"]]></header>
+            <dataIndex>subsidies</dataIndex>
+            <editor>
+                <xtype>lionnumberfield</xtype>
+            </editor>
+        </columns>
+        <columns>
+            <header><![CDATA["项目内<br/>转化经济<br/>效益"]]></header>
+            <dataIndex>economicBenefits</dataIndex>
+            <editor>
+                <xtype>lionnumberfield</xtype>
+            </editor>
+        </columns>
+        <columns>
+            <header><![CDATA["项目完成<br/>一年内<br/>经济效益"]]></header>
+            <dataIndex>firstEconomicBenefits</dataIndex>
+            <editor>
+                <xtype>lionnumberfield</xtype>
+            </editor>
+        </columns>
+    </cm>
+    <tbar>
+        <xtype>liontoolbar</xtype>
+        <hidden type="object">!this.manager.editable</hidden>
+        <manager type="object">this.manager</manager>
+        <viewPath>rpms/research/project/listfundsbar</viewPath>      
+    </tbar>
+</uicfg>

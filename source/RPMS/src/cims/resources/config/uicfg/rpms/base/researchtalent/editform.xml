@@ -1,0 +1,405 @@
+<uicfg desc="创新人才管理编辑表单">
+	<loadtUrl>rpms/loadResearchTalent.html</loadtUrl>
+	<submitUrl>rpms/saveResearchTalent.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<height type="integer">620</height>
+	<defaultFocusIndex>-1</defaultFocusIndex>
+	<defaults>
+		<layout>form</layout>
+		<labelWidth type="integer">80</labelWidth>
+	</defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<layout>column</layout>
+		<columnWidth type="integer">3</columnWidth>
+		<items>
+			<columnWidth type="double">0.4</columnWidth>
+			<layout>form</layout>
+			<items>
+				<anchor>99%</anchor>
+				<xtype>lioncodefield</xtype>
+				<fieldLabel>人员编号</fieldLabel>
+				<name>talentCode</name>
+				<maxLength type="integer">50</maxLength>
+				<maxLengthText>人员编号最大为50位</maxLengthText>
+				<readOnly type="boolean">true</readOnly>
+				<allowBlank type="boolean">false</allowBlank>
+				<autoLoad type="object">this.manager.actionMode == '1'</autoLoad>
+				<type>2</type>
+				<params>
+					<className>ResearchTalent</className>
+					<parentId type="object">this.manager.parentId</parentId>
+					<codeProperty>talentCode</codeProperty>
+					<length>4</length>
+				</params>
+			</items>
+			<items>
+                <anchor>99%</anchor>
+                <xtype>orgtree</xtype>
+                <fieldLabel>单位</fieldLabel>
+                <propertyName>organization</propertyName>
+                <hiddenName>id</hiddenName>
+                <hiddenDisplayName>name</hiddenDisplayName>
+                <allowBlank type="object">false</allowBlank>
+                <value type="object">
+                    {"value" : FW.organizationId, "text" : FW.organizationName}
+                </value>
+                <readOnly type="object">!(FW.isAdmin == true) || this.manager.actionMode=='3'</readOnly>
+            </items>
+            <items>
+                <anchor>99%</anchor>
+				<xtype>depttree</xtype>
+				<fieldLabel>所在部门</fieldLabel>
+				<propertyName>deptIn</propertyName>
+				<hiddenName>id</hiddenName>
+				<hiddenDisplayName>name</hiddenDisplayName>
+			</items>
+			<items>
+				<anchor>99%</anchor>
+				<xtype>plattree</xtype>
+				<propertyName>platCenter</propertyName>
+				<hiddenName>id</hiddenName>
+				<hiddenDisplayName>platName</hiddenDisplayName>
+				<fieldLabel>分中心</fieldLabel>
+				<allowBlank type="object">false</allowBlank>
+				<listeners type="object">{
+                    'select':function(){
+                        this.manager.editForm.findField("platInstitution.id").setValue({value:'',text:''});
+                        this.manager.editForm.findField("platInstitution.id").clearValue();
+                    },
+                    'focus':function(tree) {
+                        tree.cascadePlatTree(1);
+                    },
+                    scope:this
+                }
+				</listeners>
+				<value type="object">
+                    {"value" : PlatUtil.currentCenterId, "text" : PlatUtil.currentCenterName}
+				</value>
+			</items>
+			<items>
+                <anchor>99%</anchor>
+                <xtype>lioncombobox</xtype>
+                <fieldLabel>性别</fieldLabel>
+                <name>sex</name>
+                <keyType>cims_sex</keyType>
+                <value>0000</value>
+                <editable type="object">false</editable>
+                <allowBlank type="boolean">false</allowBlank>
+            </items>
+			<items>
+                <anchor>99%</anchor>
+                <xtype>liontextfield</xtype>
+                <fieldLabel>身份证号</fieldLabel>
+                <name>identyCard</name>
+                <maxLength type="integer">18</maxLength>
+                <maxLengthText>身份证号最大允许输入18个字符</maxLengthText>
+                <regex type="object">/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/</regex>
+                <regexText>身份证输入不合法</regexText>
+            </items>
+			<items>
+				<anchor>99%</anchor>
+				<xtype>lioncombobox</xtype>
+				<fieldLabel>学历</fieldLabel>
+				<name>education</name>
+				<keyType>rpms_education</keyType>
+				<editable type="object">false</editable>
+				<allowBlank type="boolean">false</allowBlank>
+			</items>
+            <items>
+                <anchor>99%</anchor>
+                <xtype>lioncombobox</xtype>
+                <fieldLabel>职称</fieldLabel>
+                <name>title</name>
+                <keyType>rpms_title</keyType>
+                <editable type="boolean">false</editable>
+                <allowBlank type="boolean">false</allowBlank>
+            </items>
+            <items>
+                <anchor>99%</anchor>
+                <xtype>lioncombobox</xtype>
+                <fieldLabel>是否专家</fieldLabel>
+                <name>isSxpert</name>
+                <keyType>rpms_is_sxpert</keyType>
+                <value>0002</value>
+                <editable type="object">false</editable>
+            </items>
+		</items>
+		<items>
+			<columnWidth type="double">0.4</columnWidth>
+			<layout>form</layout>
+			<items>
+				<anchor>99%</anchor>
+				<xtype>liontextfield</xtype>
+				<fieldLabel>姓名</fieldLabel>
+				<name>talentName</name>
+				<allowBlank type="boolean">false</allowBlank>
+				<maxLength type="integer">30</maxLength>
+				<maxLengthText>姓名最大允许输入30个字符</maxLengthText>
+			</items>
+			<items>
+                <anchor>99%</anchor>
+                <xtype>lioncombobox</xtype>
+                <fieldLabel>专家等级</fieldLabel>
+                <name>grade</name>
+                <keyType>rpms_grade</keyType>
+                <value>0007</value>
+                <editable type="boolean">false</editable>
+                <allowBlank type="boolean">false</allowBlank>
+            </items> 
+			<items>
+                <anchor>99%</anchor>
+                <xtype>lioncomboboxtree</xtype>
+                <propertyName>specialty</propertyName>
+                <hiddenName>id</hiddenName>
+                <hiddenDisplayName>specialtyName</hiddenDisplayName>
+                <fieldLabel>从事专业</fieldLabel>
+                <allowBlank type="object">false</allowBlank>
+                <tree>
+                    <loader>
+                        <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                        <baseParams>
+                            <type>"zy"</type>
+                        </baseParams >
+                    </loader>
+                </tree>
+            </items>
+			<items>
+				<anchor>99%</anchor>
+				<xtype>plattree</xtype>
+				<propertyName>platInstitution</propertyName>
+				<hiddenName>id</hiddenName>
+				<hiddenDisplayName>platName</hiddenDisplayName>
+				<fieldLabel>分中心机构</fieldLabel>
+				<allowBlank type="object">false</allowBlank>
+				<listeners type="object">{
+                    'focus':function(tree) {
+                        tree.cascadeTree(this.manager.editForm.findField("platCenter.id"));
+                    },scope:this
+                }
+				</listeners>
+			</items>
+			<items>
+                <anchor>99%</anchor>
+                <xtype>lionmonthfield</xtype>
+                <fieldLabel>出生年月</fieldLabel>
+                <name>birthDate</name>
+                <editable type="object">false</editable>
+                <format>Y-m</format>
+                <allowBlank type="boolean">false</allowBlank>
+            </items>
+			<items>
+				<anchor>99%</anchor>
+				<xtype>liontextfield</xtype>
+				<fieldLabel>联系电话</fieldLabel>
+				<name>telephone</name>
+				<maxLength type="object">50</maxLength>
+				<maxLengthText>联系电话最大允许输入50个字符</maxLengthText>
+				<regex type="object">/^\d+((,|，|、|\+|-)\d*)*\d$/</regex>
+                <regexText>联系电话请以数字开头和数字结尾,且只能填写:数字和分隔符(如：横线 - ,逗号,加号).</regexText>
+                <listeners type="object"><![CDATA[{
+                        'render' : function(thisField){
+                            thisField.getEl().dom.setAttribute("ext:qtip", "联系电话请按如下格式填写：<br>1234567,010-1234567,0123-1234567,13812345678");  
+                        },  
+                        'focus' : function(thisField){
+                            if(thisField.rendered){  
+                                thisField.getEl().dom.setAttribute("ext:qtip", "联系电话请按如下格式填写：<br>1234567,010-1234567,0123-1234567,13812345678");  
+                            }
+                        },scope:this
+                    }]]>
+                </listeners>
+			</items>
+			<items>
+				<anchor>99%</anchor>
+				<xtype>multiSelect</xtype>
+				<fieldLabel>机构职务</fieldLabel>
+				<valueField>id</valueField>
+                <hiddenName>position</hiddenName>
+				<keyType>rpms_institution_duty</keyType>
+				<editable type="boolean">false</editable>
+				<allowBlank type="boolean">false</allowBlank>
+                <maxLength type="integer">40</maxLength>
+			</items>
+			<items>
+                <anchor>99%</anchor>
+                <xtype>liontextfield</xtype>
+                <name>adminiPosition</name>
+                <fieldLabel>部门职务</fieldLabel>
+                <maxLength type="integer">30</maxLength>
+                <allowBlank type="boolean">false</allowBlank>
+                <maxLengthText>行政职务最大允许输入30个字符</maxLengthText>
+            </items>
+		</items>
+		<items>
+			<columnWidth type="double">0.2</columnWidth>
+			<layout>form</layout>
+			<items>
+				<anchor>99%</anchor>
+				<xtype>photopanel</xtype>
+				<value>'images/defaultTalentPhoto.png'</value>
+				<name>talentPhoto</name>
+				<height type="integer">220</height>
+				<autoWidth type="object">true</autoWidth>
+			</items>
+		</items>
+	</items>
+    
+	<items>
+		<layout>column</layout>
+		<columnWidth type="integer">3</columnWidth>
+		<items>
+			<columnWidth type="double">0.4</columnWidth>
+			<layout>form</layout>
+			<items>
+                <anchor>99%</anchor>
+                <xtype>lioncombobox</xtype>
+                <fieldLabel>人才类型</fieldLabel>
+                <name>talentType</name>
+                <keyType>rpms_talent_type</keyType>
+                <value>0001</value>
+                <hidden type="object">false</hidden>
+            </items>
+			<items>
+				<anchor>99%</anchor>
+				<xtype>lioncombobox</xtype>
+				<fieldLabel>是否享受津贴</fieldLabel>
+				<keyType>rpms_is_subsidy</keyType>
+				<name>allowance</name>
+				<editable type="object">false</editable>
+			</items>
+			<items>
+                <anchor>99%</anchor>
+                <xtype>liontextfield</xtype>
+                <fieldLabel>毕业院校</fieldLabel>
+                <name>graduationSchool</name>
+                <maxLength type="integer">30</maxLength>
+                <maxLengthText>毕业院校最大允许输入30个字符</maxLengthText>
+                <allowBlank type="boolean">false</allowBlank>
+            </items>
+            <items>
+            	<anchor>99%</anchor>
+                <xtype>liondatefield</xtype>
+                <fieldLabel>进站时间</fieldLabel>
+                <name>inDate</name>
+                <format>Y-m-d</format>
+                <value>new Date()</value>
+            </items>
+			<items>
+                <anchor>99%</anchor>
+                <xtype>liontextfield</xtype>
+                <readOnly type="boolean">true</readOnly>
+                <fieldLabel>创建人</fieldLabel>
+                <name>createUser</name>
+                <value type="object">FW.userName</value>
+            </items>
+		</items>
+		<items>
+			<columnWidth type="double">0.6</columnWidth>
+			<layout>form</layout>
+			<items>
+                <anchor>99%</anchor>
+                <xtype>multiSelect</xtype>
+                <fieldLabel>院士</fieldLabel>
+                <valueField>id</valueField>
+                <hiddenName>academician</hiddenName>
+                <keyType>rpms_academician</keyType>
+                <editable type="object">false</editable>
+                <maxLength type="integer">30</maxLength>
+                <maxLengthText>院士选择项限定长度为30个字符</maxLengthText>
+            </items>
+			<items>
+                <anchor>99%</anchor>
+                <xtype>multiSelect</xtype>
+                <fieldLabel>学者</fieldLabel>
+                <valueField>id</valueField>
+                <hiddenName>scholar</hiddenName>
+                <keyType>rpms_scholar</keyType>
+                <editable type="object">false</editable>
+                <maxLength type="integer">30</maxLength>
+                <maxLengthText>学者选择项限定长度为30个字符</maxLengthText>
+                <columnWidth type="integer">2</columnWidth>
+            </items>
+			<items>
+				<anchor>99%</anchor>
+				<xtype>liontextfield</xtype>
+				<fieldLabel>学科专业</fieldLabel>
+				<name>discipline</name>
+				<editable type="object">false</editable>
+				<maxLength type="integer">30</maxLength>
+                <maxLengthText>学科专业最大长度为30个字符</maxLengthText>
+                <allowBlank type="boolean">false</allowBlank>
+			</items>
+			<items>
+				<anchor>99%</anchor>
+                <xtype>liondatefield</xtype>
+                <fieldLabel>出站时间</fieldLabel>
+                <name>outDate</name>
+                <format>Y-m-d</format>
+                <value>new Date()</value>
+            </items>
+			<items>
+                <anchor>99%</anchor>
+                <xtype>liontextfield</xtype>
+                <name>createTime</name>
+                <readOnly type="boolean">true</readOnly>
+                <fieldLabel>创建时间</fieldLabel>
+                <value type="object">new Date().format('Y-m-d H:i:s')</value>
+            </items>
+		</items>
+	</items>
+	<items>
+		<anchor>99.3%</anchor>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>人员简介</fieldLabel>
+		<name>introduction</name>
+		<height>150</height>
+		<columnWidth type="integer">3</columnWidth>
+		<maxLength type="integer">1000</maxLength>
+		<maxLengthText>人员简介最大允许输入1000个字符</maxLengthText>
+	</items>
+	<items>
+		<anchor>99.3%</anchor>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>备注</fieldLabel>
+		<name>remark</name>
+		<height>70</height>
+		<columnWidth type="integer">3</columnWidth>
+		<maxLength type="integer">1000</maxLength>
+		<maxLengthText>备注最大允许输入1000个字符</maxLengthText>
+	</items>
+	<items>
+        <anchor>99%</anchor>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>是否有效</fieldLabel>
+        <name>valid</name>
+        <keyType>cims_effective</keyType>
+        <value>1</value>
+        <editable type="object">false</editable>
+        <readOnly type="object">true</readOnly>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>liontextfield</xtype>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>修改人</fieldLabel>
+        <name>modifyUser</name>
+        <value type="object">FW.userName</value>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>liontextfield</xtype>
+        <name>modifyTime</name>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>修改时间</fieldLabel>
+        <value type="object">new Date().format('Y-m-d H:i:s')</value>
+        <hidden type="object">true</hidden>
+    </items>
+</uicfg>

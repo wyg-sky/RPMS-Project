@@ -1,0 +1,67 @@
+<uicfg desc="单项工程信息导入界面">
+	<columns type="object">1</columns>
+	<fileUpload type="boolean">true</fileUpload>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>选择文件</fieldLabel>
+		<name>fileObject</name>
+		<inputType>file</inputType>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<object>importType1</object>
+		<xtype>radio</xtype>
+		<name>importType</name>
+		<fieldLabel>导入方式</fieldLabel>
+		<boxLabel>保留原有单项工程数据</boxLabel>
+		<inputValue type="object">1</inputValue>
+		<checked type="object">true</checked>
+	</items>
+	<items>
+		<object>importType2</object>
+		<xtype>radio</xtype>
+		<name>importType</name>
+		<fieldLabel></fieldLabel>
+		<boxLabel>清空原有单项工程数据</boxLabel>
+		<inputValue type="object">2</inputValue>
+		<allowBlank type="object">true</allowBlank>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>label</xtype>
+		<text>请确保导入文件符合标准格式</text>
+		<style>
+			<color>red</color>
+		</style>
+	</items>
+	<items>
+		<xtype>label</xtype>
+		<html>
+			(单项工程模版)<![CDATA[<a href='system/downloadDocument.html?id=2c9ffaf9483929080148392f1b880002' onclick='javascript:isRefresh = true;'>下载</a>]]>
+		</html>
+	</items>
+	<buttonAlign>center</buttonAlign>
+	<buttons>
+		<text>确定</text>
+		<width type="integer">50</width>
+		<scope type="object">this.manager</scope>
+		<handler type="object">this.manager.saveImport</handler>
+	</buttons>
+	<buttons>
+		<text>取消</text>
+		<width type="integer">50</width>
+		<handler type="object">function() {this.ownerCt.close()}</handler>
+		<scope type="object">this</scope>
+	</buttons>
+</uicfg>

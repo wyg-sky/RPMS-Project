@@ -1,0 +1,55 @@
+<uicfg desc="系统单点链接管理编辑">
+	<loadtUrl>system/loadSingleSystem.html</loadtUrl>
+	<submitUrl>system/saveSingleSystem.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<editable type="object">true</editable>
+	<columns type="object">3</columns>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>systemName</name>
+		<fieldLabel>系统名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>systemType</hiddenName>
+		<fieldLabel>系统类型</fieldLabel>
+		<keyType>system_single_type</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>systemEnable</hiddenName>
+		<fieldLabel>是否可用</fieldLabel>
+		<keyType>boolean</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>systemUrl</name>
+		<fieldLabel>系统URL</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>sort</name>
+		<fieldLabel>排序</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>systemUserVariable</name>
+		<fieldLabel>用户变量</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>systemPwdVariable</name>
+		<fieldLabel>密码变量</fieldLabel>
+	</items>
+</uicfg>

@@ -1,0 +1,12 @@
+<uicfg desc="生成信息编辑表单按钮">
+	<items>-></items>
+	<items>
+		<text>获取列信息</text>
+		<iconCls>next-icon</iconCls>
+		<handler type="object">function() {
+			var editForm = this.manager.baseInfo.items.items[1];
+			var dataGrid = this.manager.baseInfo.items.items[3];
+			this.manager.loadColumnInfo(editForm,dataGrid);
+		}</handler>
+	</items>
+</uicfg>

@@ -1,0 +1,147 @@
+<uicfg desc="生成信息子表列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>child</objectName>
+	<editable type="object">true</editable>
+	<showLookButton type="object">false</showLookButton>
+	<showEditButton type="object">false</showEditButton>
+	<showCopyButton type="object">false</showCopyButton>
+	<allowPage type="boolean">false</allowPage>
+	<store>
+		<autoLoad type="boolean">false</autoLoad>
+		<url>system/listLineInfoFormDutyId.html</url>
+		<fields>
+			<name>tableName</name>
+		</fields>
+		<fields>
+			<name>className</name>
+		</fields>
+		<fields>
+			<name>classRemark</name>
+		</fields>
+		<fields>
+			<name>linkColumn</name>
+		</fields>
+		<fields>
+			<name>sortColumn</name>
+		</fields>
+		<fields>
+			<name>orderByType</name>
+		</fields>
+		<fields>
+			<name>extendsClassPath</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>表名称</header>
+			<dataIndex>tableName</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+				<allowBlank type="boolean">false</allowBlank>
+			</editor>
+		</columns>
+		<columns>
+			<header>类名称</header>
+			<dataIndex>className</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+				<allowBlank type="boolean">false</allowBlank>
+			</editor>
+		</columns>
+		<columns>
+			<header>类注释</header>
+			<dataIndex>classRemark</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+				<allowBlank type="boolean">false</allowBlank>
+			</editor>
+		</columns>
+		<columns>
+			<header>关联主表字段名称</header>
+			<dataIndex>linkColumn</dataIndex>
+			<editor>
+				<xtype>lioncombolist</xtype>
+				<hiddenName>id</hiddenName>
+				<hiddenDisplayName>text</hiddenDisplayName>
+				<allowBlank type="boolean">false</allowBlank>
+				<store>
+					<autoLoad type="boolean">false</autoLoad>
+					<url>system/listColumnsForSelect.html</url>
+				</store>
+			</editor>
+		</columns>
+		<columns>
+			<header>排序字段名称</header>
+			<dataIndex>sortColumn</dataIndex>
+			<editor>
+				<xtype>lioncombolist</xtype>
+				<hiddenName>id</hiddenName>
+				<hiddenDisplayName>text</hiddenDisplayName>
+				<allowBlank type="boolean">false</allowBlank>
+				<store>
+					<autoLoad type="boolean">false</autoLoad>
+					<url>system/listColumnsForSelect.html</url>
+				</store>
+			</editor>
+		</columns>
+		<columns>
+			<header>排序方式</header>
+			<dataIndex>orderByType</dataIndex>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<allowBlank type="boolean">false</allowBlank>
+				<store type="object">new Ext.data.SimpleStore({
+		            fields : ['id','text'],
+		            data : [['asc','asc'],['desc','desc']]
+		        })</store>
+			</editor>
+		</columns>
+		<columns>
+			<header>继承父类</header>
+			<dataIndex>extendsClassPath</dataIndex>
+			<keyType>sys_superclass</keyType>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<hiddenName>extendsClassPath</hiddenName>
+				<fieldLabel>继承父类</fieldLabel>
+				<keyType>sys_superclass</keyType>
+				<forceSelection type="boolean">false</forceSelection>
+			</editor>
+		</columns>
+	</cm>
+	<listeners type="object">{
+		'afteredit' : function(e) {
+			if(e.field == 'tableName') {
+				this.manager.loadTableInfo(e.record,e.value,false);
+			}
+		},
+		'cellclick' : function(grid, rowIndex, columnIndex, e) {
+			var record = grid.getStore().getAt(rowIndex);
+	        var fieldName = grid.getColumnModel().getDataIndex(columnIndex);
+	        if(fieldName == 'linkColumn' || fieldName == 'sortColumn'){
+	        	var tableName = record.get('tableName');
+	        	if(tableName == null) {
+	        		Ext.MessageBox.show({
+						title : '提示',
+						msg : '请先输入表名称！',
+						buttons : Ext.MessageBox.OK,
+						icon : Ext.MessageBox.WARNING
+					});
+	        		return false;
+	        	} else {
+	        		var column = grid.getColumnModel().getColumnAt(columnIndex);
+	        		Ext.apply(column.editor.store.baseParams, {tableName : tableName});
+					column.editor.store.load();
+	        	}
+			}
+		},
+		scope : this
+	}</listeners>
+</uicfg>

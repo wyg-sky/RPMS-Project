@@ -1,0 +1,34 @@
+<uicfg desc="用户管理主界面">
+	<objectName>businessObject</objectName>
+	<printTitle>用户基本信息</printTitle>
+	<component>
+		<items>
+			<object>dataGrid</object>
+			<xtype>liongrid</xtype>
+			<region>center</region>
+			<viewPath>rpms/base/projectstaff/userListgrid</viewPath>
+		</items>
+		<items>
+			<object>queryForm</object>
+			<xtype>lionform</xtype>
+			<region>north</region>
+			<viewPath>rpms/base/projectstaff/userListqueryform</viewPath>
+			<runMode>4</runMode>
+		</items>
+		<items>
+			<object>listTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/base/projectstaff/userListtbar</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>listTbar</items>
+		<items>
+			<xtype>panel</xtype>
+			<layout>border</layout>
+			<border type="boolean">false</border>
+			<items>queryForm</items>
+			<items>dataGrid</items>
+		</items>
+	</container>
+</uicfg>

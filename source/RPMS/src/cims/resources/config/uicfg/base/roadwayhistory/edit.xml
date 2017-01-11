@@ -1,0 +1,20 @@
+<uicfg desc="巷道历史信息管理编辑主界面">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">990</winWidth>
+	<component>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>base/roadwayhistory/editform</viewPath>
+		</items>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>base/roadwayhistory/edittbar</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+	</container>
+</uicfg>

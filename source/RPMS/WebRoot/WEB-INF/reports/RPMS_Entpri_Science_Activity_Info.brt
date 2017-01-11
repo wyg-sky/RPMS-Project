@@ -1,0 +1,2611 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<report version="5.0">
+	<head>
+		<property name="type">0</property>
+		<name><![CDATA[RPMS_Entpri_Science_Activity_Info]]></name>
+		<dataSets>
+			<dataSet name="sum" type="DB_SQL" >
+				<property name="dataSource">CIMS_JSZX</property>
+				<property name="desc"><![CDATA[企业科技活动及相关情况]]></property>
+				<property name="query"><![CDATA[select *
+  from (select nvl(sum(a.BUSINESS_INCOME), 0) as main_income_sum,
+               nvl(sum(to_number(nvl(a.pseson_cost, 0)) +
+                       to_number(nvl(a.scidenc_service, 0)) +
+                       to_number(nvl(a.work_fee, 0)) +
+                       to_number(nvl(a.design_fee, 0)) +
+                       to_number(nvl(a.degugging_fee, 0)) +
+                       to_number(nvl(a.material_fee, 0)) +
+                       to_number(nvl(a.gas_electricity, 0)) +
+                       to_number(nvl(a.moule_exam, 0)) +
+                       to_number(nvl(a.instrument_equi, 0)) +
+                       to_number(nvl(a.use_building, 0)) +
+                       to_number(nvl(a.equi_rental, 0)) +
+                       to_number(nvl(a.faclities_fee, 0)) +
+                       to_number(nvl(a.technology_fee, 0)) +
+                       to_number(nvl(a.office_fee, 0))),
+                   0) as pro_innercost_sum,
+               nvl(sum(to_number(nvl(a.pseson_cost, 0)) +
+                       to_number(nvl(a.scidenc_service, 0)) +
+                       to_number(nvl(a.work_fee, 0))),
+                   0) as pseson_cost_sum,
+               nvl(sum(to_number(nvl(a.material_fee, 0)) +
+                       to_number(nvl(a.gas_electricity, 0)) +
+                       to_number(nvl(a.moule_exam, 0))),
+                   0) as material_cost_sum,
+               nvl(sum(to_number(nvl(a.instrument_equi, 0)) +
+                       to_number(nvl(a.use_building, 0)) +
+                       to_number(nvl(a.equi_rental, 0)) +
+                       to_number(nvl(a.faclities_fee, 0))),
+                   0) as depreciation_sum,
+               
+               nvl(sum(to_number(nvl(a.technology_fee, 0))), 0) as intangible_cost_sum,
+               
+               nvl(sum(to_number(nvl(a.office_fee, 0))), 0) as other_cost_sum,
+               
+               nvl(sum(to_number(nvl(a.enterprice_fee, 0)) +
+                       to_number(nvl(a.school_fee, 0)) +
+                       to_number(nvl(a.abroad_fee, 0))),
+                   0) as pro_outercost_sum,
+               nvl(sum(to_number(nvl(a.enterprice_fee, 0))), 0) as enterprice_fee_sum,
+               nvl(sum(to_number(nvl(a.school_fee, 0))), 0) as school_fee_sum,
+               nvl(sum(to_number(nvl(a.abroad_fee, 0))), 0) as abroad_fee_sum,
+               
+               nvl(sum(to_number(nvl(a.equi_price, 0)) +
+                       to_number(nvl(a.building_price, 0))),
+                   0) as fixed_assets_sum,
+               
+               nvl(sum(to_number(nvl(a.equi_price, 0))), 0) as equi_price_sum,
+               
+               nvl(sum(to_number(nvl(a.government_funds, 0))), 0) as government_funds_sum,
+               
+               count(a.project_id) as count_proid_num,
+               nvl(sum(to_number(nvl(a.pseson_cost, 0)) +
+                       to_number(nvl(a.scidenc_service, 0)) +
+                       to_number(nvl(a.work_fee, 0)) +
+                       to_number(nvl(a.design_fee, 0)) +
+                       to_number(nvl(a.degugging_fee, 0)) +
+                       to_number(nvl(a.material_fee, 0)) +
+                       to_number(nvl(a.gas_electricity, 0)) +
+                       to_number(nvl(a.moule_exam, 0)) +
+                       to_number(nvl(a.instrument_equi, 0)) +
+                       to_number(nvl(a.use_building, 0)) +
+                       to_number(nvl(a.equi_rental, 0)) +
+                       to_number(nvl(a.faclities_fee, 0)) +
+                       to_number(nvl(a.technology_fee, 0)) +
+                       to_number(nvl(a.office_fee, 0))),
+                   0) as allpro_innercost_sum
+          from (select id,
+                       project_id,
+                       dept             as platcId,
+                       report_time      as platinId,
+                       years            as yearMonth,
+                       business_income,
+                       pseson_cost,
+                       scidenc_service,
+                       work_fee,
+                       design_fee,
+                       degugging_fee,
+                       material_fee,
+                       gas_electricity,
+                       moule_exam,
+                       instrument_equi,
+                       use_building,
+                       equi_rental,
+                       faclities_fee,
+                       technology_fee,
+                       office_fee,
+                       enterprice_fee,
+                       school_fee,
+                       abroad_fee,
+                       equi_price,
+                       government_funds,
+                       count_person,
+                       report_person,
+                       phone,
+                       building_price
+                  from rpms_science_activity) a
+         where 1 = 1 ${con}),
+       
+       (select count(id) project_talent_num,
+               count(CASE
+                       WHEN sex IN ('0001') THEN
+                        '1'
+                     END) sex_num,
+               count(CASE
+                       WHEN title IN ('0001', '0002', '0003', '0004', '0005') THEN
+                        '1'
+                     END) title_num
+          from (select *
+                  from rpms_research_talent
+                 where id in
+                       (select t.research_talent
+                          from RPMS_PROJECT_TALENT t
+                         where main_id in (select id
+                                             from (select p.id,
+                                                          p.plat_center      as platcId,
+                                                          p.plat_institution as platinId,
+                                                          p.report_time      as yearMonth
+                                                     from RPMS_PROJECT p)
+                                            where 1 = 1 ${con})))
+        
+        ),
+       
+       (select count(CASE
+                       WHEN status in ('0003', '0005', '0006') THEN
+                        '1'
+                     END) zlsb_num,
+               count(CASE
+                       WHEN status in ('0003', '0005', '0006') and TYPE = '0001' THEN
+                        '1'
+                     END) fmzlsb_num
+          from (select zlsb.id               as id,
+                       zlsb.plat_center      as platcId,
+                       zlsb.plat_institution as platinId,
+                       zlsb.apply_date       as yearMonth,
+                       zlsb.type             as type,
+                       zlsb.status           as status
+                  from RPMS_PATENT_APPLICATION zlsb)
+         where 1 = 1 ${con}),
+       
+       (select count(CASE
+                       WHEN status in ('0006') THEN
+                        '1'
+                     END) zlsq_num,
+               count(CASE
+                       WHEN status in ('0006') and TYPE = '0001' THEN
+                        '1'
+                     END) fmzlsq_num
+          from (select zlsq.id               as id,
+                       zlsq.plat_center      as platcId,
+                       zlsq.plat_institution as platinId,
+                       zlsq.privilege_date   as yearMonth,
+                       zlsq.type             as type,
+                       zlsq.status           as status
+                  from RPMS_PATENT_APPLICATION zlsq)
+         where 1 = 1 ${con}),
+       
+       (select count(id) as lwfb_num
+          from (select id,
+                       plat_center      as platcId,
+                       plat_institution as platinId,
+                       pubtime          as yearMonth
+                  from RPMS_RESEARCH_THESIS)
+         where 1 = 1 ${con}),
+       
+       (select count(id) as standar_num
+          from (select id,
+                       plat_center      as platcId,
+                       plat_institution as platinId,
+                       realease_date    as yearMonth
+                  from RPMS_RESEARCH_STANDAR
+                 where grade in ('0001', '0002'))
+         where 1 = 1 ${con}),
+       
+       (select count(id) as platin_num
+          from (select id from rpms_research_plat p where 1 = 1 ${con1})),
+       
+       (select count(id) as plat_talent_num,
+               count(case
+                       when education = '0001' then
+                        '1'
+                     end) as dr_num,
+               count(case
+                       when education = '0002' then
+                        '1'
+                     end) as mr_num,
+               count(case
+                       when education = '0003' then
+                        '1'
+                     end) as sr_num
+          from (select *
+                  from rpms_research_talent t
+                 where t.plat_institution in
+                       ((select id
+                          from rpms_research_plat p
+                         where 1 = 1 ${con1})))),
+       
+       (select sum(to_number(nvl(pseson_cost, 0)) +
+                   to_number(nvl(scidenc_service, 0)) +
+                   to_number(nvl(work_fee, 0)) +
+                   to_number(nvl(design_fee, 0)) +
+                   to_number(nvl(degugging_fee, 0)) +
+                   to_number(nvl(material_fee, 0)) +
+                   to_number(nvl(gas_electricity, 0)) +
+                   to_number(nvl(moule_exam, 0)) +
+                   to_number(nvl(instrument_equi, 0)) +
+                   to_number(nvl(use_building, 0)) +
+                   to_number(nvl(equi_rental, 0)) +
+                   to_number(nvl(faclities_fee, 0)) +
+                   to_number(nvl(technology_fee, 0)) +
+                   to_number(nvl(office_fee, 0)) +
+                   to_number(nvl(enterprice_fee, 0)) +
+                   to_number(nvl(school_fee, 0)) +
+                   to_number(nvl(abroad_fee, 0)) +
+                   to_number(nvl(equi_price, 0)) +
+                   to_number(nvl(building_price, 0)) +
+                   to_number(nvl(government_funds, 0))) as platin_pay,
+               sum(to_number(nvl(equi_price, 0))) as equi_pri_sum
+          from rpms_science_activity
+         where 1 = 1 ${con2})
+]]></property>
+				<property name="beginRow">0</property>
+				<property name="endRow">0</property>
+			</dataSet>
+		</dataSets>
+		<parameters>
+			<parameter name="userName" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc">填报人</property>
+				<property name="valueCalc">false</property>
+			</parameter>
+			<parameter name="userMobile" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc">联系电话</property>
+				<property name="valueCalc">false</property>
+			</parameter>
+			<parameter name="orgName" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc">机构名称</property>
+				<property name="valueCalc">false</property>
+			</parameter>
+			<parameter name="orgCode" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc">机构代码</property>
+				<property name="valueCalc">false</property>
+			</parameter>
+			<parameter name="yearMonth" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc">年度</property>
+				<property name="valueCalc">false</property>
+			</parameter>
+		</parameters>
+		<variables>
+			<variable name="con" type="">
+				<property name="default"></property>
+				<property name="desc">and substr(yearMonth, 1, 4) = &apos;2015&apos; and platcId = &apos;2c9ffa9a4c730acf014c730e00f30002&apos; or platinId = &apos;2c9ffa9a4c730acf014c730e00f30002&apos;</property>
+				<property name="valueCalc">false</property>
+			</variable>
+			<variable name="con1" type="">
+				<property name="default"></property>
+				<property name="desc">and p.parent = &apos;2c9ffa9a4c730f0c014c7367248b0040&apos;</property>
+				<property name="valueCalc">false</property>
+			</variable>
+			<variable name="con2" type="">
+				<property name="default"></property>
+				<property name="desc">and substr(years, 1, 7) = &apos;2015-04&apos;and dept = &apos;2c9ffa9a4c730acf014c730e00f30002&apos;or dept in (select id from rpms_research_plat p where p.parent = &apos;2c9ffa9a4c730acf014c730e00f30002&apos;)</property>
+				<property name="valueCalc">false</property>
+			</variable>
+		</variables>
+	</head>
+	<body>
+		<sheet id="sheet1">
+			<page>
+				<property name="pageRowNum">80</property>
+				<property name="pageColNum">22</property>
+				<property name="margin-left">15</property>
+				<property name="margin-right">15</property>
+			</page>
+			<grid row="80" col="18">
+				<properties>
+					<property name="report-name"><![CDATA[=企业科技活动及相关情况]]></property>
+				</properties>
+				<rows>
+					<row id="1">
+						<property name="height">5</property>
+					</row>
+					<row id="2">
+					</row>
+					<row id="3">
+					</row>
+					<row id="4">
+					</row>
+					<row id="5">
+					</row>
+					<row id="6">
+					</row>
+					<row id="7">
+					</row>
+					<row id="8">
+					</row>
+					<row id="9">
+					</row>
+					<row id="10">
+						<property name="height">36</property>
+					</row>
+					<row id="11">
+					</row>
+					<row id="12">
+					</row>
+					<row id="13">
+					</row>
+					<row id="14">
+					</row>
+					<row id="15">
+					</row>
+					<row id="16">
+					</row>
+					<row id="17">
+					</row>
+					<row id="18">
+					</row>
+					<row id="19">
+					</row>
+					<row id="20">
+					</row>
+					<row id="21">
+					</row>
+					<row id="22">
+					</row>
+					<row id="23">
+					</row>
+					<row id="24">
+					</row>
+					<row id="25">
+					</row>
+					<row id="26">
+					</row>
+					<row id="27">
+					</row>
+					<row id="28">
+					</row>
+					<row id="29">
+					</row>
+					<row id="30">
+					</row>
+					<row id="31">
+					</row>
+					<row id="32">
+					</row>
+					<row id="33">
+					</row>
+					<row id="34">
+					</row>
+					<row id="35">
+					</row>
+					<row id="36">
+					</row>
+					<row id="37">
+					</row>
+					<row id="38">
+					</row>
+					<row id="39">
+					</row>
+					<row id="40">
+					</row>
+					<row id="41">
+					</row>
+					<row id="42">
+					</row>
+					<row id="43">
+					</row>
+					<row id="44">
+					</row>
+					<row id="45">
+					</row>
+					<row id="46">
+					</row>
+					<row id="47">
+					</row>
+					<row id="48">
+					</row>
+					<row id="49">
+					</row>
+					<row id="50">
+					</row>
+					<row id="51">
+					</row>
+					<row id="52">
+					</row>
+					<row id="53">
+					</row>
+					<row id="54">
+					</row>
+					<row id="55">
+					</row>
+					<row id="56">
+					</row>
+					<row id="57">
+					</row>
+					<row id="58">
+					</row>
+					<row id="59">
+					</row>
+					<row id="60">
+					</row>
+					<row id="61">
+					</row>
+					<row id="62">
+					</row>
+					<row id="63">
+					</row>
+					<row id="64">
+					</row>
+					<row id="65">
+					</row>
+					<row id="66">
+					</row>
+					<row id="67">
+					</row>
+					<row id="68">
+					</row>
+					<row id="69">
+					</row>
+					<row id="70">
+					</row>
+					<row id="71">
+					</row>
+					<row id="72">
+					</row>
+					<row id="73">
+					</row>
+					<row id="74">
+					</row>
+					<row id="75">
+						<property name="height">22</property>
+					</row>
+					<row id="76">
+					</row>
+					<row id="77">
+					</row>
+					<row id="78">
+					</row>
+					<row id="79">
+					</row>
+					<row id="80">
+					</row>
+				</rows>
+				<columns>
+					<column id="1">
+						<property name="width">44</property>
+					</column>
+					<column id="2">
+						<property name="width">47</property>
+					</column>
+					<column id="3">
+						<property name="width">42</property>
+					</column>
+					<column id="4">
+						<property name="width">35</property>
+					</column>
+					<column id="5">
+						<property name="width">47</property>
+					</column>
+					<column id="6">
+						<property name="width">47</property>
+					</column>
+					<column id="7">
+						<property name="width">46</property>
+					</column>
+					<column id="8">
+						<property name="width">22</property>
+					</column>
+					<column id="9">
+						<property name="width">55</property>
+					</column>
+					<column id="10">
+						<property name="width">33</property>
+					</column>
+					<column id="11">
+						<property name="width">45</property>
+					</column>
+					<column id="12">
+						<property name="width">47</property>
+					</column>
+					<column id="13">
+						<property name="width">47</property>
+					</column>
+					<column id="14">
+						<property name="width">52</property>
+					</column>
+					<column id="15">
+						<property name="width">50</property>
+					</column>
+					<column id="16">
+						<property name="width">50</property>
+					</column>
+					<column id="17">
+						<property name="width">51</property>
+					</column>
+					<column id="18">
+						<property name="width">41</property>
+					</column>
+				</columns>
+				<cells>
+					<cell id="1,1" type="0" colspan="18" >
+					</cell>
+					<cell id="2,1" type="0" >
+					</cell>
+					<cell id="2,2" type="0" colspan="16" >
+						<property name="value"><![CDATA[企业科技活动及相关情况]]></property>
+						<property name="font-size">14</property>
+						<property name="bold">0</property>
+					</cell>
+					<cell id="2,18" type="0" >
+					</cell>
+					<cell id="3,1" type="0" >
+					</cell>
+					<cell id="3,2" type="0" >
+					</cell>
+					<cell id="3,3" type="0" >
+					</cell>
+					<cell id="3,4" type="0" >
+					</cell>
+					<cell id="3,5" type="0" >
+					</cell>
+					<cell id="3,6" type="0" >
+					</cell>
+					<cell id="3,7" type="0" >
+					</cell>
+					<cell id="3,8" type="0" >
+					</cell>
+					<cell id="3,9" type="0" >
+						<property name="value"><![CDATA[报告期：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="3,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[=@yearMonth]]></property>
+						<property name="align">0</property>
+					</cell>
+					<cell id="3,12" type="0" colspan="6" >
+					</cell>
+					<cell id="3,18" type="0" >
+					</cell>
+					<cell id="4,1" type="0" colspan="17" >
+					</cell>
+					<cell id="4,18" type="0" >
+					</cell>
+					<cell id="5,1" type="0" >
+					</cell>
+					<cell id="5,2" type="0" colspan="3" >
+						<property name="value"><![CDATA[单位详细名称：]]></property>
+						<property name="align">0</property>
+					</cell>
+					<cell id="5,5" type="0" colspan="5" >
+						<property name="value"><![CDATA[=@orgName]]></property>
+						<property name="underline">0</property>
+						<property name="align">0</property>
+					</cell>
+					<cell id="5,10" type="0" >
+					</cell>
+					<cell id="5,11" type="0" >
+					</cell>
+					<cell id="5,12" type="0" >
+					</cell>
+					<cell id="5,13" type="0" colspan="2" >
+						<property name="value"><![CDATA[表    号：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="5,15" type="0" colspan="3" >
+						<property name="value"><![CDATA[B107-2表]]></property>
+						<property name="align">0</property>
+					</cell>
+					<cell id="5,18" type="0" >
+					</cell>
+					<cell id="6,1" type="0" >
+					</cell>
+					<cell id="6,2" type="0" colspan="3" >
+						<property name="value"><![CDATA[组织机构代码：]]></property>
+						<property name="align">0</property>
+					</cell>
+					<cell id="6,5" type="0" colspan="3" >
+						<property name="value"><![CDATA[=@orgCode]]></property>
+						<property name="underline">0</property>
+						<property name="align">0</property>
+					</cell>
+					<cell id="6,8" type="0" >
+					</cell>
+					<cell id="6,9" type="0" >
+					</cell>
+					<cell id="6,10" type="0" >
+					</cell>
+					<cell id="6,11" type="0" >
+					</cell>
+					<cell id="6,12" type="0" >
+					</cell>
+					<cell id="6,13" type="0" colspan="2" >
+						<property name="value"><![CDATA[制定机关：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="6,15" type="0" colspan="3" >
+						<property name="value"><![CDATA[国家统计局]]></property>
+						<property name="align">0</property>
+					</cell>
+					<cell id="6,18" type="0" >
+					</cell>
+					<cell id="7,1" type="0" >
+					</cell>
+					<cell id="7,2" type="0" colspan="7" >
+						<property name="value"><![CDATA[是否为高新技术产业开发区内企业或区外认定的]]></property>
+						<property name="align">0</property>
+					</cell>
+					<cell id="7,9" type="0" >
+					</cell>
+					<cell id="7,10" type="0" >
+					</cell>
+					<cell id="7,11" type="0" >
+					</cell>
+					<cell id="7,12" type="0" >
+					</cell>
+					<cell id="7,13" type="0" colspan="2" >
+						<property name="value"><![CDATA[文    号：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="7,15" type="0" colspan="3" >
+						<property name="value"><![CDATA[国统字(2010)87号]]></property>
+						<property name="align">0</property>
+					</cell>
+					<cell id="7,18" type="0" >
+					</cell>
+					<cell id="8,1" type="0" >
+					</cell>
+					<cell id="8,2" type="0" colspan="7" >
+						<property name="value"><![CDATA[高新技术企业：1.是  2.否]]></property>
+						<property name="align">0</property>
+					</cell>
+					<cell id="8,9" type="0" >
+						<property name="value"><![CDATA[             ]]></property>
+						<property name="underline">0</property>
+					</cell>
+					<cell id="8,10" type="0" >
+					</cell>
+					<cell id="8,11" type="0" >
+					</cell>
+					<cell id="8,12" type="0" >
+					</cell>
+					<cell id="8,13" type="0" colspan="2" >
+						<property name="value"><![CDATA[有效期至：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="8,15" type="0" colspan="3" >
+						<property name="value"><![CDATA[20  年   月]]></property>
+						<property name="align">0</property>
+					</cell>
+					<cell id="8,18" type="0" >
+					</cell>
+					<cell id="9,1" type="0" >
+					</cell>
+					<cell id="9,2" type="0" colspan="16" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="9,18" type="0" >
+					</cell>
+					<cell id="10,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="10,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[指标名称]]></property>
+						<property name="background"><![CDATA[='238,238,238']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="10,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[计量单位]]></property>
+						<property name="background"><![CDATA[='238,238,238']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="10,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[代码]]></property>
+						<property name="background"><![CDATA[='238,238,238']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="10,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[本年实际]]></property>
+						<property name="background"><![CDATA[='238,238,238']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="10,18" type="0" >
+					</cell>
+					<cell id="11,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="11,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[甲]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="11,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[乙]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="11,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[丙]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="11,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[1]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="11,18" type="0" >
+					</cell>
+					<cell id="12,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="12,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[一、企业基本情况]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="12,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="12,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="12,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="12,18" type="0" >
+					</cell>
+					<cell id="13,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="13,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[△1.年末从业人员数]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="13,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[人]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="13,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[1]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="13,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="13,18" type="0" >
+					</cell>
+					<cell id="14,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="14,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[△2.主营业务收入]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="14,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="14,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[2]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="14,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(MAIN_INCOME_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="14,18" type="0" >
+					</cell>
+					<cell id="15,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="15,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[二、科技活动人员情况]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="15,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="15,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="15,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="15,18" type="0" >
+					</cell>
+					<cell id="16,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="16,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[科技活动人员合计]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="16,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[人]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="16,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[3]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="16,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(PROJECT_TALENT_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="16,18" type="0" >
+					</cell>
+					<cell id="17,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="17,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[其中：1.参加科技项目人员]]></property>
+						<property name="align">0</property>
+						<property name="indent">40</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="17,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[人]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="17,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[4]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="17,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="17,18" type="0" >
+					</cell>
+					<cell id="18,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="18,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[2.科技管理和服务人员]]></property>
+						<property name="align">0</property>
+						<property name="indent">79</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="18,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[人]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="18,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[5]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="18,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="18,18" type="0" >
+					</cell>
+					<cell id="19,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="19,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[其中：女性]]></property>
+						<property name="align">0</property>
+						<property name="indent">40</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="19,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[人]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="19,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[6]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="19,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(SEX_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="19,18" type="0" >
+					</cell>
+					<cell id="20,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="20,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[其中：高中级技术职称人员]]></property>
+						<property name="align">0</property>
+						<property name="indent">40</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="20,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[人]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="20,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[7]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="20,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(TITLE_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="20,18" type="0" >
+					</cell>
+					<cell id="21,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="21,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[其中：全时人员]]></property>
+						<property name="align">0</property>
+						<property name="indent">40</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="21,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[人]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="21,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[8]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="21,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="21,18" type="0" >
+					</cell>
+					<cell id="22,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="22,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[三、科技活动费用情况]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="22,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="22,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="22,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="22,18" type="0" >
+					</cell>
+					<cell id="23,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="23,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[（一）企业内部用于科技活动的经费支出]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="23,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="23,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[9]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="23,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(PRO_INNERCOST_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="23,18" type="0" >
+					</cell>
+					<cell id="24,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="24,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[1.人员人工费（包含各种补贴） ]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="24,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="24,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[10]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="24,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(PSESON_COST_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="24,18" type="0" >
+					</cell>
+					<cell id="25,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="25,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[2.原材料费 ]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="25,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="25,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[11]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="25,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(MATERIAL_COST_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="25,18" type="0" >
+					</cell>
+					<cell id="26,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="26,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[3.折旧费用与长期费用摊销]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="26,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="26,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[12]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="26,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(DEPRECIATION_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="26,18" type="0" >
+					</cell>
+					<cell id="27,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="27,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[4.无形资产摊销]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="27,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="27,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[13]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="27,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(INTANGIBLE_COST_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="27,18" type="0" >
+					</cell>
+					<cell id="28,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="28,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[5.其他费用]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="28,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="28,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[14]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="28,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(OTHER_COST_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="28,18" type="0" >
+					</cell>
+					<cell id="29,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="29,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[（二）委托外单位开展科技活动的经费支出]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="29,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="29,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[15]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="29,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(PRO_OUTERCOST_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="29,18" type="0" >
+					</cell>
+					<cell id="30,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="30,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[其中：对境内研究机构支出]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="30,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="30,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[16]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="30,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(ENTERPRICE_FEE_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="30,18" type="0" >
+					</cell>
+					<cell id="31,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="31,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[对境内高等学校支出 ]]></property>
+						<property name="align">0</property>
+						<property name="indent">93</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="31,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="31,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[17]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="31,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(SCHOOL_FEE_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="31,18" type="0" >
+					</cell>
+					<cell id="32,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="32,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[对境外支出]]></property>
+						<property name="align">0</property>
+						<property name="indent">93</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="32,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="32,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[18]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="32,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(ABROAD_FEE_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="32,18" type="0" >
+					</cell>
+					<cell id="33,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="33,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[（三）当年形成用于科技活动的固定资产]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="33,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="33,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[19]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="33,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(FIXED_ASSETS_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="33,18" type="0" >
+					</cell>
+					<cell id="34,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="34,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[其中：仪器和设备]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="34,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="34,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[20]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="34,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(EQUI_PRICE_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="34,18" type="0" >
+					</cell>
+					<cell id="35,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="35,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[（四）使用来自政府部门的科技活动资金]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="35,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="35,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[21]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="35,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(GOVERNMENT_FUNDS_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="35,18" type="0" >
+					</cell>
+					<cell id="36,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="36,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[四、科技项目情况]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="36,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="36,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="36,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="36,18" type="0" >
+					</cell>
+					<cell id="37,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="37,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[1.全部科技项目数]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="37,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[项]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="37,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[22]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="37,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(COUNT_PROID_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="37,18" type="0" >
+					</cell>
+					<cell id="38,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="38,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[2.全部科技项目经费内部支出]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="38,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="38,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[23]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="38,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(ALLPRO_INNERCOST_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="38,18" type="0" >
+					</cell>
+					<cell id="39,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="39,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[五、企业办科技机构情况]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="39,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="39,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="39,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="39,18" type="0" >
+					</cell>
+					<cell id="40,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="40,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[1.机构数]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="40,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[个]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="40,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[24]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="40,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(PLATIN_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="40,18" type="0" >
+					</cell>
+					<cell id="41,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="41,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[2.机构人员合计]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="41,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[人]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="41,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[25]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="41,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(PLAT_TALENT_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="41,18" type="0" >
+					</cell>
+					<cell id="42,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="42,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[其中：博士毕业]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="42,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[人]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="42,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[26]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="42,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(DR_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="42,18" type="0" >
+					</cell>
+					<cell id="43,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="43,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[硕士毕业]]></property>
+						<property name="align">0</property>
+						<property name="indent">95</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="43,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[人]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="43,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[27]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="43,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(MR_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="43,18" type="0" >
+					</cell>
+					<cell id="44,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="44,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[本科毕业]]></property>
+						<property name="align">0</property>
+						<property name="indent">95</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="44,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[人]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="44,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[28]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="44,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(SR_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="44,18" type="0" >
+					</cell>
+					<cell id="45,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="45,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[3.机构经费支出]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="45,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="45,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[29]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="45,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(PLATIN_PAY)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="45,18" type="0" >
+					</cell>
+					<cell id="46,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="46,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[4.仪器和设备原价]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="46,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="46,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[30]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="46,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(EQUI_PRI_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="46,18" type="0" >
+					</cell>
+					<cell id="47,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="47,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[其中：进口]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="47,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="47,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[31]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="47,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="47,18" type="0" >
+					</cell>
+					<cell id="48,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="48,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[六、科技活动产出及相关情况]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="48,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="48,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="48,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="48,18" type="0" >
+					</cell>
+					<cell id="49,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="49,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[(一）自主知识产权情况]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="49,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="49,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="49,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="49,18" type="0" >
+					</cell>
+					<cell id="50,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="50,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[1.专利申请数]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="50,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[件]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="50,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[32]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="50,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(ZLSB_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="50,18" type="0" >
+					</cell>
+					<cell id="51,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="51,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[其中：发明专利]]></property>
+						<property name="align">0</property>
+						<property name="indent">85</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="51,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[件]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="51,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[33]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="51,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(FMZLSB_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="51,18" type="0" >
+					</cell>
+					<cell id="52,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="52,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[2.有效发明专利数]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="52,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[件]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="52,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[34]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="52,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(FMZLSQ_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="52,18" type="0" >
+					</cell>
+					<cell id="53,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="53,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[其中：境外授权]]></property>
+						<property name="align">0</property>
+						<property name="indent">85</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="53,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[件]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="53,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[35]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="53,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="53,18" type="0" >
+					</cell>
+					<cell id="54,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="54,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[3.专利所有权转让及许可数]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="54,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[件]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="54,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[36]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="54,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="54,18" type="0" >
+					</cell>
+					<cell id="55,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="55,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[4.专利所有权转让及许可收入]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="55,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="55,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[37]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="55,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="55,18" type="0" >
+					</cell>
+					<cell id="56,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="56,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[（二）新产品生产及销售情况]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="56,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="56,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="56,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="56,18" type="0" >
+					</cell>
+					<cell id="57,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="57,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[*1.新产品产值]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="57,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="57,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[38]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="57,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="57,18" type="0" >
+					</cell>
+					<cell id="58,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="58,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[*2.新产品销售收入]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="58,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="58,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[39]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="58,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="58,18" type="0" >
+					</cell>
+					<cell id="59,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="59,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[* 其中：出口]]></property>
+						<property name="align">0</property>
+						<property name="indent">85</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="59,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="59,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[40]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="59,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="59,18" type="0" >
+					</cell>
+					<cell id="60,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="60,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[（三）其他情况]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="60,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="60,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="60,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="60,18" type="0" >
+					</cell>
+					<cell id="61,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="61,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[1.发表科技论文]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="61,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[篇]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="61,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[41]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="61,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(LWFB_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="61,18" type="0" >
+					</cell>
+					<cell id="62,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="62,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[*2.拥有注册商标]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="62,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[件]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="62,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[42]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="62,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="62,18" type="0" >
+					</cell>
+					<cell id="63,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="63,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[* 其中：境外注册]]></property>
+						<property name="align">0</property>
+						<property name="indent">85</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="63,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[件]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="63,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[43]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="63,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="63,18" type="0" >
+					</cell>
+					<cell id="64,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="64,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[3.形成国家或行业标准]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="64,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[项]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="64,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[44]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="64,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[=sum.select(STANDAR_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="64,18" type="0" >
+					</cell>
+					<cell id="65,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="65,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[七、其他相关情况]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="65,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="65,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="65,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="65,18" type="0" >
+					</cell>
+					<cell id="66,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="66,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[（一）政府相关政策落实情况]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="66,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="66,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="66,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="66,18" type="0" >
+					</cell>
+					<cell id="67,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="67,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[1.研究开发费用加计扣除减免税]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="67,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="67,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[45]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="67,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="67,18" type="0" >
+					</cell>
+					<cell id="68,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="68,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[2.高新技术企业减免税]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="68,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="68,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[46]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="68,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="68,18" type="0" >
+					</cell>
+					<cell id="69,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="69,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[（二）技术获取和技术改造情况]]></property>
+						<property name="align">0</property>
+						<property name="indent">25</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="69,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="69,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="69,14" type="0" colspan="4" >
+						<property name="value"><![CDATA[-]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="69,18" type="0" >
+					</cell>
+					<cell id="70,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="70,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[1.引进国外技术经费支出]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="70,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="70,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[47]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="70,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="70,18" type="0" >
+					</cell>
+					<cell id="71,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="71,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[2.引进技术的消化吸收经费支出]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="71,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="71,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[48]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="71,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="71,18" type="0" >
+					</cell>
+					<cell id="72,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="72,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[3.购买国内技术经费支出]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="72,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="72,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[49]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="72,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="72,18" type="0" >
+					</cell>
+					<cell id="73,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="73,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[4.技术改造经费支出]]></property>
+						<property name="align">0</property>
+						<property name="indent">55</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="73,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[千元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="73,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[50]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="73,14" type="0" colspan="4" >
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="73,18" type="0" >
+					</cell>
+					<cell id="74,1" type="0" >
+					</cell>
+					<cell id="74,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[补充资料：企业在境外设立的科技活动机构数合计]]></property>
+					</cell>
+					<cell id="74,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[（51）个]]></property>
+					</cell>
+					<cell id="74,12" type="0" >
+					</cell>
+					<cell id="74,13" type="0" >
+					</cell>
+					<cell id="74,14" type="0" >
+					</cell>
+					<cell id="74,15" type="0" >
+					</cell>
+					<cell id="74,16" type="0" >
+					</cell>
+					<cell id="74,17" type="0" >
+					</cell>
+					<cell id="74,18" type="0" >
+					</cell>
+					<cell id="75,1" type="0" >
+					</cell>
+					<cell id="75,2" type="0" >
+					</cell>
+					<cell id="75,3" type="0" >
+					</cell>
+					<cell id="75,4" type="0" >
+					</cell>
+					<cell id="75,5" type="0" >
+					</cell>
+					<cell id="75,6" type="0" >
+					</cell>
+					<cell id="75,7" type="0" >
+					</cell>
+					<cell id="75,8" type="0" >
+					</cell>
+					<cell id="75,9" type="0" >
+					</cell>
+					<cell id="75,10" type="0" >
+					</cell>
+					<cell id="75,11" type="0" >
+					</cell>
+					<cell id="75,12" type="0" >
+					</cell>
+					<cell id="75,13" type="0" >
+					</cell>
+					<cell id="75,14" type="0" >
+					</cell>
+					<cell id="75,15" type="0" >
+					</cell>
+					<cell id="75,16" type="0" >
+					</cell>
+					<cell id="75,17" type="0" >
+					</cell>
+					<cell id="75,18" type="0" >
+					</cell>
+					<cell id="76,1" type="0" >
+					</cell>
+					<cell id="76,2" type="0" colspan="2" >
+						<property name="value"><![CDATA[单位负责人：]]></property>
+					</cell>
+					<cell id="76,4" type="0" colspan="2" >
+					</cell>
+					<cell id="76,6" type="0" colspan="2" >
+						<property name="value"><![CDATA[统计负责人：]]></property>
+					</cell>
+					<cell id="76,8" type="0" colspan="2" >
+					</cell>
+					<cell id="76,10" type="0" colspan="2" >
+						<property name="value"><![CDATA[填表人：]]></property>
+					</cell>
+					<cell id="76,12" type="0" colspan="2" >
+						<property name="value"><![CDATA[=@userName]]></property>
+					</cell>
+					<cell id="76,14" type="0" colspan="2" >
+						<property name="value"><![CDATA[联系电话：]]></property>
+					</cell>
+					<cell id="76,16" type="0" colspan="2" >
+						<property name="value"><![CDATA[=@userMobile]]></property>
+					</cell>
+					<cell id="76,18" type="0" >
+					</cell>
+					<cell id="77,1" type="0" >
+					</cell>
+					<cell id="77,2" type="0" >
+					</cell>
+					<cell id="77,3" type="0" >
+					</cell>
+					<cell id="77,4" type="0" >
+					</cell>
+					<cell id="77,5" type="0" >
+					</cell>
+					<cell id="77,6" type="0" >
+					</cell>
+					<cell id="77,7" type="0" >
+					</cell>
+					<cell id="77,8" type="0" >
+					</cell>
+					<cell id="77,9" type="0" >
+					</cell>
+					<cell id="77,10" type="0" >
+					</cell>
+					<cell id="77,11" type="0" >
+					</cell>
+					<cell id="77,12" type="0" >
+					</cell>
+					<cell id="77,13" type="0" >
+					</cell>
+					<cell id="77,14" type="0" >
+					</cell>
+					<cell id="77,15" type="0" >
+					</cell>
+					<cell id="77,16" type="0" >
+					</cell>
+					<cell id="77,17" type="0" >
+					</cell>
+					<cell id="77,18" type="0" >
+					</cell>
+					<cell id="78,1" type="0" >
+					</cell>
+					<cell id="78,2" type="0" >
+					</cell>
+					<cell id="78,3" type="0" >
+					</cell>
+					<cell id="78,4" type="0" >
+					</cell>
+					<cell id="78,5" type="0" >
+					</cell>
+					<cell id="78,6" type="0" >
+					</cell>
+					<cell id="78,7" type="0" >
+					</cell>
+					<cell id="78,8" type="0" >
+					</cell>
+					<cell id="78,9" type="0" >
+					</cell>
+					<cell id="78,10" type="0" >
+					</cell>
+					<cell id="78,11" type="0" >
+					</cell>
+					<cell id="78,12" type="0" >
+					</cell>
+					<cell id="78,13" type="0" >
+					</cell>
+					<cell id="78,14" type="0" >
+					</cell>
+					<cell id="78,15" type="0" >
+					</cell>
+					<cell id="78,16" type="0" >
+					</cell>
+					<cell id="78,17" type="0" >
+					</cell>
+					<cell id="78,18" type="0" >
+					</cell>
+					<cell id="79,1" type="0" >
+					</cell>
+					<cell id="79,2" type="0" >
+					</cell>
+					<cell id="79,3" type="0" >
+					</cell>
+					<cell id="79,4" type="0" >
+					</cell>
+					<cell id="79,5" type="0" >
+					</cell>
+					<cell id="79,6" type="0" >
+					</cell>
+					<cell id="79,7" type="0" >
+					</cell>
+					<cell id="79,8" type="0" >
+					</cell>
+					<cell id="79,9" type="0" >
+					</cell>
+					<cell id="79,10" type="0" >
+					</cell>
+					<cell id="79,11" type="0" >
+					</cell>
+					<cell id="79,12" type="0" >
+					</cell>
+					<cell id="79,13" type="0" >
+					</cell>
+					<cell id="79,14" type="0" >
+					</cell>
+					<cell id="79,15" type="0" >
+					</cell>
+					<cell id="79,16" type="0" >
+					</cell>
+					<cell id="79,17" type="0" >
+					</cell>
+					<cell id="79,18" type="0" >
+					</cell>
+					<cell id="80,1" type="0" >
+					</cell>
+					<cell id="80,2" type="0" >
+					</cell>
+					<cell id="80,3" type="0" >
+					</cell>
+					<cell id="80,4" type="0" >
+					</cell>
+					<cell id="80,5" type="0" >
+					</cell>
+					<cell id="80,6" type="0" >
+					</cell>
+					<cell id="80,7" type="0" >
+					</cell>
+					<cell id="80,8" type="0" >
+					</cell>
+					<cell id="80,9" type="0" >
+					</cell>
+					<cell id="80,10" type="0" >
+					</cell>
+					<cell id="80,11" type="0" >
+					</cell>
+					<cell id="80,12" type="0" >
+					</cell>
+					<cell id="80,13" type="0" >
+					</cell>
+					<cell id="80,14" type="0" >
+					</cell>
+					<cell id="80,15" type="0" >
+					</cell>
+					<cell id="80,16" type="0" >
+					</cell>
+					<cell id="80,17" type="0" >
+					</cell>
+					<cell id="80,18" type="0" >
+					</cell>
+				</cells>
+			</grid>
+		</sheet>
+	</body>
+</report>

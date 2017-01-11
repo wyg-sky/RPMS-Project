@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+.dom-flow {background-image: url(process_definition_enabled.gif) !important;}
+.dom-nodes {background-image: url(node_elements_multiple.gif) !important;}
+.dom-tasks {background-image: url(tasks_multiple.gif) !important;}
+.dom-events {background-image: url(events_multiple.gif) !important;}
+.dom-trans{background-image: url(transitions_multiple.gif) !important;}
+
+
+.dom-start{background-image: url(start_page_enabled.gif) !important;}
+.dom-node{background-image: url(node_enabled.gif) !important;}
+.dom-end{background-image: url(end_state_enabled.gif) !important;}
+.dom-fork{background-image: url(fork_enabled.gif) !important;}
+.dom-decision{background-image: url(decision_enabled.gif) !important;}
+.dom-join{background-image: url(join_enabled.gif) !important;}
+.dom-tran{background-image: url(transition_enabled.gif) !important;}
+
+.dom-task{background-image: url(task_enabled.gif) !important;}
+.dom-event{background-image: url(event_enabled.gif) !important;}
+.dom-action{background-image: url(action_enabled.gif) !important;}
+
+.add-dom-task{background-image: url(new_task_enabled.gif) !important;}
+.add-dom-event{background-image: url(new_event_enabled.gif) !important;}
+.add-dom-action{background-image: url(new_action_enabled.gif) !important;}
+
+.dom-delete{background-image: url(delete_enabled.gif) !important;}
+
+
+

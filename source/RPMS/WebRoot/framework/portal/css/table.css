@@ -1,0 +1,57 @@
+@CHARSET "UTF-8";
+/*主页表格样式*/
+.grid {
+	left:1%;
+	color:black;
+	width:100%;
+	
+	border: 1px solid #d1d1d1;
+	border-width: 1px 0 0 1px;
+	margin: 2px 0 2px 0;
+	text-align: center;
+	border-collapse: collapse;
+}
+.grid tr td,th {
+	padding: 3px;
+	font-size: 12px;
+	border: 1px solid #d1d1d1;
+	border-width: 0 1px 1px 0;
+	margin: 2px 0 2px 0;
+	text-align: left;
+}
+.grid tr th {
+	text-align: center;
+	font-weight: 600;
+	background: url("images/table-topbg.jpg") repeat-x;
+}
+
+/*二级页面表格样式*/
+.childgrid{
+	background:white;
+	color:black;
+	width:99%;
+	border: 1px solid #d1d1d1;
+	margin: 2px 0 0px 0;
+	text-align: center;
+	border-collapse: collapse;
+}
+.childgrid tr td,th {
+	height:16px;
+	line-height:16px;
+	padding: 3px;
+	font-size: 12px;
+	border: 1px solid #d1d1d1;
+	border-width: 0 1px 1px 0;
+	margin: 2px 0 2px 0;
+}
+.childgrid tr th {
+	height:25px;
+	text-align: center;
+	font-weight: 600;
+	background: url("images/table-topbg.jpg") repeat-x;
+}
+
+.childgrid tr td a{
+	text-align:center;
+	color: blue;
+}

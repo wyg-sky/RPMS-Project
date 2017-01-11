@@ -1,0 +1,43 @@
+<uicfg desc="消息类型管理编辑">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">680</winWidth>
+	<component>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>system/notice/noticetype/editform</viewPath>
+		</items>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>system/notice/noticetype/edittbar</viewPath>
+		</items>
+		<items>
+			<object>listlineTbar</object>
+			<hidden type="object">!this.editable</hidden>
+			<xtype>liontoolbar</xtype>
+			<viewPath>system/notice/noticetype/listlinetbar</viewPath>
+		</items>
+		<items>
+			<object>dataLineGrid</object>
+			<isLine type="boolean">true</isLine>
+			<fkName>noticeTypesObj.id</fkName>
+			<lineName>roles</lineName>
+			<autoMain type="boolean">false</autoMain>
+			<runMode>2</runMode>
+			<xtype>lioneditorgrid</xtype>
+			<viewPath>system/role/listgrid</viewPath>
+			<height type="object">150</height>
+			<border type="boolean">false</border>
+			<allowPage type="boolean">false</allowPage>
+			<showEditButton type="boolean">false</showEditButton>
+			<showCopyButton type="boolean">false</showCopyButton>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+		<items>listlineTbar</items>
+		<items>dataLineGrid</items>
+	</container>
+</uicfg>

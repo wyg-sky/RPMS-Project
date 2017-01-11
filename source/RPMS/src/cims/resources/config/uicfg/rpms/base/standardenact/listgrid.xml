@@ -1,0 +1,192 @@
+<uicfg desc="标准制定管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>platCenter asc,enactDate desc</orderBy>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<statusCtrl>
+        <field>isIssue</field>
+        <value>0001</value>
+        <text>[是否颁布]为：”是“</text>
+    </statusCtrl>
+	<store>
+		<url>rpms/listStandardEnact.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+            <name>platCenter.id</name>
+        </fields>
+        <fields>
+            <name>platCenter.platName</name>
+        </fields>
+        <fields>
+            <name>platInstitution.id</name>
+        </fields>
+        <fields>
+            <name>platInstitution.platName</name>
+        </fields>
+        <fields>
+            <name>specialty.id</name>
+        </fields>
+        <fields>
+            <name>specialty.specialtyName</name>
+        </fields>
+        <fields>
+            <name>business.id</name>
+        </fields>
+        <fields>
+            <name>business.specialtyName</name>
+        </fields>
+		<fields>
+			<name>standardName</name>
+		</fields>
+		<fields>
+			<name>grade</name>
+		</fields>
+		<fields>
+			<name>type</name>
+		</fields>
+		<fields>
+			<name>standarStatus</name>
+		</fields>
+		<fields>
+			<name>enactDate</name>
+		</fields>
+		<fields>
+			<name>fundUse</name>
+		</fields>
+		<fields>
+			<name>enactDesc</name>
+		</fields>
+		<fields>
+			<name>presideOrPart</name>
+		</fields>
+		<fields>
+			<name>isIssue</name>
+		</fields>
+		<fields>
+			<name>issueDate</name>
+		</fields>
+		<fields>
+			<name>carryOutDate</name>
+		</fields>
+		<fields>
+			<name>standardNum</name>
+		</fields>
+		<fields>
+			<name>valid</name>
+		</fields>
+		<fields>
+            <name>organization.id</name>
+        </fields>
+        <fields>
+            <name>organization.name</name>
+        </fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+            <header>分中心</header>
+            <dataIndex>platCenter.platName</dataIndex>
+            <width type="object">160</width>
+        </columns>
+        <columns>
+            <header>分中心机构</header>
+            <dataIndex>platInstitution.platName</dataIndex>
+            <width type="object">130</width>
+        </columns>
+        <columns>
+            <header>专业</header>
+            <dataIndex>specialty.specialtyName</dataIndex>
+            <width type="object">80</width>
+        </columns>
+        <columns>
+            <header>业务</header>
+            <dataIndex>business.specialtyName</dataIndex>
+            <width type="object">80</width>
+        </columns>
+		<columns>
+			<header>标准名称</header>
+			<dataIndex>standardName</dataIndex>
+			<width type="object">100</width>
+		</columns>
+		<columns>
+			<header>标准等级</header>
+			<keyType>rpms_standar_rank</keyType>
+            <width type="object">50</width>
+			<dataIndex>grade</dataIndex>
+		</columns>
+		<columns>
+			<header>标准类别</header>
+			<keyType>rpms_standar_type</keyType>
+            <width type="object">50</width>
+			<dataIndex>type</dataIndex>
+		</columns>
+		<columns>
+			<header>标准状态</header>
+			<dataIndex>standarStatus</dataIndex>
+			<keyType>rpms_standar_status</keyType>
+			<width type="object">60</width>
+		</columns>
+		<columns>
+			<header>修订时间</header>
+			<dataIndex>enactDate</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>资金使用情况</header>
+			<dataIndex>fundUse</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>主持或参与</header>
+			<dataIndex>presideOrPart</dataIndex>
+			<keyType>rpms_presideOrPart</keyType>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>是否颁布</header>
+			<dataIndex>isIssue</dataIndex>
+			<keyType>cims_publish_status</keyType>
+            <width type="object">50</width>
+		</columns>
+		<columns>
+			<header>颁布日期</header>
+			<dataIndex>issueDate</dataIndex>
+			<width type="object">65</width>
+		</columns>
+		<columns>
+			<header>实施时间</header>
+			<dataIndex>carryOutDate</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>标准号</header>
+			<dataIndex>standardNum</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>是否有效</header>
+			<dataIndex>valid</dataIndex>
+			<keyType>cims_effective</keyType>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+            <header>组织单位</header>
+            <dataIndex>organization.name</dataIndex>
+            <hidden type="object">true</hidden>
+        </columns>
+        <columns>
+            <header>编制说明</header>
+            <dataIndex>enactDesc</dataIndex>
+            <hidden type="object">true</hidden>
+        </columns>
+	</cm>
+</uicfg>

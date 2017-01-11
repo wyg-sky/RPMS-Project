@@ -1,0 +1,18 @@
+<uicfg desc="生成页面编辑表单">
+	<columns type="object">1</columns>
+	<submitUrl>system/saveFileByViewPath.html</submitUrl>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>viewPath</name>
+		<fieldLabel>文件路径</fieldLabel>
+		<hidden type="boolean">true</hidden>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>fileContent</name>
+		<fieldLabel>文件内容</fieldLabel>
+		<height type="integer">500</height>
+		<allowBlank type="boolean">false</allowBlank>
+		<columnWidth type="integer">1</columnWidth>
+	</items>
+</uicfg>

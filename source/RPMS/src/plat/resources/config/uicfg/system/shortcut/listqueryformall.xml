@@ -1,0 +1,24 @@
+<uicfg desc="快捷方式管理查询字段">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>type</name>
+		<fieldLabel>类型</fieldLabel>
+		<keyType>sys_shortcut_type</keyType>
+		<operator>=</operator>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>name</name>
+		<fieldLabel>名称</fieldLabel>
+	</items>
+</uicfg>

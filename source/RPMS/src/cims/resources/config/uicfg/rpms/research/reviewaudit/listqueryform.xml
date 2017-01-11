@@ -1,0 +1,64 @@
+<uicfg desc="项目验收管理查询表单">
+    <columns type="integer">4</columns>
+    <autoHeight type="boolean">true</autoHeight>
+    <defaultFunction type="object">this.manager.query</defaultFunction>
+    <defaultScope type="object">this.manager</defaultScope>
+    <defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">100</labelWidth>
+    </defaults>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>项目登记编号</fieldLabel>
+        <name>projectId</name>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>项目名称</fieldLabel>
+        <name>projectId.projectName</name>
+    </items>
+    <items>
+        <xtype>orgtree</xtype>
+        <fieldLabel>单位</fieldLabel>
+        <propertyName>organization</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <hidden type="object">false</hidden>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>机构</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+    <items>
+        <xtype>lionmonthfield</xtype>
+        <fieldLabel>评议时间</fieldLabel>
+        <name>certificationDate</name>
+        <format>Y-m</format>
+        <allowBlank type="boolean">true</allowBlank>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>状态</fieldLabel>
+        <name>status</name>
+        <keyType>rpms_status</keyType>
+    </items>
+</uicfg>

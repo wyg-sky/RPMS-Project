@@ -1,0 +1,35 @@
+<uicfg desc="单位概况管理查询表单">
+	<columns type="integer">5</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>省份</fieldLabel>
+        <name>shengfen</name>
+        <keyType>cims_city</keyType>
+    </items>
+	<items>
+        <xtype>plattree</xtype>
+        <propertyName>centerPlat</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+	<items>
+        <xtype>lioncomboboxyearfield</xtype>
+        <name>year</name>
+        <fieldLabel>年度</fieldLabel>
+        <format>Y</format>
+    </items>
+	<items>
+		<xtype>lionmonthfield</xtype>
+		<name>month</name>
+		<fieldLabel>月度</fieldLabel>
+		<format>Y-m</format>
+	</items>
+</uicfg>

@@ -1,0 +1,34 @@
+<uicfg desc="生成页面编辑">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">650</winWidth>
+	<component>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>code/generatepage/editform</viewPath>
+		</items>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>code/generatepage/edittbar</viewPath>
+		</items>
+		<items>
+			<object>listtlinebar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>code/generatepage/listtlinebar</viewPath>
+		</items>
+		<items>
+			<object>dataLineGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<isLine type="boolean">true</isLine>
+			<height type="integer">200</height>
+			<viewPath>code/generatepage/listlinegrid</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+		<items>listtlinebar</items>
+		<items>dataLineGrid</items>
+	</container>
+</uicfg>

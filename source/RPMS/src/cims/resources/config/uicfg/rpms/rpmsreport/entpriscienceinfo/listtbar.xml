@@ -1,0 +1,47 @@
+<uicfg desc="企业科技情况报表按钮">
+    <items>-></items>
+    <items>
+        <text>填报</text>
+        <iconCls>new-edit-icon</iconCls>
+        <scope type="object">this.manager</scope>
+        <handler type="object">this.manager.fillReport</handler>
+        <xaction>rpms_entprise_info_fill</xaction>
+    </items>
+    <items>
+        <text>上报</text>
+        <iconCls>submit-icon</iconCls>
+        <scope type="object">this.manager</scope>
+        <handler type="object">this.manager.upReport</handler>
+        <xaction>rpms_entprise_info_upreport</xaction>
+    </items>
+     <items>
+        <text>审批</text>
+        <iconCls>enable-ip-icon</iconCls>
+        <scope type="object">this.manager</scope>
+        <handler type="object">this.manager.approve</handler>
+        <xaction>rpms_entprise_info_approve</xaction>
+    </items>
+     <items>
+        <text>打回</text>
+        <iconCls>delete-all-icon</iconCls>
+        <scope type="object">this.manager</scope>
+        <handler type="object">this.manager.back</handler>
+        <xaction>rpms_entprise_info_back</xaction>
+    </items>
+     <items>
+        <text>查询</text>
+        <iconCls>search-d-icon</iconCls>
+        <scope type="object">this.manager</scope>
+        <handler type="object">this.manager.queryReport</handler>
+    </items>
+   <!--  <items>
+        <text>重置查询</text>
+        <iconCls>ff-clear-icon</iconCls>
+        <handler type="object">this.clear</handler>
+    </items> -->
+    <items>
+        <iconCls>expand-icon</iconCls>
+        <tooltip>展开/收起查询区</tooltip>
+        <handler type="object">this.expandQueryField</handler>
+    </items>
+</uicfg>

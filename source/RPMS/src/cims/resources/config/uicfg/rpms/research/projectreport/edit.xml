@@ -1,0 +1,50 @@
+<uicfg desc="外部项目申报编辑主界面">
+    <objectName>businessObject</objectName>
+    <winWidth type="integer">900</winWidth>
+    <component>
+        <items>
+            <object>editTbar</object>
+            <xtype>liontoolbar</xtype>
+            <viewPath>rpms/research/projectreport/edittbar</viewPath>
+        </items>
+        <items>
+            <object>editForm</object>
+            <xtype>lionform</xtype>
+            <viewPath>rpms/research/projectreport/editform</viewPath>
+        </items>
+        <items>
+            <object>itemGrid</object>
+            <xtype>lioneditorgrid</xtype> 
+            <title>项目明细</title>
+            <height type="object">240</height>
+            <isLine type="boolean">true</isLine>
+            <lineName>projectItems</lineName>
+            <fkId type="object">this.mainId</fkId>
+            <viewPath>rpms/research/projectreport/listitemgrid</viewPath>
+        </items>
+        <items>
+            <object>uploadFileGrid</object>
+            <xtype>lionuploadfile</xtype>
+            <title>附件上传</title>
+            <isLine type="boolean">true</isLine>
+            <lineName>documents</lineName>
+            <fkId type="object">this.mainId</fkId>
+            <fkName>obj.docFk</fkName>
+            <columnWidth type="integer">3</columnWidth>
+            <allowUpload type="object">this.editable</allowUpload>
+            <allowDelete type="object">this.editable</allowDelete>
+            <height type="object">240</height>
+        </items>
+    </component>
+    <container>
+        <items>editTbar</items>
+        <items>editForm</items>
+        <items>
+            <xtype>tabpanel</xtype>
+            <activeTab type="object">0</activeTab>
+            <items>itemGrid</items>
+            <items>uploadFileGrid</items>
+        </items>
+        
+    </container>
+</uicfg>

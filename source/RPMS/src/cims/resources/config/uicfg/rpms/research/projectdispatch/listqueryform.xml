@@ -1,0 +1,60 @@
+<uicfg desc="项目调度管理查询表单">
+    <columns type="integer">3</columns>
+    <autoHeight type="boolean">true</autoHeight>
+    <defaultFunction type="object">this.manager.query</defaultFunction>
+    <defaultScope type="object">this.manager</defaultScope>
+    <defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">90</labelWidth>
+    </defaults>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>项目登记编号</fieldLabel>
+        <name>projectId.projectCode</name>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>项目名称</fieldLabel>
+        <name>projectId.projectName</name>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>projectId.platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>lioncomboboxyearfield</xtype>
+        <fieldLabel>立项年度</fieldLabel>
+        <name>projectId.projectAnnual</name>
+        <format>Y</format>
+    </items>
+    <items>
+        <xtype>lionmonthfield</xtype>
+        <fieldLabel>调度月份</fieldLabel>
+        <name>dispatchMonth</name>
+        <format>Y-m</format>
+        <value type="object">new Date().format('Y-m')</value>
+        <listeners type="object">{
+            'select':function(){
+                this.manager.query();
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>状态</fieldLabel>
+        <name>status</name>
+        <keyType>rpms_evaluation_status</keyType>
+    </items>
+</uicfg>

@@ -1,0 +1,32 @@
+<uicfg desc="创新情况汇总表">
+    <objectName>businessObject</objectName>
+    <component>
+        <items>
+            <object>dataGrid</object>
+            <xtype>panel</xtype>
+            <frame type="object">false</frame>
+            <bodyStyle>border-width:0 1px 0 1px;</bodyStyle>
+            <!--width type="object">1040</width-->
+            <autoScroll type="object">true</autoScroll>
+            <height type="object">1400</height>
+            <html type="object"><![CDATA["<iframe  frameborder='0' width='100%' height='100%' src='rpms/rpmsreport/innovationsummary/innovationsummaryRpt.jsp'></iframe>"]]></html>
+        </items>
+        <items>
+            <object>queryForm</object>
+            <xtype>lionform</xtype>
+            <viewPath>rpms/rpmsreport/innovationsummary/listqueryform</viewPath>
+            <hidden type="object">false</hidden>
+            <runMode>4</runMode>
+        </items>
+        <items>
+            <object>listTbar</object>
+            <xtype>liontoolbar</xtype>
+            <viewPath>rpms/rpmsreport/innovationsummary/listtbar</viewPath>
+        </items>
+    </component>
+    <container>
+        <items>listTbar</items>
+        <items>queryForm</items>
+        <items>dataGrid</items>
+    </container>
+</uicfg>

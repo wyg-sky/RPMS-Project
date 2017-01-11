@@ -1,0 +1,89 @@
+<uicfg desc="年度考核标准管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy></orderBy>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">true</showCopyButton>
+	<store>
+		<url>rpms/listInnovateYearCheck.html</url>
+		<autoLoad type="object">false</autoLoad>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>platCenter</name>
+		</fields>
+		<fields>
+			<name>platInstitution</name>
+		</fields>
+		<fields>
+			<name>type</name>
+		</fields>
+		<fields>
+			<name>checkItem</name>
+		</fields>
+		<fields>
+			<name>checkContent</name>
+		</fields>
+		<fields>
+			<name>checkStandar</name>
+		</fields>
+		<fields>
+			<name>standarScore</name>
+		</fields>
+		<fields>
+			<name>checkMothod</name>
+		</fields>
+		<fields>
+			<name>valid</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<!-- <columns>
+			<header>分中心</header>
+			<dataIndex>platCenter</dataIndex>
+		</columns>
+		<columns>
+			<header>分中心机构</header>
+			<dataIndex>platInstitution</dataIndex>
+		</columns> -->
+		<columns>
+			<header>分类</header>
+			<dataIndex>type</dataIndex>
+			<keyType>rpms_year_check</keyType>
+		</columns>
+		<columns>
+			<header>检查项目</header>
+			<dataIndex>checkItem</dataIndex>
+			<keyType>rpms_year_check</keyType>
+		</columns>
+		<columns>
+			<header>检查内容</header>
+			<dataIndex>checkContent</dataIndex>
+		</columns>
+		<columns>
+			<header>评分标准</header>
+			<dataIndex>checkStandar</dataIndex>
+		</columns>
+		<columns>
+			<header>检查方法及要求</header>
+			<dataIndex>checkMothod</dataIndex>
+		</columns>
+		<columns>
+			<header>标准分</header>
+			<dataIndex>standarScore</dataIndex>
+		</columns>
+		<columns>
+			<header>是否有效</header>
+			<dataIndex>valid</dataIndex>
+			<keyType>cims_effective</keyType>
+		</columns>
+	</cm>
+</uicfg>

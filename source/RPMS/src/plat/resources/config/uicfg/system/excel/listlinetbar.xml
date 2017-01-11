@@ -1,0 +1,9 @@
+<uicfg desc="数据导入配置子表按钮">
+	<items>
+		<text>删除</text>
+		<iconCls>delete-selected-icon</iconCls>
+		<handler type="object">function(){
+			this.manager.deleteLineObject(1);
+		}</handler>
+	</items>
+</uicfg>

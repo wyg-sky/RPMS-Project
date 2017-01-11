@@ -1,0 +1,14 @@
+<uicfg desc="修改密码">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">300</winWidth>
+	<component>
+		<items>
+			<object>changepswForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>system/user/changepswform</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>changepswForm</items>
+	</container>
+</uicfg>

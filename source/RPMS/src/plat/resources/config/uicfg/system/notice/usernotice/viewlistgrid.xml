@@ -1,0 +1,47 @@
+<uicfg desc="消息阅读情况列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>viewTime asc</orderBy>
+	<showCopyButton type="boolean">false</showCopyButton>
+	<showEditButton type="boolean">false</showEditButton>
+	<showLookButton type="boolean">false</showLookButton>
+	<editable type="object">false</editable>
+	<height>300</height>
+	<store>
+		<url type="object"><![CDATA[
+				"system/listViewCondition.html?noticeId=" + this.manager.noticeId
+			]]>
+		</url>
+		<fields>
+			<name>recieveUser.userName</name>
+		</fields>
+		<fields>
+			<name>viewOrNot</name>
+		</fields>
+		<fields>
+			<name>viewTime</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>接收人</header>
+			<dataIndex>recieveUser.userName</dataIndex>
+		</columns>
+		<columns>
+			<header>阅读状态</header>
+			<dataIndex>viewOrNot</dataIndex>
+			<keyType>sys_view_status</keyType>
+		</columns>
+		<columns>
+			<header>阅读时间</header>
+			<dataIndex>viewTime</dataIndex>
+		</columns>
+	</cm>
+</uicfg>

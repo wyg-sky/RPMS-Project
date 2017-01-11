@@ -1,0 +1,74 @@
+<uicfg desc="数据导入配置列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>code asc</orderBy>
+	<editable type="object">false</editable>
+	<showDeleteButton type="object">true</showDeleteButton>
+	<store>
+		<url>system/listImportSetting.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>name</name>
+		</fields>
+		<fields>
+			<name>code</name>
+		</fields>
+		<fields>
+			<name>status</name>
+		</fields>
+		<fields>
+			<name>tableName</name>
+		</fields>
+		<fields>
+			<name>tempTableName</name>
+		</fields>
+		<fields>
+			<name>startRow</name>
+		</fields>
+		<fields>
+			<name>importUtilClass</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>名称</header>
+			<dataIndex>name</dataIndex>
+			<width type="integer">70</width>
+		</columns>
+		<columns>
+			<header>编码</header>
+			<dataIndex>code</dataIndex>
+			<width type="integer">70</width>
+		</columns>
+		<columns>
+			<header>是否有效</header>
+			<dataIndex>status</dataIndex>
+			<keyType>cims_effective</keyType>
+			<width type="integer">70</width>
+		</columns>
+		<columns>
+			<header>数据表</header>
+			<dataIndex>tableName</dataIndex>
+			<width type="integer">120</width>
+		</columns>
+		<columns>
+			<header>临时表</header>
+			<dataIndex>tempTableName</dataIndex>
+			<width type="integer">120</width>
+		</columns>
+		<columns>
+			<header>工具类</header>
+			<dataIndex>importUtilClass</dataIndex>
+			<width type="integer">180</width>
+		</columns>
+	</cm>
+</uicfg>

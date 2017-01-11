@@ -1,0 +1,116 @@
+<uicfg desc="用户管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>code asc</orderBy>
+	<rownum type="boolean">true</rownum>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<store>
+		<url type="object">"rpms/listUser.html"</url>
+		<baseParams type="object">{
+			limit : 50
+		}</baseParams>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>userName</name>
+		</fields>
+		<fields>
+			<name>loginName</name>
+		</fields>
+		<fields>
+			<name>code</name>
+		</fields>
+		<fields>
+			<name>sex</name>
+		</fields>
+		<fields>
+			<name>organization.name</name>
+		</fields>
+		<fields>
+			<name>department.name</name>
+		</fields>
+		<fields>
+			<name>isEnabled</name>
+		</fields>
+		<fields>
+			<name>isExpired</name>
+		</fields>
+		<fields>
+			<name>isLocked</name>
+		</fields>
+		<fields>
+			<name>isPortal</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>id</header>
+			<hidden type="object">true</hidden>
+			<dataIndex>id</dataIndex>
+		</columns>
+		<columns>
+			<header>姓名</header>
+			<dataIndex>userName</dataIndex>
+		</columns>
+		<columns>
+			<header>用户名</header>
+			<dataIndex>loginName</dataIndex>
+			<width type="object">60</width>
+		</columns>
+		<columns>
+			<header>工号</header>
+			<dataIndex>code</dataIndex>
+			<width type="object">60</width>
+		</columns>
+		<columns>
+			<header>性别</header>
+			<dataIndex>sex</dataIndex>
+			<width type="object">40</width>
+			<keyType>cims_sex</keyType>
+		</columns>
+		<columns>
+			<header>单位</header>
+			<dataIndex>organization.name</dataIndex>
+			<width type="object">100</width>
+		</columns>
+		<columns>
+			<header>部门</header>
+			<dataIndex>department.name</dataIndex>
+			<width type="object">80</width>
+		</columns>
+		<columns>
+			<header>是否启用</header>
+			<dataIndex>isEnabled</dataIndex>
+			<width type="object">60</width>
+			<keyType>cims_boolean</keyType>
+		</columns>
+		<columns>
+			<header>是否过期</header>
+			<dataIndex>isExpired</dataIndex>
+			<hidden type="object">true</hidden>
+			<keyType>cims_boolean</keyType>
+		</columns>
+		<columns>
+			<header>是否锁定</header>
+			<dataIndex>isLocked</dataIndex>
+			<hidden type="object">true</hidden>
+			<width type="object">60</width>
+			<keyType>cims_boolean</keyType>
+		</columns>
+		<columns>
+			<header>是否门户</header>
+			<dataIndex>isPortal</dataIndex>
+			<hidden type="object">true</hidden>
+			<keyType>cims_boolean</keyType>
+		</columns>
+	</cm>
+</uicfg>

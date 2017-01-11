@@ -1,0 +1,90 @@
+<uicfg desc="栏目管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>orders asc</orderBy>
+	<editable type="object">false</editable>
+	<formViewPath>system/catalog/listgridform</formViewPath>
+	<showDeleteButton type="object">true</showDeleteButton>
+	<store>
+		<url>system/listCatalog.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>name</name>
+		</fields>
+		<fields>
+			<name>type</name>
+		</fields>
+		<fields>
+			<name>url</name>
+		</fields>
+		<fields>
+			<name>moreUrl</name>
+		</fields>
+		<fields>
+			<name>width</name>
+		</fields>
+		<fields>
+			<name>height</name>
+		</fields>
+		<fields>
+			<name>username</name>
+		</fields>
+		<fields>
+			<name>password</name>
+		</fields>
+		<fields>
+			<name>orders</name>
+		</fields>
+		<fields>
+			<name>enable</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>名称</header>
+			<dataIndex>name</dataIndex>
+			<width type="integer">80</width>
+		</columns>
+		<columns>
+			<header>栏目类型</header>
+			<dataIndex>type</dataIndex>
+			<width type="integer">60</width>
+			<keyType>sys_column_type</keyType>
+		</columns>
+		<columns>
+			<header>URL</header>
+			<dataIndex>url</dataIndex>
+			<width type="integer">150</width>
+		</columns>
+		<columns>
+			<header>更多链接</header>
+			<dataIndex>moreUrl</dataIndex>
+			<width type="integer">150</width>
+		</columns>
+		<columns>
+			<header>栏目高</header>
+			<dataIndex>height</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>输出顺序</header>
+			<dataIndex>orders</dataIndex>
+			<width type="integer">50</width>
+		</columns>
+		<columns>
+			<header>是否启用</header>
+			<dataIndex>enable</dataIndex>
+			<width type="integer">50</width>
+			<keyType>cims_boolean</keyType>
+		</columns>
+	</cm>
+</uicfg>

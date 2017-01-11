@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<report version="5.0">
+	<head>
+		<property name="type">0</property>
+		<name><![CDATA[RPMS_Innovation_Summary]]></name>
+		<dataSets>
+			<dataSet name="sum" type="DB_SQL" >
+				<property name="dataSource">CIMS_JSZX</property>
+				<property name="desc"><![CDATA[]]></property>
+				<property name="query"><![CDATA[
+select *
+  from (select count(CASE
+                       WHEN STATUS IN ('0005') THEN
+                        '1'
+                     END) jhxm_num,
+               count(CASE
+                       WHEN PROJECT_STATUS IN ('0005') THEN
+                        '1'
+                     END) pyxm_num,
+               count(CASE
+                       WHEN PROJECT_STATUS IN ('0006') THEN
+                        '1'
+                     END) jdxm_num
+          from (select p.id               as id,
+                       p.plat_center      as platcId,
+                       p.plat_institution as platinId,
+                       p.report_time      as date_time,
+                       p.organization     as orgId,
+                       p.project_status   as PROJECT_STATUS,
+                       p.status           as status
+                  from RPMS_PROJECT p)
+         where 1 = 1 ${con}),
+       
+       (select count(CASE
+                       WHEN status in ('0003', '0005', '0006') THEN
+                        '1'
+                     END) zlsb_num,
+               count(CASE
+                       WHEN status in ('0003', '0005', '0006') and TYPE = '0001' THEN
+                        '1'
+                     END) fmzlsb_num
+          from (select zlsb.id               as id,
+                       zlsb.plat_center      as platcId,
+                       zlsb.plat_institution as platinId,
+                       zlsb.apply_date       as date_time,
+                       zlsb.organization     as orgId,
+                       zlsb.type             as type,
+                       zlsb.status           as status
+                  from RPMS_PATENT_APPLICATION zlsb)
+         where 1 = 1 ${con}),
+       
+       （select count(CASE
+         WHEN status in ('0006') THEN
+          '1'
+       END) zlsq_num,
+       count(CASE
+               WHEN status in ('0006') and TYPE = '0001' THEN
+                '1'
+             END) fmzlsq_num
+  from (select zlsq.id               as id,
+               zlsq.plat_center      as platcId,
+               zlsq.plat_institution as platinId,
+               zlsq.privilege_date   as date_time,
+               zlsq.organization     as orgId,
+               zlsq.type             as type,
+               zlsq.status           as status
+          from RPMS_PATENT_APPLICATION zlsq)
+ where 1 = 1 ${con}),
+
+ (select count(lwfbid) as lwfb_num
+    from (select lwfb.id               as lwfbid,
+                 lwfb.plat_center      as platcId,
+                 lwfb.plat_institution as platinId,
+                 lwfb.pubtime          as date_time,
+                 lwfb.organization     as orgId
+            from RPMS_RESEARCH_THESIS lwfb)
+   where 1 = 1 ${con}),
+
+ (select count(*) as sbjry_num
+    from (select sbjry.id               as sbjryid,
+                 sbjry.plat_center      as platcId,
+                 sbjry.plat_institution as platinId,
+                 sbjry.honor_date       as date_time,
+                 sbjry.organization     as orgId
+            from RPMS_RESEARCH_HONOR sbjry
+           where sbjry.grade in ('0001', '0002', '0003'))
+   where 1 = 1 ${con}),
+
+ (select nvl(sum(col_sum), 0) as yffygj_sum
+    from (select t.project_id as id,
+                 t.organization as orgId,
+                 t.dept as platcId,
+                 t.report_time as platinId,
+                 t.YEARS as date_time,
+                 sum(to_number(nvl(t.PSESON_COST, 0)) +
+                     to_number(nvl(t.SCIDENC_SERVICE, 0)) +
+                     to_number(nvl(t.WORK_FEE, 0)) +
+                     to_number(t.DESIGN_FEE) +
+                     to_number(nvl(t.DEGUGGING_FEE, 0)) +
+                     to_number(nvl(t.MATERIAL_FEE, 0)) +
+                     to_number(nvl(t.GAS_ELECTRICITY, 0)) +
+                     to_number(nvl(t.MOULE_EXAM, 0)) +
+                     to_number(nvl(t.INSTRUMENT_EQUI, 0)) +
+                     to_number(nvl(t.USE_BUILDING, 0)) +
+                     to_number(nvl(t.EQUI_RENTAL, 0)) +
+                     to_number(nvl(t.FACLITIES_FEE, 0)) +
+                     to_number(nvl(t.TECHNOLOGY_FEE, 0)) +
+                     to_number(nvl(t.OFFICE_FEE, 0)) +
+                     to_number(nvl(t.ENTERPRICE_FEE, 0)) +
+                     to_number(t.SCHOOL_FEE) +
+                     to_number(nvl(t.ABROAD_FEE, 0))) as col_sum
+            from RPMS_SCIENCE_ACTIVITY t
+           group by t.project_id,
+                    dept,
+                    report_time,
+                    organization,
+                    YEARS)
+   where 1 = 1 ${con}),
+
+ (select count(yfhtid) as yfht_num,
+         nvl(sum(yfht_sum), 0) as yfht_sum,
+         nvl(sum(yfht_sum_paid), 0) as yfht_sum_paid
+    from (select yfht.id               as yfhtid,
+                 yfht.plat_center      as platcId,
+                 yfht.plat_institution as platinId,
+                 yfht.sign_date        as date_time,
+                 yfht.organization     as orgId,
+                 yfht.sum              as yfht_sum,
+                 yfht.sum_paid         as yfht_sum_paid
+            from RPMS_INNOVATE_COMPACT yfht)
+   where 1 = 1 ${con})
+]]></property>
+				<property name="beginRow">0</property>
+				<property name="endRow">0</property>
+			</dataSet>
+		</dataSets>
+		<parameters>
+			<parameter name="userName" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc">用户名</property>
+				<property name="valueCalc">false</property>
+			</parameter>
+			<parameter name="userMobile" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc">联系电话</property>
+				<property name="valueCalc">false</property>
+			</parameter>
+			<parameter name="userEmail" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc">邮箱</property>
+				<property name="valueCalc">false</property>
+			</parameter>
+			<parameter name="orgName" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc">组织单位名称</property>
+				<property name="valueCalc">false</property>
+			</parameter>
+			<parameter name="reportDate" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc">汇总期</property>
+				<property name="valueCalc">false</property>
+			</parameter>
+		</parameters>
+		<variables>
+			<variable name="con" type="">
+				<property name="default"></property>
+				<property name="desc">and (platcId in (&apos;2c9ffa9a4c59b0c2014c5a2d790d001e&apos;) or platinId in (&apos;2c9ffa9a4c59b0c2014c5a2d790d001e&apos;)) and substr(date_time,1,7) between &apos;2015-01&apos; and &apos;2015-12&apos;</property>
+				<property name="valueCalc">false</property>
+			</variable>
+		</variables>
+	</head>
+	<body>
+		<sheet id="sheet1">
+			<page>
+			</page>
+			<grid row="18" col="9">
+				<properties>
+				</properties>
+				<rows>
+					<row id="1">
+						<property name="height">46</property>
+					</row>
+					<row id="2">
+						<property name="height">24</property>
+					</row>
+					<row id="3">
+						<property name="height">30</property>
+					</row>
+					<row id="4">
+						<property name="height">42</property>
+					</row>
+					<row id="5">
+						<property name="height">32</property>
+					</row>
+					<row id="6">
+						<property name="height">30</property>
+					</row>
+					<row id="7">
+						<property name="height">31</property>
+					</row>
+					<row id="8">
+						<property name="height">32</property>
+					</row>
+					<row id="9">
+						<property name="height">28</property>
+					</row>
+					<row id="10">
+						<property name="height">29</property>
+					</row>
+					<row id="11">
+						<property name="height">33</property>
+					</row>
+					<row id="12">
+						<property name="height">32</property>
+					</row>
+					<row id="13">
+						<property name="height">31</property>
+					</row>
+					<row id="14">
+						<property name="height">35</property>
+					</row>
+					<row id="15">
+						<property name="height">33</property>
+					</row>
+					<row id="16">
+						<property name="height">31</property>
+					</row>
+					<row id="17">
+						<property name="height">31</property>
+					</row>
+					<row id="18">
+						<property name="height">30</property>
+					</row>
+				</rows>
+				<columns>
+					<column id="1">
+						<property name="width">36</property>
+					</column>
+					<column id="2">
+						<property name="width">41</property>
+					</column>
+					<column id="3">
+						<property name="width">113</property>
+					</column>
+					<column id="4">
+						<property name="width">102</property>
+					</column>
+					<column id="5">
+						<property name="width">71</property>
+					</column>
+					<column id="6">
+						<property name="width">71</property>
+					</column>
+					<column id="7">
+						<property name="width">73</property>
+					</column>
+					<column id="8">
+						<property name="width">64</property>
+					</column>
+					<column id="9">
+					</column>
+				</columns>
+				<cells>
+					<cell id="1,1" type="0" colspan="9" >
+						<property name="value"><![CDATA[创新情况汇总报表]]></property>
+						<property name="font-size">12</property>
+						<property name="bold">0</property>
+					</cell>
+					<cell id="2,1" type="0" colspan="6" >
+						<property name="value"><![CDATA[汇总期：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="2,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[=@reportDate]]></property>
+					</cell>
+					<cell id="3,1" type="0" colspan="2" >
+						<property name="value"><![CDATA[企业名称：]]></property>
+						<property name="align">2</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="3,3" type="0" colspan="2" >
+						<property name="value"><![CDATA[=@orgName]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="3,5" type="0" colspan="2" >
+						<property name="value"><![CDATA[填报时间：]]></property>
+						<property name="align">2</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="3,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[=now()]]></property>
+						<property name="view-format">4|yyyy-M-d</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="4,1" type="0" colspan="2" >
+						<property name="value"><![CDATA[行号]]></property>
+						<property name="bold">0</property>
+						<property name="background"><![CDATA[='221,221,221']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,3" type="0" colspan="2" >
+						<property name="value"><![CDATA[名称]]></property>
+						<property name="bold">0</property>
+						<property name="background"><![CDATA[='221,221,221']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,5" type="0" colspan="2" >
+						<property name="value"><![CDATA[单位]]></property>
+						<property name="bold">0</property>
+						<property name="background"><![CDATA[='221,221,221']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[指标数]]></property>
+						<property name="bold">0</property>
+						<property name="background"><![CDATA[='221,221,221']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,1" type="0" colspan="2" >
+						<property name="value"><![CDATA[1]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,3" type="0" colspan="2" >
+						<property name="value"><![CDATA[一、计划项目数量]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,5" type="0" colspan="2" >
+						<property name="value"><![CDATA[件]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[=sum.select(JHXM_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,1" type="0" colspan="2" >
+						<property name="value"><![CDATA[2]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,3" type="0" colspan="2" >
+						<property name="value"><![CDATA[二、鉴定项目数量]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,5" type="0" colspan="2" >
+						<property name="value"><![CDATA[件]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[=sum.select(JDXM_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,1" type="0" colspan="2" >
+						<property name="value"><![CDATA[3]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,3" type="0" colspan="2" >
+						<property name="value"><![CDATA[三、评议项目数量]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,5" type="0" colspan="2" >
+						<property name="value"><![CDATA[件]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[=sum.select(PYXM_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,1" type="0" colspan="2" >
+						<property name="value"><![CDATA[4]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,3" type="0" colspan="2" >
+						<property name="value"><![CDATA[四、专利申报数]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,5" type="0" colspan="2" >
+						<property name="value"><![CDATA[件]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[=sum.select(ZLSB_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,1" type="0" colspan="2" >
+						<property name="value"><![CDATA[5]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,3" type="0" colspan="2" >
+						<property name="value"><![CDATA[其中发明专利申报数]]></property>
+						<property name="align">0</property>
+						<property name="indent">26</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,5" type="0" colspan="2" >
+						<property name="value"><![CDATA[件]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[=sum.select(FMZLSB_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="10,1" type="0" colspan="2" >
+						<property name="value"><![CDATA[6]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="10,3" type="0" colspan="2" >
+						<property name="value"><![CDATA[五、专利授权数]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="10,5" type="0" colspan="2" >
+						<property name="value"><![CDATA[件]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="10,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[=sum.select(ZLSQ_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="11,1" type="0" colspan="2" >
+						<property name="value"><![CDATA[7]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="11,3" type="0" colspan="2" >
+						<property name="value"><![CDATA[其中发明专利授权数]]></property>
+						<property name="align">0</property>
+						<property name="indent">26</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="11,5" type="0" colspan="2" >
+						<property name="value"><![CDATA[件]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="11,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[=sum.select(FMZLSQ_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="12,1" type="0" colspan="2" >
+						<property name="value"><![CDATA[8]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="12,3" type="0" colspan="2" >
+						<property name="value"><![CDATA[六、论文发表数]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="12,5" type="0" colspan="2" >
+						<property name="value"><![CDATA[篇]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="12,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[=sum.select(LWFB_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="13,1" type="0" colspan="2" >
+						<property name="value"><![CDATA[9]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="13,3" type="0" colspan="2" >
+						<property name="value"><![CDATA[七、省部级以上荣誉]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="13,5" type="0" colspan="2" >
+						<property name="value"><![CDATA[项]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="13,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[=sum.select(SBJRY_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="14,1" type="0" colspan="2" >
+						<property name="value"><![CDATA[10]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="14,3" type="0" colspan="2" >
+						<property name="value"><![CDATA[八、研发费用归集数]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="14,5" type="0" colspan="2" >
+						<property name="value"><![CDATA[万元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="14,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[=sum.select(YFFYGJ_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="15,1" type="0" colspan="2" >
+						<property name="value"><![CDATA[11]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="15,3" type="0" colspan="2" >
+						<property name="value"><![CDATA[九、对外研发合同签订数]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="15,5" type="0" colspan="2" >
+						<property name="value"><![CDATA[份]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="15,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[=sum.select(YFHT_NUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="16,1" type="0" colspan="2" >
+						<property name="value"><![CDATA[12]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="16,3" type="0" colspan="2" >
+						<property name="value"><![CDATA[十、研发合同金额]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="16,5" type="0" colspan="2" >
+						<property name="value"><![CDATA[万元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="16,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[=sum.select(YFHT_SUM)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="17,1" type="0" colspan="2" >
+						<property name="value"><![CDATA[13]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="17,3" type="0" colspan="2" >
+						<property name="value"><![CDATA[研发合同已支付金额]]></property>
+						<property name="align">0</property>
+						<property name="indent">26</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="17,5" type="0" colspan="2" >
+						<property name="value"><![CDATA[万元]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="17,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[=sum.select(YFHT_SUM_PAID)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="18,1" type="0" colspan="2" >
+						<property name="value"><![CDATA[填报人：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="18,3" type="0" >
+						<property name="value"><![CDATA[=@userName]]></property>
+					</cell>
+					<cell id="18,4" type="0" >
+						<property name="value"><![CDATA[联系电话：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="18,5" type="0" colspan="2" >
+						<property name="value"><![CDATA[=@userMobile]]></property>
+					</cell>
+					<cell id="18,7" type="0" >
+						<property name="value"><![CDATA[Email：]]></property>
+					</cell>
+					<cell id="18,8" type="0" colspan="2" >
+						<property name="value"><![CDATA[=@userEmail]]></property>
+					</cell>
+				</cells>
+			</grid>
+		</sheet>
+	</body>
+</report>

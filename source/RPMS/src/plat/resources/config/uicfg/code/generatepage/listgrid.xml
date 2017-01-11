@@ -1,0 +1,164 @@
+<uicfg desc="组件管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<editable type="object">false</editable>
+	<showLookButton type="object">false</showLookButton>
+	<showEditButton type="object">false</showEditButton>
+	<showCopyButton type="object">false</showCopyButton>
+	<allowPage type="boolean">false</allowPage>
+	<store>
+		<autoLoad type="object">false</autoLoad>
+		<url>system/listDefaultWidgetsAndPage.html</url>
+		<fields>
+			<name>name</name>
+		</fields>
+		<fields>
+			<name>objectName</name>
+		</fields>
+		<fields>
+			<name>widget.id</name>
+			<mapping>widgetId</mapping>
+		</fields>
+		<fields>
+			<name>widget.name</name>
+			<mapping>widgetName</mapping>
+		</fields>
+		<fields>
+			<name>xtype</name>
+		</fields>
+		<fields>
+			<name>type</name>
+		</fields>
+		<fields>
+			<name>viewPath</name>
+		</fields>
+		<fields>
+			<name>region</name>
+		</fields>
+		<fields>
+			<name>fileExist</name>
+		</fields>
+		<fields>
+			<name>allowCover</name>
+		</fields>
+		<fields>
+			<name>widgetStatus</name>
+		</fields>
+		<fields>
+			<name>xml</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>名称</header>
+			<dataIndex>name</dataIndex>
+			<width type="integer">100</width>
+		</columns>
+		<columns>
+			<header>组件对象名称</header>
+			<dataIndex>objectName</dataIndex>
+			<width type="integer">70</width>
+		</columns>
+		<columns>
+			<header>所属组件</header>
+			<dataIndex>widget.name</dataIndex>
+			<cascadeIndex>widget.id</cascadeIndex>
+			<width type="integer">70</width>
+		</columns>
+		<columns>
+			<header>xtype</header>
+			<dataIndex>xtype</dataIndex>
+			<width type="integer">40</width>
+			<hidden type="boolean">true</hidden>
+		</columns>
+		<columns>
+			<header>配置文件路径</header>
+			<dataIndex>viewPath</dataIndex>
+			<width type="integer">150</width>
+		</columns>
+		<columns>
+			<header>布局位置</header>
+			<dataIndex>region</dataIndex>
+			<width type="integer">40</width>
+			<hidden type="boolean">true</hidden>
+		</columns>
+		<columns>
+			<header>已生成</header>
+			<dataIndex>fileExist</dataIndex>
+			<keyType>cims_boolean</keyType>
+			<width type="integer">40</width>
+		</columns>
+		<columns>
+			<header>是否允许覆盖</header>
+			<dataIndex>allowCover</dataIndex>
+			<keyType>cims_boolean</keyType>
+			<width type="integer">40</width>
+			<hidden type="boolean">true</hidden>
+		</columns>
+		<columns>
+			<header>组件状态</header>
+			<dataIndex>widgetStatus</dataIndex>
+			<width type="integer">70</width>
+		</columns>
+		<columns>
+			<header>xml</header>
+			<dataIndex>xml</dataIndex>
+			<width type="integer">70</width>
+			<hidden type="boolean">true</hidden>
+		</columns>
+		<columns>
+			<header>生成文件</header>
+			<dataIndex>generateFile</dataIndex>
+			<width type="integer">50</width>
+			<align>center</align>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='styles/default/images/icons/16_16/enable-ip.gif' title='生成文件' alt='生成文件'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+		<columns>
+			<header>预览代码</header>
+			<dataIndex>previewCode</dataIndex>
+			<width type="integer">50</width>
+			<align>center</align>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='styles/default/images/icons/16_16/preview.gif' title='预览代码' alt='预览代码'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+		<columns>
+			<header>预览界面</header>
+			<dataIndex>previewUi</dataIndex>
+			<width type="integer">50</width>
+			<align>center</align>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='styles/default/images/new-supersearch-icon.png' title='预览界面' alt='预览界面'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+	</cm>
+	<listeners type="object">{
+		'cellclick' : function(grid, rowIndex, columnIndex, e) {
+			var fieldName = grid.getColumnModel().getDataIndex(columnIndex);
+			var record = grid.getStore().getAt(rowIndex);
+			if (fieldName == grid.getFieldName('generateFile')) {
+				this.manager.generateFile(record);
+			} else if (fieldName == grid.getFieldName('previewCode')) {
+				this.manager.preview(record);
+			} else if (fieldName == grid.getFieldName('previewUi')) {
+				this.manager.showPreviewUiWindow(record);
+			}
+		},
+		scope : this
+	}</listeners>
+</uicfg>

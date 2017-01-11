@@ -1,0 +1,56 @@
+<uicfg desc="创新人才管理列表界面">
+	<objectName>businessObject</objectName>
+	<editView>rpms/base/researchtalent/edit</editView>
+	<deleteUrl>rpms/deleteResearchTalent.html</deleteUrl>
+	<changeStatusUrl>rpms/changeResearchTalentStatus.html</changeStatusUrl>
+	<component>
+		<items>
+			<object>listTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/base/researchtalent/listtbar</viewPath>
+		</items>
+		<items>
+			<object>queryForm</object>
+			<xtype>lionform</xtype>
+			<region>north</region>
+			<viewPath>rpms/base/researchtalent/listqueryform</viewPath>
+			<runMode>4</runMode>
+		</items>
+		<items>
+			<object>dataGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<region>center</region>
+			<viewPath>rpms/base/researchtalent/listgrid</viewPath>
+		</items>
+		<items>
+            <object>listPlatTree</object>
+            <xtype>panel</xtype>
+            <isCreate type="object">this.runMode == '1'</isCreate>
+            <region>west</region>
+            <bodyStyle>border-width:0 1px 0 1px;</bodyStyle>
+            <autoScroll type="object">true</autoScroll>
+            <width type="object">180</width>
+            <split type="object">true</split>
+            <minSize type="object">180</minSize>
+            <maxSize type="object">240</maxSize>
+            <collapsible type="object">false</collapsible>
+            <lines type="object">false</lines>
+            <collapseMode>mini</collapseMode>
+            <items>
+                <xtype>liontree</xtype>
+                <viewPath>rpms/base/researchplat/listplattree</viewPath>
+            </items>
+        </items>
+	</component>
+	<container>
+		<items>listTbar</items>
+        <items>
+            <xtype>panel</xtype>
+            <layout>border</layout>
+            <border type="boolean">false</border>
+            <items>queryForm</items>
+            <items>listPlatTree</items>
+            <items>dataGrid</items>
+        </items>
+	</container>
+</uicfg>

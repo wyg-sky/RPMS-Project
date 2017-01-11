@@ -1,0 +1,10 @@
+<uicfg desc="代码分类树按钮">
+	<autoSeparator type="object">false</autoSeparator>
+	<items>
+		<text>栏目设置</text>
+		<iconCls>new-edit-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<handler type="object">this.manager.catalogSetting</handler>
+	</items>
+	<items></items>
+</uicfg>

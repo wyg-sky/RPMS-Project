@@ -1,0 +1,30 @@
+<uicfg desc="科技活动费用查询表单">
+	<columns type="integer">5</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.queryReport</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+    <items>
+        <xtype>lionmonthfield</xtype>
+        <name>costsMonths</name>
+        <fieldLabel>计划月份</fieldLabel>
+        <format>Y-m</format>
+        <value type="object">new Date()</value>
+    </items>
+</uicfg>

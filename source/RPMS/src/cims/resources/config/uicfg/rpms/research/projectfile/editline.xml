@@ -1,0 +1,33 @@
+<uicfg desc="通知管理">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">700</winWidth>
+	<component>
+		<items>
+			<object>editLineTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/research/projectfile/editlinetbar</viewPath>
+		</items>
+		<items>
+			<object>editLineForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/research/projectfile/listlinegridform</viewPath>
+		</items>
+		<items>
+			<object>uploadFileGridLine</object>
+			<xtype>lionuploadfile</xtype>
+			<isLine type="boolean">true</isLine>
+			<lineName>documentsLine</lineName>
+			<fkId type="object">this.mainId</fkId>
+			<fkName>obj.docFk</fkName>
+			<columnWidth type="integer">3</columnWidth>
+			<allowUpload type="object">true</allowUpload>
+			<allowDelete type="object">true</allowDelete>
+			<height type="object">150</height>
+		</items>
+	</component>
+	<container>
+		<items>editLineTbar</items>
+		<items>editLineForm</items>
+		<items>uploadFileGridLine</items>
+	</container>
+</uicfg>

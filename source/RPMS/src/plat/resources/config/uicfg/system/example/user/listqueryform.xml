@@ -1,0 +1,55 @@
+<uicfg desc="用户管理编辑">
+	<columns type="integer">4</columns>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>userName</name>
+		<fieldLabel>姓名</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>loginName</name>
+		<fieldLabel>用户名</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>code</name>
+		<fieldLabel>工号</fieldLabel>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<name>code</name>
+		<isLoad type="boolean">false</isLoad>
+		<fieldLabel>领用时间</fieldLabel>
+		<format>Y-m-d H:i:s</format>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>sex</name>
+		<fieldLabel>性别</fieldLabel>
+		<keyType>sex</keyType>
+	</items>
+	<items>
+		<xtype>orgtree</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+	<items>
+		<xtype>depttree</xtype>
+		<fieldLabel>部门</fieldLabel>
+		<propertyName>department</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+	<items>
+		<xtype>depttree</xtype>
+		<isLoad type="boolean">false</isLoad>
+		<fieldLabel>班组</fieldLabel>
+		<propertyName>department</propertyName>
+		<hiddenName>id</hiddenName>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+</uicfg>

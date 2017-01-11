@@ -1,0 +1,82 @@
+<uicfg desc="操作日志管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>operateTime desc</orderBy>
+	<showCopyButton type="boolean">false</showCopyButton>
+	<showEditButton type="boolean">false</showEditButton>
+	<editable type="object">false</editable>
+	<store>
+		<url>system/listOperateLog.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>operatorIp</name>
+		</fields>
+		<fields>
+			<name>operatorId</name>
+		</fields>
+		<fields>
+			<name>operatorName</name>
+		</fields>
+		<fields>
+			<name>operateType</name>
+		</fields>
+		<fields>
+			<name>operateStatus</name>
+		</fields>
+		<fields>
+			<name>operateTime</name>
+		</fields>
+		<fields>
+			<name>operateDescription</name>
+		</fields>
+		<fields>
+			<name>operateDetails</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>操作者IP</header>
+			<dataIndex>operatorIp</dataIndex>
+		</columns>
+		<columns>
+			<header>操作用户ID</header>
+			<dataIndex>operatorId</dataIndex>
+			<hidden type="boolean">true</hidden>
+		</columns>
+		<columns>
+			<header>操作用户名称</header>
+			<dataIndex>operatorName</dataIndex>
+		</columns>
+		<columns>
+			<header>操作类型</header>
+			<dataIndex>operateType</dataIndex>
+			<keyType>sys_operatelog_type</keyType>
+		</columns>
+		<columns>
+			<header>操作状态</header>
+			<dataIndex>operateStatus</dataIndex>
+			<keyType>sys_operatelog_status</keyType>
+		</columns>
+		<columns>
+			<header>操作时间</header>
+			<dataIndex>operateTime</dataIndex>
+		</columns>
+		<columns>
+			<header>操作描述</header>
+			<dataIndex>operateDescription</dataIndex>
+		</columns>
+		<columns>
+			<header>操作明细</header>
+			<dataIndex>operateDetails</dataIndex>
+		</columns>
+	</cm>
+</uicfg>

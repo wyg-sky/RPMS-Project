@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- Configuration for the default package. -->
+	<package name="rpms" extends="default" namespace="/rpms">
+		<!-- 文件预览 开始 -->
+		<action name="previewDoc" class="PreviewdocAction" method="convert"></action>
+		<!-- 文件预览 结束 -->
+		
+	    <!-- 人员职责 开始 -->
+        <action name="saveStaffUsers" class="StaffUserAction" method="saveStaffUsers"></action>
+        <action name="saveStaffPlats" class="StaffPlatAction" method="saveStaffPlats"></action>
+        <action name="getFirstCenter" class="StaffPlatAction" method="getFirstCenter"></action>
+        <!-- 人员职责 结束 -->
+        
+        <!-- 创新平台管理开始 -->
+        <action name="listResearchPlatTree" class="ResearchPlatAction" method="listResearchPlatTree"></action>
+        <action name="getStaffPlatTree" class="ResearchPlatAction" method="getStaffPlatTree"></action>
+        <action name="saveImportPlat" class="ResearchPlatAction" method="saveImportPlat"></action>
+        <!-- 创新平台管理结束 -->
+        
+        <!-- 创新设备管理开始 -->
+        <action name="saveImportEquipment" class="ResearchEquipmentAction" method="saveImportEquipment"></action>
+        <!-- 创新设备管理结束 -->
+    
+    	<!-- 专利申请受理 、授权 开始 -->
+    	<action name="acceptPatentApplication" class="PatentApplicationAction" method="accept"></action>
+    	<action name="accreditPatentApplication" class="PatentApplicationAction" method="accredit"></action>
+    	<!-- 专利申请受理 、授权 结束 -->
+    	
+    	<!--项目立项管理开始-->
+        <action name="getProjectInfo" class="ProjectAction" method="getProjectInfo"></action>
+        <action name="createProjectCode" class="ProjectAction" method="createProjectCode"></action>
+        <action name="updateProjectBackMsg" class="ProjectAction" method="updateProjectBackMsg"></action>
+        <!--项目立项管理结束-->
+        
+        <!-- 专业词典管理开始 -->
+        <action name="listSpecialtyDictionaryTree" class="SpecialtyDictionaryAction" method="listSpecialtyDictionaryTree"></action>
+        <!-- 专业词典管理结束 -->
+        
+        <!-- 标准制定管理开始 -->
+        <action name="insertStandar" class="StandardEnactAction" method="insertStandar"></action>
+        <!-- 标准制定管理结束 -->
+        
+        <!-- 论文评比  开始 -->
+        <action name="awardThesisApplication" class="ThesisApplicationAction" method="award"></action>
+        <!-- 论文评比  结束 -->
+        
+        <!-- 生成季度检查打分表  开始 -->
+        <action name="initInnovateQuarterGrade" class="InnovateQuarterGradeAction" method="init"></action>
+        <!-- 生成季度检查打分表  结束 -->
+        <!--奖项管理开始-->
+        <action name = "insertAwards" class ="ProjectAwardAction" method = "insertAwards"></action>
+        <!--奖项管理结束-->
+        
+        <!-- 生成年度考核打分表  开始 -->
+        <action name="initInnovateYearGrade" class="InnovateYearGradeAction" method="init"></action>
+        <!-- 生成年度考核打分表  结束 -->
+        <!-- 通知管理  开始 -->
+        <action name="sendNoticeForPFile" class="ProjectFileAction" method="sendNoticeForPFile"></action>
+        <action name="saveProjectFileLine" class="ProjectFileLineAction" method="saveProjectFileLine"></action>
+        <action name="selectProjectFileLine" class="ProjectFileLineAction" method="selectProjectFileLine"></action>
+        <!-- 通知管理  结束 -->
+        
+        <!-- 成果管理  开始 -->
+        <action name="getResearchAchievementInfo" class="ResearchAchievementAction" method="getResearchAchievementInfo"></action>
+        <!-- 成果管理  结束 -->
+        <!-- 企业科技活动报表  开始-->
+        <action name="entpriScience*" class="EntpriScienceActivityAction" method="{1}"></action>
+        <!-- 企业科技活动报表  结束-->
+        <!-- 通用报表接口 开始 -->
+        <action name="commonReport*" class="CommonReportAction" method="{1}"></action>
+        <!-- 通用报表接口 结束 -->
+        <!-- 企业科技项目情况  开始 -->
+        <action name="entpriInfo*" class="EntpriScienceInfoAction" method="{1}"></action>
+        <!-- 企业科技项目情况  结束 -->
+        <!-- 科技费用  开始 -->
+        <action name="changeReportStatus" class="ScienceActivityAction" method="changeReportStatus"></action>
+        <!-- 科技费用  结束 -->
+        
+         <!--  项目评议审核  开始 -->
+        <action name="listOrgTree" class="ReviewAuditAction" method="listOrgTree"></action>
+        <!--  项目评议审核  结束 -->
+        
+        <!-- 修改所有状态数据的权限 开始 -->
+         <action name="isAllRole" class="RoleControlAction" method="isAllRole"></action>
+         <!-- 修改所有状态数据的权限 结束 -->
+        <!-- 内部报奖审核录入退回原因 开始 -->
+         <action name="backReasonAwards" class="InternalAwardAction" method="backReasonAwards"></action>
+         <!-- 内部报奖审核录入退回原因 结束 -->
+         
+         <action name="changeProjectStage" class="ProjectDispatchAction" method="changeProjectStage"></action>
+         <action name="genNewProjectDispatch" class="ProjectDispatchAction" method="genNewProjectDispatch"></action>
+        <!-- 项目管理审核模块-判断是否管理专业人员 开始 -->
+		<action name="isGuanliRole" class="ProjectAuditAction" method="isGuanliRole"></action>
+		 <!-- 项目管理审核模块-判断是否管理专业人员 结束 -->
+		 <!-- 单位概况管理开始 -->
+		 <action name="genOrgGeneralData" class="OrganizationGeneralAction" method="genOrgGeneralData"></action>
+		 <!-- 单位概况管理结束 -->
+	</package>
+</struts>

@@ -1,0 +1,203 @@
+<uicfg desc="合同管理编辑表单">
+	<loadtUrl>rpms/loadInnovateCompact.html</loadtUrl>
+	<submitUrl>rpms/saveInnovateCompact.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<height type="integer">385</height>
+	<defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">100</labelWidth>
+    </defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>orgtree</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<hidden type="object">false</hidden>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                this.findField("platInstitution.id").setValue({value:'',text:''});
+                this.findField("platInstitution.id").clearValue();
+            },
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },
+            scope:this
+        }
+        </listeners>
+        <value type="object">
+			{"value" : PlatUtil.currentCenterId, "text" : PlatUtil.currentCenterName}
+		</value>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.findField("platCenter.id"));
+            },
+            'beforeselect':function(combo, record){
+            	return record.isLeaf();
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>合同名称</fieldLabel>
+		<name>compactName</name>
+		<columnWidth type="object">2</columnWidth>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+        <xtype>lioncombowindow</xtype>
+        <fieldLabel>依托项目</fieldLabel>
+        <propertyName>project</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>projectName</hiddenDisplayName>
+        <displayField>projectName</displayField>
+        <allowBlank type="boolean">true</allowBlank>
+        <window>
+            <viewPathOfUi>rpms/research/project/list</viewPathOfUi>
+            <title>项目选择</title>
+        </window>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>甲方</fieldLabel>
+		<name>firstParty</name>
+		<columnWidth type="object">3</columnWidth>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>乙方</fieldLabel>
+		<name>secondParty</name>
+		<columnWidth type="object">3</columnWidth>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>丙方</fieldLabel>
+		<name>thirdParty</name>
+		<columnWidth type="object">3</columnWidth>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>合同编号</fieldLabel>
+		<name>compactNum</name>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<fieldLabel>金额</fieldLabel>
+		<name>sum</name>
+		<unitText>万元</unitText>
+		<regex type="object">/^\d+(\.\d+)?$/</regex>
+		<regexText>请输入有效数值</regexText>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>签订日期</fieldLabel>
+		<name>signDate</name>
+		<allowBlank type="object">false</allowBlank>
+		<format>Y-m-d</format>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>签订地点</fieldLabel>
+		<name>signAddress</name>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>有效期限开始</fieldLabel>
+		<name>startDate</name>
+		<format>Y-m-d</format>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>有效期限截止</fieldLabel>
+		<name>endDate</name>
+		<format>Y-m-d</format>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>合同支付情况</fieldLabel>
+		<name>paidStatus</name>
+		<columnWidth type="object">3</columnWidth>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<fieldLabel>已支付金额</fieldLabel>
+		<name>sumPaid</name>
+		<unitText>万元</unitText>
+		<regex type="object">/^\d+(\.\d+)?$/</regex>
+		<regexText>请输入有效数值</regexText>
+		<value>0</value>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>支付完毕</fieldLabel>
+		<name>paid</name>
+		<keyType>cims_boolean</keyType>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<name>createUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改人</fieldLabel>
+		<name>modifyUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>备注</fieldLabel>
+		<name>remark</name>
+		<columnWidth type="integer">3</columnWidth>
+	</items>
+</uicfg>

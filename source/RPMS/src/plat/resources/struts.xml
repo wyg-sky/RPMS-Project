@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <include file="config/struts/struts-system.xml" /> <!-- 系统管理 -->
+    <include file="config/struts/struts-base.xml" /> <!-- 基础信息 -->
+ 	<include file="config/struts/struts-rpms.xml" /> <!--科研项目管理 -->
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true" />
+	<!--是否缓冲静态内容 -->
+	<constant name="struts.serve.static.browserCache" value="false"></constant>
+	<!--是否使用样式缓冲 -->	
+	<constant name="struts.xslt.nocatch" value="false"></constant>
+	<!--配制文件改变后，是否自动加载 -->
+	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	<!-- Web应用的默认地区，Tomcat需要增加该设置，否则会告警 -->
+	<constant name="struts.locale" value="en_UTF-8" />
+	<!-- 需要Struts处理的请求后缀 -->
+	<constant name="struts.action.extension" value="html" />
+	<!-- 字符编码 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<!-- 国际化资源文件 -->
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources_zh_CN" />
+	<!-- 默认的对象工厂 -->
+	<constant name="struts.objectFactory" value="spring" />
+	<!--文件上传中整个请求 内容允许的最大字节数15728640 1048576 -->
+	<constant name="struts.multipart.maxSize" value="1073741824" /> 
+	<constant name="struts.multipart.saveDir" value="/tmpUploadFile"></constant>
+	
+</struts>

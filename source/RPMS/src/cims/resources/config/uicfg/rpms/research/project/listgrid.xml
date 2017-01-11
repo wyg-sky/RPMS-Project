@@ -1,0 +1,226 @@
+<uicfg desc="项目立项管理列表">
+    <rownum type="boolean">true</rownum>
+    <objectName>businessObject</objectName>
+    <orderBy> status asc , projectStatus asc,projectAnnual desc,platCenter.platCode,platInstitution.platCode,id asc</orderBy>
+    <editable type="object">false</editable>
+    <showEditButton type="object">Ext.isAllowed('rpms_project_edit')</showEditButton>
+    <showCopyButton type="object">false</showCopyButton>
+    <statusCtrl>
+        <field>status</field>
+        <value>0002,0004</value>
+        <text>立项审查,立项完成</text>
+    </statusCtrl>
+    <store>
+        <url>rpms/listProject.html</url>
+        <fields>
+            <name>id</name>
+        </fields>
+        <fields>
+            <name>projectCode</name>
+        </fields>
+        <fields>
+            <name>projectName</name>
+        </fields>
+        <fields>
+            <name>projectAnnual</name>
+        </fields>
+        <fields>
+            <name>platCenter.platName</name>
+        </fields>
+        <fields>
+            <name>platInstitution.platName</name>
+        </fields>
+        <fields>
+            <name>specialty.specialtyName</name>
+        </fields>
+        <fields>
+            <name>business.specialtyName</name>
+        </fields>
+        <fields>
+            <name>proejctType</name>
+        </fields>
+        <fields>
+            <name>projectLevel</name>
+        </fields>
+        <fields>
+            <name>researchFocus</name>
+        </fields>
+        <fields>
+            <name>researchWay</name>
+        </fields>
+        <fields>
+            <name>startTime</name>
+        </fields>
+        <fields>
+            <name>endTime</name>
+        </fields>
+        <fields>
+            <name>projectStatus</name>
+        </fields>
+        <fields>
+            <name>technology</name>
+        </fields>
+        <fields>
+            <name>chargeDepartnent.name</name>
+        </fields>
+        <fields>
+            <name>status</name>
+        </fields>
+        <fields>
+            <name>platCenter.id</name>
+        </fields>
+        <fields>
+            <name>platInstitution.id</name>
+        </fields>
+        <fields>
+            <name>organization.id</name>
+        </fields>
+        <fields>
+            <name>organization.name</name>
+        </fields>
+        <fields>
+            <name>specialty.id</name>
+        </fields>
+         <fields>
+            <name>business.id</name>
+        </fields>
+         <fields>
+            <name>examineUser</name>
+        </fields>
+         <fields>
+            <name>recommendType</name>
+        </fields>
+         <fields>
+            <name>examineTime</name>
+        </fields>
+         <fields>
+            <name>approveUser</name>
+        </fields>
+         <fields>
+            <name>approveTime</name>
+        </fields>
+    </store>
+    <sm>
+        <xtype>checkboxsm</xtype>
+        <singleSelect type="boolean">false</singleSelect>
+    </sm>
+    <cm>
+        <defaults>
+            <sortable type="boolean">true</sortable>
+        </defaults>
+        <columns>
+            <header>项目登记编号</header>
+            <dataIndex>projectCode</dataIndex>
+            <width type="integer">60</width>
+        </columns>
+        <columns>
+            <header>项目名称</header>
+            <dataIndex>projectName</dataIndex>
+            <width type="integer">100</width>
+        </columns>
+        <columns>
+            <header>单位</header>
+            <dataIndex>organization.name</dataIndex>
+            <width type="integer">40</width>
+        </columns>
+        <columns>
+            <header>年度</header>
+            <dataIndex>projectAnnual</dataIndex>
+            <width type="integer">40</width>
+        </columns>
+        <columns>
+            <header>分中心</header>
+            <dataIndex>platCenter.platName</dataIndex>
+            <width type="integer">60</width>
+        </columns>
+        <columns>
+            <header>机构</header>
+            <dataIndex>platInstitution.platName</dataIndex>
+            <hidden type="boolean">true</hidden>
+            <width type="integer">80</width>
+        </columns>
+        <columns>
+            <header>专业</header>
+            <dataIndex>specialty.specialtyName</dataIndex>
+            <width type="integer">40</width>
+        </columns>
+        <columns>
+            <header>业务</header>
+            <dataIndex>business.specialtyName</dataIndex>
+            <hidden type="boolean">true</hidden>
+            <width type="integer">40</width>
+        </columns>
+        <columns>
+            <header>类型</header>
+            <dataIndex>proejctType</dataIndex>
+            <keyType>rpms_project_type</keyType>
+            <width type="integer">40</width>
+        </columns>
+        <columns>
+            <header>研发重点</header>
+            <dataIndex>researchFocus</dataIndex>
+            <keyType>rpms_project_key</keyType>
+            <hidden type="boolean">true</hidden>
+            <width type="integer">50</width>
+        </columns>
+        <columns>
+            <header>开始时间</header>
+            <hidden type="object">true</hidden>
+            <dataIndex>startTime</dataIndex>
+            <width type="integer">60</width>
+        </columns>
+        <columns>
+            <header>结束时间</header>
+            <hidden type="object">true</hidden>
+            <dataIndex>endTime</dataIndex>
+            <width type="integer">60</width>
+        </columns>
+        <columns>
+            <header>项目状态</header>
+            <keyType>rpms_project_status</keyType>
+            <dataIndex>projectStatus</dataIndex>
+            <hidden type="object">true</hidden>
+            <width type="integer">60</width>
+        </columns>
+        <columns>
+            <header>技术专业审查部门</header>
+            <dataIndex>chargeDepartnent.name</dataIndex>
+            <width type="integer">60</width>
+        </columns>
+        <columns>
+            <header>技术专业审查人</header>
+            <dataIndex>examineUser</dataIndex>
+            <width type="integer">60</width>
+        </columns>
+        <columns>
+            <header>技术专业推荐项目类型</header>
+            <dataIndex>recommendType</dataIndex>
+            <keyType>rpms_recommend_type</keyType>
+            <hidden type="object">true</hidden>
+            <width type="integer">60</width>
+        </columns>
+        <columns>
+            <header>技术专业审查时间</header>
+            <dataIndex>examineTime</dataIndex>
+            <hidden type="object">true</hidden>
+            <width type="integer">60</width>
+        </columns>
+        <columns>
+            <header>管理专业审查人</header>
+            <dataIndex>approveUser</dataIndex>
+            <width type="integer">60</width>
+        </columns>
+        <columns>
+            <header>管理专业审查时间</header>
+            <dataIndex>approveTime</dataIndex>
+            <hidden type="object">true</hidden>
+            <width type="integer">60</width>
+        </columns>
+        <columns>
+            <header>状态</header>
+            <dataIndex>status</dataIndex>
+            <keyType>rpms_designate_status</keyType>
+            <width type="integer">40</width>
+        </columns>
+    </cm>
+</uicfg>    

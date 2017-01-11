@@ -1,0 +1,57 @@
+<uicfg desc="仓库基本信息查询表单">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>storageCd</name>
+		<fieldLabel>仓库编码</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>storageName</name>
+		<fieldLabel>仓库名称</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>storageType</name>
+		<fieldLabel>仓库类型</fieldLabel>
+		<keyType>mate_storage_type</keyType>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>isLock</name>
+		<fieldLabel>锁定状态</fieldLabel>
+		<keyType>cims_boolean</keyType>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>valid</name>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+	</items>
+	<buttonAlign>center</buttonAlign>
+	<buttons>
+		<text>查询</text>
+		<width type="integer">50</width>
+		<iconCls>search-d-icon</iconCls>
+		<handler type="object">function() {this.manager.query()}</handler>
+		<scope type="object">this</scope>
+	</buttons>
+	<buttons>
+		<text>重置</text>
+		<width type="integer">50</width>
+		<iconCls>ff-clear-icon</iconCls>
+		<handler type="object">function() {this.manager.clearQuery()}</handler>
+		<scope type="object">this</scope>
+	</buttons>
+	<!--<items>
+		<xtype>liontextfield</xtype>
+		<name>systemType</name>
+		<fieldLabel>系统类型</fieldLabel>
+		<hidden type='boolean'>true</hidden>
+		<operator>=</operator>
+		<value type ='object'>this.manager.systemType</value>
+	</items>-->
+</uicfg>

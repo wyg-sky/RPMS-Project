@@ -1,0 +1,9 @@
+<uicfg desc="表单编辑按钮">
+	<items>-></items>
+	<items>
+		<text>保存</text>
+		<iconCls>save-icon</iconCls>
+		<hidden type="object">this.isHidden()</hidden>
+		<handler type="object">this.saveClick</handler>
+	</items>
+</uicfg>

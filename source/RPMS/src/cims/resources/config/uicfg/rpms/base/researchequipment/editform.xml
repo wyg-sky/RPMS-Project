@@ -1,0 +1,273 @@
+<uicfg desc="创新设备管理编辑表单">
+	<loadtUrl>rpms/loadResearchEquipment.html</loadtUrl>
+	<submitUrl>rpms/saveResearchEquipment.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<height type="integer">380</height>
+	<defaultFocusIndex>-1</defaultFocusIndex>
+	<defaults>
+		<layout>column</layout>
+		<labelWidth type="integer">75</labelWidth>
+	</defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>lioncodefield</xtype>
+		<fieldLabel>设备编号</fieldLabel>
+		<name>equiCode</name>
+		<readOnly type="boolean">true</readOnly>
+		<allowBlank type="boolean">false</allowBlank>
+		<autoLoad type="object">this.manager.actionMode == '1'</autoLoad>
+		<maxLength type="integer">50</maxLength>
+		<maxLengthText>设备编号最大长度为50个字符</maxLengthText>
+		<type>2</type>
+		<params>
+			<className>ResearchEquipment</className>
+			<parentId type="object">this.manager.parentId</parentId>
+			<codeProperty>equiCode</codeProperty>
+			<length>4</length>
+		</params>
+	</items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>设备名称</fieldLabel>
+		<name>equiName</name>
+		<columnWidth type="integer">2</columnWidth>
+		<allowBlank type="object">false</allowBlank>
+		<maxLength type="integer">30</maxLength>
+		<maxLengthText>设备名称最大允许输入30个字符</maxLengthText>
+	</items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>型号</fieldLabel>
+		<allowBlank type="object">false</allowBlank>
+		<name>spec</name>
+		<maxLength type="integer">30</maxLength>
+		<maxLengthText>型号最大允许输入30个字符</maxLengthText>
+	</items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>lioncomboboxtree</xtype>
+		<propertyName>specialty</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>specialtyName</hiddenDisplayName>
+		<fieldLabel>专业</fieldLabel>
+		<allowBlank type="object">false</allowBlank>
+		<tree>
+			<loader>
+				<dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+				<baseParams>
+					<type>"zy"</type>
+				</baseParams >
+			</loader>
+		</tree>
+		<listeners type="object">{
+            'select':function(){
+                this.manager.editForm.findField("business.id").setValue({value:'',text:''});
+                this.manager.editForm.findField("business.id").clearValue();
+            },
+            scope:this
+        }
+		</listeners>
+	</items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>lioncomboboxtree</xtype>
+		<propertyName>business</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>specialtyName</hiddenDisplayName>
+		<fieldLabel>业务</fieldLabel>
+		<allowBlank type="object">true</allowBlank>
+		<tree>
+			<loader>
+				<dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+				<baseParams>
+					<parentId> </parentId>
+				</baseParams >
+			</loader>
+			<root>
+				<id>root_id</id>
+				<text>专业业务</text>
+			</root>
+		</tree>
+		<listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.findField("specialty.id"));
+            },scope:this
+        }
+		</listeners>
+	</items>
+	<items>
+        <anchor>99%</anchor>
+        <xtype>orgtree</xtype>
+        <fieldLabel>单位</fieldLabel>
+        <propertyName>organization</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <hidden type="object">false</hidden>
+        <value type="object">
+            {"value" : FW.organizationId, "text" : FW.organizationName}
+        </value>
+    </items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>plattree</xtype>
+		<propertyName>platCenter</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>platName</hiddenDisplayName>
+		<fieldLabel>分中心</fieldLabel>
+		<allowBlank type="object">false</allowBlank>
+		<listeners type="object">{
+            'select':function(){
+                this.manager.editForm.findField("platInstitution.id").setValue({value:'',text:''});
+                this.manager.editForm.findField("platInstitution.id").clearValue();
+            },
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },
+            scope:this
+        }
+		</listeners>
+		<value type="object">
+            {"value" : PlatUtil.currentCenterId, "text" : PlatUtil.currentCenterName}
+		</value>
+	</items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>plattree</xtype>
+		<propertyName>platInstitution</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>platName</hiddenDisplayName>
+		<fieldLabel>分中心机构</fieldLabel>
+		<allowBlank type="object">false</allowBlank>
+		<listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.manager.editForm.findField("platCenter.id"));
+            },scope:this
+        }
+		</listeners>
+	</items>
+	<items>
+        <anchor>99%</anchor>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>生产厂家</fieldLabel>
+        <allowBlank type="boolean">false</allowBlank>
+        <name>factory</name>
+        <maxLength type="integer">30</maxLength>
+        <maxLengthText>生产厂家最大允许输入30个字符</maxLengthText>
+    </items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>购置时间</fieldLabel>
+		<name>purchaseTime</name>
+		<editable>false</editable>
+		<format>Y-m-d</format>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>出厂日期</fieldLabel>
+		<name>manufactureDate</name>
+		<editable>false</editable>
+		<format>Y-m-d</format>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>lionnumberfield</xtype>
+		<fieldLabel>设备原值</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<name>assetFund</name>
+		<allowNegative type="object">false</allowNegative>
+		<decimalPrecision>4</decimalPrecision>
+		<minValue>0</minValue>
+		<maxLength type="integer">12</maxLength>
+		<maxLengthText>设备原值最大允许输入12个字符,保留小数点后4位有效数值.</maxLengthText>
+	</items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>设备状态</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<name>equiStatus</name>
+		<keyType>rpms_euqi_status</keyType>
+		<value>0001</value>
+		<editable type="object">false</editable>
+	</items>
+	<items>
+        <anchor>99%</anchor>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>使用状态</fieldLabel>
+        <allowBlank type="boolean">false</allowBlank>
+        <name>useStatus</name>
+        <keyType>rpms_use_status</keyType>
+        <value>0001</value>
+        <editable type="object">false</editable>
+    </items>
+	<items>
+		<anchor>99.5%</anchor>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>备注</fieldLabel>
+		<name>remark</name>
+		<height type="integer">220</height>
+		<columnWidth type="integer">3</columnWidth>
+		<maxLength type="integer">1000</maxLength>
+		<maxLengthText>备注最大允许输入1000个字符</maxLengthText>
+	</items>
+	<items>
+        <anchor>99%</anchor>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>是否有效</fieldLabel>
+        <name>valid</name>
+        <keyType>cims_effective</keyType>
+        <value>1</value>
+        <editable type="object">false</editable>
+        <readOnly type="object">true</readOnly>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>liontextfield</xtype>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>创建人</fieldLabel>
+        <name>createUser</name>
+        <value type="object">FW.userName</value>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>liontextfield</xtype>
+        <name>createTime</name>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>创建时间</fieldLabel>
+        <value type="object">new Date().format('Y-m-d H:i:s')</value>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>liontextfield</xtype>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>修改人</fieldLabel>
+        <name>modifyUser</name>
+        <value type="object">FW.userName</value>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>liontextfield</xtype>
+        <name>modifyTime</name>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>修改时间</fieldLabel>
+        <value type="object">new Date().format('Y-m-d H:i:s')</value>
+        <hidden type="object">true</hidden>
+    </items>
+</uicfg>

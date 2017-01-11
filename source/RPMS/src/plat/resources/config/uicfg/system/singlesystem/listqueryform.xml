@@ -1,0 +1,26 @@
+<uicfg desc="单点链接查询器界面编辑">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>systemName</name>
+		<fieldLabel>系统名称</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>systemType</hiddenName>
+		<fieldLabel>系统类型</fieldLabel>
+		<keyType>sys_single_type</keyType>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>systemEnable</hiddenName>
+		<fieldLabel>是否启用</fieldLabel>
+		<keyType>cims_boolean</keyType>
+	</items>
+</uicfg>

@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* CSS Document */
+body{ margin:0; padding:0; position:absolute; left:0; top:0;font-size:12px; color:#333333; font-family:Arial, Helvetica, sans-serif; background-image:url(../../images/login/bg-big.jpg);background-repeat:repeat-x; background-position:center center; background-color:#fff; }
+input{padding:0px auto;font:13px; border:none; color:#3e3e3e;}
+
+a{color:#000;text-decoration:none;}
+a:link, a:visited,a:hover{text-decoration:none;}
+img {border: none; padding:0; margin:0;}
+ul,li{list-style:none; padding:0; margin:0;}
+
+body,html{overflow:hidden; width:100%; height:100%;}
+.main{ top:50%;left:50%; position:absolute; margin:-300px 0 0 -539px;  padding:0; width:1078px; height:600px; background:url(../../images/login/bg.jpg) no-repeat top; }
+
+.icon{overflow:hidden;width:500px;overflow-y:auto; margin-top:200px; margin-left:370px;display:inline-block; padding:0; }
+.icon li{margin:0 auto;text-align:center;color:#317906;float:left;display:inline-block;_display:inline; padding:5px 45px; }
+.icon li a{ width:120px; display:inline-block;overflow:hidden;padding-top:8px; padding-bottom:5px;cursor:pointer;}
+.icon li a dl{font-style: normal;color:#585858; margin:0; padding:5px 0; font-size:18px; font-weight:bold;text-align:center;line-height:30px; height:30px; font-family:"微软雅黑";}
+.icon li a:hover dl{color:#085dad;}
+.icon li a span{ display:block; height:94px; width:93px;  padding:5px; margin:0 auto;}
+
+.copy{ width:400px; height:40px; bottom:10px;  left:350px; line-height:30px; color:#085dad; font-size:13px;  text-align:center; position:absolute;}
+
+.login{ bottom:80px;left:330px; position: absolute; width:430px; height:140px; }
+.login .let{ width:300px; float:left;}
+.login .rig{ width:110px; height:85px; float:right; margin-top:5px; }
+.login .rig .but{background:url(../../images/login/login.png) no-repeat center; cursor:pointer; border:none; width:110px; height:85px;}
+.login .zhu{ width:300px; float:left; height:30px;}
+
+.name{ padding-left:20px; font-weight:bold;line-height:40px; width:252px; height:37px; font-size:13px; background:url(../../images/login/name.png) no-repeat; margin:5px 10px; font-size:16px; font-family:"微软雅黑"; color:#3598dc;}
+.password{padding-left:20px;font-weight:bold; line-height:40px;  width:252px; height:37px;font-size:13px; background:url(../../images/login/mima.png) no-repeat;margin:5px 10px; font-size:16px; font-family:"微软雅黑"; color:#3598dc;}
+
+.input-bg{padding-left:20px;font-weight:bold; line-height:40px;  width:252px; height:37px;font-size:13px; margin:5px 10px; font-size:16px; font-family:"微软雅黑"; color:#3598dc; background:url(../../images/login/input1.png) no-repeat;}
+
+.litico{ margin-left:10px; float:left;overflow:hidden;width:400px; margin:0;display:inline-block; padding:0; }
+.litico li{margin:0 10px;text-align:left;color:#818181;float:left;display:inline-block;_display:inline; padding-left:20px; line-height:30px; font-family:"宋体";}
+
+.litico li a{color:#818181; text-decoration:none;}
+.litico li a:hover{ color:#7dacec;}
+
+
+.jname{ background: url(../../images/login/man.png) no-repeat left;}
+.jmima{ background:url(../../images/login/lock.png) no-repeat left;}
+.wmima{ background:url(../../images/login/wen.png) no-repeat left;}
+
+.jname1{ background: url(../../images/login/man1.png) no-repeat left;}
+.jmima1{ background:url(../../images/login/lock1.png) no-repeat left;}
+.wmima1{ background:url(../../images/login/wen1.png) no-repeat left;}

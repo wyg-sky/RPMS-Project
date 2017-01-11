@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<uicfg desc="任务管理子表可编辑列表">
+	<objectName>businessObject</objectName>
+	<orderBy>id asc</orderBy>
+	<rownum type="boolean">true</rownum>
+	<showLookButton type="object">false</showLookButton>
+	<showEditButton type="object">false</showEditButton>
+	<showCopyButton type="object">false</showCopyButton>
+	<editable type="object">true</editable>
+	<allowPage type="boolean">false</allowPage>
+	<store>
+		<url>system/listCodeDutyLine.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>mainId</name>
+		</fields>
+		<fields>
+			<name>tableName</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>主表ID</header>
+			<dataIndex>mainId</dataIndex>
+			<hidden type="true">boolean</hidden>
+		</columns>
+		<columns>
+			<header>子表名称</header>
+			<dataIndex>tableName</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+				<allowBlank type="boolean">false</allowBlank>
+			</editor>
+		</columns>
+	</cm>
+	<listeners type="object">{
+		'afteredit' : function(e) {
+			if(e.field == 'tableName') {
+				this.manager.loadTableInfo(e.record,e.value,false);
+			}
+		},
+		scope : this
+	}</listeners>
+</uicfg>

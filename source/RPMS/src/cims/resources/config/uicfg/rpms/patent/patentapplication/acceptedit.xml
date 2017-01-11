@@ -1,0 +1,22 @@
+<uicfg desc="专利申请管理受理编辑主界面">
+	<objectName>businessObject</objectName>
+	<objectLineName>patentApplicationLine</objectLineName>
+	<winWidth type="integer">950</winWidth>
+	<component>
+		<items>
+			<object>acceptEditTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/patent/patentapplication/acceptedittbar</viewPath>
+		</items>
+		<items>
+			<object>accepteditForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/patent/patentapplication/accepteditform</viewPath>
+		</items>
+		
+	</component>
+	<container>
+		<items>acceptEditTbar</items>
+		<items>accepteditForm</items>
+	</container>
+</uicfg>

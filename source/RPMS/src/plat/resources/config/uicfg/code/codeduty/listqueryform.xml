@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<uicfg desc="任务管理查询表单">
+	<columns type="integer">4</columns>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>systemName</hiddenName>
+		<fieldLabel>系统名称</fieldLabel>
+		<keyType>sys_systemType</keyType>
+		<operator>=</operator>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>moduleName</name>
+		<fieldLabel>模块名称</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>tableName</name>
+		<fieldLabel>表名称</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>generateUser</name>
+		<fieldLabel>执行人</fieldLabel>
+	</items>
+</uicfg>

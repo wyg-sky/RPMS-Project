@@ -1,0 +1,58 @@
+<uicfg desc="编码管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>name asc</orderBy>
+	<editable type="object">false</editable>
+	<formViewPath>system/codegenerator/listgridform</formViewPath>
+	<showDeleteButton type="object">true</showDeleteButton>
+	<store>
+		<url>system/listCodeGenerator.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>name</name>
+		</fields>
+		<fields>
+			<name>code</name>
+		</fields>
+		<fields>
+			<name>prefix</name>
+		</fields>
+		<fields>
+			<name>currentValue</name>
+		</fields>
+		<fields>
+			<name>version</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>业务名称</header>
+			<dataIndex>name</dataIndex>
+		</columns>
+		<columns>
+			<header>编码</header>
+			<dataIndex>code</dataIndex>
+		</columns>
+		<columns>
+			<header>业务前缀</header>
+			<dataIndex>prefix</dataIndex>
+		</columns>
+		<columns>
+			<header>单据序列号</header>
+			<dataIndex>currentValue</dataIndex>
+		</columns>
+		<columns>
+			<header>版本号</header>
+			<dataIndex>version</dataIndex>
+		</columns>
+	</cm>
+</uicfg>

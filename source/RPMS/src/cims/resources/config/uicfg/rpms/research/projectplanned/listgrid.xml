@@ -1,0 +1,98 @@
+<uicfg desc="创新计划列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>plannedYear desc,valid desc</orderBy>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<store>
+		<url>rpms/listProjectPlanned.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>plannedYear</name>
+		</fields>
+		<fields>
+			<name>plannedName</name>
+		</fields>
+		<fields>
+			<name>plannedType</name>
+		</fields>
+		<fields>
+			<name>grade</name>
+		</fields>
+		<fields>
+			<name>planId.id</name>
+		</fields>
+		<fields>
+			<name>planId.planName</name>
+		</fields>
+		<fields>
+			<name>plannedStatus</name>
+		</fields>
+		<fields>
+			<name>plannedDept</name>
+		</fields>
+		<fields>
+			<name>plannedTime</name>
+		</fields>
+		<fields>
+			<name>valid</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>计划年度</header>
+			<dataIndex>plannedYear</dataIndex>
+			<width type="integer">30</width>
+		</columns>
+		<columns>
+			<header>计划名称</header>
+			<dataIndex>plannedName</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>计划类型</header>
+			<dataIndex>plannedType</dataIndex>
+			<width type="integer">50</width>
+		</columns>
+		<columns>
+			<header>计划等级</header>
+			<dataIndex>grade</dataIndex>
+			<width type="integer">50</width>
+		</columns>
+		<columns>
+			<header>实施状态</header>
+			<dataIndex>plannedStatus</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>所属规划</header>
+			<dataIndex>planId.planName</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>编制单位</header>
+			<dataIndex>plannedDept</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>编制时间</header>
+			<dataIndex>plannedTime</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>是否有效</header>
+			<dataIndex>valid</dataIndex>
+			<keyType>cims_effective</keyType>
+			<width type="integer">30</width>
+		</columns>
+	</cm>
+</uicfg>

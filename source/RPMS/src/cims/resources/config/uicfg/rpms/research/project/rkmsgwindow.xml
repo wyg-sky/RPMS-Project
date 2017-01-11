@@ -1,0 +1,15 @@
+<uicfg desc="项目立项认可">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">300</winWidth>
+	<winHeight type="integer">150</winHeight>
+	<component>
+		<items>
+			<object>rkmsgform</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/research/project/rkmsgform</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>rkmsgform</items>
+	</container>
+</uicfg>

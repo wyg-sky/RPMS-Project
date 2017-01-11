@@ -1,0 +1,73 @@
+<uicfg desc="组件参数列表">
+	<rownum type="boolean">true</rownum>
+	<editable type="object">true</editable>
+	<orderBy>sortOrder asc</orderBy>
+	<showLookButton type="object">false</showLookButton>
+	<showEditButton type="object">false</showEditButton>
+	<showCopyButton type="object">false</showCopyButton>
+	<allowPage type="boolean">false</allowPage>
+	<clicksToEdit type="integer">1</clicksToEdit>
+	<store>
+		<autoLoad type="object">false</autoLoad>
+		<url>system/listPageParams.html</url>
+		<fields>
+			<name>paramName</name>
+		</fields>
+		<fields>
+			<name>paramPath</name>
+		</fields>
+		<fields>
+			<name>paramType</name>
+		</fields>
+		<fields>
+			<name>paramValue</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>参数名称</header>
+			<dataIndex>paramName</dataIndex>
+			<width type="integer">60</width>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>参数路径</header>
+			<dataIndex>paramPath</dataIndex>
+			<width type="integer">100</width>
+			<editor>
+				<xtype>liontextfield</xtype>
+				<allowBlank type="object">false</allowBlank>
+			</editor>
+		</columns>
+		<columns>
+			<header>参数类型</header>
+			<dataIndex>paramType</dataIndex>
+			<keyType>sys_param_type</keyType>
+			<width type="integer">50</width>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<hiddenName>paramType</hiddenName>
+				<keyType>sys_param_type</keyType>
+				<allowBlank type="object">false</allowBlank>
+			</editor>
+		</columns>
+		<columns>
+			<header>参数值</header>
+			<dataIndex>paramValue</dataIndex>
+			<width type="integer">150</width>
+			<editor>
+				<xtype>liontextfield</xtype>
+				<allowBlank type="object">false</allowBlank>
+			</editor>
+		</columns>
+	</cm>
+</uicfg>

@@ -1,0 +1,82 @@
+<uicfg desc="专利列表">
+	<rownum type="boolean">true</rownum>
+	<orderBy></orderBy>
+	<editable type="object">true</editable>
+	<showLookButton type="object">false</showLookButton>
+	<showEditButton type="object">false</showEditButton>
+	<showCopyButton type="object">false</showCopyButton>
+	<allowPage type="boolean">false</allowPage>
+	<clicksToEdit type="integer">1</clicksToEdit>
+	<store>
+		<url>rpms/listResearchPatentLine.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>mainId</name>
+		</fields>
+		<fields>
+			<name>talentId.id</name>
+		</fields>
+		<fields>
+			<name>talentId.talentName</name>
+		</fields>
+		<fields>
+			<name>talentId.position</name>
+		</fields>
+		<fields>
+			<name>talentId.grade</name>
+		</fields>
+		<fields>
+			<name>talentId.title</name>
+		</fields>
+		<fields>
+			<name>talentId.discipline</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>专家</header>
+			<dataIndex>talentId.talentName</dataIndex>
+			<cascadeIndex>talentId.id</cascadeIndex>
+			<editor>
+				<xtype>lioncombowindow</xtype>
+				<propertyName>talentId</propertyName>
+				<hiddenName>id</hiddenName>
+				<hiddenDisplayName>talentName</hiddenDisplayName>
+				<displayField>talentName</displayField>
+				<window>
+					<viewPathOfUi>rpms/base/generalizepatent/list</viewPathOfUi>
+					<title>人员选择</title>
+				</window>
+			</editor>
+		</columns>
+		<columns>
+			<header>机构职务</header>
+			<dataIndex>talentId.position</dataIndex>
+			<keyType>rpms_institution_duty</keyType>
+		</columns>
+		<columns>
+			<header>专家等级</header>
+			<dataIndex>talentId.grade</dataIndex>
+			<keyType>rpms_grade</keyType>
+		</columns>
+		<columns>
+			<header>职称</header>
+			<dataIndex>talentId.title</dataIndex>
+			<keyType>rpms_title</keyType>
+		</columns>
+		<columns>
+			<header>学科专业</header>
+			<dataIndex>talentId.discipline</dataIndex>
+			<keyType>rpms_discipline</keyType>
+		</columns>
+	</cm>
+</uicfg>

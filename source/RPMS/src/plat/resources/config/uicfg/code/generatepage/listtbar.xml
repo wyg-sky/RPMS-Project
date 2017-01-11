@@ -1,0 +1,37 @@
+<uicfg desc="组件管理按钮">
+	<items>-></items>
+	<items>
+		<text>生成布局</text>
+		<iconCls>ff-frame-template-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<handler type="object">function(){
+			this.generateList();
+		}</handler>
+	</items>
+	<items>
+		<text>整合浮动窗</text>
+		<iconCls>view-all-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<handler type="object">function(){
+			this.addFormToGrid();
+		}</handler>
+	</items>
+	<items>
+		<text>新增</text>
+		<iconCls>create-icon</iconCls>
+		<handler type="object">this.addClick</handler>
+	</items>
+	<items>
+		<text>删除</text>
+		<iconCls>delete-selected-icon</iconCls>
+		<handler type="object">function(){
+			this.manager.deleteObject(this.manager.dataGrid, true);
+		}</handler>
+	</items>
+	<items>
+		<text>打包下载所有文件</text>
+		<hidden type="object">this.manager.isServer</hidden>
+		<iconCls>download-icon</iconCls>
+		<handler type="object">this.manager.downloadAllFiles</handler>
+	</items>
+</uicfg>

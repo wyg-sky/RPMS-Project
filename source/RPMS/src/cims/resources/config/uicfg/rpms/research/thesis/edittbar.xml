@@ -1,0 +1,13 @@
+<uicfg desc="论文编辑工具栏">
+	<items>-></items>
+	<items>
+		<text>保存</text>
+		<iconCls>save-icon</iconCls>
+		<handler type="object">this.saveClick</handler>
+	</items>
+	<items>
+		<text>关闭</text>
+		<iconCls>close-icon</iconCls>
+		<handler type="object">this.closeClick</handler>
+	</items>
+</uicfg>

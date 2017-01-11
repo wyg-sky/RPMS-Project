@@ -1,0 +1,119 @@
+<uicfg desc="年报评估管理编辑表单">
+	<loadtUrl>rpms/loadPostdoctorYearReport.html</loadtUrl>
+	<submitUrl>rpms/savePostdoctorYearReport.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">90</labelWidth>
+    </defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                this.findField("platInstitution.id").setValue({value:'',text:''});
+                this.findField("platInstitution.id").clearValue();
+            },
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },
+            scope:this
+        }
+        </listeners>
+        <value type="object">
+			{"value" : PlatUtil.currentCenterId, "text" : PlatUtil.currentCenterName}
+		</value>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.findField("platCenter.id"));
+            }, 'beforeselect':function(combo, record){
+            	return record.isLeaf();
+            },scope:this
+        }
+        </listeners>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>文件名称</fieldLabel>
+		<name>fileName</name>
+		<allowBlank type="object">false</allowBlank>
+		<maxLength type="object">66</maxLength>
+	</items>
+	<items>
+		<xtype>lioncomboboxyearfield</xtype>
+		<fieldLabel>年度</fieldLabel>
+		<name>year</name>
+		<allowBlank type="object">false</allowBlank>
+		<value type="object">new Date().getFullYear()</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>类型</fieldLabel>
+		<name>type</name>
+		<value>assessment</value>
+		<hidden type="object">true</hidden>
+		<maxLength type="object">13</maxLength>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<name>createUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改人</fieldLabel>
+		<name>modifyUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>简介</fieldLabel>
+		<name>summary</name>
+		<height type="object">200</height>
+		<columnWidth type="integer">3</columnWidth>
+		<maxLength type="object">666</maxLength>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>备注</fieldLabel>
+		<name>remark</name>
+		<columnWidth type="integer">3</columnWidth>
+		<maxLength type="object">666</maxLength>
+	</items>
+</uicfg>

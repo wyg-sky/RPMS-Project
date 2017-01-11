@@ -1,0 +1,66 @@
+<uicfg desc="生成页面布局">
+	<winWidth type="integer">1200</winWidth>
+	<component>
+		<items>
+			<object>widgettbar</object>
+			<xtype>liontoolbar</xtype>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/widgetinfo/widgettbar</viewPath>
+		</items>
+		<items>
+			<object>widgetForm</object>
+			<xtype>lionform</xtype>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/widgetinfo/widgetform</viewPath>
+		</items>
+		<items>
+			<object>widgetParamstbar</object>
+			<xtype>liontoolbar</xtype>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/widgetinfo/paramstbar</viewPath>
+		</items>
+		<items>
+			<object>widgetParamsGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<height type="integer">150</height>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/widgetinfo/paramsgrid</viewPath>
+		</items>
+		<items>
+			<object>columnstbar</object>
+			<xtype>liontoolbar</xtype>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/widgetinfo/columnstbar</viewPath>
+		</items>
+		<items>
+			<object>columnsGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<height type="integer">180</height>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/widgetinfo/columnsgrid</viewPath>
+		</items>
+		<items>
+			<object>propertystbar</object>
+			<xtype>liontoolbar</xtype>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/widgetinfo/propertystbar</viewPath>
+		</items>
+		<items>
+			<object>propertysGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<height type="integer">120</height>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/widgetinfo/propertysgrid</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>widgettbar</items>
+		<items>widgetForm</items>
+		<items>widgetParamstbar</items>
+		<items>widgetParamsGrid</items>
+		<items>columnstbar</items>
+		<items>columnsGrid</items>
+		<items>propertystbar</items>
+		<items>propertysGrid</items>
+	</container>
+</uicfg>

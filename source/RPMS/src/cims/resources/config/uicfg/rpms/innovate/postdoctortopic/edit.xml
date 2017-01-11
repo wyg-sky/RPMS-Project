@@ -1,0 +1,34 @@
+<uicfg desc="博士后课题管理编辑主界面">
+	<objectName>businessObject</objectName>
+	<objectLineName>postdoctorTopicLine</objectLineName>
+	<winWidth type="integer">950</winWidth>
+	<component>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/innovate/postdoctortopic/edittbar</viewPath>
+		</items>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/innovate/postdoctortopic/editform</viewPath>
+		</items>
+		<items>
+			<object>fileLineGrid</object>
+			<xtype>lionuploadfile</xtype>
+			<isLine type="boolean">true</isLine>
+			<lineName>documents</lineName> 
+			<fkId type="object">this.mainId</fkId>
+			<height type="object">200</height>
+			<fkName>obj.docFk</fkName>
+			<allowUpload type="object">this.editable</allowUpload>
+			<allowDelete type="object">this.editable</allowDelete>
+			<fileTypeParent>2c9082b34d269927014d276b215300b1</fileTypeParent>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+		<items>fileLineGrid</items>
+	</container>
+</uicfg>

@@ -1,0 +1,20 @@
+<uicfg desc="内部报奖审核模块退回原因录入">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">550</winWidth>
+	<component>
+		<items>
+			<object>backeditTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/research/internalaward/backtbar</viewPath>
+		</items>
+		<items>
+			<object>backeditForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/research/internalaward/backeditform</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>backeditTbar</items>
+		<items>backeditForm</items>
+	</container>
+</uicfg>

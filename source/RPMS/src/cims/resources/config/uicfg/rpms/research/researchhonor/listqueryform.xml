@@ -1,0 +1,45 @@
+<uicfg desc="荣誉管理查询表单">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>证书编号</fieldLabel>
+        <name>honorNum</name>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>荣誉名称</fieldLabel>
+		<name>honorName</name>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>honorType</hiddenName>
+		<fieldLabel>荣誉分类</fieldLabel>
+		<keyType>rpms_hornor_type</keyType>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>grade</hiddenName>
+		<fieldLabel>荣誉等级</fieldLabel>
+		<keyType>rpms_hornor_grade</keyType>
+	</items>
+	<items>
+        <xtype>orgtree</xtype>
+        <fieldLabel>单位</fieldLabel>
+        <propertyName>organization</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+    <items>
+        <xtype>lionblankfield</xtype>
+    </items>
+    <items>
+        <xtype>lionblankfield</xtype>
+    </items>
+    <items>
+        <xtype>lionblankfield</xtype>
+    </items>
+</uicfg>

@@ -1,0 +1,152 @@
+<uicfg desc="成果推广管理查询表单">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<defaults>
+        <border type="object">false</border>
+        <layout>column</layout>
+        <labelWidth type="object">90</labelWidth>
+    </defaults>
+    <!--
+    <items>
+        <anchor>99%</anchor>
+        <xtype>lioncombowindow</xtype>
+        <propertyName>projectId</propertyName>
+        <fieldLabel>成果编号</fieldLabel>
+        <hiddenName>id</hiddenName>
+        <displayField>achievementNum</displayField>
+        <hiddenDisplayName>achievementNum</hiddenDisplayName>
+        <allowBlank type="object">true</allowBlank>
+        <queryParam type="object">['achievementNum']</queryParam>
+        <window>
+            <viewPathOfUi>rpms/research/researchachievement/list</viewPathOfUi>
+            <title>成果管理选择</title>
+            <hql></hql>
+            <width type="integer">1100</width>
+            <height type="integer">550</height>
+        </window>
+    </items>
+    -->
+     <items>
+        <anchor>99%</anchor>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>成果编号</fieldLabel>
+        <name>achievementNum</name>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>成果名称</fieldLabel>
+        <name>achievementName</name>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>成果类型</fieldLabel>
+        <name>type</name>
+        <keyType>rpms_acceptance_type</keyType>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>specialty</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>专业</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                    <type>"zy"</type>
+                </baseParams >
+            </loader>
+        </tree>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>orgtree</xtype>
+        <fieldLabel>单位</fieldLabel>
+        <propertyName>organization</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <allowBlank type="object">true</allowBlank>
+        <hidden type="object">false</hidden>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.manager.queryForm.findField("platCenter.id"));
+            },scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+    	<anchor>99%</anchor>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>business</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>业务</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                    <type>"yw"</type>
+                </baseParams >
+            </loader>
+            <root>
+                <id>root_id</id>
+                <text>专业业务</text>
+            </root>
+        </tree>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>lionmonthfield</xtype>
+        <name>certificationDate</name>
+        <fieldLabel>评议/鉴定时间</fieldLabel>
+        <format>Y-m</format>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>评议/鉴定机构</fieldLabel>
+        <name>reviewMechanism</name>
+        <keyType>rpms_review_unit</keyType>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>是否推广</fieldLabel>
+        <name>valid</name>
+        <keyType>rpms_is_spread</keyType>
+    </items>
+</uicfg>

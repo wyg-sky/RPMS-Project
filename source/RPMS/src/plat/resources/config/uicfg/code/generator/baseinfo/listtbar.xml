@@ -1,0 +1,24 @@
+<uicfg desc="生成信息子表管理按钮">
+	<items>-></items>
+	<items>
+		<text>新增</text>
+		<iconCls>new-new-icon</iconCls>
+		<handler type="object">function() {
+			var dataGrid = this.manager.baseInfo.items.items[3];
+			var RecordType = dataGrid.getRecordType();
+			var r = new RecordType({
+				'orderByType' : 'asc',
+				'extendsClassPath' : 'com.lion.core.entity.IdentifiableEntity'
+			});
+			dataGrid.store.add(r);
+		}</handler>
+	</items>
+	<items>
+		<text>删除</text>
+		<iconCls>delete-selected-icon</iconCls>
+		<handler type="object">function() {
+			var dataGrid = this.manager.baseInfo.items.items[3];
+			dataGrid.getStore().remove(dataGrid.getSelections());
+		}</handler>
+	</items>
+</uicfg>

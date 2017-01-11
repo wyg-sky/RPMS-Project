@@ -1,0 +1,54 @@
+<uicfg desc="组件管理编辑表单">
+	<loadtUrl>system/loadWidgetBase.html</loadtUrl>
+	<submitUrl>system/saveWidgetBase.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">2</columns>
+	<height type="integer">200</height>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>name</name>
+		<fieldLabel>名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>xtype</name>
+		<fieldLabel>xtype</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>type</hiddenName>
+		<fieldLabel>组件类型</fieldLabel>
+		<keyType>sys_widget_type</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<name>sortOrder</name>
+		<fieldLabel>排序</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>ftlFileName</name>
+		<fieldLabel>模版文件</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>version</name>
+		<fieldLabel>版本号</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>versionDetail</name>
+		<fieldLabel>版本简介</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<columnWidth type="integer">2</columnWidth>
+	</items>
+</uicfg>

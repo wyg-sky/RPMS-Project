@@ -1,0 +1,279 @@
+<uicfg desc="供应商录入编辑表单">
+	<loadtUrl>base/loadFactory.html</loadtUrl>
+	<submitUrl>base/saveFactory.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">4</columns>
+	<defaults>
+		<border type="object">false</border>
+		<layout>column</layout>
+		<labelWidth type="object">80</labelWidth>
+	</defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>sysType</name>
+		<hidden type="object">true</hidden>
+		<fieldLabel>模块Code</fieldLabel>
+		<allowBlank type="object">false</allowBlank>
+		<value type="object">FW.moduleCode</value>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<hidden type="object">true</hidden>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<items>
+		<xtype>lioncodefield</xtype>
+		<name>factoryCd</name>
+		<fieldLabel>供应商编码</fieldLabel>
+		<allowBlank type="object">!this.manager.editable</allowBlank>
+		<readOnly type="boolean">true</readOnly>
+		<type>2</type>
+		<autoLoad type="object">this.manager.actionMode =='1'</autoLoad>
+		<params>
+			<className>Factory</className>
+			<codeProperty>factoryCd</codeProperty>
+			<hql> and obj.dataType='0002'</hql>
+			<length>8</length>
+		</params>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>factoryName</name>
+		<fieldLabel>供应商名称</fieldLabel>
+		<maxLength type="integer">30</maxLength>
+		<maxLengthText>名称最大允许输入60个字符</maxLengthText>
+		<allowBlank type="object">!this.manager.editable</allowBlank>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>factoryType</name>
+		<keyType>mate_factory_type</keyType>
+		<fieldLabel>厂商类别</fieldLabel>
+		<allowBlank type="object">!this.manager.editable</allowBlank>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>dataType</hiddenName>
+		<fieldLabel>数据类型</fieldLabel>
+		<allowBlank type="object">!this.manager.editable</allowBlank>
+		<readOnly type="boolean">true</readOnly>
+		<keyType>mate_dataType</keyType>
+		<value>0002</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>bankName</name>
+		<fieldLabel>开户行</fieldLabel>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>accountNum</name>
+		<fieldLabel>账号</fieldLabel>
+		<regex type="object">/^\s*[A-Za-z0-9]{0,100}\s*$/</regex>
+		<regexText>请输入正确的账号</regexText>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<name>capitalAmt</name>
+		<anchor>80%</anchor>
+		<unitText>(万元)</unitText>
+		<unitWidth type="object">40</unitWidth>
+		<fieldLabel>注册资金</fieldLabel>
+		<regex type="object">/^[+|-]{0,1}\d*\.?\d+$/</regex>
+		<regexText>请输入正确的注册资金,最大长度18位</regexText>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>taxNum</name>
+		<fieldLabel>税号</fieldLabel>
+		<regex type="object">/^\s*[A-Za-z0-9]{0,100}\s*$/</regex>
+		<regexText>请输入正确的税号</regexText>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>safeSign</name>
+		<fieldLabel>安全标志证号</fieldLabel>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>productionLicense</name>
+		<fieldLabel>产品许可证号</fieldLabel>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>factoryWebsite</name>
+		<fieldLabel>网址</fieldLabel>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>factoryNation</name>
+		<fieldLabel>所属国家</fieldLabel>
+		<keyType>cims_country_type</keyType>
+		<value>China</value>>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>factoryProvince</name>
+		<fieldLabel>所属省份</fieldLabel>
+		<keyType>cims_city</keyType>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>legalPersonName</name>
+		<fieldLabel>法人名称</fieldLabel>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>legalPersonPhone</name>
+		<fieldLabel>法人电话</fieldLabel>
+		<regex type="object">/^(((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)$/</regex>
+		<regexText>请按如下格式输入：[区号-]7~8位直拨号码[1~4位分机号码]或者11位手机号码</regexText>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>linkman</name>
+		<fieldLabel>联系人</fieldLabel>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>phonenum</name>
+		<fieldLabel>联系电话</fieldLabel>
+		<regex type="object">/^(((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)$/</regex>
+		<regexText>请按如下格式输入：[区号-]7~8位直拨号码[1~4位分机号码]或者11位手机号码</regexText>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>address</name>
+		<fieldLabel>联系地址</fieldLabel>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>email</name>
+		<fieldLabel>email</fieldLabel>
+		<regex type="object">/^([a-zA-Z0-9]+[_|\-|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\-|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/</regex>
+		<regexText>请输入正确的email格式：例 dhcc123@163.com</regexText>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>fax</name>
+		<fieldLabel>传真</fieldLabel>
+		<regex type="object">/^(((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)$/</regex>
+		<regexText>'请按如下格式输入：[区号-]7~8位直拨号码[1~4位分机号码]或者11位手机号码'</regexText>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>zip</name>
+		<fieldLabel>邮编</fieldLabel>
+		<regex type="object">/^\d{6}$/</regex>
+		<regexText>请输入正确的邮编</regexText>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>valid</name>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+		<value>1</value>
+		<allowBlank type="object">!this.manager.editable</allowBlank>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>groupValid</hiddenName>
+		<fieldLabel>集团是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+		<hidden type='object'>true</hidden>
+		<value>1</value>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<hidden type="object">!this.manager.isView</hidden>
+		<style>border:0;background: #d9d9d9</style>
+		<name>createUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<hidden type="object">!this.manager.isView</hidden>
+		<style>border:0;background: #d9d9d9</style>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改人</fieldLabel>
+		<hidden type="object">!this.manager.isView</hidden>
+		<style>border:0;background: #d9d9d9</style>
+		<name>modifyUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<hidden type="object">!this.manager.isView</hidden>
+		<style>border:0;background: #d9d9d9</style>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>reputation</name>
+		<fieldLabel>信誉</fieldLabel>
+		<height type="integer">23</height>
+		<columnWidth type="integer">4</columnWidth>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>businessScope</name>
+		<fieldLabel>业务范围</fieldLabel>
+		<height type="integer">50</height>
+		<columnWidth type="integer">4</columnWidth>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>remark</name>
+		<fieldLabel>备注</fieldLabel>
+		<height type="integer">50</height>
+		<columnWidth type="integer">4</columnWidth>
+		<readOnly type="object">!this.manager.editable</readOnly>
+	</items>
+</uicfg>

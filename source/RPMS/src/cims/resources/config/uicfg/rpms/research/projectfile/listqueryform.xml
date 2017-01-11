@@ -1,0 +1,31 @@
+<uicfg desc="通知管理管理查询表单">
+	<columns type="integer">5</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>文件编号</fieldLabel>
+		<name>fileCode</name>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>文件名称</fieldLabel>
+		<name>fileName</name>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>tileType</hiddenName>
+		<fieldLabel>文件类型</fieldLabel>
+		<keyType>rpms_notice_type</keyType>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>status</hiddenName>
+		<fieldLabel>状态</fieldLabel>
+		<keyType>rpms_file_status</keyType>
+	</items>
+</uicfg>

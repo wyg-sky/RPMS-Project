@@ -1,0 +1,62 @@
+<uicfg desc="数据导入界面">
+	<columns type="object">1</columns>
+	<height type="integer">170</height>
+	<fileUpload type="boolean">true</fileUpload>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>选择文件</fieldLabel>
+		<name>fileObject</name>
+		<inputType>file</inputType>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+        <object>importType1</object>
+        <xtype>radio</xtype>
+        <name>importType</name>
+        <fieldLabel>导入方式</fieldLabel>
+        <boxLabel>清空原有数据</boxLabel>
+        <inputValue type="object">1</inputValue>
+        <checked type="object">true</checked>
+    </items>
+    <items>
+        <object>importType2</object>
+        <xtype>radio</xtype>
+        <name>importType</name>
+        <fieldLabel></fieldLabel>
+        <boxLabel>保留原有数据</boxLabel>
+        <inputValue type="object">2</inputValue>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+	<items>
+		<xtype>label</xtype>
+		<text>请确保导入文件符合标准格式（格式参考模板）</text>
+		<style>
+			<color>red</color>
+		</style>
+	</items>
+	<items>
+		<xtype>label</xtype>
+		<html>
+			(模版)<![CDATA[<a href='Cims-Files/demo/rpms/researchequipment/创新平台模板.xls'>下载</a>]]>
+		</html>
+	</items>
+	<buttonAlign>center</buttonAlign>
+	<buttons>
+		<text>确定</text>
+		<width type="integer">50</width>
+		<scope type="object">this.manager</scope>
+		<handler type="object">this.manager.saveImport</handler>
+	</buttons>
+	<buttons>
+		<text>取消</text>
+		<width type="integer">50</width>
+		<handler type="object">function() {this.ownerCt.close()}</handler>
+		<scope type="object">this</scope>
+	</buttons>
+</uicfg>

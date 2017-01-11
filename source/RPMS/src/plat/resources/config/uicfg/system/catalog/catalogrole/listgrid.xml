@@ -1,0 +1,211 @@
+<uicfg desc="栏目管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<editable type="object">true</editable>
+	<allowPage type="boolean">false</allowPage>
+	<showLookButton type="boolean">false</showLookButton>
+	<showEditButton type="boolean">false</showEditButton>
+	<showCopyButton type="boolean">false</showCopyButton>
+	<store>
+		<url>system/listCatalogRole.html</url>
+		<baseParams>
+			<roleId type="object">this.manager.roleId</roleId>
+		</baseParams>
+		<fields>
+			<name>role.id</name>
+		</fields>
+		<fields>
+			<name>role.name</name>
+		</fields>
+		<fields>
+			<name>catalog.id</name>
+		</fields>
+		<fields>
+			<name>catalog.name</name>
+		</fields>
+		<fields>
+			<name>sortOrder</name>
+		</fields>
+		<fields>
+			<name>layout</name>
+		</fields>
+		<fields>
+			<name>layoutSort</name>
+		</fields>
+		<fields>
+			<name>width</name>
+		</fields>
+		<fields>
+			<name>height</name>
+		</fields>
+		<fields>
+			<name>showTitle</name>
+		</fields>
+		<fields>
+			<name>border</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>角色</header>
+			<dataIndex>role.name</dataIndex>
+			<cascadeIndex>role.id</cascadeIndex>
+			<width type="integer">120</width>
+		</columns>
+		<columns>
+			<header>栏目</header>
+			<dataIndex>catalog.name</dataIndex>
+			<cascadeIndex>catalog.id</cascadeIndex>
+			<width type="integer">120</width>
+		</columns>
+		<columns>
+			<header>布局比例</header>
+			<dataIndex>layout</dataIndex>
+			<keyType>sys_column_layout</keyType>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<keyType>sys_column_layout</keyType>
+				<allowBlank type="boolean">false</allowBlank>
+				<listeners type="object">{
+					'select' : function(combox, record, index) {
+						var records = this.getSelections(false);
+						if(records[0].get('layoutSort')) {
+							records[0].set('layoutSort','');
+						}
+					},
+					scope : this
+				}</listeners>
+			</editor>
+		</columns>
+		<columns>
+			<header>所在列</header>
+			<dataIndex>layoutSort</dataIndex>
+			<keyType>sys_catalog_column</keyType>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<keyType>sys_catalog_column</keyType>
+				<allowBlank type="boolean">false</allowBlank>
+				<listeners type="object">{
+					'select' : function(combox, record, index) {
+						var records = this.getSelections(false);
+						if(record.get('id') == '0003') {
+							if(records[0].get('layout') != '0001') {
+								combox.setValue({text : '', value : ''});
+								Ext.MessageBox.alert("提示","当前布局类型无法选择第三列！");
+							}
+						}
+						if(records[0].get('layout') == '0004') {
+							if(record.get('id') != '0001') {
+								combox.setValue({text : '', value : ''});
+								Ext.MessageBox.alert("提示","当前布局类型只能选择第一列！");
+							}
+						}
+					},
+					scope : this
+				}</listeners>
+			</editor>
+		</columns>
+		<columns>
+			<header>排序</header>
+			<dataIndex>sortOrder</dataIndex>
+			<editor>
+				<xtype>lionnumberfield</xtype>
+				<allowBlank type="boolean">false</allowBlank>
+				<allowNegative type="boolean">false</allowNegative>
+				<allowDecimals type="boolean">false</allowDecimals>
+			</editor>
+		</columns>
+		<columns>
+			<header>栏目宽</header>
+			<dataIndex>width</dataIndex>
+			<hidden type="boolean">true</hidden>
+		</columns>
+		<columns>
+			<header>栏目高</header>
+			<dataIndex>height</dataIndex>
+			<editor>
+				<xtype>lionnumberfield</xtype>
+				<allowBlank type="boolean">false</allowBlank>
+				<allowNegative type="boolean">false</allowNegative>
+				<allowDecimals type="boolean">false</allowDecimals>
+			</editor>
+		</columns>
+		<columns>
+			<header>显示标题</header>
+			<dataIndex>showTitle</dataIndex>
+			<keyType>cims_boolean</keyType>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<keyType>cims_boolean</keyType>
+				<allowBlank type="boolean">false</allowBlank>
+			</editor>
+		</columns>
+		<columns>
+			<header>显示边框</header>
+			<dataIndex>border</dataIndex>
+			<keyType>cims_boolean</keyType>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<keyType>cims_boolean</keyType>
+				<allowBlank type="boolean">false</allowBlank>
+			</editor>
+		</columns>
+	<columns>
+			<header>上移</header>
+			<dataIndex>up</dataIndex>
+			<width type="integer">40</width>
+			<align>center</align>
+			<isPrint type="boolean">false</isPrint>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='images/shortcut/custom/move_up.gif' title='上移' alt='上移'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+		<columns>
+			<header>下移</header>
+			<dataIndex>down</dataIndex>
+			<width type="integer">40</width>
+			<align>center</align>
+			<isPrint type="boolean">false</isPrint>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='images/shortcut/custom/move_down.gif' title='下移' alt='下移'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+	</cm>
+	<listeners type="object">{
+		'cellclick' : function(grid, rowIndex, columnIndex, e) {
+			var fieldName = grid.getColumnModel().getDataIndex(columnIndex);
+			if (fieldName == grid.getFieldName('up')) {
+				if(rowIndex == 0) {
+					return;
+				}
+				var record = grid.getStore().getAt(rowIndex);
+				grid.getStore().remove(record);
+				grid.getStore().insert(rowIndex-1, record);
+				grid.getView().refresh();
+				grid.getSelectionModel().selectRow(rowIndex-1);
+			} else if (fieldName == grid.getFieldName('down')) {
+				var length = grid.getStore().getRange().length;
+				if(rowIndex == length - 1) {
+					return;
+				}
+				var record = grid.getStore().getAt(rowIndex);
+				grid.getStore().remove(record);
+				grid.getStore().insert(rowIndex+1, record);
+				grid.getView().refresh();
+				grid.getSelectionModel().selectRow(rowIndex+1);
+			}
+		},
+		scope : this
+	}</listeners>
+</uicfg>

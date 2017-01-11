@@ -1,0 +1,963 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<report version="5.0">
+	<head>
+		<property name="type">0</property>
+		<name><![CDATA[RPMS_PROJECT_TOTAL]]></name>
+		<dataSets>
+			<dataSet name="data" type="DB_SQL" >
+				<property name="dataSource">ds</property>
+				<property name="desc"><![CDATA[]]></property>
+				<property name="query"><![CDATA[select rownum rn,
+t.* from (
+select 
+p.id pid,
+p.project_annual,
+vc7.ITEM_TEXT projectstatus,
+vc1.ITEM_TEXT proejct_type,
+p.project_code,
+p.project_name,
+p.specialty,
+d1.specialty_name specialty_name,
+p.business,
+d2.specialty_name business_name,
+p.start_time,
+p.end_time,
+p.research_content,
+
+pf.total_budget,
+pf.ECONOMIC_BENEFITS,
+
+p.organization pro_org_id,
+po.name pro_org,
+p.plat_center,
+plat.plat_name plat_center_name,
+p.plat_institution,
+pi.plat_name plat_institution_name,
+
+pt.id personid,
+pt.main_id person_mainid,
+rt.talent_name,
+rt.organization per_org_id,
+pro.name per_org,
+dept.name dept_in,
+vc2.ITEM_TEXT position,
+vc3.ITEM_TEXT title,
+
+pp.id hzdwid,
+pp.main_id hzdw_mainId,
+pp.partners_type,
+case when pp.partners_type='0001' then pp.research_plat_name
+  else '' end hzdw,
+pp.research_plat,
+pp.research_plat_name,
+case when pp.partners_type='0002' then pp.research_plat_name
+  else '' end xzdw,
+
+p.gl_and_phone,
+
+vc4.ITEM_TEXT status,
+pd.dispatch_month,
+vc5.ITEM_TEXT project_stage,
+pd.investment_total,
+pd.caiwu_cost,
+pd.ysxjjxy,
+pd.project_progress,
+
+p.examine_user,
+vc6.ITEM_TEXT recommend_type,
+p.examine_time,
+p.examine_sug,
+p.approve_user,
+p.approve_time,
+p.approve_sug,
+p.back_msg,
+p.remark 
+
+from 
+RPMS_PROJECT p
+left join RPMS_PROJECT_FUNDS pf on pf.main_id=p.id 
+left join RPMS_PROJECT_PARTNERS pp on pp.main_id=p.id 
+left join (select * from RPMS_PROJECT_TALENT where PROJECT_DIVISION='0001') pt on pt.main_id=p.id 
+left join RPMS_RESEARCH_TALENT rt on rt.id=pt.research_talent
+left join itsm_department dept on dept.id=rt.dept_in
+left join (select * from RPMS_PROJECT_DISPATCH where dispatch_month is not null order by  dispatch_month desc
+) pd on pd.project_id=p.id
+left join itsm_organization po on po.id=p.organization
+left join itsm_organization pro on pro.id=rt.organization
+left join RPMS_RESEARCH_PLAT plat on plat.id=p.plat_center
+left join RPMS_RESEARCH_PLAT pi on pi.id=p.plat_institution
+left join RPMS_SPECIALTY_DICTIONARY d1 on d1.id=p.specialty
+left join RPMS_SPECIALTY_DICTIONARY d2 on d2.id=p.business
+left join v_code vc1 on vc1.ITEM_VALUE = p.proejct_type and vc1.code='rpms_project_type'
+left join v_code vc2 on vc2.ITEM_VALUE = rt.position and vc2.code='rpms_institution_duty'
+left join v_code vc3 on vc3.ITEM_VALUE = rt.title and vc3.code='rpms_title'
+left join v_code vc4 on vc4.ITEM_VALUE = pd.status and vc4.code='rpms_evaluation_status'
+left join v_code vc5 on vc5.ITEM_VALUE = pd.project_stage and vc5.code='rpms_dispatch_stage'
+left join v_code vc6 on vc6.ITEM_VALUE = p.recommend_type and vc6.code='rpms_recommend_type'
+left join v_code vc7 on vc7.ITEM_VALUE = p.status and vc7.code='rpms_designate_status'
+where 1=1
+${condition}
+order by p.organization asc,p.project_annual,pd.dispatch_month desc,p.project_code asc
+) t 
+]]></property>
+				<property name="beginRow">0</property>
+				<property name="endRow">0</property>
+			</dataSet>
+		</dataSets>
+		<parameters/>
+		<variables>
+			<variable name="condition" type="">
+				<property name="default"></property>
+				<property name="desc"></property>
+				<property name="valueCalc">false</property>
+			</variable>
+		</variables>
+	</head>
+	<body>
+		<sheet id="sheet1">
+			<page>
+				<property name="pageDirection">0</property>
+			</page>
+			<grid row="4" col="44">
+				<properties>
+					<property name="report-name"><![CDATA[=A1]]></property>
+				</properties>
+				<rows>
+					<row id="1">
+						<property name="type">1</property>
+						<property name="height">40</property>
+					</row>
+					<row id="2">
+						<property name="type">2</property>
+					</row>
+					<row id="3">
+					</row>
+					<row id="4">
+						<property name="type">4</property>
+					</row>
+				</rows>
+				<columns>
+					<column id="1">
+						<property name="visible"><![CDATA[1]]></property>
+						<property name="width">20</property>
+					</column>
+					<column id="2">
+						<property name="width">50</property>
+					</column>
+					<column id="3">
+					</column>
+					<column id="4">
+					</column>
+					<column id="5">
+						<property name="width">80</property>
+					</column>
+					<column id="6">
+						<property name="width">80</property>
+					</column>
+					<column id="7">
+						<property name="width">140</property>
+					</column>
+					<column id="8">
+					</column>
+					<column id="9">
+					</column>
+					<column id="10">
+						<property name="width">90</property>
+					</column>
+					<column id="11">
+						<property name="width">90</property>
+					</column>
+					<column id="12">
+						<property name="width">250</property>
+					</column>
+					<column id="13">
+					</column>
+					<column id="14">
+					</column>
+					<column id="15">
+						<property name="width">100</property>
+					</column>
+					<column id="16">
+						<property name="width">150</property>
+					</column>
+					<column id="17">
+						<property name="width">150</property>
+					</column>
+					<column id="18">
+						<property name="visible"><![CDATA[1]]></property>
+						<property name="width">20</property>
+					</column>
+					<column id="19">
+					</column>
+					<column id="20">
+						<property name="width">100</property>
+					</column>
+					<column id="21">
+						<property name="width">100</property>
+					</column>
+					<column id="22">
+					</column>
+					<column id="23">
+					</column>
+					<column id="24">
+						<property name="visible"><![CDATA[1]]></property>
+						<property name="width">20</property>
+					</column>
+					<column id="25">
+						<property name="width">100</property>
+					</column>
+					<column id="26">
+						<property name="width">100</property>
+					</column>
+					<column id="27">
+						<property name="visible"><![CDATA[1]]></property>
+						<property name="width">20</property>
+					</column>
+					<column id="28">
+						<property name="width">140</property>
+					</column>
+					<column id="29">
+					</column>
+					<column id="30">
+					</column>
+					<column id="31">
+						<property name="width">100</property>
+					</column>
+					<column id="32">
+					</column>
+					<column id="33">
+					</column>
+					<column id="34">
+					</column>
+					<column id="35">
+						<property name="width">250</property>
+					</column>
+					<column id="36">
+						<property name="width">100</property>
+					</column>
+					<column id="37">
+						<property name="width">80</property>
+					</column>
+					<column id="38">
+						<property name="width">90</property>
+					</column>
+					<column id="39">
+						<property name="width">250</property>
+					</column>
+					<column id="40">
+						<property name="width">100</property>
+					</column>
+					<column id="41">
+						<property name="width">90</property>
+					</column>
+					<column id="42">
+						<property name="width">250</property>
+					</column>
+					<column id="43">
+						<property name="width">120</property>
+					</column>
+					<column id="44">
+						<property name="width">200</property>
+					</column>
+				</columns>
+				<cells>
+					<cell id="1,1" type="0" >
+					</cell>
+					<cell id="1,2" type="0" colspan="43" >
+						<property name="value"><![CDATA[项目汇总报表]]></property>
+						<property name="font-size">22</property>
+						<property name="bold">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="2,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,2" type="0" >
+						<property name="value"><![CDATA[序号]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,3" type="0" >
+						<property name="value"><![CDATA[年度]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,4" type="0" >
+						<property name="value"><![CDATA[项目状态]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,5" type="0" >
+						<property name="value"><![CDATA[项目类型]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,6" type="0" >
+						<property name="value"><![CDATA[项目编号]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,7" type="0" >
+						<property name="value"><![CDATA[项目名称]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,8" type="0" >
+						<property name="value"><![CDATA[专业]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,9" type="0" >
+						<property name="value"><![CDATA[业务]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,10" type="0" >
+						<property name="value"><![CDATA[计划开始时间]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,11" type="0" >
+						<property name="value"><![CDATA[计划结束时间]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,12" type="0" >
+						<property name="value"><![CDATA[主要内容]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,13" type="0" >
+						<property name="value"><![CDATA[经费预算]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,14" type="0" >
+						<property name="value"><![CDATA[预期经济效益]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,15" type="0" >
+						<property name="value"><![CDATA[单位]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,16" type="0" >
+						<property name="value"><![CDATA[分中心]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,17" type="0" >
+						<property name="value"><![CDATA[分中心机构]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,18" type="0" >
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,19" type="0" >
+						<property name="value"><![CDATA[项目负责人]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,20" type="0" >
+						<property name="value"><![CDATA[所在单位]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,21" type="0" >
+						<property name="value"><![CDATA[所在部门]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,22" type="0" >
+						<property name="value"><![CDATA[机构职务]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,23" type="0" >
+						<property name="value"><![CDATA[职称]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,24" type="0" >
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,25" type="0" >
+						<property name="value"><![CDATA[合作单位]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,26" type="0" >
+						<property name="value"><![CDATA[协作单位]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,27" type="0" >
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,28" type="0" >
+						<property name="value"><![CDATA[项目管理员及联系方式]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,29" type="0" >
+						<property name="value"><![CDATA[项目调度状态]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,30" type="0" >
+						<property name="value"><![CDATA[调度月份]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,31" type="0" >
+						<property name="value"><![CDATA[项目进展阶段]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,32" type="0" >
+						<property name="value"><![CDATA[已投入总经费]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,33" type="0" >
+						<property name="value"><![CDATA[财务归集研发费用]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,34" type="0" >
+						<property name="value"><![CDATA[以实现经济效益]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,35" type="0" >
+						<property name="value"><![CDATA[形象进度]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,36" type="0" >
+						<property name="value"><![CDATA[技术专业审查人]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,37" type="0" >
+						<property name="value"><![CDATA[技术专业推荐项目类型]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,38" type="0" >
+						<property name="value"><![CDATA[技术专业审查时间]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,39" type="0" >
+						<property name="value"><![CDATA[技术专业审查意见]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,40" type="0" >
+						<property name="value"><![CDATA[管理专业审查人]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,41" type="0" >
+						<property name="value"><![CDATA[管理专业审查时间]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,42" type="0" >
+						<property name="value"><![CDATA[管理专业审查意见]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,43" type="0" >
+						<property name="value"><![CDATA[退回原因]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,44" type="0" >
+						<property name="value"><![CDATA[备注]]></property>
+						<property name="background"><![CDATA[192,192,192]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,1" type="0" >
+						<property name="value"><![CDATA[=data.group(pid,false,,rn)]]></property>
+						<property name="ext-direction">3</property>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,2" type="0" >
+						<property name="value"><![CDATA[=&A3]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,3" type="0" >
+						<property name="value"><![CDATA[=data.PROJECT_ANNUAL]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,4" type="0" >
+						<property name="value"><![CDATA[=data.PROJECTSTATUS]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,5" type="0" >
+						<property name="value"><![CDATA[=data.PROEJCT_TYPE]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,6" type="0" >
+						<property name="value"><![CDATA[=data.PROJECT_CODE]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,7" type="0" >
+						<property name="value"><![CDATA[=data.PROJECT_NAME]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,8" type="0" >
+						<property name="value"><![CDATA[=data.SPECIALTY_NAME]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,9" type="0" >
+						<property name="value"><![CDATA[=data.BUSINESS_NAME]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,10" type="0" >
+						<property name="value"><![CDATA[=data.START_TIME]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,11" type="0" >
+						<property name="value"><![CDATA[=data.END_TIME]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,12" type="0" >
+						<property name="value"><![CDATA[=data.RESEARCH_CONTENT]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,13" type="0" >
+						<property name="value"><![CDATA[=data.TOTAL_BUDGET]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,14" type="0" >
+						<property name="value"><![CDATA[=data.ECONOMIC_BENEFITS]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,15" type="0" >
+						<property name="value"><![CDATA[=data.PRO_ORG]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,16" type="0" >
+						<property name="value"><![CDATA[=data.PLAT_CENTER_NAME]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,17" type="0" >
+						<property name="value"><![CDATA[=data.PLAT_INSTITUTION_NAME]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,18" type="0" >
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,19" type="0" >
+						<property name="value"><![CDATA[=data.TALENT_NAME]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,20" type="0" >
+						<property name="value"><![CDATA[=data.PER_ORG]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,21" type="0" >
+						<property name="value"><![CDATA[=data.DEPT_IN]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,22" type="0" >
+						<property name="value"><![CDATA[=data.POSITION]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,23" type="0" >
+						<property name="value"><![CDATA[=data.TITLE]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,24" type="0" >
+						<property name="value"><![CDATA[=data.rgroup(hzdwid,,hzdw_mainid=A3)]]></property>
+						<property name="ext-direction">3</property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,25" type="0" >
+						<property name="value"><![CDATA[=data.hzdw]]></property>
+						<property name="ext-left"><![CDATA[X3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,26" type="0" >
+						<property name="value"><![CDATA[=data.xzdw]]></property>
+						<property name="ext-left"><![CDATA[X3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,27" type="0" >
+						<property name="value"><![CDATA[=data.rgroup(pid,,pid=A3)]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,28" type="0" >
+						<property name="value"><![CDATA[=data.select(GL_AND_PHONE)]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,29" type="0" >
+						<property name="value"><![CDATA[=data.STATUS]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,30" type="0" >
+						<property name="value"><![CDATA[=data.DISPATCH_MONTH]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,31" type="0" >
+						<property name="value"><![CDATA[=data.PROJECT_STAGE]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,32" type="0" >
+						<property name="value"><![CDATA[=data.INVESTMENT_TOTAL]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,33" type="0" >
+						<property name="value"><![CDATA[=data.CAIWU_COST]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,34" type="0" >
+						<property name="value"><![CDATA[=data.YSXJJXY]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,35" type="0" >
+						<property name="value"><![CDATA[=data.PROJECT_PROGRESS]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,36" type="0" >
+						<property name="value"><![CDATA[=data.EXAMINE_USER]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,37" type="0" >
+						<property name="value"><![CDATA[=data.RECOMMEND_TYPE]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,38" type="0" >
+						<property name="value"><![CDATA[=data.EXAMINE_TIME]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,39" type="0" >
+						<property name="value"><![CDATA[=data.EXAMINE_SUG]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,40" type="0" >
+						<property name="value"><![CDATA[=data.APPROVE_USER]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,41" type="0" >
+						<property name="value"><![CDATA[=data.APPROVE_TIME]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,42" type="0" >
+						<property name="value"><![CDATA[=data.APPROVE_SUG]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,43" type="0" >
+						<property name="value"><![CDATA[=data.BACK_MSG]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,44" type="0" >
+						<property name="value"><![CDATA[=data.REMARK]]></property>
+						<property name="ext-left"><![CDATA[A3]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,1" type="0" >
+					</cell>
+					<cell id="4,2" type="0" >
+					</cell>
+					<cell id="4,3" type="0" >
+					</cell>
+					<cell id="4,4" type="0" >
+					</cell>
+					<cell id="4,5" type="0" >
+					</cell>
+					<cell id="4,6" type="0" >
+					</cell>
+					<cell id="4,7" type="0" >
+					</cell>
+					<cell id="4,8" type="0" >
+					</cell>
+					<cell id="4,9" type="0" >
+					</cell>
+					<cell id="4,10" type="0" >
+					</cell>
+					<cell id="4,11" type="0" >
+					</cell>
+					<cell id="4,12" type="0" >
+					</cell>
+					<cell id="4,13" type="0" >
+					</cell>
+					<cell id="4,14" type="0" >
+					</cell>
+					<cell id="4,15" type="0" >
+					</cell>
+					<cell id="4,16" type="0" >
+					</cell>
+					<cell id="4,17" type="0" >
+					</cell>
+					<cell id="4,18" type="0" >
+					</cell>
+					<cell id="4,19" type="0" >
+					</cell>
+					<cell id="4,20" type="0" >
+					</cell>
+					<cell id="4,21" type="0" >
+					</cell>
+					<cell id="4,22" type="0" >
+					</cell>
+					<cell id="4,23" type="0" >
+					</cell>
+					<cell id="4,24" type="0" >
+					</cell>
+					<cell id="4,25" type="0" >
+					</cell>
+					<cell id="4,26" type="0" >
+					</cell>
+					<cell id="4,27" type="0" >
+					</cell>
+					<cell id="4,28" type="0" >
+					</cell>
+					<cell id="4,29" type="0" >
+					</cell>
+					<cell id="4,30" type="0" >
+					</cell>
+					<cell id="4,31" type="0" >
+					</cell>
+					<cell id="4,32" type="0" >
+					</cell>
+					<cell id="4,33" type="0" >
+					</cell>
+					<cell id="4,34" type="0" >
+					</cell>
+					<cell id="4,35" type="0" >
+					</cell>
+					<cell id="4,36" type="0" >
+					</cell>
+					<cell id="4,37" type="0" >
+					</cell>
+					<cell id="4,38" type="0" >
+					</cell>
+					<cell id="4,39" type="0" >
+					</cell>
+					<cell id="4,40" type="0" >
+					</cell>
+					<cell id="4,41" type="0" >
+					</cell>
+					<cell id="4,42" type="0" >
+					</cell>
+					<cell id="4,43" type="0" >
+					</cell>
+					<cell id="4,44" type="0" >
+					</cell>
+				</cells>
+			</grid>
+		</sheet>
+	</body>
+</report>

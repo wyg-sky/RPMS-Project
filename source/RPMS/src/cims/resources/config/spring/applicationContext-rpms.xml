@@ -1,0 +1,1231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+	default-lazy-init="true">
+
+
+	<!-- 定时任务 创新管理制度修订提醒开始 -->
+	<bean id="institutionReviseJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="innovateInstitutionManager" />
+		<property name="targetMethod">
+			<value>checkOutDate</value>
+		</property>
+	</bean>
+
+	<bean id="institutionReviseTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="institutionReviseJobDetail" />
+		<property name="cronExpression">
+			<value>0 0 1 ? * 1</value>  <!-- 秒 分 时 日 月 星期的某天 （年） -->
+		</property>
+	</bean>
+	<!-- 定时任务 创新管理制度修订提醒结束 -->
+
+	<!-- 定时任务 专利保护状态更新开始 -->
+	<bean id="patentProtectStatusUpdateJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="researchPatentManager" />
+		<property name="targetMethod">
+			<value>updateProtectStatus</value>
+		</property>
+	</bean>
+
+	<bean id="patentProtectStatusUpdateTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="patentProtectStatusUpdateJobDetail" />
+		<property name="cronExpression">
+			<value>0 0 1 * * ?</value>  <!-- 秒 分 时 日 月 星期的某天 （年） -->
+		</property>
+	</bean>
+	<!-- 定时任务 专利保护状态更新结束 -->
+
+	<!-- 定时任务 专利保护提醒更新开始 -->
+	<bean id="patentProtectAlertUpdateJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="researchPatentManager" />
+		<property name="targetMethod">
+			<value>updateProtectAlert</value>
+		</property>
+	</bean>
+
+	<bean id="patentProtectAlertUpdateTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="patentProtectAlertUpdateJobDetail" />
+		<property name="cronExpression">
+			<value>0 30 0 * * ?</value>  <!-- 秒 分 时 日 月 星期的某天 （年） -->
+		</property>
+	</bean>
+	<!-- 定时任务 专利保护提醒更新结束 -->
+
+	<!-- 定时任务 触发 开始 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref local="institutionReviseTrigger" />
+				<ref local="patentProtectStatusUpdateTrigger" />
+				<ref local="patentProtectAlertUpdateTrigger" />
+			</list>
+		</property>
+	</bean>
+	<!-- 定时任务 触发 结束 -->
+	
+	<!-- 企业科技项目情况 报表开始 -->
+	<bean id="commonReportManager"
+		class="com.lion.rpms.common.report.manager.impl.ReportManagerImpl">
+		<constructor-arg ref="objectDao" />
+	</bean>
+	<bean id="CommonReportAction"
+		class="com.lion.rpms.common.report.action.ReportAction" scope="prototype">
+		<property name="reportManager" ref="commonReportManager"></property>
+	</bean>
+	<!-- 企业科技项目情况 报表结束 -->
+	
+	<!-- 文档预览 开始 -->
+	<bean id="previewdocManager"
+		class="com.lion.rpms.common.previewdoc.manager.impl.PreviewdocManagerImpl">
+		<property name="documentManager" ref="documentManager" />
+		<property name="enableCache" value="true" />
+	</bean>
+	<bean id="PreviewdocAction" class="com.lion.rpms.common.previewdoc.action.PreviewdocAction"
+		scope="prototype">
+		<constructor-arg ref="previewdocManager" />
+	</bean>
+	<!-- 文档预览 结束 -->
+
+	<!-- 创新平台管理开始 -->
+	<bean id="researchPlat" class="com.lion.rpms.base.researchplat.model.ResearchPlat"
+		scope="prototype"></bean>
+	<bean id="researchPlatDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.rpms.base.researchplat.model.ResearchPlat" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="researchPlatManager"
+		class="com.lion.rpms.base.researchplat.manager.impl.ResearchPlatManagerImpl">
+		<constructor-arg ref="researchPlatDao" />
+	</bean>
+	<bean id="ResearchPlatAction"
+		class="com.lion.rpms.base.researchplat.action.ResearchPlatAction"
+		scope="prototype">
+		<constructor-arg ref="researchPlat" />
+		<constructor-arg ref="researchPlatManager" />
+	</bean>
+	<!-- 创新平台管理结束 -->
+	
+	<!-- 单位平台映射开始 -->
+	<bean id="platorganization" class="com.lion.rpms.base.platorganization.model.Platorganization"
+		scope="prototype"></bean>
+	<bean id="platorganizationDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.rpms.base.platorganization.model.Platorganization" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="platorganizationManager"
+		class="com.lion.rpms.base.platorganization.manager.impl.PlatorganizationManagerImpl">
+		<constructor-arg ref="platorganizationDao" />
+	</bean>
+	<bean id="PlatorganizationAction"
+		class="com.lion.rpms.base.platorganization.action.PlatorganizationAction"
+		scope="prototype">
+		<constructor-arg ref="platorganization" />
+		<constructor-arg ref="platorganizationManager" />
+	</bean>
+	<!-- 单位平台映射结束 -->
+
+	<!-- 创新人才管理开始 -->
+	<bean id="researchTalent" class="com.lion.rpms.base.researchtalent.model.ResearchTalent"
+		scope="prototype"></bean>
+	<bean id="researchTalentDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.base.researchtalent.model.ResearchTalent" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="researchTalentManager"
+		class="com.lion.rpms.base.researchtalent.manager.impl.ResearchTalentManagerImpl">
+		<constructor-arg ref="researchTalentDao" />
+	</bean>
+	<bean id="ResearchTalentAction"
+		class="com.lion.rpms.base.researchtalent.action.ResearchTalentAction"
+		scope="prototype">
+		<constructor-arg ref="researchTalent" />
+		<constructor-arg ref="researchTalentManager" />
+	</bean>
+	<!-- 创新人才管理结束 -->
+
+	<!-- 创新设备管理开始 -->
+	<bean id="researchEquipment"
+		class="com.lion.rpms.base.researchequipment.model.ResearchEquipment"
+		scope="prototype"></bean>
+	<bean id="researchEquipmentDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.base.researchequipment.model.ResearchEquipment" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="researchEquipmentManager"
+		class="com.lion.rpms.base.researchequipment.manager.impl.ResearchEquipmentManagerImpl">
+		<constructor-arg ref="researchEquipmentDao" />
+	</bean>
+	<bean id="ResearchEquipmentAction"
+		class="com.lion.rpms.base.researchequipment.action.ResearchEquipmentAction"
+		scope="prototype">
+		<constructor-arg ref="researchEquipment" />
+		<constructor-arg ref="researchEquipmentManager" />
+	</bean>
+	<!-- 创新设备管理结束 -->
+
+	<!-- 项目规划 -->
+	<bean id="projectPlan" class="com.lion.rpms.research.projectplan.model.ProjectPlan"
+		scope="prototype"></bean>
+	<bean id="projectPlanDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.projectplan.model.ProjectPlan" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectPlanManager"
+		class="com.lion.rpms.research.projectplan.manager.impl.ProjectPlanManagerImpl">
+		<constructor-arg ref="projectPlanDao" />
+	</bean>
+	<bean id="ProjectPlanAction"
+		class="com.lion.rpms.research.projectplan.action.ProjectPlanAction"
+		scope="prototype">
+		<constructor-arg ref="projectPlan" />
+		<constructor-arg ref="projectPlanManager" />
+	</bean>
+	<!-- 项目规划 End -->
+
+	<!--人员职责管理开始 -->
+	<bean id="projectStaff" class="com.lion.rpms.base.projectstaff.model.ProjectStaff"
+		scope="prototype"></bean>
+	<bean id="projectStaffDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.rpms.base.projectstaff.model.ProjectStaff" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectStaffManager"
+		class="com.lion.rpms.base.projectstaff.manager.impl.ProjectStaffManagerImpl">
+		<constructor-arg ref="projectStaffDao" />
+	</bean>
+	<bean id="ProjectStaffAction"
+		class="com.lion.rpms.base.projectstaff.action.ProjectStaffAction"
+		scope="prototype">
+		<constructor-arg ref="projectStaff" />
+		<constructor-arg ref="projectStaffManager" />
+	</bean>
+	<!--人员职责-用户管理开始 -->
+	<bean id="staffUser" class="com.lion.rpms.base.projectstaff.model.StaffUser"
+		scope="prototype"></bean>
+	<bean id="staffUserDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.rpms.base.projectstaff.model.StaffUser" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="staffUserManager"
+		class="com.lion.rpms.base.projectstaff.manager.impl.StaffUserManagerImpl">
+		<constructor-arg ref="staffUserDao" />
+	</bean>
+	<bean id="StaffUserAction" class="com.lion.rpms.base.projectstaff.action.StaffUserAction"
+		scope="prototype">
+		<constructor-arg ref="staffUser" />
+		<constructor-arg ref="staffUserManager" />
+	</bean>
+	<!--人员职责-用户管理结束 -->
+	<!--人员职责-平台管理开始 -->
+	<bean id="staffPlat" class="com.lion.rpms.base.projectstaff.model.StaffPlat"
+		scope="prototype"></bean>
+	<bean id="staffPlatDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.rpms.base.projectstaff.model.StaffPlat" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="staffPlatManager"
+		class="com.lion.rpms.base.projectstaff.manager.impl.StaffPlatManagerImpl">
+		<constructor-arg ref="staffPlatDao" />
+	</bean>
+	<bean id="StaffPlatAction" class="com.lion.rpms.base.projectstaff.action.StaffPlatAction"
+		scope="prototype">
+		<constructor-arg ref="staffPlat" />
+		<constructor-arg ref="staffPlatManager" />
+	</bean>
+	<!--人员职责-平台管理结束 -->
+	<!--人员职责管理结束 -->
+
+	<!--项目立项管理开始 -->
+	<bean id="project" class="com.lion.rpms.research.project.model.Project"
+		scope="prototype"></bean>
+	<bean id="projectDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.rpms.research.project.model.Project" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectManager"
+		class="com.lion.rpms.research.project.manager.impl.ProjectManagerImpl">
+		<constructor-arg ref="projectDao" />
+	</bean>
+	<bean id="ProjectAction" class="com.lion.rpms.research.project.action.ProjectAction"
+		scope="prototype">
+		<constructor-arg ref="project" />
+		<constructor-arg ref="projectManager" />
+	</bean>
+	<bean id="projectFunds" class="com.lion.rpms.research.project.model.ProjectFunds"
+		scope="prototype"></bean>
+	<bean id="projectFundsDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.rpms.research.project.model.ProjectFunds" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectFundsManager"
+		class="com.lion.rpms.research.project.manager.impl.ProjectFundsManagerImpl">
+		<constructor-arg ref="projectFundsDao" />
+	</bean>
+	<bean id="ProjectFundsAction"
+		class="com.lion.rpms.research.project.action.ProjectFundsAction"
+		scope="prototype">
+		<constructor-arg ref="projectFunds" />
+		<constructor-arg ref="projectFundsManager" />
+	</bean>
+	<bean id="projectPartners" class="com.lion.rpms.research.project.model.ProjectPartners"
+		scope="prototype"></bean>
+	<bean id="projectPartnersDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.project.model.ProjectPartners" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectPartnersManager"
+		class="com.lion.rpms.research.project.manager.impl.ProjectPartnersManagerImpl">
+		<constructor-arg ref="projectPartnersDao" />
+	</bean>
+	<bean id="ProjectPartnersAction"
+		class="com.lion.rpms.research.project.action.ProjectPartnersAction"
+		scope="prototype">
+		<constructor-arg ref="projectPartners" />
+		<constructor-arg ref="projectPartnersManager" />
+	</bean>
+	<bean id="projectTalent" class="com.lion.rpms.research.project.model.ProjectTalent"
+		scope="prototype"></bean>
+	<bean id="projectTalentDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.rpms.research.project.model.ProjectTalent" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectTalentManager"
+		class="com.lion.rpms.research.project.manager.impl.ProjectTalentManagerImpl">
+		<constructor-arg ref="projectTalentDao" />
+	</bean>
+	<bean id="ProjectTalentAction"
+		class="com.lion.rpms.research.project.action.ProjectTalentAction"
+		scope="prototype">
+		<constructor-arg ref="projectTalent" />
+		<constructor-arg ref="projectTalentManager" />
+	</bean>
+	<bean id="projectCostTotal" class="com.lion.rpms.research.project.model.ProjectCostTotal"
+		scope="prototype"></bean>
+	<bean id="projectCostTotalDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.rpms.research.project.model.ProjectCostTotal" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectCostTotalManager"
+		class="com.lion.rpms.research.project.manager.impl.ProjectCostTotalManagerImpl">
+		<constructor-arg ref="projectCostTotalDao" />
+	</bean>
+	<bean id="ProjectCostTotalAction"
+		class="com.lion.rpms.research.project.action.ProjectCostTotalAction"
+		scope="prototype">
+		<constructor-arg ref="projectCostTotal" />
+		<constructor-arg ref="projectCostTotalManager" />
+	</bean>
+	<!--项目立项管理结束 -->
+	<!-- 项目立项审核开始 -->
+	<bean id="projectAuditManager"
+		class="com.lion.rpms.research.projectaudit.manager.impl.ProjectAuditManagerImpl">
+		<constructor-arg ref="projectDao" />
+	</bean>
+	<bean id="ProjectAuditAction" class="com.lion.rpms.research.projectaudit.action.ProjectAuditAction"
+		scope="prototype">
+		<constructor-arg ref="project" />
+		<constructor-arg ref="projectAuditManager" />
+	</bean>
+	<!-- 项目立项审核结束 -->
+
+	<!--项目进度阶段开始 -->
+	<bean id="projectStage" class="com.lion.rpms.research.project.model.ProjectStage"
+		scope="prototype"></bean>
+	<bean id="projectStageDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.rpms.research.project.model.ProjectStage" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectStageManager"
+		class="com.lion.rpms.research.project.manager.impl.ProjectStageManagerImpl">
+		<constructor-arg ref="projectStageDao" />
+	</bean>
+	<bean id="ProjectStageAction"
+		class="com.lion.rpms.research.project.action.ProjectStageAction"
+		scope="prototype">
+		<constructor-arg ref="projectStage" />
+		<constructor-arg ref="projectStageManager" />
+	</bean>
+	<!--项目进度阶段结束 -->
+
+	<!--外部项目申报开始 -->
+	<bean id="projectReport"
+		class="com.lion.rpms.research.projectreport.model.ProjectReport"
+		scope="prototype"></bean>
+	<bean id="projectReportDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.projectreport.model.ProjectReport" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectReportManager"
+		class="com.lion.rpms.research.projectreport.manager.impl.ProjectReportManagerImpl">
+		<constructor-arg ref="projectReportDao" />
+	</bean>
+	<bean id="ProjectReportAction"
+		class="com.lion.rpms.research.projectreport.action.ProjectReportAction"
+		scope="prototype">
+		<constructor-arg ref="projectReport" />
+		<constructor-arg ref="projectReportManager" />
+	</bean>
+	<!--外部项目申报结束 -->
+
+	<!--项目调度管理开始 -->
+	<bean id="projectDispatch"
+		class="com.lion.rpms.research.projectdispatch.model.ProjectDispatch"
+		scope="prototype"></bean>
+	<bean id="projectDispatchDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.projectdispatch.model.ProjectDispatch" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectDispatchManager"
+		class="com.lion.rpms.research.projectdispatch.manager.impl.ProjectDispatchManagerImpl">
+		<constructor-arg ref="projectDispatchDao" />
+		<property name="projectCostTotalManager" ref="projectCostTotalManager"/>
+	</bean>
+	<bean id="ProjectDispatchAction"
+		class="com.lion.rpms.research.projectdispatch.action.ProjectDispatchAction"
+		scope="prototype">
+		<constructor-arg ref="projectDispatch" />
+		<constructor-arg ref="projectDispatchManager" />
+	</bean>
+	<!--项目调度管理结束 -->
+
+	<!--项目验收管理开始 -->
+	<bean id="projectAcceptance"
+		class="com.lion.rpms.research.projectacceptance.model.ProjectAcceptance"
+		scope="prototype"></bean>
+	<bean id="projectAcceptanceDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.projectacceptance.model.ProjectAcceptance" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectAcceptanceManager"
+		class="com.lion.rpms.research.projectacceptance.manager.impl.ProjectAcceptanceManagerImpl">
+		<constructor-arg ref="projectAcceptanceDao" />
+		<property name="researchAchievementManager" ref="researchAchievementManager" />
+	</bean>
+	<bean id="ProjectAcceptanceAction"
+		class="com.lion.rpms.research.projectacceptance.action.ProjectAcceptanceAction"
+		scope="prototype">
+		<constructor-arg ref="projectAcceptance" />
+		<constructor-arg ref="projectAcceptanceManager" />
+	</bean>
+	<!--项目验收管理结束 -->
+	
+	<!--项目评议审核管理开始 -->
+	<bean id="peviewAuditManager"
+		class="com.lion.rpms.research.reviewaudit.manager.impl.ReviewAuditManagerImpl">
+		<constructor-arg ref="projectAcceptanceDao" />
+		<property name="organizationManager" ref="organizationManager" />
+	</bean>
+	<bean id="ReviewAuditAction"  class="com.lion.rpms.research.reviewaudit.action.ReviewAuditAction"  scope="prototype">
+		<constructor-arg ref="projectAcceptance" />
+		<constructor-arg ref="peviewAuditManager" />
+	</bean>
+	<!--项目评议审核管理结束 -->
+	
+	<!--项目鉴定审核管理开始 -->
+	<bean id="identifyAuditManager"
+		class="com.lion.rpms.research.identifyaudit.manager.impl.IdentifyAuditManagerImpl">
+		<constructor-arg ref="projectAcceptanceDao" />
+	</bean>
+	<bean id="IdentifyAuditAction"  class="com.lion.rpms.research.identifyaudit.action.IdentifyAuditAction"  scope="prototype">
+		<constructor-arg ref="projectAcceptance" />
+		<constructor-arg ref="identifyAuditManager" />
+	</bean>
+	<!--项目鉴定审核管理结束 -->
+
+	<!--验收专家组明细管理开始 -->
+	<bean id="acceptanceExpert"
+		class="com.lion.rpms.research.projectacceptance.model.AcceptanceExpert"
+		scope="prototype"></bean>
+	<bean id="acceptanceExpertDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.projectacceptance.model.AcceptanceExpert" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="acceptanceExpertManager"
+		class="com.lion.rpms.research.projectacceptance.manager.impl.AcceptanceExpertManagerImpl">
+		<constructor-arg ref="acceptanceExpertDao" />
+	</bean>
+	<bean id="AcceptanceExpertAction"
+		class="com.lion.rpms.research.projectacceptance.action.AcceptanceExpertAction"
+		scope="prototype">
+		<constructor-arg ref="acceptanceExpert" />
+		<constructor-arg ref="acceptanceExpertManager" />
+	</bean>
+	<!--验收专家组明细管理结束 -->
+
+	<!--项目后评价管理开始 -->
+	<bean id="projectEvaluation"
+		class="com.lion.rpms.research.projectevaluation.model.ProjectEvaluation"
+		scope="prototype"></bean>
+	<bean id="projectEvaluationDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.projectevaluation.model.ProjectEvaluation" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectEvaluationManager"
+		class="com.lion.rpms.research.projectevaluation.manager.impl.ProjectEvaluationManagerImpl">
+		<constructor-arg ref="projectEvaluationDao" />
+	</bean>
+	<bean id="ProjectEvaluationAction"
+		class="com.lion.rpms.research.projectevaluation.action.ProjectEvaluationAction"
+		scope="prototype">
+		<constructor-arg ref="projectEvaluation" />
+		<constructor-arg ref="projectEvaluationManager" />
+	</bean>
+	<!--项目后评价管理结束 -->
+
+	<!-- 专利申请管理开始 -->
+	<bean id="patentApplication"
+		class="com.lion.rpms.patent.patentapplication.model.PatentApplication"
+		scope="prototype"></bean>
+	<bean id="patentApplicationLine"
+		class="com.lion.rpms.patent.patentapplication.model.PatentApplicationLine"
+		scope="prototype"></bean>
+	<bean id="patentApplicationDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.patent.patentapplication.model.PatentApplication" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="patentApplicationLineDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.patent.patentapplication.model.PatentApplicationLine" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="patentApplicationManager"
+		class="com.lion.rpms.patent.patentapplication.manager.impl.PatentApplicationManagerImpl">
+		<constructor-arg ref="patentApplicationDao" />
+	</bean>
+	<bean id="patentApplicationLineManager"
+		class="com.lion.rpms.patent.patentapplication.manager.impl.PatentApplicationLineManagerImpl">
+		<constructor-arg ref="patentApplicationLineDao" />
+	</bean>
+	<bean id="PatentApplicationAction"
+		class="com.lion.rpms.patent.patentapplication.action.PatentApplicationAction"
+		scope="prototype">
+		<constructor-arg ref="patentApplication" />
+		<constructor-arg ref="patentApplicationManager" />
+	</bean>
+	<bean id="PatentApplicationLineAction"
+		class="com.lion.rpms.patent.patentapplication.action.PatentApplicationLineAction"
+		scope="prototype">
+		<constructor-arg ref="patentApplicationLine" />
+		<constructor-arg ref="patentApplicationLineManager" />
+	</bean>
+	<!-- 专利申请管理结束 -->
+
+	<!-- 工作任务管理开始 -->
+	<bean id="innovateTask" class="com.lion.rpms.innovate.innovatetask.model.InnovateTask"
+		scope="prototype"></bean>
+	<bean id="innovateTaskDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.innovate.innovatetask.model.InnovateTask" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="innovateTaskManager"
+		class="com.lion.rpms.innovate.innovatetask.manager.impl.InnovateTaskManagerImpl">
+		<constructor-arg ref="innovateTaskDao" />
+	</bean>
+	<bean id="InnovateTaskAction"
+		class="com.lion.rpms.innovate.innovatetask.action.InnovateTaskAction"
+		scope="prototype">
+		<constructor-arg ref="innovateTask" />
+		<constructor-arg ref="innovateTaskManager" />
+	</bean>
+	<!-- 工作任务管理结束 -->
+	<!--通知管理开始 -->
+	<bean id="projectFile" class="com.lion.rpms.research.projectfile.model.ProjectFile"
+		scope="prototype"></bean>
+	<bean id="projectFileLine"
+		class="com.lion.rpms.research.projectfile.model.ProjectFileLine"
+		scope="prototype"></bean>
+
+	<bean id="projectFileDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.projectfile.model.ProjectFile" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectFileLineDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.projectfile.model.ProjectFileLine" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="projectFileManager"
+		class="com.lion.rpms.research.projectfile.manager.impl.ProjectFileManagerImpl">
+		<constructor-arg ref="projectFileDao" />
+		<property name="noticeManager" ref="noticeManager" />
+		<property name="codeLineManager" ref="codeLineManager" />
+	</bean>
+	<bean id="projectFileLineManager"
+		class="com.lion.rpms.research.projectfile.manager.impl.ProjectFileLineManagerImpl">
+		<constructor-arg ref="projectFileLineDao" />
+		<property name="researchPlatManager" ref="researchPlatManager" />
+		<property name="researchTalentManager" ref="researchTalentManager" />
+		<property name="organizationManager" ref="organizationManager" />
+	</bean>
+
+	<bean id="ProjectFileAction"
+		class="com.lion.rpms.research.projectfile.action.ProjectFileAction"
+		scope="prototype">
+		<constructor-arg ref="projectFile" />
+		<constructor-arg ref="projectFileManager" />
+	</bean>
+	<bean id="ProjectFileLineAction"
+		class="com.lion.rpms.research.projectfile.action.ProjectFileLineAction"
+		scope="prototype">
+		<constructor-arg ref="projectFileLine" />
+		<constructor-arg ref="projectFileLineManager" />
+	</bean>
+	<!--通知管理结束 -->
+
+	<!-- 合同管理开始 -->
+	<bean id="innovateCompact"
+		class="com.lion.rpms.innovate.innovatecompact.model.InnovateCompact"
+		scope="prototype"></bean>
+	<bean id="innovateCompactDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.innovate.innovatecompact.model.InnovateCompact" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="innovateCompactManager"
+		class="com.lion.rpms.innovate.innovatecompact.manager.impl.InnovateCompactManagerImpl">
+		<constructor-arg ref="innovateCompactDao" />
+	</bean>
+	<bean id="InnovateCompactAction"
+		class="com.lion.rpms.innovate.innovatecompact.action.InnovateCompactAction"
+		scope="prototype">
+		<constructor-arg ref="innovateCompact" />
+		<constructor-arg ref="innovateCompactManager" />
+	</bean>
+	<!-- 合同管理结束 -->
+
+	<!-- 季度检查项目管理开始 -->
+	<bean id="innovateQuarterCheck"
+		class="com.lion.rpms.innovate.innovatequartercheck.model.InnovateQuarterCheck"
+		scope="prototype"></bean>
+	<bean id="innovateQuarterCheckDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.innovate.innovatequartercheck.model.InnovateQuarterCheck" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="innovateQuarterCheckManager"
+		class="com.lion.rpms.innovate.innovatequartercheck.manager.impl.InnovateQuarterCheckManagerImpl">
+		<constructor-arg ref="innovateQuarterCheckDao" />
+	</bean>
+	<bean id="InnovateQuarterCheckAction"
+		class="com.lion.rpms.innovate.innovatequartercheck.action.InnovateQuarterCheckAction"
+		scope="prototype">
+		<constructor-arg ref="innovateQuarterCheck" />
+		<constructor-arg ref="innovateQuarterCheckManager" />
+	</bean>
+	<!-- 季度检查项目管理结束 -->
+
+	<!-- (项目推广)成果推广管理开始 -->
+	<bean id="projectSpread"
+		class="com.lion.rpms.research.projectspread.model.ProjectSpread"
+		scope="prototype"></bean>
+	<bean id="projectSpreadDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.projectspread.model.ProjectSpread" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectSpreadManager"
+		class="com.lion.rpms.research.projectspread.manager.impl.ProjectSpreadManagerImpl">
+		<constructor-arg ref="projectSpreadDao" />
+	</bean>
+	<bean id="ProjectSpreadAction"
+		class="com.lion.rpms.research.projectspread.action.ProjectSpreadAction"
+		scope="prototype">
+		<constructor-arg ref="projectSpread" />
+		<constructor-arg ref="projectSpreadManager" />
+	</bean>
+	<!-- (项目推广)成果推广管理结束 -->
+
+	<!-- 季度检查打分管理开始 -->
+	<bean id="innovateQuarterGrade"
+		class="com.lion.rpms.innovate.innovatequartergrade.model.InnovateQuarterGrade"
+		scope="prototype"></bean>
+	<bean id="innovateQuarterGradeDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.innovate.innovatequartergrade.model.InnovateQuarterGrade" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="innovateQuarterGradeManager"
+		class="com.lion.rpms.innovate.innovatequartergrade.manager.impl.InnovateQuarterGradeManagerImpl">
+		<constructor-arg ref="innovateQuarterGradeDao" />
+	</bean>
+	<bean id="InnovateQuarterGradeAction"
+		class="com.lion.rpms.innovate.innovatequartergrade.action.InnovateQuarterGradeAction"
+		scope="prototype">
+		<constructor-arg ref="innovateQuarterGrade" />
+		<constructor-arg ref="innovateQuarterGradeManager" />
+	</bean>
+	<!-- 季度检查打分管理结束 -->
+
+	<!-- 标准制定管理开始 -->
+	<bean id="standardEnact" class="com.lion.rpms.base.standardenact.model.StandardEnact"
+		scope="prototype"></bean>
+	<bean id="standardEnactDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.base.standardenact.model.StandardEnact" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="standardEnactManager"
+		class="com.lion.rpms.base.standardenact.manager.impl.StandardEnactManagerImpl">
+		<constructor-arg ref="standardEnactDao" />
+		<property name="researchStandarManager" ref="researchStandarManager" />
+	</bean>
+	<bean id="StandardEnactAction"
+		class="com.lion.rpms.base.standardenact.action.StandardEnactAction"
+		scope="prototype">
+		<constructor-arg ref="standardEnact" />
+		<constructor-arg ref="standardEnactManager" />
+	</bean>
+	<!-- 标准制定管理结束 -->
+	<!--项目报奖管理开始 -->
+	<bean id="projectAward" class="com.lion.rpms.research.porjectaward.model.ProjectAward"
+		scope="prototype"></bean>
+	<bean id="projectAwardLine"
+		class="com.lion.rpms.research.porjectaward.model.ProjectAwardLine"
+		scope="prototype"></bean>
+
+	<bean id="projectAwardDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.porjectaward.model.ProjectAward" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectAwardLineDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.porjectaward.model.ProjectAwardLine" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectAwardManager"
+		class="com.lion.rpms.research.porjectaward.manager.impl.ProjectAwardManagerImpl">
+		<constructor-arg ref="projectAwardDao" />
+		<property name="researchHonorManager" ref="researchHonorManager" />
+	</bean>
+	<bean id="projectAwardLineManager"
+		class="com.lion.rpms.research.porjectaward.manager.impl.ProjectAwardLineManagerImpl">
+		<constructor-arg ref="projectAwardLineDao" />
+	</bean>
+	<bean id="ProjectAwardAction"
+		class="com.lion.rpms.research.porjectaward.action.ProjectAwardAction"
+		scope="prototype">
+		<constructor-arg ref="projectAward" />
+		<constructor-arg ref="projectAwardManager" />
+	</bean>
+	<bean id="ProjectAwardLineAction"
+		class="com.lion.rpms.research.porjectaward.action.ProjectAwardLineAction"
+		scope="prototype">
+		<constructor-arg ref="projectAwardLine" />
+		<constructor-arg ref="projectAwardLineManager" />
+	</bean>
+	<!--项目报奖管理结束 -->
+	<!--项目内部报奖管理开始 -->
+	<bean id="internalAwardManager"
+		class="com.lion.rpms.research.internalaward.manager.impl.InternalAwardManagerImpl">
+		<constructor-arg ref="projectAwardDao" />
+	</bean>
+	<bean id="InternalAwardAction"
+		class="com.lion.rpms.research.internalaward.action.InternalAwardAction"
+		scope="prototype">
+		<constructor-arg ref="projectAward" />
+		<constructor-arg ref="internalAwardManager" />
+	</bean>
+	<!--项目内部报奖管理结束 -->
+	<!--项目内部报奖审核管理开始 -->
+	<bean id="awardAuditManager"
+		class="com.lion.rpms.research.awardaudit.manager.impl.AwardAuditManagerImpl">
+		<constructor-arg ref="projectAwardDao" />
+	</bean>
+	<bean id="AwardAuditAction"
+		class="com.lion.rpms.research.awardaudit.action.AwardAuditAction"
+		scope="prototype">
+		<constructor-arg ref="projectAward" />
+		<constructor-arg ref="awardAuditManager" />
+	</bean>
+	<!--项目内部报奖审核管理结束 -->
+
+	<!-- 年度考核标准管理开始 -->
+	<bean id="innovateYearCheck"
+		class="com.lion.rpms.innovate.innovateyearcheck.model.InnovateYearCheck"
+		scope="prototype"></bean>
+	<bean id="innovateYearCheckDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.innovate.innovateyearcheck.model.InnovateYearCheck" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="innovateYearCheckManager"
+		class="com.lion.rpms.innovate.innovateyearcheck.manager.impl.InnovateYearCheckManagerImpl">
+		<constructor-arg ref="innovateYearCheckDao" />
+	</bean>
+	<bean id="InnovateYearCheckAction"
+		class="com.lion.rpms.innovate.innovateyearcheck.action.InnovateYearCheckAction"
+		scope="prototype">
+		<constructor-arg ref="innovateYearCheck" />
+		<constructor-arg ref="innovateYearCheckManager" />
+	</bean>
+	<!-- 年度考核标准管理结束 -->
+
+	<!-- 年度考核打分管理开始 -->
+	<bean id="innovateYearGrade"
+		class="com.lion.rpms.innovate.innovateyeargrade.model.InnovateYearGrade"
+		scope="prototype"></bean>
+	<bean id="innovateYearGradeDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.innovate.innovateyeargrade.model.InnovateYearGrade" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="innovateYearGradeManager"
+		class="com.lion.rpms.innovate.innovateyeargrade.manager.impl.InnovateYearGradeManagerImpl">
+		<constructor-arg ref="innovateYearGradeDao" />
+		<property name="enableSystemGrade" value="true"></property><!-- 是否启用系统打分 -->
+		<property name="gradeMap">
+			<map>
+				<entry key="0201">
+					<bean
+						class="com.lion.rpms.innovate.innovateyeargrade.grade.impl.Grade0201"></bean>
+				</entry>
+				<entry key="0202">
+					<bean
+						class="com.lion.rpms.innovate.innovateyeargrade.grade.impl.Grade0202"></bean>
+				</entry>
+				<entry key="0203">
+					<bean
+						class="com.lion.rpms.innovate.innovateyeargrade.grade.impl.Grade0203"></bean>
+				</entry>
+				<entry key="0204">
+					<bean
+						class="com.lion.rpms.innovate.innovateyeargrade.grade.impl.Grade0204"></bean>
+				</entry>
+				<entry key="0205">
+					<bean
+						class="com.lion.rpms.innovate.innovateyeargrade.grade.impl.Grade0205"></bean>
+				</entry>
+				<entry key="0206">
+					<bean
+						class="com.lion.rpms.innovate.innovateyeargrade.grade.impl.Grade0206"></bean>
+				</entry>
+				<entry key="0301">
+					<bean
+						class="com.lion.rpms.innovate.innovateyeargrade.grade.impl.Grade0301"></bean>
+				</entry>
+				<entry key="0303">
+					<bean
+						class="com.lion.rpms.innovate.innovateyeargrade.grade.impl.Grade0303"></bean>
+				</entry>
+				<entry key="0501">
+					<bean
+						class="com.lion.rpms.innovate.innovateyeargrade.grade.impl.Grade0501"></bean>
+				</entry>
+				<entry key="0502">
+					<bean
+						class="com.lion.rpms.innovate.innovateyeargrade.grade.impl.Grade0502"></bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="InnovateYearGradeAction"
+		class="com.lion.rpms.innovate.innovateyeargrade.action.InnovateYearGradeAction"
+		scope="prototype">
+		<constructor-arg ref="innovateYearGrade" />
+		<constructor-arg ref="innovateYearGradeManager" />
+	</bean>
+	<!-- 年度考核打分管理结束 -->
+
+	<!-- 博士后课题管理开始 -->
+	<bean id="postdoctorTopic"
+		class="com.lion.rpms.innovate.postdoctortopic.model.PostdoctorTopic"
+		scope="prototype"></bean>
+	<bean id="postdoctorTopicDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.innovate.postdoctortopic.model.PostdoctorTopic" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="postdoctorTopicManager"
+		class="com.lion.rpms.innovate.postdoctortopic.manager.impl.PostdoctorTopicManagerImpl">
+		<constructor-arg ref="postdoctorTopicDao" />
+	</bean>
+	<bean id="PostdoctorTopicAction"
+		class="com.lion.rpms.innovate.postdoctortopic.action.PostdoctorTopicAction"
+		scope="prototype">
+		<constructor-arg ref="postdoctorTopic" />
+		<constructor-arg ref="postdoctorTopicManager" />
+	</bean>
+	<!-- 博士后课题管理结束 -->
+
+	<!-- 论文评比管理开始 -->
+	<bean id="thesisApplication"
+		class="com.lion.rpms.thesis.thesisapplication.model.ThesisApplication"
+		scope="prototype"></bean>
+	<bean id="thesisApplicationDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.thesis.thesisapplication.model.ThesisApplication" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="thesisApplicationManager"
+		class="com.lion.rpms.thesis.thesisapplication.manager.impl.ThesisApplicationManagerImpl">
+		<constructor-arg ref="thesisApplicationDao" />
+	</bean>
+	<bean id="ThesisApplicationAction"
+		class="com.lion.rpms.thesis.thesisapplication.action.ThesisApplicationAction"
+		scope="prototype">
+		<constructor-arg ref="thesisApplication" />
+		<constructor-arg ref="thesisApplicationManager" />
+	</bean>
+	<!-- 论文评比管理结束 -->
+	<!--专利管理开始 -->
+	<bean id="researchPatent"
+		class="com.lion.rpms.research.researchpatent.model.ResearchPatent"
+		scope="prototype"></bean>
+	<bean id="researchPatentLine"
+		class="com.lion.rpms.research.researchpatent.model.ResearchPatentLine"
+		scope="prototype"></bean>
+
+	<bean id="researchPatentDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.researchpatent.model.ResearchPatent" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="researchPatentLineDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.researchpatent.model.ResearchPatentLine" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="researchPatentManager"
+		class="com.lion.rpms.research.researchpatent.manager.impl.ResearchPatentManagerImpl">
+		<constructor-arg ref="researchPatentDao" />
+		<property name="aheadAlertMonth" value="2"></property>
+	</bean>
+	<bean id="researchPatentLineManager"
+		class="com.lion.rpms.research.researchpatent.manager.impl.ResearchPatentLineManagerImpl">
+		<constructor-arg ref="researchPatentLineDao" />
+	</bean>
+	<bean id="ResearchPatentAction"
+		class="com.lion.rpms.research.researchpatent.action.ResearchPatentAction"
+		scope="prototype">
+		<constructor-arg ref="researchPatent" />
+		<constructor-arg ref="researchPatentManager" />
+	</bean>
+	<bean id="ResearchPatentLineAction"
+		class="com.lion.rpms.research.researchpatent.action.ResearchPatentLineAction"
+		scope="prototype">
+		<constructor-arg ref="researchPatentLine" />
+		<constructor-arg ref="researchPatentLineManager" />
+	</bean>
+	<!--专利管理结束 -->
+	<!--成果管理开始 -->
+	<bean id="researchAchievement"
+		class="com.lion.rpms.research.researchachievement.model.ResearchAchievement"
+		scope="prototype"></bean>
+	<bean id="researchAchievementDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.researchachievement.model.ResearchAchievement" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="researchAchievementManager"
+		class="com.lion.rpms.research.researchachievement.manager.impl.ResearchAchievementManagerImpl">
+		<constructor-arg ref="researchAchievementDao" />
+	</bean>
+	<bean id="ResearchAchievementAction"
+		class="com.lion.rpms.research.researchachievement.action.ResearchAchievementAction"
+		scope="prototype">
+		<constructor-arg ref="researchAchievement" />
+		<constructor-arg ref="researchAchievementManager" />
+	</bean>
+	<!--成果管理结束 -->
+	<!--标准管理开始 -->
+	<bean id="researchStandar"
+		class="com.lion.rpms.research.researchstandar.model.ResearchStandar"
+		scope="prototype"></bean>
+	<bean id="researchStandarDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.researchstandar.model.ResearchStandar" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="researchStandarManager"
+		class="com.lion.rpms.research.researchstandar.manager.impl.ResearchStandarManagerImpl">
+		<constructor-arg ref="researchStandarDao" />
+	</bean>
+	<bean id="ResearchStandarAction"
+		class="com.lion.rpms.research.researchstandar.action.ResearchStandarAction"
+		scope="prototype">
+		<constructor-arg ref="researchStandar" />
+		<constructor-arg ref="researchStandarManager" />
+	</bean>
+	<!--标准管理结束 -->
+	<!--荣誉管理开始 -->
+	<bean id="researchHonor"
+		class="com.lion.rpms.research.researchhonor.model.ResearchHonor"
+		scope="prototype"></bean>
+	<bean id="researchHonorDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.researchhonor.model.ResearchHonor" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="researchHonorManager"
+		class="com.lion.rpms.research.researchhonor.manager.impl.ResearchHonorManagerImpl">
+		<constructor-arg ref="researchHonorDao" />
+	</bean>
+	<bean id="ResearchHonorAction"
+		class="com.lion.rpms.research.researchhonor.action.ResearchHonorAction"
+		scope="prototype">
+		<constructor-arg ref="researchHonor" />
+		<constructor-arg ref="researchHonorManager" />
+	</bean>
+	<!--荣誉管理结束 -->
+
+	<!-- 创新制度管理开始 -->
+	<bean id="innovateInstitution"
+		class="com.lion.rpms.innovate.innovateinstitution.model.InnovateInstitution"
+		scope="prototype"></bean>
+	<bean id="innovateInstitutionDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.innovate.innovateinstitution.model.InnovateInstitution" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="innovateInstitutionManager"
+		class="com.lion.rpms.innovate.innovateinstitution.manager.impl.InnovateInstitutionManagerImpl">
+		<constructor-arg ref="innovateInstitutionDao" />
+		<property name="noticeManager" ref="noticeManager"></property>
+	</bean>
+	<bean id="InnovateInstitutionAction"
+		class="com.lion.rpms.innovate.innovateinstitution.action.InnovateInstitutionAction"
+		scope="prototype">
+		<constructor-arg ref="innovateInstitution" />
+		<constructor-arg ref="innovateInstitutionManager" />
+	</bean>
+	<!-- 创新制度管理结束 -->
+	<!--论文管理开始 -->
+	<bean id="researchThesis" class="com.lion.rpms.research.thesis.model.ResearchThesis"
+		scope="prototype"></bean>
+	<bean id="researchThesisLine" class="com.lion.rpms.research.thesis.model.ResearchThesisLine"
+		scope="prototype"></bean>
+	<bean id="researchThesisTalent"
+		class="com.lion.rpms.research.thesis.model.ResearchThesisTalent"
+		scope="prototype"></bean>
+
+	<bean id="researchThesisDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.rpms.research.thesis.model.ResearchThesis" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="researchThesisLineDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.thesis.model.ResearchThesisLine" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="researchThesisTalentDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.thesis.model.ResearchThesisTalent" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="researchThesisManager"
+		class="com.lion.rpms.research.thesis.manager.impl.ResearchThesisManagerImpl">
+		<constructor-arg ref="researchThesisDao" />
+	</bean>
+	<bean id="researchThesisLineManager"
+		class="com.lion.rpms.research.thesis.manager.impl.ResearchThesisLineManagerImpl">
+		<constructor-arg ref="researchThesisLineDao" />
+	</bean>
+	<bean id="researchThesisTalentManager"
+		class="com.lion.rpms.research.thesis.manager.impl.ResearchThesisTalentManagerImpl">
+		<constructor-arg ref="researchThesisTalentDao" />
+	</bean>
+	<bean id="ResearchThesisAction"
+		class="com.lion.rpms.research.thesis.action.ResearchThesisAction"
+		scope="prototype">
+		<constructor-arg ref="researchThesis" />
+		<constructor-arg ref="researchThesisManager" />
+	</bean>
+	<bean id="ResearchThesisLineAction"
+		class="com.lion.rpms.research.thesis.action.ResearchThesisLineAction"
+		scope="prototype">
+		<constructor-arg ref="researchThesisLine" />
+		<constructor-arg ref="researchThesisLineManager" />
+	</bean>
+	<bean id="ResearchThesisTalentAction"
+		class="com.lion.rpms.research.thesis.action.ResearchThesisTalentAction"
+		scope="prototype">
+		<constructor-arg ref="researchThesisTalent" />
+		<constructor-arg ref="researchThesisTalentManager" />
+	</bean>
+	<!--论文管理结束 -->
+	<!--评价管理开始 -->
+	<bean id="researchEvaluate"
+		class="com.lion.rpms.research.researchevaluate.model.ResearchEvaluate"
+		scope="prototype"></bean>
+	<bean id="researchEvaluateDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.researchevaluate.model.ResearchEvaluate" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="researchEvaluateManager"
+		class="com.lion.rpms.research.researchevaluate.manager.impl.ResearchEvaluateManagerImpl">
+		<constructor-arg ref="researchEvaluateDao" />
+	</bean>
+	<bean id="ResearchEvaluateAction"
+		class="com.lion.rpms.research.researchevaluate.action.ResearchEvaluateAction"
+		scope="prototype">
+		<constructor-arg ref="researchEvaluate" />
+		<constructor-arg ref="researchEvaluateManager" />
+	</bean>
+	<!--评价管理结束 -->
+	<!-- 创新计划 Sta -->
+	<bean id="projectPlanned"
+		class="com.lion.rpms.research.projectplanned.model.ProjectPlanned"
+		scope="prototype"></bean>
+	<bean id="projectPlannedDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.projectplanned.model.ProjectPlanned" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectPlannedManager"
+		class="com.lion.rpms.research.projectplanned.manager.impl.ProjectPlannedManagerImpl">
+		<constructor-arg ref="projectPlannedDao" />
+	</bean>
+	<bean id="ProjectPlannedAction"
+		class="com.lion.rpms.research.projectplanned.action.ProjectPlannedAction"
+		scope="prototype">
+		<constructor-arg ref="projectPlanned" />
+		<constructor-arg ref="projectPlannedManager" />
+	</bean>
+	<!-- 创新计划 End -->
+
+	<!--项目合并包涵项目明细开始 -->
+	<bean id="projectItem" class="com.lion.rpms.research.projectreport.model.ProjectItem"
+		scope="prototype"></bean>
+	<bean id="projectItemDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.projectreport.model.ProjectItem" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="projectItemManager"
+		class="com.lion.rpms.research.projectreport.manager.impl.ProjectItemManagerImpl">
+		<constructor-arg ref="projectItemDao" />
+	</bean>
+	<bean id="ProjectItemAction"
+		class="com.lion.rpms.research.projectreport.action.ProjectItemAction"
+		scope="prototype">
+		<constructor-arg ref="projectItem" />
+		<constructor-arg ref="projectItemManager" />
+	</bean>
+	<!--项目合并包涵项目明细结束 -->
+
+
+	<!-- 年报评估管理开始 -->
+	<bean id="postdoctorYearReport"
+		class="com.lion.rpms.innovate.postdoctoryearreport.model.PostdoctorYearReport"
+		scope="prototype"></bean>
+	<bean id="postdoctorYearReportDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.innovate.postdoctoryearreport.model.PostdoctorYearReport" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="postdoctorYearReportManager"
+		class="com.lion.rpms.innovate.postdoctoryearreport.manager.impl.PostdoctorYearReportManagerImpl">
+		<constructor-arg ref="postdoctorYearReportDao" />
+	</bean>
+	<bean id="PostdoctorYearReportAction"
+		class="com.lion.rpms.innovate.postdoctoryearreport.action.PostdoctorYearReportAction"
+		scope="prototype">
+		<constructor-arg ref="postdoctorYearReport" />
+		<constructor-arg ref="postdoctorYearReportManager" />
+	</bean>
+	<!-- 年报评估管理结束 -->
+	
+	<!-- 企业科技活动及相关情况 报表开始 -->
+	<bean id="entpriScienceActivityManager"
+		class="com.lion.rpms.rpmsreport.entpriscienceactivityinfo.manager.impl.EntpriScienceActivityManagerImpl">
+		<constructor-arg ref="objectDao" />
+	</bean>
+	<bean id="EntpriScienceActivityAction"
+		class="com.lion.rpms.rpmsreport.entpriscienceactivityinfo.action.EntpriScienceActivityAction" scope="prototype">
+		<property name="activityManager" ref="entpriScienceActivityManager"></property>
+	</bean>
+	<!-- 企业科技活动及相关情况 报表结束 -->
+	
+	<!-- 企业科技项目情况 报表开始 -->
+	<bean id="entpriScienceInfoManager"
+		class="com.lion.rpms.rpmsreport.entpriscienceinfo.manager.impl.EntpriScienceInfoManagerImpl">
+		<constructor-arg ref="objectDao" />
+	</bean>
+	<bean id="EntpriScienceInfoAction"
+		class="com.lion.rpms.rpmsreport.entpriscienceinfo.action.EntpriScienceInfoAction" scope="prototype">
+		<property name="infoManager" ref="entpriScienceInfoManager"></property>
+	</bean>
+	<!-- 企业科技项目情况 报表结束 -->
+	<!--科技活动费用开始 -->
+	<bean id="scienceActivity"
+		class="com.lion.rpms.research.scienceactivity.model.ScienceActivity"
+		scope="prototype"></bean>
+	<bean id="scienceActivityDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg
+			value="com.lion.rpms.research.scienceactivity.model.ScienceActivity" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="scienceActivityManager"
+		class="com.lion.rpms.research.scienceactivity.manager.impl.ScienceActivityManagerImpl">
+		<constructor-arg ref="scienceActivityDao" />
+	</bean>
+	<bean id="ScienceActivityAction"
+		class="com.lion.rpms.research.scienceactivity.action.ScienceActivityAction"
+		scope="prototype">
+		<constructor-arg ref="scienceActivity" />
+		<constructor-arg ref="scienceActivityManager" />
+	</bean>
+	<!--科技活动费用结束 -->
+	
+    <!-- 专利续费申请管理开始 -->
+    <bean id="patentRenewal" class="com.lion.rpms.patent.patentrenewal.model.PatentRenewal" scope="prototype"></bean>
+    <bean id="patentRenewalDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+        <constructor-arg value="com.lion.rpms.patent.patentrenewal.model.PatentRenewal"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="patentRenewalManager" class="com.lion.rpms.patent.patentrenewal.manager.impl.PatentRenewalManagerImpl">
+        <constructor-arg ref="patentRenewalDao"/>
+    </bean>
+    <bean id="PatentRenewalAction" class="com.lion.rpms.patent.patentrenewal.action.PatentRenewalAction" scope="prototype">
+        <constructor-arg ref="patentRenewal"/>
+        <constructor-arg ref="patentRenewalManager"/>
+    </bean>
+    <!-- 专利续费申请管理结束 -->
+    
+    <!-- 修改所有状态数据的权限 开始 -->
+	<bean id="roleControlManager"
+		class="com.lion.rpms.common.rolecontrol.manager.impl.RoleControlManagerImpl">
+		<constructor-arg ref="objectDao" />
+	</bean>
+	<bean id="RoleControlAction"
+		class="com.lion.rpms.common.rolecontrol.action.RoleControlAction" scope="prototype">
+		<property name="roleControlManager" ref="roleControlManager"></property>
+	</bean>
+	<!-- 修改所有状态数据的权限 结束 -->
+	<!-- 单位概况管理开始 -->
+	<bean id="organizationGeneral" class="com.lion.rpms.organizationgeneral.model.OrganizationGeneral" scope="prototype"></bean>
+	<bean id="organizationGeneralDao" class="com.lion.core.dao.hibernate.GenericDaoHibernate">
+		<constructor-arg value="com.lion.rpms.organizationgeneral.model.OrganizationGeneral"/>
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="organizationGeneralManager" class="com.lion.rpms.organizationgeneral.manager.impl.OrganizationGeneralManagerImpl">
+		<constructor-arg ref="organizationGeneralDao"/>
+	</bean>
+	<bean id="OrganizationGeneralAction" class="com.lion.rpms.organizationgeneral.action.OrganizationGeneralAction" scope="prototype">
+		<constructor-arg ref="organizationGeneral"/>
+		<constructor-arg ref="organizationGeneralManager"/>
+	</bean>
+	<!-- 单位概况管理结束 -->
+    
+</beans>

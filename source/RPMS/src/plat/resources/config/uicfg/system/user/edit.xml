@@ -1,0 +1,44 @@
+<uicfg desc="用户管理编辑主界面">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">900</winWidth>
+	<printTitle>用户基本信息</printTitle>
+	<component>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>system/user/edittbar</viewPath>
+		</items>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>system/user/editform</viewPath>
+		</items>
+		<items>
+			<object>listlineTbar</object>
+			<hidden type="object">this.userInfo?true:!this.editable</hidden>
+			<xtype>liontoolbar</xtype>
+			<viewPath>system/user/listlinetbar</viewPath>
+		</items>
+		<items>
+			<object>dataLineGrid</object>
+			<isLine type="boolean">true</isLine>
+			<fkName>usersObj.id</fkName>
+			<lineName>roles</lineName>
+			<autoMain type="boolean">false</autoMain>
+			<runMode>2</runMode>
+			<xtype>lioneditorgrid</xtype>
+			<viewPath>system/role/listgrid</viewPath>
+			<height type="object">180</height>
+			<border type="boolean">false</border>
+			<allowPage type="boolean">false</allowPage>
+			<showEditButton type="boolean">false</showEditButton>
+			<showCopyButton type="boolean">false</showCopyButton>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+		<items>listlineTbar</items>
+		<items>dataLineGrid</items>
+	</container>
+</uicfg>

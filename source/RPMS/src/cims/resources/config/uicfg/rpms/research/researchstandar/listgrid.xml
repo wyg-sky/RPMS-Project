@@ -1,0 +1,91 @@
+<uicfg desc="标准管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>realeaseDate desc</orderBy>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<showEditButton type="object">Ext.isAllowed('rpms_researchstandar_edit')</showEditButton>
+	<store>
+		<url>rpms/listResearchStandar.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+            <name>organization.id</name>
+        </fields>
+        <fields>
+            <name>organization.name</name>
+        </fields>
+		<fields>
+			<name>standarName</name>
+		</fields>
+		<fields>
+			<name>grade</name>
+		</fields>
+		<fields>
+            <name>standarStatus</name>
+        </fields>
+		<fields>
+			<name>standarNum</name>
+		</fields>
+		<fields>
+			<name>realeaseDate</name>
+		</fields>
+        <fields>
+            <name>carryOutDate</name>
+        </fields>
+        <fields>
+            <name>remark</name>
+        </fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+            <header>单位</header>
+            <dataIndex>organization.name</dataIndex>
+			<width type="integer">70</width>
+        </columns>
+		<columns>
+			<header>标准名称</header>
+			<dataIndex>standarName</dataIndex>
+			<width type="object">220</width>
+		</columns>
+		<columns>
+			<header>标准等级</header>
+			<dataIndex>grade</dataIndex>
+			<keyType>rpms_standar_rank</keyType>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+            <header>标准状态</header>
+            <dataIndex>standarStatus</dataIndex>
+            <keyType>rpms_standar_status</keyType>
+            <width type="object">60</width>
+        </columns>
+		<columns>
+			<header>标准号</header>
+			<dataIndex>standarNum</dataIndex>
+			<width type="integer">80</width>
+		</columns>
+		<columns>
+			<header>颁布日期</header>
+			<dataIndex>realeaseDate</dataIndex>
+            <width type="object">60</width>
+		</columns>
+		<columns>
+			<header>实施日期</header>
+			<dataIndex>carryOutDate</dataIndex>
+            <width type="object">60</width>
+		</columns>
+		<columns>
+			<header>备注</header>
+			<dataIndex>remark</dataIndex>
+		</columns>
+	</cm>
+</uicfg>

@@ -1,0 +1,54 @@
+<uicfg desc="数据导入配置按钮">
+	<items>-></items>
+	<items>
+		<text>新增</text>
+		<iconCls>create-icon</iconCls>
+		<handler type="object">this.addClick</handler>
+	</items>
+	<items>
+		<text>编辑</text>
+		<iconCls>new-edit-icon</iconCls>
+		<handler type="object">this.editClick</handler>
+	</items>
+	<items>
+		<text>删除</text>
+		<iconCls>delete-selected-icon</iconCls>
+		<handler type="object">this.deleteClick</handler>
+	</items>
+	<items>
+		<text>置为有效</text>
+		<iconCls>search-d-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<handler type="object">function() {
+			this.changeStatus('status', '1', '置为有效');
+		}</handler>
+	</items>
+	<items>
+		<text>置为无效</text>
+		<iconCls>new-check-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<handler type="object">function() {
+			this.changeStatus('status', '0', '置为无效');
+		}</handler>
+	</items>
+	<items>
+		<text>查看</text>
+		<iconCls>view-icon</iconCls>
+		<handler type="object">this.viewClick</handler>
+	</items>
+	<items>
+		<text>查询</text>
+		<iconCls>search-d-icon</iconCls>
+		<handler type="object">this.query</handler>
+	</items>
+	<items>
+		<text>清空</text>
+		<iconCls>ff-clear-icon</iconCls>
+		<handler type="object">this.clear</handler>
+	</items>
+	<items>
+		<iconCls>collapse-icon</iconCls>
+		<tooltip>展开/收起查询区</tooltip>
+		<handler type="object">this.expandQueryField</handler>
+	</items>
+</uicfg>

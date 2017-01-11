@@ -1,0 +1,164 @@
+<uicfg desc="合作协作单位明细列表">
+    <rownum type="boolean">true</rownum>
+    <orderBy>id asc</orderBy>
+    <editable type="object">true</editable>
+    <showLookButton type="object">false</showLookButton>
+    <showEditButton type="object">false</showEditButton>
+    <showCopyButton type="object">false</showCopyButton>
+    <allowPage type="boolean">false</allowPage>
+    <clicksToEdit type="integer">1</clicksToEdit>
+    <bodyStyle type="object">'border-width:1px 1px 1px 1px;'</bodyStyle>
+    <store>
+        <url>rpms/listProjectPartners.html</url>
+        <baseParams>
+            <fieldValues type="object">this.mainId</fieldValues>
+            <operatorValues>=</operatorValues>  
+            <queryFields>obj.mainId</queryFields>
+        </baseParams>
+        <fields>
+            <name>id</name>
+        </fields>
+        <fields>
+            <name>mainId</name>
+        </fields>
+        <fields>
+            <name>partnersType</name>
+        </fields>
+        <fields>
+            <name>researchPlat.id</name>
+        </fields>
+        <fields>
+            <name>researchPlat.platName</name>
+        </fields>
+        <fields>
+            <name>researchPlat.grade</name>
+        </fields>
+        <fields>
+            <name>researchPlatName</name>
+        </fields>
+        <fields>
+            <name>researchPlat.hierarchy</name>
+        </fields>
+    </store>
+    <sm>
+        <xtype>checkboxsm</xtype>
+        <singleSelect type="boolean">false</singleSelect>
+    </sm>
+    <cm>
+        <defaults>
+            <sortable type="boolean">true</sortable>
+        </defaults>
+        <columns>
+            <hidden type="object">true</hidden>
+            <header>mainId</header>
+            <dataIndex>mainId</dataIndex>
+        </columns>
+        <columns>
+            <header>类型</header>
+            <dataIndex>partnersType</dataIndex>
+            <keyType>rpms_partners_type</keyType>
+            <editor>
+                <xtype>lioncombobox</xtype>
+                <keyType>rpms_partners_type</keyType>
+            </editor>
+        </columns>
+       <!-- <columns>
+            <header>单位</header>
+            <dataIndex>researchPlat.platName</dataIndex>
+            <cascadeIndex>researchPlat.id</cascadeIndex>
+            <width type="object">140</width>
+            <editor>
+                <xtype>lioncombowindow</xtype>
+                <fieldLabel>平台选择</fieldLabel>
+                <propertyName>researchPlat</propertyName>
+                <hiddenName>id</hiddenName>
+                <displayField>platName</displayField>
+                <hiddenDisplayName>platName</hiddenDisplayName>
+                <allowBlank type="boolean">false</allowBlank>
+                <pageSize>1000</pageSize> 
+                <window>
+                    <viewPathOfUi>rpms/research/project/platlist</viewPathOfUi>
+                    <title>平台选择</title>
+                </window>
+                <listeners type="object"><![CDATA[{
+                    'after_comfirm_click' : function(records) {
+                        var platName = records[0].get("platName");
+                        var record = this.manager.partnerGrid.getSelectionModel().getSelected();
+                        record.set('researchPlat.hierarchy',records[0].get('hierarchy'));
+                        record.set('researchPlat.grade',records[0].get('grade'));
+                    },
+                    scope : this
+                }]]>
+                </listeners>
+            </editor>
+        </columns>-->
+        <columns>
+            <header>单位</header>
+            <dataIndex>researchPlat.platName</dataIndex>
+            <cascadeIndex>researchPlat.id</cascadeIndex>
+            <width type="object">140</width>
+            <editor>
+                <xtype>lioncombowindow</xtype>
+                <fieldLabel>平台选择</fieldLabel>
+                <propertyName>plat</propertyName>
+                <hiddenName>id</hiddenName>
+                <displayField>platName</displayField>
+                <hiddenDisplayName>platName</hiddenDisplayName>
+                <allowBlank type="boolean">false</allowBlank>
+                <forceSelection type="object">false</forceSelection>
+                <pageSize>1000</pageSize> 
+                <window>
+                    <viewPathOfUi>rpms/research/project/platlist</viewPathOfUi>
+                    <title>平台选择</title>
+                </window>
+                <listeners type="object"><![CDATA[{
+                    'after_comfirm_click' : function(records) {
+                        var platName = records[0].get("platName");
+                        var record = this.manager.partnerGrid.getSelectionModel().getSelected();
+                        record.set('researchPlat.hierarchy',records[0].get('hierarchy'));
+                        record.set('researchPlat.grade',records[0].get('grade'));
+                        
+                        record.set('researchPlatName',records[0].get('platName'));
+                        record.set('researchPlat.id',records[0].get('id'));
+                    },
+                    'blur':function(field){
+                    var record = this.manager.partnerGrid.getSelectionModel().getSelected();
+						if(field.getText() == field.getValue()) {
+							record.set('researchPlat.id','');
+						} else {
+							record.set('researchPlat.id',field.getValue());
+						}
+						record.set('researchPlatName',field.getText());
+					},
+                    scope : this
+                }]]>
+                </listeners>
+            </editor>
+        </columns>
+       <columns>
+		<header>合作协作单位</header>
+		<hidden type="object">true</hidden>
+	    <dataIndex>researchPlat.platName</dataIndex>
+        <cascadeIndex>researchPlat.id</cascadeIndex>
+		<readOnly type="boolean">true</readOnly>
+	</columns>
+	<columns>
+		<header>合作协作单位名称</header>
+		<hidden type="object">true</hidden>
+		<readOnly type="boolean">true</readOnly>
+		<dataIndex>researchPlatName</dataIndex>
+	</columns>
+        <columns>
+            <header>等级</header>
+            <dataIndex>researchPlat.grade</dataIndex>
+            <keyType>rpms_grade</keyType>
+            <hidden type="object">true</hidden>
+        </columns>
+    </cm>
+    <tbar>
+        <xtype>liontoolbar</xtype>
+        <hidden type="object">!this.manager.editable</hidden>
+        <manager type="object">this.manager</manager>
+        <viewPath>rpms/research/project/listpartnerbar</viewPath>      
+    </tbar>
+</uicfg>

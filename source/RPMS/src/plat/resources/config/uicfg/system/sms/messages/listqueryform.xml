@@ -1,0 +1,31 @@
+<uicfg desc="短信管理查询字段">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>sendStatus</name>
+		<fieldLabel>发送状态</fieldLabel>
+		<keyType>sys_send_status</keyType>
+		<operator>=</operator>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>receivers</name>
+		<fieldLabel>接收人</fieldLabel>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<name>sendTime</name>
+		<queryField>to_char(obj.sendTime,'yyyy-MM-dd')</queryField>
+		<fieldLabel>开始时间</fieldLabel>
+		<operator>>=</operator>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<queryField>to_char(obj.sendTime,'yyyy-MM-dd')</queryField>
+		<fieldLabel>结束时间</fieldLabel>
+		<operator><![CDATA[<=]]></operator>
+	</items>
+</uicfg>

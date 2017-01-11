@@ -1,0 +1,47 @@
+<uicfg desc="人员职责-平台绑定管理">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">1000</winWidth>
+	<component>
+		<items>
+			<object>platTree</object>
+			<xtype>panel</xtype>
+			<isCreate type="object">this.runMode == '1'</isCreate>
+			<region>west</region>
+			<bodyStyle>border-width:0 1px 0 1px;</bodyStyle>
+			<autoScroll type="object">true</autoScroll>
+		    <width type="object">280</width>
+		    <split type="object">true</split>
+		    <minSize type="object">180</minSize>
+		    <maxSize type="object">180</maxSize>
+		    <collapsible type="object">false</collapsible>
+		    <lines type="object">false</lines>
+		    <collapseMode>mini</collapseMode>
+			<items>
+				<xtype>liontree</xtype>
+				<viewPath>rpms/base/projectstaff/plattree</viewPath>
+			</items>
+		</items>
+		<items>
+			<object>platTemp</object>
+			<xtype>lioneditorgrid</xtype>
+			<region>center</region>
+			<viewPath>rpms/base/projectstaff/plattemp</viewPath>
+			<tbar>
+				<xtype>liontoolbar</xtype>
+				<border type="boolean">false</border>
+				<manager type="object">this</manager>
+				<viewPath>rpms/base/projectstaff/plattemptbar</viewPath>
+			</tbar>
+		</items>
+	</component>
+	<container>
+		<items>
+			<xtype>panel</xtype>
+			<layout>border</layout>
+			<border type="boolean">false</border>
+			<height type="object">495</height>
+			<items>platTree</items>
+			<items>platTemp</items>
+		</items>
+	</container>
+</uicfg>

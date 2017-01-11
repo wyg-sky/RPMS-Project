@@ -1,0 +1,57 @@
+<uicfg desc="消息类型管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<editable type="object">false</editable>
+	<showDeleteButton type="object">true</showDeleteButton>
+	<store>
+		<url>system/listNoticeType.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>code</name>
+		</fields>
+		<fields>
+			<name>name</name>
+		</fields>
+		<fields>
+			<name>type</name>
+		</fields>
+		<fields>
+			<name>point</name>
+		</fields>
+		<fields>
+			<name>description</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>编码</header>
+			<dataIndex>code</dataIndex>
+		</columns>
+		<columns>
+			<header>名称</header>
+			<dataIndex>name</dataIndex>
+		</columns>
+		<columns>
+			<header>类别</header>
+			<dataIndex>type</dataIndex>
+			<keyType>sys_notice_type</keyType>
+		</columns>
+		<columns>
+			<header>指向</header>
+			<dataIndex>point</dataIndex>
+		</columns>
+		<columns>
+			<header>描述</header>
+			<dataIndex>description</dataIndex>
+		</columns>
+	</cm>
+</uicfg>

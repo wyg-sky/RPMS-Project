@@ -1,0 +1,150 @@
+<uicfg desc="项目调度管理列表">
+    <rownum type="boolean">true</rownum>
+    <objectName>businessObject</objectName>
+    <orderBy>status asc,dispatchMonth desc,projectStage desc,id asc  </orderBy>
+    <editable type="object">false</editable>
+    <showEditButton type="object">Ext.isAllowed('rpms_dispatch_edit')</showEditButton>
+    <showCopyButton type="object">false</showCopyButton>
+    <statusCtrl>
+        <field>status</field>
+        <value>0004,0005</value>
+        <text>等待审批,已完成</text>
+    </statusCtrl>
+    <store>
+        <url>rpms/listProjectDispatch.html</url>
+        <baseParams  type="object">
+            <hql type="object"> " and obj.type='0001'"</hql>
+        </baseParams>
+        <fields>
+            <name>id</name>
+        </fields>
+        <fields>
+            <name>projectId.projectCode</name>
+        </fields>
+        <fields>
+            <name>projectId.projectName</name>
+        </fields>
+         <fields>
+            <name>projectId.projectAnnual</name>
+        </fields>
+         <fields>
+            <name>projectId.platCenter.platName</name>
+        </fields>
+         <fields>
+            <name>projectId.organization.name</name>
+        </fields>
+         <fields>
+            <name>projectId.specialty.specialtyName</name>
+        </fields>
+        <fields>
+            <name>dispatchMonth</name>
+        </fields>
+        <fields>
+            <name>projectStage</name>
+        </fields>
+         <fields>
+            <name>completionRate</name>
+        </fields>
+        <fields>
+            <name>investmentTotal</name>
+        </fields>
+        <fields>
+            <name>contractAll</name>
+        </fields>
+        <fields>
+            <name>contractInvestment</name>
+        </fields>
+        <fields>
+            <name>projectProgress</name>
+        </fields>
+        <fields>
+            <name>status</name>
+        </fields>
+        <fields>
+            <name>htf</name>
+        </fields>
+        <fields>
+            <name>tjhj</name>
+        </fields>
+        <fields>
+            <name>gjhj</name>
+        </fields>
+        <fields>
+            <name>ysxjjxy</name>
+        </fields>
+    </store>
+    <sm>
+        <xtype>checkboxsm</xtype>
+        <singleSelect type="boolean">false</singleSelect>
+    </sm>
+    <cm>
+        <defaults>
+            <sortable type="boolean">true</sortable>
+        </defaults>
+        <columns>
+            <header>项目登记编号</header>
+            <dataIndex>projectId.projectCode</dataIndex>
+            <width type="integer">100</width>
+        </columns>
+        <columns>
+            <header>项目名称</header>
+            <dataIndex>projectId.projectName</dataIndex>
+            <width type="integer">100</width>
+        </columns>
+        <columns>
+            <header>立项年度</header>
+            <dataIndex>projectId.projectAnnual</dataIndex>
+            <width type="integer">60</width>
+        </columns>
+        <columns>
+            <header>分中心</header>
+            <dataIndex>projectId.platCenter.platName</dataIndex>
+            <width type="integer">100</width>
+        </columns>
+        <columns>
+            <header>单位</header>
+            <dataIndex>projectId.organization.name</dataIndex>
+            <width type="integer">100</width>
+        </columns>
+        <columns>
+            <header>专业</header>
+            <dataIndex>projectId.specialty.specialtyName</dataIndex>
+            <width type="integer">100</width>
+        </columns>
+        <columns>
+            <header>调度月份</header>
+            <dataIndex>dispatchMonth</dataIndex>
+        </columns>
+        <columns>
+            <header>项目进展阶段</header>
+            <dataIndex>projectStage</dataIndex>
+            <keyType>rpms_dispatch_stage</keyType>
+        </columns>
+        <columns>
+            <header>项目进度完成率</header>
+            <dataIndex>completionRate</dataIndex>
+        </columns>
+        <columns>
+            <header>合同费</header>
+            <dataIndex>htf</dataIndex>
+        </columns>
+        <columns>
+            <header>统计合计</header>
+            <dataIndex>tjhj</dataIndex>
+        </columns>
+        <columns>
+            <header>归集合计</header>
+            <dataIndex>gjhj</dataIndex>
+        </columns>
+        <columns>
+            <header>已实现经济效益</header>
+            <dataIndex>ysxjjxy</dataIndex>
+        </columns>
+        <columns>
+            <header>状态</header>
+            <dataIndex>status</dataIndex>
+            <keyType>rpms_evaluation_status</keyType>
+            <width type="integer">50</width>
+        </columns>
+    </cm>
+</uicfg>    

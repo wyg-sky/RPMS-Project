@@ -1,0 +1,20 @@
+<uicfg desc="专利编辑主界面">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">350</winWidth>
+	<component>
+		<items>
+			<object>spreadEeditTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/research/generalizepatent/spreadedittbar</viewPath>
+		</items>
+		<items>
+			<object>spreadEeditForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/research/generalizepatent/spreadeditform</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>spreadEeditTbar</items>
+		<items>spreadEeditForm</items>
+	</container>
+</uicfg>

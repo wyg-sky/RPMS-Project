@@ -1,0 +1,67 @@
+<uicfg desc="短信管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<showCopyButton type="boolean">false</showCopyButton>
+	<showEditButton type="boolean">false</showEditButton>
+	<editable type="object">false</editable>
+	<formViewPath>system/sms/messages/listgridform</formViewPath>
+	<store>
+		<url>system/listMessages.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>sendUserId.userName</name>
+		</fields>
+		<fields>
+			<name>sendMethod</name>
+		</fields>
+		<fields>
+			<name>sendContent</name>
+		</fields>
+		<fields>
+			<name>receivers</name>
+		</fields>
+		<fields>
+			<name>sendStatus</name>
+		</fields>
+		<fields>
+			<name>sendTime</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>联系人</header>
+			<dataIndex>sendUserId.userName</dataIndex>
+		</columns>
+		<columns>
+			<header>发送方式</header>
+			<dataIndex>sendMethod</dataIndex>
+			<keyType>sys_send_method</keyType>
+		</columns>
+		<columns>
+			<header>接收人</header>
+			<dataIndex>receivers</dataIndex>
+		</columns>
+		<columns>
+			<header>发送内容</header>
+			<dataIndex>sendContent</dataIndex>
+		</columns>
+		<columns>
+			<header>发送状态</header>
+			<dataIndex>sendStatus</dataIndex>
+			<keyType>sys_send_status</keyType>
+		</columns>
+		<columns>
+			<header>发送时间</header>
+			<dataIndex>sendTime</dataIndex>
+		</columns>
+	</cm>
+</uicfg>

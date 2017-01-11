@@ -1,0 +1,26 @@
+<uicfg desc="专利申请管理明细编辑面板">
+	<editable type="object">true</editable>
+	<columns type="object">2</columns>
+	<allowPage type="boolean">false</allowPage>
+	<clicksToEdit type="integer">1</clicksToEdit>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+        <xtype>lioncombowindow</xtype>
+        <fieldLabel>发明人</fieldLabel>
+        <allowBlank type="boolean">false</allowBlank>
+        <propertyName>talentId</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>talentName</hiddenDisplayName>
+        <displayField>talentName</displayField>
+        <window>
+            <viewPathOfUi>rpms/base/researchtalent/list</viewPathOfUi>
+            <title>人才选择</title>
+            <hql> and obj.valid='1' </hql>
+        </window>
+    </items>
+</uicfg>

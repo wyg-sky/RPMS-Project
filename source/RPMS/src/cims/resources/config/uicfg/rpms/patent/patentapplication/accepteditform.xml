@@ -1,0 +1,51 @@
+<uicfg desc="专利申请管理编辑表单">
+	<loadtUrl>rpms/loadPatentApplication.html</loadtUrl>
+	<submitUrl>rpms/acceptPatentApplication.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">2</columns>
+	<!-- <defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">110</labelWidth>
+    </defaults> -->
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>受理时间</fieldLabel>
+		<name>acceptDate</name>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+		<columnWidth type="object">1</columnWidth>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>专利号</fieldLabel>
+		<name>patentNum</name>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<fieldLabel>官费</fieldLabel>
+		<name>publicExpense</name>
+		<unitText>(元)</unitText>
+		<!-- <regex type="object">/^[0-9]*[1-9][0-9]*$/</regex>
+		<regexText>请输入正整数</regexText> -->
+		<maxLength type="object">66</maxLength>
+		<unitWidth type="object">40</unitWidth>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<fieldLabel>申请费</fieldLabel>
+		<name>applicationFee</name>
+		<unitText>(元)</unitText>
+		<!-- <regex type="object">/^[0-9]*[1-9][0-9]*$/</regex>
+		<regexText>请输入正整数</regexText> -->
+		<unitWidth type="object">40</unitWidth>
+		<maxLength type="object">66</maxLength>
+	</items>
+</uicfg>

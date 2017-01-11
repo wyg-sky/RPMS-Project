@@ -1,0 +1,229 @@
+<uicfg desc="组件列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<editable type="object">true</editable>
+	<showLookButton type="object">false</showLookButton>
+	<showEditButton type="object">false</showEditButton>
+	<showCopyButton type="object">false</showCopyButton>
+	<allowPage type="boolean">false</allowPage>
+	<store>
+		<autoLoad type="object">false</autoLoad>
+		<url>system/listColumnsForWidget.html</url>
+		<fields>
+			<name>noteName</name>
+		</fields>
+		<fields>
+			<name>javaName</name>
+		</fields>
+		<fields>
+			<name>maxLength</name>
+		</fields>
+		<fields>
+			<name>decimalLength</name>
+		</fields>
+		<fields>
+			<name>objectId</name>
+		</fields>
+		<fields>
+			<name>objectName</name>
+		</fields>
+		<fields>
+			<name>hidden</name>
+		</fields>
+		<fields>
+			<name>editable</name>
+		</fields>
+		<fields>
+			<name>javaType</name>
+		</fields>
+		<fields>
+			<name>isObject</name>
+		</fields>
+		<fields>
+			<name>widget.id</name>
+		</fields>
+		<fields>
+			<name>widget.name</name>
+		</fields>
+		<fields>
+			<name>widgetType</name>
+		</fields>
+		<fields>
+			<name>xtype</name>
+		</fields>
+		<fields>
+			<name>xml</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>列名称</header>
+			<dataIndex>noteName</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>字段名称</header>
+			<dataIndex>javaName</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>字段类型</header>
+			<dataIndex>javaType</dataIndex>
+		</columns>
+		<columns>
+			<header>最大程度</header>
+			<dataIndex>maxLength</dataIndex>
+			<hidden type="boolean">true</hidden>
+		</columns>
+		<columns>
+			<header>小数长度</header>
+			<dataIndex>decimalLength</dataIndex>
+			<hidden type="boolean">true</hidden>
+		</columns>
+		<columns>
+			<header>是否为对象</header>
+			<dataIndex>isObject</dataIndex>
+			<keyType>cims_boolean</keyType>
+		</columns>
+		<columns>
+			<header>隐藏域</header>
+			<dataIndex>objectId</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>显示域</header>
+			<dataIndex>objectName</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>隐藏</header>
+			<dataIndex>hidden</dataIndex>
+			<keyType>cims_boolean</keyType>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<hiddenName>hidden</hiddenName>
+				<keyType>cims_boolean</keyType>
+			</editor>
+		</columns>
+		<columns>
+			<header>可编辑</header>
+			<dataIndex>editable</dataIndex>
+			<keyType>cims_boolean</keyType>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<hiddenName>editable</hiddenName>
+				<keyType>cims_boolean</keyType>
+			</editor>
+		</columns>
+		<columns>
+			<header>使用组件</header>
+			<dataIndex>widget.name</dataIndex>
+			<cascadeIndex>widget.id</cascadeIndex>
+			<width type="integer">100</width>
+			<editor>
+				<xtype>lioncombowindow</xtype>
+				<propertyName>widget</propertyName>
+				<hiddenName>id</hiddenName>
+				<hiddenDisplayName>name</hiddenDisplayName>
+				<displayField>name</displayField>
+				<window>
+					<viewPathOfUi>code/widgetbase/list</viewPathOfUi>
+					<title>组件选择</title>
+					<hql> and obj.type = '0005' </hql>
+				</window>
+				<listeners type="object">{
+					'after_comfirm_click' : function(records) {
+						var doSave = true;
+						var record = this.manager.columnsGrid.getSelections(false);
+						record[0].set('widgetType', records[0].get('type'));
+						record[0].set('xtype', records[0].get('xtype'));
+						var paramKey = [];
+						var paramValue = [];
+						for(var i = 0; i != 6; i++) {
+							paramKey.push(record[0].fields.items[i].name);
+							paramValue.push(record[0].get(record[0].fields.items[i].name));
+						}
+						Ext.apply(this.manager.propertysGrid.store.baseParams,{
+							paramKey : paramKey,
+							paramValue : paramValue,
+							className : this.manager.widgetForm.findField('className.id').getValue()
+						});
+						this.manager.propertysGrid.store.on('load', function(){
+							if(doSave){
+								this.manager.widgetSave(this.manager.columnsGrid, this.manager.propertysGrid);
+							}
+							doSave = false;
+						},this);
+						this.manager.query(null,this.manager.propertysGrid,false,['mainId'],['='],[records[0].get('id')]);
+					},
+					scope : this
+				}</listeners>
+			</editor>
+		</columns>
+		<columns>
+			<header>上移</header>
+			<dataIndex>up</dataIndex>
+			<width type="integer">30</width>
+			<align>center</align>
+			<isPrint type="boolean">false</isPrint>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='images/shortcut/custom/move_up.gif' title='上移' alt='上移'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+		<columns>
+			<header>下移</header>
+			<dataIndex>down</dataIndex>
+			<width type="integer">40</width>
+			<align>center</align>
+			<isPrint type="boolean">false</isPrint>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='images/shortcut/custom/move_down.gif' title='下移' alt='下移'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+	</cm>
+	<listeners type="object">{
+		'cellclick' : function(grid, rowIndex, columnIndex, e) {
+			var fieldName = grid.getColumnModel().getDataIndex(columnIndex);
+			if (fieldName == grid.getFieldName('up')) {
+				if(rowIndex == 0) {
+					return;
+				}
+				var record = grid.getStore().getAt(rowIndex);
+				grid.getStore().remove(record);
+				grid.getStore().insert(rowIndex-1, record);
+				grid.getView().refresh();
+				grid.getSelectionModel().selectRow(rowIndex-1);
+			} else if (fieldName == grid.getFieldName('down')) {
+				var length = grid.getStore().getRange().length;
+				if(rowIndex == length - 1) {
+					return;
+				}
+				var record = grid.getStore().getAt(rowIndex);
+				grid.getStore().remove(record);
+				grid.getStore().insert(rowIndex+1, record);
+				grid.getView().refresh();
+				grid.getSelectionModel().selectRow(rowIndex+1);
+			}
+		},
+		scope : this
+	}</listeners>
+</uicfg>

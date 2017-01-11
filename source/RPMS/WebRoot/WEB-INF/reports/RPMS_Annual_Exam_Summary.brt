@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<report version="5.0">
+	<head>
+		<property name="type">0</property>
+		<name><![CDATA[RPMS_Annual_Exam_Summary]]></name>
+		<dataSets>
+			<dataSet name="sum" type="DB_SQL" >
+				<property name="dataSource">CIMS_JSZX</property>
+				<property name="desc"><![CDATA[年度考核汇总表]]></property>
+				<property name="query"><![CDATA[SELECT grade.year,
+       plat.plat_name as platCenter,
+       nvl(grade.CHECK_SCORE, 0) as score
+  FROM RPMS_INNOVATE_YEAR_GRADE grade
+  LEFT JOIN RPMS_INNOVATE_YEAR_CHECK checkitem
+    on grade.CHECK_ITEM = checkitem.ID
+  left join rpms_research_plat plat
+    on grade.plat_center = plat.id
+ WHERE 1=1 and checkitem.CHECK_ITEM = '9901' ${con}
+]]></property>
+				<property name="beginRow">0</property>
+				<property name="endRow">0</property>
+			</dataSet>
+		</dataSets>
+		<parameters/>
+		<variables>
+			<variable name="con" type="">
+				<property name="default"></property>
+				<property name="desc"></property>
+				<property name="valueCalc">false</property>
+			</variable>
+		</variables>
+	</head>
+	<body>
+		<sheet id="sheet1">
+			<page>
+			</page>
+			<grid row="3" col="7">
+				<properties>
+				</properties>
+				<rows>
+					<row id="1">
+						<property name="height">57</property>
+					</row>
+					<row id="2">
+						<property name="height">36</property>
+					</row>
+					<row id="3">
+						<property name="height">28</property>
+					</row>
+				</rows>
+				<columns>
+					<column id="1">
+					</column>
+					<column id="2">
+						<property name="width">105</property>
+					</column>
+					<column id="3">
+						<property name="width">103</property>
+					</column>
+					<column id="4">
+						<property name="width">103</property>
+					</column>
+					<column id="5">
+						<property name="width">105</property>
+					</column>
+					<column id="6">
+						<property name="width">103</property>
+					</column>
+					<column id="7">
+						<property name="width">54</property>
+					</column>
+				</columns>
+				<cells>
+					<cell id="1,1" type="0" colspan="7" >
+						<property name="value"><![CDATA[年度考核汇总表]]></property>
+						<property name="font-size">16</property>
+						<property name="bold">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="2,1" type="0" >
+						<property name="value"><![CDATA[行号]]></property>
+						<property name="bold">0</property>
+						<property name="background"><![CDATA[='228,228,228']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,2" type="0" colspan="2" >
+						<property name="value"><![CDATA[年度]]></property>
+						<property name="bold">0</property>
+						<property name="background"><![CDATA[='228,228,228']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,4" type="0" colspan="2" >
+						<property name="value"><![CDATA[分中心]]></property>
+						<property name="bold">0</property>
+						<property name="background"><![CDATA[='228,228,228']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,6" type="0" colspan="2" >
+						<property name="value"><![CDATA[得分]]></property>
+						<property name="bold">0</property>
+						<property name="background"><![CDATA[='228,228,228']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,1" type="0" >
+						<property name="value"><![CDATA[=row()-2]]></property>
+						<property name="ext-left"><![CDATA[B3]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,2" type="0" colspan="2" >
+						<property name="value"><![CDATA[=sum.select(YEAR)]]></property>
+						<property name="ext-direction">3</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,4" type="0" colspan="2" >
+						<property name="value"><![CDATA[=sum.select(PLATCENTER)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,6" type="0" colspan="2" >
+						<property name="value"><![CDATA[=sum.select(SCORE)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+				</cells>
+			</grid>
+		</sheet>
+	</body>
+</report>

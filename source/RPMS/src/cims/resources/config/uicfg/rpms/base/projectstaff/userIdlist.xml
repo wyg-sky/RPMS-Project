@@ -1,0 +1,74 @@
+<uicfg desc="人员列表">
+	<rownum type="boolean">true</rownum>
+	<orderBy>staffId asc</orderBy>
+	<editable type="object">true</editable>
+	<showLookButton type="object">false</showLookButton>
+	<showEditButton type="object">false</showEditButton>
+	<showCopyButton type="object">false</showCopyButton>
+	<allowPage type="boolean">false</allowPage>
+	<clicksToEdit type="integer">1</clicksToEdit>
+	<store>
+		<url>rpms/listStaffUser.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>staffId</name>
+		</fields>
+		<fields>
+			<name>userId.id</name>
+		</fields>
+		<fields>
+			<name>userId.userName</name>
+		</fields>
+		<fields>
+			<name>userId.code</name>
+		</fields>
+		<fields>
+			<name>userId.loginName</name>
+		</fields>
+		<fields>
+			<name>userId.department.name</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>id</header>
+			<hidden type="object">true</hidden>
+			<dataIndex>id</dataIndex>
+		</columns>
+		<columns>
+			<header>staffId</header>
+			<hidden type="object">true</hidden>
+			<dataIndex>staffId</dataIndex>
+		</columns>
+		<columns>
+			<header>userId.id</header>
+			<hidden type="object">true</hidden>
+			<dataIndex>userId.id</dataIndex>
+		</columns>
+		<columns>
+			<header>工号</header>
+			<dataIndex>userId.code</dataIndex>
+		</columns>
+		<columns>
+			<header>姓名</header>
+			<dataIndex>userId.userName</dataIndex>
+		</columns>
+		<columns>
+			<header>账号</header>
+			<dataIndex>userId.loginName</dataIndex>
+		</columns>
+		<columns>
+			<header>所属部门</header>
+			<dataIndex>userId.department.name</dataIndex>
+		</columns>
+	</cm>
+</uicfg>

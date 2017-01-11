@@ -1,0 +1,80 @@
+<uicfg desc="工作任务管理查询表单">
+	<columns type="integer">5</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<!-- <items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                this.findField("platInstitution.id").setValue({value:'',text:''});
+                this.findField("platInstitution.id").clearValue();
+                this.manager.query();
+            }, 'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+             'focus':function(tree) {
+                tree.cascadeTree(this.findField("platCenter.id"));
+            },select:function(){
+            	 this.manager.query();
+            }, 'beforeselect':function(combo, record){
+            	return record.isLeaf();
+            },
+            scope:this
+        }
+        </listeners>
+    </items> -->
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>任务名称</fieldLabel>
+		<name>taskName</name>
+		<allowBlank type="boolean">true</allowBlank>
+		<listeners type="object">{
+				valid:function(combo,record){
+					this.manager.query();
+				},
+				scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>任务类型</fieldLabel>
+		<name>taskType</name>
+		<allowBlank type="boolean">true</allowBlank>
+		<keyType>rpms_task_type</keyType>
+		<listeners type="object">
+			{
+           		select:function(){
+           			this.findParentByType("form").manager.query();
+           		}
+            }
+		</listeners>
+	</items>
+</uicfg>

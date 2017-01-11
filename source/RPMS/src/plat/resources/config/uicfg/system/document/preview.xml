@@ -1,0 +1,19 @@
+<uicfg desc="文件预览">
+	<objectName>businessObject</objectName>
+	<winHeight type="integer">650</winHeight>
+	<winWidth type="integer">750</winWidth>
+	<component>
+		<items>
+			<object>panel</object>
+			<xtype>lionpanel</xtype>
+			<region>center</region>
+			<autoLoad type="object">{
+				url : 'system/document/preview.jsp?swfpath='+this.swfFilePath,
+				scripts : true
+			}</autoLoad>
+		</items>
+	</component>
+	<container>
+		<items>panel</items>
+	</container>
+</uicfg>

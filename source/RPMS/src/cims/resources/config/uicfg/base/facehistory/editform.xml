@@ -1,0 +1,225 @@
+<uicfg desc="工作面历史信息管理录入表单">
+	<loadtUrl>base/loadFaceHistory.html</loadtUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">4</columns>
+	<defaults>
+		<border type="object">false</border>
+		<layout>column</layout>
+		<labelWidth type="object">100</labelWidth>
+	</defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>lioncodefield</xtype>
+		<name>faceCd</name>
+		<fieldLabel>工作面编号</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>faceName</name>
+		<fieldLabel>工作面名称</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>faceSimp</name>
+		<fieldLabel>工作面简拼</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<name>reportDate</name>
+		<fieldLabel>日期</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>reportStatus</hiddenName>
+		<fieldLabel>状态</fieldLabel>
+		<keyType>prds_commit_status</keyType>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncodefield</xtype>
+		<name>coalSeamCd</name>
+		<fieldLabel>煤层编号</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>coalSeamGrpCd</hiddenName>
+		<fieldLabel>煤层分组</fieldLabel>
+		<keyType>prds_coalseam_grp</keyType>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>coalSeamKindCd</hiddenName>
+		<fieldLabel>煤层性质</fieldLabel>
+		<keyType>prds_coalseam_kind</keyType>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<name>faceLength</name>
+		<fieldLabel>面长(米)</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<name>boostLength</name>
+		<fieldLabel>总长(米)</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<name>repeatSpan</name>
+		<fieldLabel>循环进度(米)</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>horizontalCd</hiddenName>
+		<fieldLabel>所属水平面</fieldLabel>
+		<keyType>prds_horizontal_f</keyType>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>mineAreaCd</hiddenName>
+		<fieldLabel>所属采区</fieldLabel>
+		<keyType>prds_mine_area</keyType>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>suppCd</hiddenName>
+		<fieldLabel>支护方式</fieldLabel>
+		<keyType>prds_supp</keyType>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>declineCd</hiddenName>
+		<fieldLabel>落煤方式</fieldLabel>
+		<keyType>prds_decline</keyType>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>ifCal</hiddenName>
+		<fieldLabel>是否核子秤计量</fieldLabel>
+		<keyType>prds_is_include</keyType>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>coalDeep</name>
+		<fieldLabel>煤厚(米)</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>specificGravity</name>
+		<fieldLabel>容重(t/m3)</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>obliquity</name>
+		<fieldLabel>倾角(度)</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<name>coalStore</name>
+		<fieldLabel>可采储量(万吨)</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<name>productionDate</name>
+		<fieldLabel>投产日期</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<name>beginDate</name>
+		<fieldLabel>开始日期</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<name>endDate</name>
+		<fieldLabel>结束日期</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>statusCd</hiddenName>
+		<fieldLabel>生产状态</fieldLabel>
+		<keyType>prds_status</keyType>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>valid</hiddenName>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createUser</name>
+		<fieldLabel>创建人</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<fieldLabel>创建时间</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<name>effectiveFrom</name>
+		<fieldLabel>有效期开始</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<name>effectiveTo</name>
+		<fieldLabel>有效期结束</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyUser</name>
+		<fieldLabel>修改人</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<fieldLabel>修改时间</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>remark</name>
+		<fieldLabel>备注</fieldLabel>
+		<columnWidth type="integer">4</columnWidth>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+</uicfg>

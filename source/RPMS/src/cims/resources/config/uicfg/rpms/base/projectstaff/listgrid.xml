@@ -1,0 +1,92 @@
+<uicfg desc="人员职责表列表">
+    <rownum type="boolean">true</rownum>
+    <objectName>businessObject</objectName>
+    <orderBy>staffCode asc </orderBy>
+    <editable type="object">false</editable>
+    <showCopyButton type="object">false</showCopyButton>
+    <store>
+        <url>rpms/listProjectStaff.html</url>
+        <fields>
+            <name>id</name>
+        </fields>
+        <fields>
+            <name>staffCode</name>
+        </fields>
+        <fields>
+            <name>staffName</name>
+        </fields>
+        <fields>
+            <name>valid</name>
+        </fields>
+        <fields>
+            <name>organization.name</name>
+        </fields>
+        <fields>
+            <name>createUser</name>
+        </fields>
+        <fields>
+            <name>createTime</name>
+        </fields>
+    </store>
+    <sm>
+        <xtype>checkboxsm</xtype>
+        <singleSelect type="boolean">false</singleSelect>
+    </sm>
+    <cm>
+        <defaults>
+            <sortable type="boolean">true</sortable>
+        </defaults>
+        <columns>
+            <header>单位</header>
+            <dataIndex>organization.name</dataIndex>
+        </columns>
+        <columns>
+            <header>岗位编号</header>
+            <dataIndex>staffCode</dataIndex>
+        </columns>
+        <columns>
+            <header>岗位名称</header>
+            <width type="integer">150</width>
+            <dataIndex>staffName</dataIndex>
+        </columns>
+        <columns>
+            <header>是否有效</header>
+            <dataIndex>valid</dataIndex>
+            <keyType>cims_effective</keyType>
+        </columns>
+        <columns>
+            <header>创建人</header>
+            <dataIndex>createUser</dataIndex>
+        </columns>
+        <columns>
+            <header>创建时间</header>
+            <dataIndex>createTime</dataIndex>
+        </columns>
+        <columns>
+            <header>人员设置</header>
+            <dataIndex>setUserId</dataIndex>
+            <hidden type="object">false</hidden>
+            <width type="integer">50</width>
+            <align>center</align>
+            <isPrint type="boolean">false</isPrint>
+            <renderer type="object"><![CDATA[
+                function(){
+                    return "<a href='javascript:void(0)'><img src='images/portal/icon/department.gif' title='人员设置' alt='人员设置'/></a>";
+                }]]>
+            </renderer>
+        </columns>
+        <columns>
+            <header>平台设置</header>
+            <dataIndex>setPlatId</dataIndex>
+            <hidden type="object">false</hidden>
+            <width type="integer">50</width>
+            <align>center</align>
+            <isPrint type="boolean">false</isPrint>
+            <renderer type="object"><![CDATA[
+                function(){
+                    return "<a href='javascript:void(0)'><img src='images/portal/icon/department.gif' title='人员设置' alt='人员设置'/></a>";
+                }]]>
+            </renderer>
+        </columns>
+    </cm>
+</uicfg>    

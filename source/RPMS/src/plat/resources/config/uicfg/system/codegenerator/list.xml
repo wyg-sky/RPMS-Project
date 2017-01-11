@@ -1,0 +1,22 @@
+<uicfg desc="编码管理">
+	<objectName>businessObject</objectName>
+	<editView>system/codegenerator/edit</editView>
+	<deleteUrl>system/deleteCodeGenerator.html</deleteUrl>
+	<component>
+		<items>
+			<object>dataGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<region>center</region>
+			<viewPath>system/codegenerator/listgrid</viewPath>
+		</items>
+		<items>
+			<object>listTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>system/codegenerator/listtbar</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>listTbar</items>
+		<items>dataGrid</items>
+	</container>
+</uicfg>

@@ -1,0 +1,96 @@
+<uicfg desc="通知收发明细列表">
+	<rownum type="boolean">true</rownum>
+	<editable type="object">false</editable>
+	<allowPage type="boolean">false</allowPage>
+	<showEditButton type="object">false</showEditButton>
+	<showLookButton type="object">true</showLookButton>
+	<showCopyButton type="object">false</showCopyButton>
+    <formViewPath>rpms/research/projectfile/listlinegridform</formViewPath>
+	<store>
+		<url>prds/listProjectFileLine.html</url>
+		<autoLoad type="object">true</autoLoad>
+		<baseParams>
+			<hql type="object">
+				this.manager.buttHid == true? " and obj.receiveUnit.id ='"+FW.organizationId+"'" : ""
+			</hql>
+		</baseParams>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>mainId</name>
+		</fields>
+		<fields>
+			<name>receiveUnit.id</name>
+		</fields>
+		<fields>
+			<name>receiveUnit.name</name>
+		</fields>
+		<fields>
+			<name>receivePeople.id</name>
+		</fields>
+		<fields>
+			<name>receivePeople.userName</name>
+		</fields>
+		<fields>
+			<name>fileStatus</name>
+		</fields>
+		<fields>
+			<name>fileChecktime</name>
+		</fields>
+		<fields>
+			<name>fileReceipt</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>id</header>
+			<dataIndex>id</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>主表id</header>
+			<dataIndex>mainId</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>接收单位</header>
+			<dataIndex>receiveUnit.name</dataIndex>
+			<cascadeIndex>receiveUnit.id</cascadeIndex>
+			<width type="object">100</width>
+		</columns>
+		<columns>
+			<header>查看人</header>
+			<dataIndex>receivePeople.userName</dataIndex>
+			<cascadeIndex>receivePeople.id</cascadeIndex>
+			<width type="object">50</width>
+		</columns>
+		<columns>
+			<header>查看状态</header>
+			<dataIndex>fileStatus</dataIndex>
+			<keyType>sys_view_status</keyType>
+			<width type="object">50</width>
+		</columns>
+		<columns>
+			<header>查看时间</header>
+			<dataIndex>fileChecktime</dataIndex>
+			<width type="object">100</width>
+		</columns>
+		<columns>
+			<header>回执</header>
+			<dataIndex>fileReceipt</dataIndex>
+			<width type="object">150</width>
+			<editor>
+				<xtype>liontextfield</xtype>
+				<name>faxReceipt</name>
+			</editor>
+		</columns>
+	</cm>
+</uicfg>

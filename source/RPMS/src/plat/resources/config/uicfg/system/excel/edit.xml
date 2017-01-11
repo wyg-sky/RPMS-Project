@@ -1,0 +1,54 @@
+<uicfg desc="数据导入配置">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">1300</winWidth>
+	<component>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>system/excel/editform</viewPath>
+		</items>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>system/excel/edittbar</viewPath>
+		</items>
+		<items>
+			<object>dataFileGrid</object>
+			<xtype>lionuploadfile</xtype>
+			<isLine type="boolean">true</isLine>
+			<lineName>documents</lineName> 
+			<fkId type="object">this.actionMode == '4' ? "" : this.mainId</fkId>
+			<fkName>obj.docFk</fkName>
+			<columnWidth type="integer">3</columnWidth>
+			<allowUpload type="object">this.editable</allowUpload>
+			<allowDelete type="object">this.editable</allowDelete>
+			<allowCapture type="boolean">true</allowCapture>
+			<fileTypeId>2c9ffaa649415bd401494162c89c0018</fileTypeId>
+			<fileTypeText>数据导入模板</fileTypeText>
+			<height type="object">120</height>
+			<autoWidth type="object">true</autoWidth>
+		</items>
+		<items>
+			<object>listLineTbar</object>
+			<xtype>liontoolbar</xtype>
+			<hidden type="object">!this.editable</hidden>
+			<viewPath>system/excel/listlinetbar</viewPath>
+		</items>
+		<items>
+			<object>dataLineGrid</object>
+			<isLine type="boolean">true</isLine>
+			<lineName>importSettingLines</lineName>
+			<xtype>lioneditorgrid</xtype>
+			<fkName>obj.mainId</fkName>
+			<height type="object">300</height>
+			<viewPath>system/excel/listlinegrid</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+		<items>dataFileGrid</items>
+		<items>listLineTbar</items>
+		<items>dataLineGrid</items>
+	</container>
+</uicfg>

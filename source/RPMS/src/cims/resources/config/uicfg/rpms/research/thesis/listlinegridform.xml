@@ -1,0 +1,55 @@
+<uicfg desc="论文获奖信息">
+    <editable type="object">true</editable>
+    <columns type="object">3</columns>
+    <allowPage type="boolean">false</allowPage>
+    <items>
+        <xtype>lionhiddenfield</xtype>
+        <name>id</name>
+        <hidden type="object">true</hidden>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+    <items>
+        <xtype>lionhiddenfield</xtype>
+        <name>mainId</name>
+        <hidden type="object">true</hidden>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>获奖名称</fieldLabel>
+		<name>awardsName</name>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>奖项名称</fieldLabel>
+		<name>awardsItem</name>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>awardsRank</hiddenName>
+		<fieldLabel>奖励等级</fieldLabel>
+		<keyType>rpms_awards_rank</keyType>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>颁发单位</fieldLabel>
+		<name>awardsUnit</name>
+	</items>
+	<items>
+	    <xtype>liondatefield</xtype>
+		<name>awardsTime</name>
+		<fieldLabel>颁发时间</fieldLabel>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<anchor>99%</anchor>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>备注</fieldLabel>
+        <name>remark</name>
+        <columnWidth type="integer">3</columnWidth>
+    </items>
+</uicfg>

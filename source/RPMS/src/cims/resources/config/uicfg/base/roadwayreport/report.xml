@@ -1,0 +1,32 @@
+<uicfg desc="巷道报表信息">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">1200</winWidth>
+	<component>
+		<items>
+			<object>reportPanel</object>
+			<xtype>panel</xtype>
+			<frame type="object">false</frame>
+			<bodyStyle>border-width:0 1px 0 1px;</bodyStyle>
+			<autoScroll type="object">true</autoScroll>
+			<height type="object">450</height>
+			<html type="object"><![CDATA["<iframe  frameborder='0' width='100%' height='100%' src='base/roadway/roadwayRpt.jsp'></iframe>"]]></html>
+		</items>
+		<items>
+			<object>reportQueryform</object>
+			<xtype>lionform</xtype>
+			<viewPath>base/roadwayreport/reportqueryform</viewPath>
+			<runMode>4</runMode>
+		</items>
+		<items>
+			<object>reportTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>base/roadwayreport/listtbar</viewPath>
+			<runMode>4</runMode>
+		</items>
+	</component>
+	<container>
+		<items>reportTbar</items>
+		<items>reportQueryform</items>
+		<items>reportPanel</items>
+	</container>
+</uicfg>

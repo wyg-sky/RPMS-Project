@@ -1,0 +1,125 @@
+<uicfg desc="项目立项汇总报表查询表单">
+    <columns type="integer">5</columns>
+    <autoHeight type="boolean">true</autoHeight>
+    <defaultFunction type="object">this.manager.query</defaultFunction>
+    <defaultScope type="object">this.manager</defaultScope>
+    <defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">80</labelWidth>
+    </defaults>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>项目登记编号</fieldLabel>
+        <name>projectCode</name>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>项目名称</fieldLabel>
+        <name>projectName</name>
+    </items>
+    <items>
+        <xtype>lioncomboboxyearfield</xtype>
+        <name>projectAnnual</name>
+        <fieldLabel>项目年度</fieldLabel>
+        <format>Y</format>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>项目状态</fieldLabel>
+        <name>projectStatus</name>
+        <keyType>rpms_designate_status</keyType>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>项目类型</fieldLabel>
+        <name>proejctType</name>
+        <keyType>rpms_project_type</keyType>
+    </items>
+    <items>
+        <xtype>orgtree</xtype>
+        <fieldLabel>单位</fieldLabel>
+        <propertyName>organization</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },scope:this
+        }
+        </listeners>
+    </items>
+     <items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>specialty</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>专业</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                    <type>"zy"</type>
+                </baseParams >
+            </loader>
+        </tree>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>项目负责人</fieldLabel>
+        <name>projectPerson</name>
+    </items>
+    <items>
+        <xtype>orgtree</xtype>
+        <fieldLabel>负责人单位</fieldLabel>
+        <propertyName>projectPersonOrg</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+    <items>
+         <xtype>lioncombobox</xtype>
+         <fieldLabel>机构职务</fieldLabel>
+         <name>position</name>
+         <keyType>rpms_institution_duty</keyType>
+     </items>
+    <items>
+         <xtype>lioncombobox</xtype>
+         <fieldLabel>职称</fieldLabel>
+         <name>title</name>
+         <keyType>rpms_title</keyType>
+     </items>
+    <items>
+         <xtype>lioncombobox</xtype>
+         <fieldLabel>调度状态</fieldLabel>
+         <name>status</name>
+         <keyType>rpms_evaluation_status</keyType>
+     </items>
+     <items>
+        <xtype>lionmonthfield</xtype>
+        <fieldLabel>调度月份</fieldLabel>
+        <name>dispatchMonth</name>
+        <format>Y-m</format>
+    </items>
+    <items>
+    	<xtype>lioncombobox</xtype>
+        <keyType>rpms_dispatch_stage</keyType>
+        <fieldLabel>项目进展阶段</fieldLabel>
+        <name>projectStage</name>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>技术专业推荐项目类型</fieldLabel>
+        <name>recommendType</name>
+        <keyType>rpms_recommend_type</keyType>
+    </items>
+</uicfg>

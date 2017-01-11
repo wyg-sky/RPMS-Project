@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<uicfg desc="任务管理编辑表单">
+	<objectName>businessObject</objectName>
+	<loadtUrl>system/loadCodeDuty.html</loadtUrl>
+	<submitUrl>system/saveCodeDuty.html</submitUrl>
+	<columns type="object">2</columns>
+	<height type="integer">100</height>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>systemName</hiddenName>
+		<fieldLabel>系统名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<keyType>sys_systemType</keyType>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>moduleName</name>
+		<fieldLabel>模块名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>tableName</name>
+		<fieldLabel>表名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<listeners type="object">{
+			'change' : function(field,newValue,oldValue) {
+				this.manager.loadTableInfo(this,newValue,true);
+			},
+			scope : this
+		}</listeners>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>generateUser</name>
+		<fieldLabel>执行人</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>generated</hiddenName>
+		<fieldLabel>是否已生成</fieldLabel>
+		<keyType>cims_boolean</keyType>
+		<readOnly type="boolean">true</readOnly>
+		<value>0</value>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<name>version</name>
+		<fieldLabel>版本</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+		<decimalPrecision type="integer">0</decimalPrecision>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>generateTime</name>
+		<hidden type="boolean">true</hidden>
+	</items>
+</uicfg>

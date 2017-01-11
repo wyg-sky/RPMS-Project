@@ -1,0 +1,105 @@
+<uicfg desc="评价管理编辑表单">
+	<loadtUrl>rpms/loadResearchEvaluate.html</loadtUrl>
+	<submitUrl>rpms/saveResearchEvaluate.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<height type="integer">310</height>
+	<defaults>
+		<border type="object">false</border>
+		<layout>column</layout>
+		<labelWidth type="object">80</labelWidth>
+	</defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<hidden type="object">true</hidden>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <readOnly type="boolean">false</readOnly>
+	    <value type="object">
+			{"value" : PlatUtil.currentCenterId, "text" : PlatUtil.currentCenterName}
+	    </value>
+        <listeners type="object">{
+            'select':function(){
+                this.manager.editForm.findField("platInstitution.id").setValue({value:'',text:''});
+                this.manager.editForm.findField("platInstitution.id").clearValue();
+            },
+            'focus':function(tree) {
+                tree.cascadePlatTree(2);
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.manager.editForm.findField("platCenter.id"));
+            },scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>lioncomboboxyearfield</xtype>
+        <name>evaluateYear</name>
+        <fieldLabel>年度</fieldLabel>
+        <format>Y</format>
+        <value type="object">new Date().format('Y')</value>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>评价内容</fieldLabel>
+		<name>evaluation</name>
+		<height type="object">200</height>
+		<columnWidth type="integer">3</columnWidth>
+	</items>
+	<items>
+		<anchor>99%</anchor>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>备注</fieldLabel>
+        <name>remark</name>
+        <columnWidth type="integer">3</columnWidth>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<name>createUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+</uicfg>

@@ -1,0 +1,248 @@
+<uicfg desc="论文评比管理编辑表单">
+	<loadtUrl>rpms/loadThesisApplication.html</loadtUrl>
+	<submitUrl>rpms/saveThesisApplication.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<height type="integer">485</height>
+	<defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">110</labelWidth>
+    </defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<hidden type="object">true</hidden>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                this.findField("platInstitution.id").setValue({value:'',text:''});
+                this.findField("platInstitution.id").clearValue();
+            },
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },
+            scope:this
+        }
+        </listeners>
+        <value type="object">
+			{"value" : PlatUtil.currentCenterId, "text" : PlatUtil.currentCenterName}
+		</value>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.findField("platCenter.id"));
+            }, 'beforeselect':function(combo, record){
+            	return record.isLeaf();
+            },scope:this
+        }
+        </listeners>
+    </items>
+	<items>
+		<xtype>lioncombowindow</xtype>
+		<fieldLabel>论文题目</fieldLabel>
+		<propertyName>thesisTitle</propertyName>
+		<hiddenName>id</hiddenName>
+		<displayField>title</displayField>
+		<hiddenDisplayName>title</hiddenDisplayName>
+		<allowBlank type="boolean">true</allowBlank>
+		<columnWidth type="object">3</columnWidth>
+		<window>
+			<viewPathOfUi>rpms/research/thesis/list</viewPathOfUi>
+			<!-- <hql type="object">" and status='0003'"</hql> -->
+			<title>论文选择</title>
+			<width type="integer">1100</width>
+			<height type="integer">550</height>
+		</window>
+		<listeners type="object"> {
+			'after_comfirm_click':this.manager.setThesis,
+			scope: this.manager
+		}
+		</listeners>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>发表刊物名称</fieldLabel>
+		<name>publicationName</name>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>国内刊号</fieldLabel>
+		<name>cn</name>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>国际刊号</fieldLabel>
+		<name>issn</name>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>发表时间</fieldLabel>
+		<name>pubdate</name>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>刊物出版时间</fieldLabel>
+		<name>publicationDate</name>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>刊物期数</fieldLabel>
+		<name>pubNum</name>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>填报人</fieldLabel>
+		<name>reportUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>填报时间</fieldLabel>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+		<name>reportTime</name>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>SCI、EI收录证明</fieldLabel>
+		<name>includedProof</name>
+		<columnWidth type="object">3</columnWidth>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>论文内容简介</fieldLabel>
+		<name>introduction</name>
+		<columnWidth type="object">3</columnWidth>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>状态</fieldLabel>
+		<name>status</name>
+		<keyType>cims_report_status</keyType>
+		<value>0001</value>
+		<readOnly type="object">true</readOnly>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>证书名称</fieldLabel>
+		<name>awardsName</name>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>奖项名称</fieldLabel>
+		<name>awardsItem</name>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>奖励等级</fieldLabel>
+		<name>awardsRank</name>
+		<readOnly type="object">true</readOnly>
+		<keyType>rpms_awards_rank</keyType>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>颁发时间</fieldLabel>
+		<name>awardsTime</name>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>颁发单位</fieldLabel>
+		<name>awardsUnit</name>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<!-- <items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>是否有效</fieldLabel>
+		<name>valid</name>
+	</items> -->
+	<!-- <items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>审核人</fieldLabel>
+		<name>examineUser</name>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>审核意见</fieldLabel>
+		<name>examineSug</name>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>审批人</fieldLabel>
+		<name>approveUser</name>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>审批意见</fieldLabel>
+		<name>approveSug</name>
+	</items> -->
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<name>createUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改人</fieldLabel>
+		<name>modifyUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>备注</fieldLabel>
+		<name>remark</name>
+		<columnWidth type="integer">3</columnWidth>
+	</items>
+</uicfg>

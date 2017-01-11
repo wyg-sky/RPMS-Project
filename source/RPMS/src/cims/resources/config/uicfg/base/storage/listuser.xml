@@ -1,0 +1,57 @@
+<uicfg desc="用户管理主界面">
+	<objectName>businessObject</objectName>
+	<editView>system/user/edit</editView>
+	<deleteUrl>system/deleteUser.html</deleteUrl>
+	<changeStatusUrl>system/changeUserStatus.html</changeStatusUrl>
+	<printTitle>用户基本信息</printTitle>
+	<component>
+		<items>
+			<object>dataGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<region>center</region>
+			<viewPath>base/storage/listusergrid</viewPath>
+		</items>
+		<items>
+			<object>queryForm</object>
+			<xtype>lionform</xtype>
+			<region>north</region>
+			<viewPath>base/storage/listuserqueryform</viewPath>
+			<runMode>4</runMode>
+		</items>
+		<items>
+			<object>listTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>base/storage/listtbar</viewPath>
+		</items>
+		<items>
+			<object>listDeptTree</object>
+			<xtype>panel</xtype>
+			<isCreate type="object">this.runMode == '1'</isCreate>
+			<region>west</region>
+			<bodyStyle>border-width:0 1px 0 1px;</bodyStyle>
+			<autoScroll type="object">true</autoScroll>
+		    <width type="object">180</width>
+		    <split type="object">true</split>
+		    <minSize type="object">180</minSize>
+		    <maxSize type="object">180</maxSize>
+		    <collapsible type="object">false</collapsible>
+		    <lines type="object">false</lines>
+		    <collapseMode>mini</collapseMode>
+			<items>
+				<xtype>liontree</xtype>
+				<viewPath>system/user/listdepttree</viewPath>
+			</items>
+		</items>
+	</component>
+	<container>
+		<items>listTbar</items>
+		<items>
+			<xtype>panel</xtype>
+			<layout>border</layout>
+			<border type="boolean">false</border>
+			<items>queryForm</items>
+			<items>listDeptTree</items>
+			<items>dataGrid</items>
+		</items>
+	</container>
+</uicfg>

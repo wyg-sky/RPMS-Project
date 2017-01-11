@@ -1,0 +1,19 @@
+<uicfg desc="分类定义管理编辑主界面">
+	<objectName>businessObject</objectName>
+	<component>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>base/classify/editform</viewPath>
+		</items>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>base/classify/edittbar</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+	</container>
+</uicfg>

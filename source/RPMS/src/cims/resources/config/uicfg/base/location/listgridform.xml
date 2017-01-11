@@ -1,0 +1,106 @@
+<uicfg desc="设备位置管理行编辑">
+	<loadtUrl>base/loadLocation.html</loadtUrl>
+	<submitUrl>base/saveLocation.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<defaultFocusIndex>-1</defaultFocusIndex>
+	<editable type="object">true</editable>
+	<columns type="object">4</columns>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<hidden type="object">true</hidden>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<items>
+		<xtype>lioncombowindow</xtype>
+		<fieldLabel>上级地点</fieldLabel>
+		<propertyName>parent</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>locationName</hiddenDisplayName>
+		<displayField>locationName</displayField>
+		<window>
+			<viewPathOfUi>base/location/list</viewPathOfUi>
+			<title>上级地点选择</title>
+		</window>
+		<!--value type="object">{value: this.manager.parentId, text: this.manager.parentName}</value>
+		<listeners type="object">{
+			'after_comfirm_click':function(recode){
+				this.manager.editForm.findField("locationCd").load({parentId : recode[0].get('id')});
+			},
+			scope:this
+		}
+		</listeners-->
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>locationName</name>
+		<fieldLabel>地点名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncodefield</xtype>
+		<name>locationCd</name>
+		<fieldLabel>地点编码</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+		<allowBlank type="boolean">false</allowBlank>
+		<type>3</type>
+		<autoLoad type ="object">true</autoLoad>
+		<style>border:0;background: #d9d9d9</style>
+		<params>
+			<className>Location</className>
+			<parentId type="object">this.manager.parentId</parentId>
+			<codeProperty>locationCd</codeProperty>
+			<length>3</length>
+		</params>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>valid</hiddenName>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<name>createUser</name>
+		<style>border:0;background: #d9d9d9</style>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<style>border:0;background: #d9d9d9</style>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改人</fieldLabel>
+		<name>modifyUser</name>
+		<style>border:0;background: #d9d9d9</style>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<style>border:0;background: #d9d9d9</style>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+</uicfg>

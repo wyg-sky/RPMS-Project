@@ -1,0 +1,23 @@
+<uicfg desc="模块管理">
+	<objectName>businessObject</objectName>
+	<editView>system/module/edit</editView>
+	<deleteUrl>system/deleteModule.html</deleteUrl>
+	<changeStatusUrl>system/changeModuleStatus.html</changeStatusUrl>
+	<component>
+		<items>
+			<object>dataGrid</object>
+			<xtype>liontreegrid</xtype>
+			<region>center</region>
+			<viewPath>system/module/listgrid</viewPath>
+		</items>
+		<items>
+			<object>listTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>system/module/listtbar</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>listTbar</items>
+		<items>dataGrid</items>
+	</container>
+</uicfg>

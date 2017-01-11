@@ -1,0 +1,31 @@
+<uicfg desc="科技活动费用列表界面">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">1200</winWidth>
+	<component>
+		<items>
+			<object>reporttbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/research/technologycosts/reporttbar</viewPath>
+		</items>
+		<items>
+			<object>reportqueryform</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/research/technologycosts/reportqueryform</viewPath>
+			<runMode>4</runMode>
+		</items>
+		<items>
+			<object>reportdata</object>
+			<xtype>panel</xtype>
+			<frame type="object">false</frame>
+			<bodyStyle>border-width:0 1px 0 1px;</bodyStyle>
+			<autoScroll type="object">true</autoScroll>
+			<height type="object">450</height>
+			<html type="object"><![CDATA["<iframe frameborder='0' width='100%' height='100%' src='rpms/research/technologycosts/technologycostsRpt.jsp?isgather="+this.isgather+"'></iframe>"]]></html>
+		</items>
+	</component>
+	<container>
+		<items>reporttbar</items>
+		<items>reportqueryform</items>
+		<items>reportdata</items>
+	</container>
+</uicfg>

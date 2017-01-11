@@ -1,0 +1,38 @@
+<uicfg desc="数据导入界面">
+	<columns type="object">1</columns>
+	<height type="integer">250</height>
+	<defaults>
+		<layout>column</layout>
+		<labelWidth type="integer">70</labelWidth>
+	</defaults>
+	<items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>认可类型</fieldLabel>
+        <name>rkType</name>
+        <keyType>rpms_rk</keyType>
+        <allowBlank type="object">false</allowBlank>
+        <readOnly type="boolean">false</readOnly>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<allowBlank type="object">false</allowBlank>
+		<name>rkMsg</name>
+		<readOnly type="boolean">false</readOnly>
+		<fieldLabel>认可内容</fieldLabel>
+	</items>
+	<buttonAlign>center</buttonAlign>
+	<buttons>
+		<text>确定</text>
+		<width type="integer">50</width>
+		<scope type="object">this.manager</scope>
+		<handler type="object">function() {
+		      this.updateRKMsg();
+		}</handler>
+	</buttons>
+	<buttons>
+		<text>取消</text>
+		<width type="integer">50</width>
+		<handler type="object">function() {this.ownerCt.close()}</handler>
+		<scope type="object">this</scope>
+	</buttons>
+</uicfg>

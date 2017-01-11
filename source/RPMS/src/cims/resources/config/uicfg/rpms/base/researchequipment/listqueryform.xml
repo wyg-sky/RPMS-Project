@@ -1,0 +1,138 @@
+<uicfg desc="创新设备管理查询表单">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>设备编号</fieldLabel>
+		<name>equiCode</name>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+	   <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>设备名称</fieldLabel>
+        <name>equiName</name>
+        <allowBlank type="boolean">true</allowBlank>
+    </items>
+    <!--
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+    -->
+    <items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>specialty</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>专业</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                    <type>"zy"</type>
+                </baseParams >
+            </loader>
+        </tree>
+        <listeners type="object">{
+            'select':function(){
+                this.manager.queryForm.findField("business.id").setValue({value:'',text:''});
+                this.manager.queryForm.findField("business.id").clearValue();
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>business</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>业务</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                    <type>"yw"</type>
+                </baseParams >
+            </loader>
+            <root>
+                <id>root_id</id>
+                <text>专业业务</text>
+            </root>
+        </tree>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>设备状态</fieldLabel>
+        <name>equiStatus</name>
+        <keyType>rpms_euqi_status</keyType>
+        <allowBlank type="boolean">true</allowBlank>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>使用状态</fieldLabel>
+        <name>useStatus</name>
+        <keyType>rpms_use_status</keyType>
+        <allowBlank type="boolean">true</allowBlank>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>是否有效</fieldLabel>
+        <name>valid</name>
+        <keyType>cims_effective</keyType>
+        <allowBlank type="boolean">true</allowBlank>
+    </items>
+    <items>
+        <xtype>lionblankfield</xtype>
+    </items>
+    <items>
+        <xtype>lionblankfield</xtype>
+    </items>
+    <items>
+        <xtype>lionblankfield</xtype>
+    </items>
+</uicfg>

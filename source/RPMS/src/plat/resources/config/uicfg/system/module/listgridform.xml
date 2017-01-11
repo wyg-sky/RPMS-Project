@@ -1,0 +1,158 @@
+<uicfg desc="模块管理编辑">
+	<loadtUrl>system/loadModule.html</loadtUrl>
+	<submitUrl>system/saveModule.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<editable type="object">true</editable>
+	<columns type="object">3</columns>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>leaf</name>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>grade</name>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>lioncomboboxtree</xtype>
+		<fieldLabel>上级模块</fieldLabel>
+		<propertyName>parent</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<allowBlank type="boolean">true</allowBlank>
+		<tree>
+			<loader>
+				<dataUrl>system/listModuleTree.html</dataUrl>
+			</loader>
+		</tree>
+		<listeners type="object">{
+			'select':function(combox,fireValue,node){
+				if(fireValue == this.findField("id").getValue()) {
+					combox.clearValue();
+					Ext.MessageBox.show({
+						title : '提示',
+						msg : '上级模块不能为当前模块！',
+						buttons : Ext.MessageBox.OK,
+						icon : Ext.MessageBox.WARNING ,
+						scope : this
+					});
+				}
+				this.findField("code").load({parentId : fireValue});
+				this.findField("sortOrder").load({parentId : fireValue});
+			},
+			scope:this
+		}
+		</listeners>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>name</name>
+		<fieldLabel>模块名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncodefield</xtype>
+		<name>code</name>
+		<fieldLabel>模块编码</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<autoLoad type="boolean">false</autoLoad>
+		<type>3</type>
+		<params>
+			<className>Module</className>
+			<codeProperty>code</codeProperty>
+			<length>3</length>
+		</params>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>type</hiddenName>
+		<fieldLabel>模块类型</fieldLabel>
+		<keyType>sys_module_type</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>platType</hiddenName>
+		<fieldLabel>平台类型</fieldLabel>
+		<keyType>sys_plat_type</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>url</name>
+		<fieldLabel>URL</fieldLabel>
+	</items>
+	<items>
+		<xtype>lionimagefield</xtype>
+		<name>icon</name>
+		<fieldLabel>图标</fieldLabel>
+		<path>styles/default/images/icons/16_16/,styles/default/images/menu/,styles/default/images/icons/16x16/,styles/default/images/icons/16-16/</path>
+		<listHeight type="integer">219</listHeight>
+		<iconWidth type="integer">16</iconWidth>
+    	<iconHeight type="integer">16</iconHeight>
+    	<pageSize type="integer">80</pageSize>
+	</items>
+	<items>
+		<xtype>lionimagefield</xtype>
+		<name>shortCutIcon</name>
+		<fieldLabel>快捷图标</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>active</hiddenName>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionsortfield</xtype>
+		<name>sortOrder</name>
+		<fieldLabel>排序</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<autoLoad type="boolean">false</autoLoad>
+		<params>
+			<className>Module</className>
+			<codeProperty>sortOrder</codeProperty>
+		</params>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>创建人</fieldLabel>
+		<propertyName>createUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>修改人</fieldLabel>
+		<propertyName>modifyUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>description</name>
+		<fieldLabel>描述</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<columnWidth type="integer">3</columnWidth>
+	</items>
+</uicfg>

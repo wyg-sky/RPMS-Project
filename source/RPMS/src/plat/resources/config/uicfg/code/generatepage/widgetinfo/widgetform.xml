@@ -1,0 +1,42 @@
+<uicfg desc="生成页面编辑表单">
+	<columns type="object">4</columns>
+	<defaults>
+		<border type="boolean">false</border>
+		<layout>column</layout>
+		<labelWidth type="integer">120</labelWidth>
+	</defaults>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lioncombolist</xtype>
+		<fieldLabel>请选择实体类</fieldLabel>
+		<propertyName>className</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>text</hiddenDisplayName>
+		<allowBlank type="boolean">false</allowBlank>
+		<store>
+			<url>system/listClassForSelect.html</url>
+		</store>
+		<listeners type="object">{
+			'select' : function(combo, record, index) {
+				Ext.apply(this.manager.widgetParamsGrid.store.baseParams, {
+					className : record.get('id')
+				});
+				this.manager.widgetParamsGrid.store.load();
+				
+				Ext.apply(this.manager.columnsGrid.store.baseParams, {
+					className : record.get('id')
+				});
+				this.manager.columnsGrid.store.load();
+			},
+			scope : this
+		}</listeners>
+	</items>
+</uicfg>

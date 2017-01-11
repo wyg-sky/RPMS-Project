@@ -1,0 +1,613 @@
+@charset "utf-8";
+
+/****=========
+
+美工：王红光 于2010年9月26日 
+对配置向导页面的CSS样式
+
+==========***/ /***两列**/
+.main {
+	margin-bottom: 0px;
+	width: 100%;
+}
+
+.main_ts {
+	margin: 10px;
+}
+
+#main_left {
+	width: 50%;
+	float: left;
+	padding: 0px;
+	margin: 0px;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+}
+
+html>body .main #main_left {
+	width: 50%; /* ie5win fudge ends */
+}
+
+#main_right {
+	width: 50%;
+	float: right;
+	padding: 0px;
+	margin: 0px;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+}
+
+html>body .main #main_right {
+	width: 50%; /* ie5win fudge ends */
+}
+
+.north {
+	background: #edf2f4 url(style/image/pz_box.png) repeat-x left bottom;
+	border-top: solid 1px #f9fafb;
+	height: 30px;
+}
+
+.pz_top_bg {
+	background: #fff url(style/image/peizhi_top.png) repeat-x left top;
+	height: 15px;
+}
+
+.pzlb {
+	margin: 0px 5px;
+	border: solid 1px #c9d4d9;
+}
+
+.outside,.pzlb {
+	margin: 0px 5px;
+}
+
+.mar_fg {
+	margin: 5px; /***分隔***/
+}
+
+.mar_wk {
+	border: solid 1px #c9d4d9;
+}
+
+.clearfloat { /* 此类应当放在 div 或 break 元素上，而且该元素应当是完全包含浮动的容器关闭之前的最后一个元素 */
+	clear: both;
+	height: 0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+.compart_xx { /*分隔横虚线*/
+	background: url(style/image/xx.gif) repeat-x left center;
+	height: 20px;
+	display: block;
+}
+
+.bk_h { /**灰背景**/
+	background: #f9fafb;
+}
+
+/**配置向导模块信息**/
+.pzbox {
+	background: #f9fafb url(style/image/pz_box.png) repeat-x left top;
+	border: 0;
+	border-top: solid 1px #fff;
+	border-bottom: solid 1px #e3e7e8;
+	width: 100%;
+}
+
+.pzbox .pzbox_title { /**分类**/
+	width: 17%;
+	text-align: center;
+}
+
+.pzbox .pzbox_title .pzx_img {
+	padding: 10px 0px 5px 0px;
+}
+
+.pzbox .pzbox_title .pzx_name {
+	font-weight: bold;
+	padding: 0px 5px 5px 5px;
+	text-decoration: none;
+}
+
+.pzbox .pzbox_title .pzx_name a {
+	font-family: Arial, "宋体", Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000;
+	text-decoration: none;
+}
+
+.pzbox .pzbox_title .pzx_name a:hover {
+	color: #d00;
+	text-decoration: none;
+}
+
+.pzbox .pzbox_set {
+	width: 80%;
+	float: right;
+	padding: 10px 0px;
+}
+
+.pzbox .pzbox_set .pz_help {
+	float: right;
+	width: 9%;
+	height: 35px;
+	background: url(style/image/help_fg.gif) no-repeat left center;
+}
+
+.pzbox .pzbox_set .pz_help .help_img {
+	text-align: center;
+	height: 18px;
+	margin-top: 8px;
+}
+
+.pzbox .pzbox_set .pz_title {}
+
+.pzbox .pzbox_set .pz_install {
+	padding: 5px 0px;
+}
+
+.pzbox .pzbox_set .pz_install ul li {
+	float: left;
+	width: 110px;
+	height: 30px;
+	line-height: 28px;
+	display: inline-block;
+}
+
+.pzbox .pzbox_set .pz_install ul li span {
+	margin-left: 3px;
+	margin-right: 2px;
+}
+
+.pzbox .pzbox_set .pz_install ul li span.pxzt_ico {
+	width: 14px;
+	display: inline-block;
+}
+
+.pzbox .pzbox_set .pz_install ul li span.pxzt_name a {
+	color: #072997;
+	text-decoration: none;
+}
+
+.pzbox .pzbox_set .pz_install ul li span.pxzt_name a:hover {
+	color: #d00;
+	text-decoration: none;
+}
+
+.pzbox .pzbox_set .pz_help_ts {
+	padding: 5px;
+	line-height: 20px;
+	color: #666;
+}
+
+.pzbox .pzbox_set .pz_title a {
+	color: #072997;
+}
+
+.pzbox .pzbox_set .pz_title a:hover {
+	color: #d00;
+}
+
+/**帮助卡**/
+.ka_help {
+	border: solid 1px #c7cbd8;
+}
+
+.ka_help .help_title {
+	padding: 10px 10px;
+	border-bottom: solid 1px #c9d4d9;
+	background: #e0e8ec;
+}
+
+.ka_help .help_tes {
+	padding: 10px;
+	background: #fcfcff;
+	border-top: solid 1px #fff;
+	color: #444751;
+	line-height: 20px;
+}
+
+.help_title_short {
+	background: url(../../images/guide/bg_help.gif) repeat-x center
+		center;
+	border: 1px solid #c7cbd8;
+	border-bottom-style: none;
+	color: #3a388b;
+	height: 26px;
+	line-height: 26px;
+}
+
+.help_title_short .help_icon {
+	background: url(../../images/guide/help.gif) no-repeat center center;
+	float: left;
+	height: 24px;
+	width: 24px;
+	padding: 0px 8px;
+}
+
+/****配置项左侧主导航****/
+#tnav_left {
+	border: solid 1px #c9d4d9;
+	border-right: 0px;
+	float: left;
+	width: 200px;
+	background: #e5f2fa; /* 将显示背景色，其宽度等于栏中内容的长度，*/
+	padding: 0;
+}
+
+#tnav_left a {
+	color: #f00;
+	margin: 0px;
+	height: 52px;
+	display: block;
+	border-bottom: solid 1px #c9d4d9;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#tnav_left a.normal .tnav_left_ico,#tnav_left a.hover  .tnav_left_ico {
+	height: 10px;
+	width: 20px;
+	margin: 5px;
+	margin-top: 10px;
+	margin-left: 7px;
+	display: inline-block;
+	float: left;
+}
+
+#tnav_left a.normal .tnav_left_name,#tnav_left a.hover  .tnav_left_name
+	{
+	line-height: 20px;
+	width: 120px;
+	height: 17px;
+	font-weight: bold;
+	color: #000;
+	margin-left: 70px;
+	margin-top: 20px;
+}
+
+#tnav_left a.normal .tnav_left_nest,#tnav_left a.hover  .tnav_left_nest
+	{
+	height: 7px;
+	width: 11px;
+	background: #f00;
+	margin-left: 45px;
+	position: relative;
+	top: 15px;
+	left: -25px;
+}
+
+#tnav_left a.normal .tnav_left_nest {
+	background: url(style/image/tnav_left_nest.gif) no-repeat right top;
+}
+
+#tnav_left a.hover  .tnav_left_nest {
+	background: url(style/image/tnav_left_nest.gif) no-repeat left top;
+}
+
+#tnav_left a.hover {
+	background: #fff;
+	border-right: 0px;
+}
+
+#tnav_left a.normal {
+	background: none;
+	border-right: solid 1px #c9d4d9;
+}
+
+/**iframe**/
+#mainContent {
+	margin: 0px 0px 0px 216px;
+	border: solid 1px #c9d4d9; /* 右边距可以用百分比或像素来指定，它会在页面的右下方产生空白。 */
+}
+
+/******配置信息显示********/
+.nav_route {
+	background: #edf2f4 url(../../images/guide/bg_module.gif) repeat-x
+		left bottom;
+	border-bottom: solid 1px #b4caea;
+	height: 34px;
+}
+
+.nav_route .r_set {
+	float: right;
+	margin-right: 0px;
+	margin-top: 3px;
+}
+
+/**下一步和返回按钮**/
+.but_contain_a,.but_contain_b { /**控制按钮**/
+	height: 22px;
+	margin: 2px 4px;
+	overflow: hidden;
+	display: inline-block;
+	
+}
+
+.but_contain_a *,.but_contain_b * {
+	height: 22px;
+	float: left;
+	text-decoration: none;
+}
+
+.but_contain_a a .but_a_2,.but_contain_a a:hover .but_a_2,.but_contain_b a .but_a_2,.but_contain_b a:hover .but_a_2
+	{
+	cursor: pointer;
+	width: auto;
+	padding: 0px 10px;
+	line-height: 28px;
+	font-weight: bold;
+}
+
+.but_contain_a a .but_a_1 {
+	background: url(../../images/guide/button.gif) no-repeat left top;
+	width: 4px;
+}
+
+.but_contain_a a .but_a_2 {
+	background: url(../../images/guide/button.gif) repeat-x left -44px;
+	color: #2f3f9f;
+}
+
+.but_contain_a a .but_a_3 {
+	background: url(../../images/guide/button.gif) no-repeat right -22px;
+	width: 4px;
+}
+
+.but_contain_a a:hover .but_a_1 {
+	background: url(../../images/guide/button.gif) no-repeat left -66px;
+	width: 4px;
+}
+
+.but_contain_a a:hover .but_a_2 {
+	background: url(../../images/guide/button.gif) repeat-x left -110px;
+	color: #036;
+}
+
+.but_contain_a a:hover .but_a_3 {
+	background: url(../../images/guide/button.gif) no-repeat right -88px;
+	width: 4px;
+}
+
+.but_contain_b a .but_a_1 {
+	background: url(style/image/but_b_back.gif) no-repeat left top;
+	width: 5px;
+}
+
+.but_contain_b a .but_a_2 {
+	background: url(style/image/but_b_back.gif) repeat-x left -30px;
+	color: #fff;
+}
+
+.but_contain_b a .but_a_3 {
+	background: url(style/image/but_b_back.gif) no-repeat right -60px;
+	width: 5px;
+}
+
+.but_contain_b a:hover .but_a_1 {
+	background: url(style/image/but_b_back.gif) no-repeat left -90px;
+	width: 5px;
+}
+
+.but_contain_b a:hover .but_a_2 {
+	background: url(style/image/but_b_back.gif) repeat-x left -120px;
+	color: #ff0;
+}
+
+.but_contain_b a:hover .but_a_3 {
+	background: url(style/image/but_b_back.gif) no-repeat right -150px;
+	width: 5px;
+}
+
+.but_contain_c {
+	border: 1px solid #bbcbe3; /**控制按钮**/
+	height: 24px;
+	margin: 2px 1px;
+	margin-right: 2px;
+	overflow: hidden;
+	display: inline-block;
+}
+
+.but_contain_c * {
+	height: 24px;
+	float: left;
+	text-decoration: none;
+	line-height: 24px;
+}
+
+.but_contain_c a .but_a_2,.but_contain_c a:hover .but_a_2 {
+	width: auto;
+	padding: 0px 15px;
+	line-height: 24px;
+}
+
+.but_contain_c a .but_a_1 {
+	background: url(../../images/guide/bg_nav.gif) repeat-x 0 0;
+	width: 5px;
+}
+
+.but_contain_c a .but_a_2 {
+	background: url(../../images/guide/bg_nav.gif) repeat-x 0 0;
+	color: #444751;
+	cursor: pointer;
+	padding: 0 15px;
+}
+
+.but_contain_c a .but_a_3 {
+	background: url(../../images/guide/bg_nav.gif) repeat-x 0 0;
+	width: 5px;
+}
+
+.but_contain_c a .but_a_actinve_1 {
+	background: #7bb326;
+	width: 5px;
+}
+
+.but_contain_c a .but_a_actinve_2 {
+	background: #7bb326;
+	color: #444751;
+	cursor: pointer;
+	padding: 0 15px;
+	color: #fff;
+}
+
+.but_contain_c a .but_a_actinve_3 {
+	background: #7bb326;
+	width: 5px;
+}
+
+.but_contain_c a:hover .but_a_1 {
+	background: url(style/image/titile-over-bg.png) repeat-x 0 0;
+	width: 5px;
+}
+
+.but_contain_c a:hover .but_a_2 {
+	background: url(style/image/titile-over-bg.png) repeat-x 0 0;
+	color: #000;
+	cursor: pointer;
+}
+
+.but_contain_c a:hover .but_a_3 {
+	background: url(style/image/titile-over-bg.png) repeat-x 0 0;
+	width: 5px;
+}
+
+#nav_type {
+	height: 34px;
+	overflow: hidden;
+}
+
+#nav_type a {
+	line-height: 34px;
+	height: 34px;
+	display: inline-block;
+	text-align: center;
+	background: url(../../images/guide/split.gif) no-repeat center right;
+	padding-right: 12px;
+	padding-left: 10px;
+}
+
+#nav_type a.normal {
+	color: #444751;
+	text-decoration: none;
+}
+
+#nav_type a.hover {
+	color: #302da7;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#nav_type a * {
+	display: inline-block;
+}
+
+#nav_type a.normal .uid {
+	background: url(../../images/guide/circle_uncheck.gif) no-repeat
+		center center;
+	width: 15px;
+	color: #444751;
+}
+
+#nav_type a.hover .uid {
+	background: url(../../images/guide/circle_check.gif) no-repeat center
+		center;
+	width: 15px;
+	color: #fff;
+}
+
+#nav_type a.normal .uname {
+	background: none;
+	padding: 0px 4px;
+	cursor: pointer;
+}
+
+#nav_type a.hover  .uname {
+	background: url(../../images/guide/angle.gif) no-repeat center bottom
+		;
+	padding: 0px 4px;
+	cursor: pointer;
+}
+
+/**内容显示**/
+.pt_caption {
+	background: url(../../images/guide/pt_caption_bk.gif) repeat-x left center;
+	height: 30px;
+}
+
+.pt_caption span {
+	background: #f7f9ff url(../../images/guide/pt_caption_ico.gif) no-repeat left
+		center;
+	color: #15428b;
+	font-weight: bold;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 16px;
+	padding-right: 10px;
+}
+
+ds {
+	position: relative;
+}
+
+.module_split_table {
+	background: #e3e9f5;
+	height: 24px;
+	width: 100%;
+	margin: 10px 0px;
+}
+
+.module_split_table td {
+	color: #3a388b;
+	font-wight: bold;
+}
+
+.module_split_icon {
+	background: url(../../images/guide/title_icon.gif) no-repeat center
+		center;
+	height: 16px;
+	width: 16px;
+	padding-left: 20px;
+}
+
+.form_info_table {
+	background: #fff;
+	border: 1px solid #c7cbd8;
+	padding: 12px 5px;
+}
+
+.form_info {
+	background: #fff;
+	color: #444751;
+	line-height: 24px;
+	padding: 0 10px;
+}
+
+.grid_info {
+	background: #fff;
+	color: #444751;
+	height:24px;
+	line-height: 24px;
+	padding: 0 10px;
+}
+
+.tip {
+	background: url(../../images/guide/dot.gif) no-repeat left center;
+	height: 24px;
+	width: 18px;
+	float: left;
+}
+
+.action_tip {
+	color: #444751;
+	line-height: 22px;
+	padding: 5px 0;
+}
+
+.action_tip_icon {
+	background: url(../../images/guide/tips.gif) no-repeat left center;
+	width: 24px;
+	height: 20px;
+	float: left;
+}

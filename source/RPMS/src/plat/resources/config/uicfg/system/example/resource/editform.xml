@@ -1,0 +1,53 @@
+<uicfg desc="资源管理编辑">
+	<loadtUrl>system/loadResource.html</loadtUrl>
+	<submitUrl>system/saveResource.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">this.columns</columns>
+	<height type="integer">400</height>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>xaction</name>
+		<fieldLabel>资源编码</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>	
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>name</name>
+		<fieldLabel>资源名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>resourceType</hiddenName>
+		<fieldLabel>资源类型</fieldLabel>
+		<keyType>sex</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>	
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>operType</hiddenName>
+		<fieldLabel>操作类型</fieldLabel>
+		<keyType>sex</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>Module</hiddenName>
+		<fieldLabel>所属模块</fieldLabel>
+		<keyType>sex</keyType>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>description</name>
+		<fieldLabel>资源描述</fieldLabel>
+		<columnWidth type="integer">3</columnWidth>
+	</items>
+</uicfg>

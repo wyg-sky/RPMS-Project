@@ -1,0 +1,21 @@
+<uicfg desc="实例字段">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>search</name>
+		<fieldLabel>搜索</fieldLabel>
+		<operator>=</operator>
+	</items>
+</uicfg>

@@ -1,0 +1,72 @@
+<uicfg desc="代码管理主界面">
+	<objectName>businessObject</objectName>
+	<editView>system/code/lineedit</editView>
+	<deleteUrl>system/deleteCodeLine.html</deleteUrl>
+	<changeStatusUrl>system/changeCodeLineStatus.html</changeStatusUrl>
+	<component>
+		<items>
+			<object>dataGrid</object>
+			<xtype>liontreegrid</xtype>
+			<region>center</region>
+			<viewPath>system/code/listgrid</viewPath>
+		</items>
+		<items>
+			<object>queryForm</object>
+			<xtype>lionform</xtype>
+			<region>north</region>
+			<viewPath>system/code/listqueryform</viewPath>
+			<runMode>4</runMode>
+		</items>
+		<items>
+			<object>listTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>system/code/listtbar</viewPath>
+		</items>
+		<items>
+			<object>listCodeType</object>
+			<xtype>panel</xtype>
+			<region>west</region>
+			<bodyStyle>border-width:0 1px 0 1px;</bodyStyle>
+			<autoScroll type="object">true</autoScroll>
+		    <width type="object">300</width>
+		    <split type="object">true</split>
+		    <minSize type="object">300</minSize>
+		    <maxSize type="object">300</maxSize>
+		    <collapsible type="object">false</collapsible>
+		    <lines type="object">false</lines>
+		    <collapseMode>mini</collapseMode>
+			<tbar>
+				<xtype>liontoolbar</xtype>
+				<border type="boolean">false</border>
+				<manager type="object">this</manager>
+				<hidden type="object">!(showType==null||showType==''||showType=='null')</hidden>
+				<viewPath>system/code/treetbar</viewPath>
+			</tbar>
+			<items>
+				<xtype>liontree</xtype>
+				<viewPath>system/code/listcodetype</viewPath>
+				<manager type="object">this</manager>
+			</items>
+			<listeners type="object">{
+				'render':function(tree) {
+					var queryBar = new Ext.lion.LionToolbar({
+						manager : this,
+						viewPath : 'system/code/treequery'
+					});
+					queryBar.render(this.listCodeType.tbar); 
+				},scope:this
+			}</listeners>
+		</items>
+	</component>
+	<container>
+		<items>listTbar</items>
+		<items>
+			<xtype>panel</xtype>
+			<layout>border</layout>
+			<border type="boolean">false</border>
+			<items>queryForm</items>
+			<items>listCodeType</items>
+			<items>dataGrid</items>
+		</items>
+	</container>
+</uicfg>

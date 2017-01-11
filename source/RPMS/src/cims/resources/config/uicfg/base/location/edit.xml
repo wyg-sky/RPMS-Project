@@ -1,0 +1,20 @@
+<uicfg desc="设备位置管理编辑主界面">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">600</winWidth> 
+	<component>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>base/location/editform</viewPath>
+		</items>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>base/location/edittbar</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+	</container>
+</uicfg>

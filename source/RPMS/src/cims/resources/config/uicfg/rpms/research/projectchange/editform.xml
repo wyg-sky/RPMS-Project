@@ -1,0 +1,137 @@
+<uicfg desc="项目变更管理编辑表单">
+    <loadtUrl>rpms/loadProjectDispatch.html</loadtUrl>
+    <submitUrl>rpms/saveProjectDispatch.html</submitUrl>
+    <objectName>businessObject</objectName>
+    <defaultFocusIndex>-1</defaultFocusIndex>
+    <columns type="object">3</columns>
+    <defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">100</labelWidth>
+    </defaults>
+    <items>
+        <xtype>lionreadonlyfield</xtype>
+        <fieldLabel>单位</fieldLabel>
+        <propertyName>organization</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <hidden type="object">true</hidden>
+        <value type="object">
+            {"value" : FW.organizationId, "text" : FW.organizationName}
+        </value>
+    </items>
+    <items>
+        <xtype>lioncombowindow</xtype>
+        <fieldLabel>项目登记编号</fieldLabel>
+        <propertyName>projectId</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>projectCode</hiddenDisplayName>
+        <displayField>projectCode</displayField>
+        <allowBlank type="boolean">false</allowBlank>
+        <window>
+            <viewPathOfUi>rpms/research/project/list</viewPathOfUi>
+            <title>项目编号</title>
+            <hql type="object">" and obj.status ='0004' "</hql>
+        </window>
+        <listeners type="object">{
+            'after_comfirm_click':function(records){
+                this.manager.editForm.findField("projectId.projectName").setValue(records[0].get('projectName'));
+            },
+            'change':function(){
+                if(this.manager.editForm.findField("projectId.id").getValue() == ""){
+                    this.manager.editForm.findField("projectId.projectName").setValue("");
+                }
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>项目名称</fieldLabel>
+        <name>projectId.projectName</name>
+        <columnWidth type="integer">2</columnWidth>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>变更类型</fieldLabel>
+        <name>changeType</name>
+        <keyType>rpms_change_type</keyType>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                this.manager.changeType();
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>lioncomboboxyearfield</xtype>
+        <fieldLabel>延期或中止年度</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <name>delayYear</name>
+        <format>Y</format>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>填报人</fieldLabel>
+        <name>reportUser</name>
+    </items>
+    <items>
+        <xtype>liondatefield</xtype>
+        <fieldLabel>填报时间</fieldLabel>
+        <format>Y-m-d</format>
+        <name>reportTime</name>
+        <value type="object">new Date().format('Y-m-d')</value>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>状态</fieldLabel>
+        <name>status</name>
+        <keyType>rpms_evaluation_status</keyType>
+        <allowBlank type="object">false</allowBlank>
+        <readOnly type="boolean">true</readOnly>
+        <value type="object">'0001'</value>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>创建人</fieldLabel>
+        <name>createUser</name>
+        <value type="object">FW.userName</value>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <name>createTime</name>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>创建时间</fieldLabel>
+        <value type="object">new Date().format('Y-m-d H:i:s')</value>
+    </items>
+    <items>
+        <xtype>liontextarea</xtype>
+        <columnWidth type="integer">3</columnWidth>
+        <fieldLabel>项目变更原因</fieldLabel>
+        <name>changeReason</name>
+        <height>40</height>
+    </items>
+    <items>
+        <xtype>liontextarea</xtype>
+        <columnWidth type="integer">3</columnWidth>
+        <fieldLabel>备注</fieldLabel>
+        <name>remark</name>
+        <height>40</height>
+    </items>
+    <items>
+        <xtype>lionhiddenfield</xtype>
+        <fieldLabel></fieldLabel>
+        <name>type</name>
+        <hidden type="object">true</hidden>
+        <value type="object">'0002'</value>
+    </items>
+    <items>
+        <xtype>lionhiddenfield</xtype>
+        <fieldLabel>唯一标识</fieldLabel>
+        <name>id</name>
+        <hidden type="object">true</hidden>
+    </items>
+</uicfg>

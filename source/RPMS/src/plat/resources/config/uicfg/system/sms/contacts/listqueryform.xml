@@ -1,0 +1,26 @@
+<uicfg desc="联系人管理查询字段">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>userType</name>
+		<fieldLabel>类别</fieldLabel>
+		<keyType>sys_user_type</keyType>
+		<operator>=</operator>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>userId.userName</name>
+		<fieldLabel>名称</fieldLabel>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<name>userTelephones</name>
+		<fieldLabel>手机号</fieldLabel>
+	</items>
+</uicfg>

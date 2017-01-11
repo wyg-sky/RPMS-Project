@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <data_type>xml</data_type>
+  <csv_separator>,</csv_separator>
+  <skip_rows/>
+  <font>Tahoma</font>
+  <text_size/>
+  <text_color>#000000</text_color>
+  <decimals_separator>.</decimals_separator>
+  <thousands_separator> </thousands_separator>
+  <digits_after_decimal/>
+  <redraw>1</redraw>
+  <reload_data_interval/>
+  <preloader_on_reload/>
+  <add_time_stamp/>
+  <precision>1</precision>
+  <exclude_invisible/>
+  <pie>
+    <x/>
+    <y/>
+    <radius/>
+    <inner_radius/>
+    <height>20</height>
+    <angle>30</angle>
+    <start_angle/>
+    <colors/>
+    <hover_brightness>-20</hover_brightness>
+    <gradient>linear</gradient>
+    <gradient_ratio>-10,60</gradient_ratio>
+  </pie>
+  <animation>
+  	<start_time>2</start_time>
+  	<start_effect>strong</start_effect>
+    <pull_out_only_one>true</pull_out_only_one>
+  </animation>
+  <data_labels>
+  	<radius/>
+    <show>
+        <![CDATA[{title}: {value}({percents}%)]]>
+    </show>
+    <line_color>#000000</line_color>
+    <line_alpha>20</line_alpha>
+    <avoid_overlapping></avoid_overlapping>
+  </data_labels>
+  <group>
+    <percent/>
+    <color/>
+    <title/>
+    <url/>
+    <description/>
+    <pull_out/>
+  </group>
+  <background>
+    <color/>
+    <alpha>100</alpha>
+  </background>
+  <balloon>
+    <enabled/>
+    <color/>
+    <alpha>80</alpha>
+    <text_color/>
+    <text_size/>
+    <show>
+       <![CDATA[{title}: {value}({percents}%)]]>
+    </show>
+    <max_width/>
+    <corner_radius>5</corner_radius>
+    <border_width>3</border_width>
+    <border_alpha>50</border_alpha>
+    <border_color>#000000</border_color>
+  </balloon>
+  <legend>
+    <enabled>0</enabled>
+    <x/> 
+	<y/> 
+	<align>center</align> 
+	<values>                                                         
+		<enabled/>                                     
+		<width/>                                         
+		<text><![CDATA[{value}]]></text>                              
+		</values>  
+  </legend>
+  <labels>
+    <label lid="0">
+      <x/>
+      <y/>
+      <rotate>false</rotate>
+      <width/>
+      <align>left</align>
+      <text_color/>
+      <text_size>12</text_size>
+      <text>
+        <![CDATA[<b>How Often do you brush your teeth?</b>]]>
+      </text>
+    </label>
+  </labels>
+</settings>

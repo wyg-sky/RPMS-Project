@@ -1,0 +1,28 @@
+<uicfg desc="文档分类管理按钮">
+	<autoSeparator type="object">false</autoSeparator>
+	<items>
+		<text>新增</text>
+		<iconCls>create-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<handler type="object">this.manager.addDocType</handler>
+	</items>
+	<items>
+		<text>编辑</text>
+		<iconCls>new-edit-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<handler type="object">this.manager.editDocType</handler>
+	</items>
+	<items>
+		<text>删除</text>
+		<iconCls>delete-selected-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<handler type="object">this.manager.deleteDocType</handler>
+	</items>
+	<items>
+		<text>查看</text>
+		<iconCls>view-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<handler type="object">this.manager.viewDocType</handler>
+	</items>
+	<items></items>
+</uicfg>

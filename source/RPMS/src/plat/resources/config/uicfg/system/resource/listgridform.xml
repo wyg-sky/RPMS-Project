@@ -1,0 +1,84 @@
+<uicfg desc="资源管理编辑">
+	<loadtUrl>system/loadResource.html</loadtUrl>
+	<submitUrl>system/saveResource.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<editable type="object">true</editable>
+	<columns type="object">3</columns>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>xaction</name>
+		<fieldLabel>资源编码</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>	
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>name</name>
+		<fieldLabel>资源名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>resourceType</hiddenName>
+		<fieldLabel>资源类型</fieldLabel>
+		<keyType>sys_resource_type</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>	
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>operType</hiddenName>
+		<fieldLabel>操作类型</fieldLabel>
+		<keyType>sys_oper_type</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncomboboxtree</xtype>
+		<fieldLabel>所属模块</fieldLabel>
+		<propertyName>module</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<allowBlank type="boolean">true</allowBlank>
+		<tree>
+			<loader>
+				<dataUrl>system/listModuleTree.html</dataUrl>
+			</loader>
+		</tree>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>创建人</fieldLabel>
+		<propertyName>createUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>修改人</fieldLabel>
+		<propertyName>modifyUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>description</name>
+		<fieldLabel>资源描述</fieldLabel>
+		<columnWidth type="integer">3</columnWidth>
+	</items>
+</uicfg>

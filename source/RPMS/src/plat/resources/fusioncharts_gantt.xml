@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chart manageResize='1' showTaskNames='1' dateFormat='yyyy/mm/dd'
+		tooltextBgColor='FFFFFF' tooltextBorderColor='333333' ganttWidthPercent='80'
+		ganttLineColor='99CC00' ganttLineAlpha='20' baseFontColor='333333'
+		gridBorderColor='99CC00' taskBarRoundRadius='4' showShadow='0'>
+	<categories bgColor='333333' fontColor='99cc00' isBold='1' fontSize='14' showHoverBand='0' >
+		<category start="" end="" name="Gantt" />
+	</categories>
+	<categories bgColor='99cc00' bgAlpha='40' fontColor='333333' align='center' fontSize='10' isBold='1' hoverBandColor='a8d326' hoverBandAlpha='20'>
+	</categories>
+	<processes positionInGrid='right' align='center' headerText='Process'
+			fontColor='333333' fontSize='11' isBold='1' isAnimated='1'
+			bgColor='99cc00' headerbgColor='333333' headerFontColor='9ece0c'
+			headerFontSize='16' bgAlpha='40' hoverBandColor='9ece0c' hoverBandAlpha='30' >
+	</processes>
+	<dataTable showProcessName='1' fontColor='333333'
+			fontSize='11' isBold='1' headerFontColor='000000' headerFontSize='11' >
+	</dataTable>
+	<tasks width='10'>
+	</tasks>
+	<connectors color='99cc00' thickness='2'>
+	</connectors>
+	<milestones>
+	</milestones>
+</chart>

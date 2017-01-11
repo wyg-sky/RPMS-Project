@@ -1,0 +1,129 @@
+<uicfg desc="项目立项管理查询表单">
+    <columns type="integer">5</columns>
+    <autoHeight type="boolean">true</autoHeight>
+    <defaultFunction type="object">this.manager.query</defaultFunction>
+    <defaultScope type="object">this.manager</defaultScope>
+    <defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">90</labelWidth>
+    </defaults>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>项目登记编号</fieldLabel>
+        <name>projectCode</name>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>项目名称</fieldLabel>
+        <name>projectName</name>
+    </items>
+    <items>
+        <xtype>lioncomboboxyearfield</xtype>
+        <name>projectAnnual</name>
+        <fieldLabel>项目年度</fieldLabel>
+        <format>Y</format>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>项目类型</fieldLabel>
+        <name>proejctType</name>
+        <keyType>rpms_project_type</keyType>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>机构</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+     <items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>specialty</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>专业</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                    <type>"zy"</type>
+                </baseParams >
+            </loader>
+        </tree>
+        <listeners type="object">{
+            'select':function(){
+                this.manager.queryForm.findField("business.id").setValue({value:'',text:''});
+                this.manager.queryForm.findField("business.id").clearValue();
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+     <items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>business</propertyName>
+        <hiddenName>id</hiddenName>
+        <hidden type="object">true</hidden>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>业务</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                    <type>"yw"</type>
+                </baseParams >
+            </loader>
+            <root>
+                <id>root_id</id>
+                <text>专业业务</text>
+            </root>
+        </tree>
+    </items>
+     <items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>chargeDepartnent</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <fieldLabel>专业审查部门</fieldLabel>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listOrgTree.html</dataUrl>
+                <baseParams>
+                    <hql>"  and org.organiztionType ='0002'" </hql>
+                </baseParams >
+            </loader>
+            <root>
+                <id>root_id</id>
+            </root>
+        </tree>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>状态</fieldLabel>
+        <name>status</name>
+        <keyType>rpms_designate_status</keyType>
+    </items>
+    <items>
+    	<xtype>lioncombobox</xtype>
+        <keyType>rpms_dispatch_stage</keyType>
+        <fieldLabel>项目目前进展</fieldLabel>
+        <name>projectStage</name>
+    </items>
+</uicfg>

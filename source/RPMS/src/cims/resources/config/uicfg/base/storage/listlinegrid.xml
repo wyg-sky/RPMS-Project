@@ -1,0 +1,99 @@
+<uicfg desc="仓库管理员列表">
+	<rownum type="boolean">true</rownum>
+	<orderBy>custodianUser.id asc</orderBy>
+	<editable type="object">true</editable>
+	<showLookButton type="object">false</showLookButton>
+	<showEditButton type="object">false</showEditButton>
+	<showCopyButton type="object">false</showCopyButton>
+	<allowPage type="boolean">false</allowPage>
+	<clicksToEdit type="integer">1</clicksToEdit>
+	<store>
+		<url>base/listStorageLine.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>mainId</name>
+		</fields>
+		<fields>
+			<name>custodianUser.id</name>
+		</fields>
+		<fields>
+			<name>custodianUser.userName</name>
+		</fields>
+		<fields>
+			<name>department.id</name>
+		</fields>
+		<fields>
+			<name>department.name</name>
+		</fields>
+		<fields>
+			<name>phonenum</name>
+		</fields>
+		<fields>
+			<name>email</name>
+		</fields>
+		<fields>
+			<name>remark</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>保管人</header>
+			<dataIndex>custodianUser.userName</dataIndex>
+			<cascadeIndex>custodianUser.id</cascadeIndex>
+			<editor>
+				<!--<xtype>liontextfield</xtype>
+				<allowBlank type="boolean">true</allowBlank>-->
+				<xtype>lioncombowindow</xtype>
+				<propertyName>custodianUser</propertyName>
+				<hiddenName>id</hiddenName>
+				<hiddenDisplayName>userName</hiddenDisplayName>
+				<displayField>userName</displayField>
+				<window>
+					<viewPathOfUi>system/user/list</viewPathOfUi>
+					<title>人员选择</title>
+				</window>
+			</editor>
+		</columns>
+		<columns>
+			<header>部门</header>
+			<dataIndex>department.name</dataIndex>
+			<cascadeIndex>department.id</cascadeIndex>
+		</columns>
+		<columns>
+			<header>联系电话</header>
+			<dataIndex>phonenum</dataIndex>
+			<width type="integer">60</width>
+			<editor>
+				<xtype>liontextfield</xtype>
+				<regex type="object">/^(((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)$/</regex>
+				<regexText>请按如下格式输入：[区号-]7~8位直拨号码[1~4位分机号码]或者11位手机号码</regexText>
+			</editor>
+		</columns>
+		<columns>
+			<header>email</header>
+			<dataIndex>email</dataIndex>
+			<width  type="integer">75</width>
+			<editor>
+				<xtype>liontextfield</xtype>
+				<regex type="object">/^([a-zA-Z0-9]+[_|\-|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\-|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/</regex>
+				<regexText>请输入正确的email格式：例 abc@163.com</regexText>
+			</editor>
+		</columns>
+		<columns>
+			<header>备注</header>
+			<dataIndex>remark</dataIndex>
+			<editor>
+				<xtype>liontextarea</xtype>
+			</editor>
+		</columns>
+	</cm>
+</uicfg>

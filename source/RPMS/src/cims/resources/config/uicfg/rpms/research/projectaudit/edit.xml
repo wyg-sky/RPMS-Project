@@ -1,0 +1,97 @@
+<uicfg desc="项目立项管理编辑主界面">
+    <objectName>businessObject</objectName>
+    <winWidth type="integer">1000</winWidth>
+    <winHeight type="integer">650</winHeight>
+    <component>
+        <items>
+            <object>editTbar</object>
+            <xtype>liontoolbar</xtype>
+            <viewPath>rpms/research/projectaudit/edittbar</viewPath>
+        </items>
+        <items>
+            <object>editForm</object>
+            <xtype>lionform</xtype>
+            <title>项目基础信息</title>
+            <height type="object">550</height>
+            <viewPath>rpms/research/projectaudit/editform</viewPath>
+        </items>
+        <items>
+            <object>fundsGrid</object>
+            <xtype>lioneditorgrid</xtype> 
+            <title>项目资金明细</title>
+            <height type="object">550</height>
+            <isLine type="boolean">true</isLine>
+            <lineName>projectFunds</lineName>
+            <fkId type="object">this.mainId</fkId>
+            <viewPath>rpms/research/projectaudit/listfundsgrid</viewPath>
+        </items>
+        <items>
+            <object>stageGrid</object>
+            <xtype>lioneditorgrid</xtype> 
+            <title>项目进度阶段</title>
+            <height type="object">550</height>
+            <isLine type="boolean">true</isLine>
+            <lineName>projectStages</lineName>
+            <fkId type="object">this.mainId</fkId>
+            <viewPath>rpms/research/projectaudit/liststagesgrid</viewPath>
+        </items>
+        <items>
+            <object>partnerGrid</object>
+            <xtype>lioneditorgrid</xtype> 
+            <title>合作协作单位</title>
+            <height type="object">550</height>
+            <isLine type="boolean">true</isLine>
+            <lineName>projectPartners</lineName>
+            <fkId type="object">this.mainId</fkId>
+            <viewPath>rpms/research/projectaudit/listpartnergrid</viewPath>
+        </items>
+        <items>
+            <object>talentGrid</object>
+            <xtype>lioneditorgrid</xtype> 
+            <title>项目人员</title>
+            <height type="object">550</height>
+            <isLine type="boolean">true</isLine>
+            <lineName>projectTalent</lineName>
+            <fkId type="object">this.mainId</fkId>
+            <viewPath>rpms/research/projectaudit/listtalentgrid</viewPath>
+        </items>
+        <items>
+            <object>costTotalGrid</object>
+            <xtype>lioneditorgrid</xtype> 
+            <title>费用归集</title>
+            <height type="object">550</height>
+            <width type="object">1380</width>
+            <isLine type="boolean">true</isLine>
+            <lineName>projectCostTotal</lineName>
+            <fkId type="object">this.mainId</fkId>
+            <viewPath>rpms/research/projectaudit/listcosttotalgrid</viewPath>
+        </items>
+        <items>
+            <object>uploadFileGrid</object>
+            <xtype>lionuploadfile</xtype>
+            <title>附件上传</title>
+            <isLine type="boolean">true</isLine>
+            <lineName>documents</lineName>
+            <fkId type="object">this.mainId</fkId>
+            <fkName>obj.docFk</fkName>
+            <columnWidth type="integer">3</columnWidth>
+            <allowUpload type="object">false</allowUpload>
+            <allowDelete type="object">false</allowDelete>
+            <height type="object">550</height>
+        </items>
+    </component>
+    <container>
+        <items>editTbar</items>
+        <items>
+            <xtype>tabpanel</xtype>
+            <activeTab type="object">0</activeTab>
+            <items>editForm</items>
+            <items>fundsGrid</items>
+            <items>stageGrid</items>
+            <items>partnerGrid</items>
+            <items>talentGrid</items>
+            <items>costTotalGrid</items>
+            <items>uploadFileGrid</items>
+        </items>
+    </container>
+</uicfg>

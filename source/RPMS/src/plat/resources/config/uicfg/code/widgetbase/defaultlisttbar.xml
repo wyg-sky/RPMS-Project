@@ -1,0 +1,23 @@
+<uicfg desc="组件管理按钮">
+	<items>-></items>
+	<items>
+		<text>新增</text>
+		<iconCls>create-icon</iconCls>
+		<handler type="object">this.manager.addDefaultWidget</handler>
+	</items>
+	<items>
+		<text>删除</text>
+		<iconCls>delete-selected-icon</iconCls>
+		<handler type="object">this.deleteLineClick</handler>
+	</items>
+	<items>
+		<text>保存</text>
+		<iconCls>save-icon</iconCls>
+		<handler type="object">this.manager.saveDefaultWidgetSetting</handler>
+	</items>
+	<items>
+		<text>关闭</text>
+		<iconCls>close-icon</iconCls>
+		<handler type="object">this.closeClick</handler>
+	</items>
+</uicfg>

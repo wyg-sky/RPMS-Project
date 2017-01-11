@@ -1,0 +1,22 @@
+<uicfg desc="生成页面布局">
+	<winWidth type="integer">650</winWidth>
+	<component>
+		<items>
+			<object>panelParamsTbar</object>
+			<xtype>liontoolbar</xtype>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/panelinfo/panelstbar</viewPath>
+		</items>
+		<items>
+			<object>panelParamsGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<height type="integer">200</height>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/panelinfo/panelsgrid</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>panelParamsTbar</items>
+		<items>panelParamsGrid</items>
+	</container>
+</uicfg>

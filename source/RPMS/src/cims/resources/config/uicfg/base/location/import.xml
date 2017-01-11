@@ -1,0 +1,14 @@
+<uicfg desc="导入设备">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">300</winWidth>
+	<component>
+		<items>
+			<object>importForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>base/location/importform</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>importForm</items>
+	</container>
+</uicfg>

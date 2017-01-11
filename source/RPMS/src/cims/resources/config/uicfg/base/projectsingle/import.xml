@@ -1,0 +1,14 @@
+<uicfg desc="导入单项工程信息">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">330</winWidth>
+	<component>
+		<items>
+			<object>importForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>base/projectsingle/importform</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>importForm</items>
+	</container>
+</uicfg>

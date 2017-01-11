@@ -1,0 +1,364 @@
+<uicfg desc="专利编辑表单">
+	<loadtUrl>rpms/loadResearchPatent.html</loadtUrl>
+	<submitUrl>rpms/saveResearchPatent.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<defaultFocusIndex>-1</defaultFocusIndex>
+	<defaults>
+		<border type="object">false</border>
+		<layout>column</layout>
+		<labelWidth type="object">80</labelWidth>
+	</defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>专利名称</fieldLabel>
+		<name>patentName</name>
+		<maxLength type="object">66</maxLength>
+		<columnWidth type="object">3</columnWidth>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>orgtree</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<hidden type="object">false</hidden>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                this.findField("platInstitution.id").setValue({value:'',text:''});
+                this.findField("platInstitution.id").clearValue();
+            },
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },
+            scope:this
+        }
+        </listeners>
+        <value type="object">
+			{"value" : PlatUtil.currentCenterId, "text" : PlatUtil.currentCenterName}
+		</value>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.findField("platCenter.id"));
+            }, 'beforeselect':function(combo, record){
+            	return record.isLeaf();
+            },scope:this
+        }
+        </listeners>
+    </items>
+	
+	<items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>specialty</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>专业</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                    <type>"zy"</type>
+                </baseParams >
+            </loader>
+        </tree>
+        <listeners type="object">{
+            'select':function(){
+                this.findField("business.id").setValue({value:'',text:''});
+                this.findField("business.id").clearValue();
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+     <items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>business</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>业务</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                	<parentId> </parentId>
+                </baseParams >
+            </loader>
+            <root>
+                <id>root_id</id>
+                <text>专业业务</text>
+            </root>
+        </tree>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.findField("specialty.id"));
+            },scope:this
+        }
+        </listeners>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>专利号</fieldLabel>
+		<name>patentNum</name>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>专利发明人</fieldLabel>
+		<name>invnetor</name>
+		<maxLength type="object">66</maxLength>
+		<columnWidth type="object">3</columnWidth>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>申请日期</fieldLabel>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+		<name>applyDate</name>
+	</items>
+	
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>分类</fieldLabel>
+		<name>type</name>
+		<keyType>rpms_patent_type</keyType>
+		<allowBlank type="object">false</allowBlank>	
+	</items>
+	<items>
+        <xtype>lioncomboboxyearfield</xtype>
+        <name>year</name>
+        <fieldLabel>年度</fieldLabel>
+        <format>Y</format>
+        <value type="object">new Date().format('Y')</value>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<!-- <keyType>rpms_patent_agent</keyType> -->
+		<fieldLabel>专利代理公司</fieldLabel>
+		<name>patentAnent</name>
+		<columnWidth type="object">3</columnWidth>
+		<allowBlank type="object">true</allowBlank>
+		<hidden type="object">true</hidden>
+		<maxLength type="object">66</maxLength>
+	</items>
+	<items>
+		<xtype>lioncombowindow</xtype>
+		<fieldLabel>依托项目</fieldLabel>
+		<propertyName>projectId</propertyName>
+		<hiddenName>id</hiddenName>
+		<hidden type="object">true</hidden>
+		<displayField>projectName</displayField>
+		<hiddenDisplayName>projectName</hiddenDisplayName>
+		<window>
+			<viewPathOfUi>rpms/research/project/list</viewPathOfUi>
+			<!-- <hql type="object">" and status='0007'"</hql> -->
+			<title>项目选择</title>
+			<width type="integer">1100</width>
+			<height type="integer">550</height>
+		</window>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>专利权人</fieldLabel>
+		<name>patentee</name>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>专利权人地址</fieldLabel>
+		<name>patenteeAddress</name>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>技术领域</fieldLabel>
+		<name>technosphere</name>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>专利说明</fieldLabel>
+		<name>abstracts</name>
+		<columnWidth type="integer">3</columnWidth>
+		<hidden type="object">false</hidden>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>受理日期</fieldLabel>
+		<name>acceptDate</name>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>授权时间</fieldLabel>
+		<name>privilegeDate</name>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+	</items>
+	<items>
+	    <xtype>liondatefield</xtype>
+		<name>protectDate</name>
+		<fieldLabel>到期时间</fieldLabel>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+		<allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+     	 'select':function(date){
+     	 		this.manager.changeProtectStatus();
+			},
+			scope:this
+		}
+        </listeners>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>valid</hiddenName>
+		<fieldLabel>专利状态</fieldLabel>
+		<keyType>rpms_patent_protect_status</keyType>
+		<value>0001</value>
+		<hidden type="object">true</hidden>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<fieldLabel>官费</fieldLabel>
+		<name>publicExpense</name>
+		<unitText>(元)</unitText>
+		<!-- <regex type="object">/^[0-9]*[1-9][0-9]*$/</regex>
+		<regexText>请输入正整数</regexText> -->
+		<maxLength type="object">66</maxLength>
+		<unitWidth type="object">40</unitWidth>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<fieldLabel>申请费</fieldLabel>
+		<name>applicationFee</name>
+		<unitText>(元)</unitText>
+		<!-- <regex type="object">/^[0-9]*[1-9][0-9]*$/</regex>
+		<regexText>请输入正整数</regexText> -->
+		<maxLength type="object">66</maxLength>
+		<unitWidth type="object">40</unitWidth>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<fieldLabel>登记费</fieldLabel>
+		<name>regFee</name>
+		<unitText>(元)</unitText>
+		<!-- <regex type="object">/^[0-9]*[1-9][0-9]*$/</regex>
+		<regexText>请输入正整数</regexText> -->
+		<maxLength type="object">66</maxLength>
+		<unitWidth type="object">40</unitWidth>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<fieldLabel>年费</fieldLabel>
+		<name>annualFee</name>
+		<unitText>(元)</unitText>
+		<!-- <regex type="object">/^[0-9]*[1-9][0-9]*$/</regex>
+		<regexText>请输入正整数</regexText> -->
+		<maxLength type="object">66</maxLength>
+		<unitWidth type="object">40</unitWidth>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<fieldLabel>税费</fieldLabel>
+		<name>taxes</name>
+		<unitText>(元)</unitText>
+		<!-- <regex type="object">/^[0-9]*[1-9][0-9]*$/</regex>
+		<regexText>请输入正整数</regexText> -->
+		<maxLength type="object">66</maxLength>
+		<unitWidth type="object">40</unitWidth>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>状态</fieldLabel>
+		<name>status</name>
+		<keyType>rpms_patent_status</keyType>
+		<editable type="object">false</editable>
+		<value>0001</value>
+		<readOnly type="boolean">true</readOnly>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<name>createUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改人</fieldLabel>
+		<name>modifyUser</name>
+		<value type="object">FW.userName</value>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>protectedAlert</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">true</allowBlank>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>spreadType</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">true</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>备注</fieldLabel>
+		<name>remark</name>
+		<columnWidth type="integer">3</columnWidth>
+	</items>
+</uicfg>

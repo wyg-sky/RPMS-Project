@@ -1,0 +1,185 @@
+<uicfg desc="用户管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>code asc</orderBy>
+	<editable type="object">false</editable>
+	<store>
+		<url type="object"><![CDATA[
+				"system/listUser.html?listType=" + this.manager.listType
+			]]>
+		</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>version</name>
+		</fields>
+		<fields>
+			<name>userName</name>
+		</fields>
+		<fields>
+			<name>loginName</name>
+		</fields>
+		<fields>
+			<name>code</name>
+		</fields>
+		<fields>
+			<name>checkCode</name>
+		</fields>
+		<fields>
+			<name>sex</name>
+		</fields>
+		<fields>
+			<name>birthday</name>
+			<convert type="object">
+				FW.convertDate
+			</convert>
+		</fields>
+		<fields>
+			<name>organization.id</name>
+		</fields>
+		<fields>
+			<name>organization.name</name>
+		</fields>
+		<fields>
+			<name>department.id</name>
+		</fields>
+		<fields>
+			<name>department.name</name>
+		</fields>
+		<fields>
+			<name>jobTitle</name>
+		</fields>
+		<fields>
+			<name>positionLevel</name>
+		</fields>
+		<fields>
+			<name>jobName</name>
+		</fields>
+		<fields>
+			<name>country</name>
+		</fields>
+		<fields>
+			<name>address</name>
+		</fields>
+		<fields>
+			<name>email</name>
+		</fields>
+		<fields>
+			<name>isEnabled</name>
+		</fields>
+		<fields>
+			<name>isExpired</name>
+		</fields>
+		<fields>
+			<name>isLocked</name>
+		</fields>
+		<fields>
+			<name>isPortal</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>姓名</header>
+			<dataIndex>userName</dataIndex>
+			<editor>
+				<xtype>textfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>用户名</header>
+			<dataIndex>loginName</dataIndex>
+			<width type="object">60</width>
+			<editor>
+				<xtype>textfield</xtype>
+				<showDetail type="boolean">true</showDetail>
+			</editor>
+		</columns>
+		<columns>
+			<header>工号</header>
+			<dataIndex>code</dataIndex>
+			<width type="object">60</width>
+			<editor>
+				<xtype>textfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>考勤号</header>
+			<dataIndex>checkCode</dataIndex>
+			<width type="object">60</width>
+			<editor>
+				<xtype>textfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>性别</header>
+			<dataIndex>sex</dataIndex>
+			<width type="object">40</width>
+			<keyType>cims_sex</keyType>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<keyType>cims_sex</keyType>
+			</editor>
+		</columns>
+		<columns>
+			<header>生日</header>
+			<dataIndex>birthday</dataIndex>
+			<hidden type="object">true</hidden>
+			<editor>
+				<xtype>liondatefield</xtype>
+				<format>Y-m-d H:i:s</format>
+			</editor>
+		</columns>
+		<columns>
+			<header>单位</header>
+			<dataIndex>organization.name</dataIndex>
+			<cascadeIndex>organization.id</cascadeIndex>
+			<hidden type='object'>true</hidden>
+			<width type="object">100</width>
+			<editor>
+				<xtype>orgtree</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>部门</header>
+			<dataIndex>department.name</dataIndex>
+			<cascadeIndex>department.id</cascadeIndex>
+			<width type="object">80</width>
+			<editor>
+				<xtype>depttree</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>是否启用</header>
+			<dataIndex>isEnabled</dataIndex>
+			<width type="object">60</width>
+			<keyType>cims_boolean</keyType>
+		</columns>
+		<columns>
+			<header>是否过期</header>
+			<dataIndex>isExpired</dataIndex>
+			<hidden type="object">true</hidden>
+			<keyType>cims_boolean</keyType>
+		</columns>
+		<columns>
+			<header>是否锁定</header>
+			<dataIndex>isLocked</dataIndex>
+			<hidden type="object">true</hidden>
+			<width type="object">60</width>
+			<keyType>cims_boolean</keyType>
+		</columns>
+		<columns>
+			<header>是否门户</header>
+			<dataIndex>isPortal</dataIndex>
+			<hidden type="object">true</hidden>
+			<keyType>cims_boolean</keyType>
+		</columns>
+	</cm>
+</uicfg>

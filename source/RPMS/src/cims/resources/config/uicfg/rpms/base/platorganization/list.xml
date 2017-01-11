@@ -1,0 +1,20 @@
+<uicfg desc="单位管理">
+	<objectName>department</objectName>
+	<editView>rpms/base/platorganization/edit</editView>
+	<component>
+		<items>
+			<object>dataGrid</object>
+			<xtype>liontreegrid</xtype>
+			<viewPath>rpms/base/platorganization/listgrid</viewPath>
+		</items>
+		<items>
+			<object>listTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/base/platorganization/listtbar</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>listTbar</items>
+		<items>dataGrid</items>
+	</container>
+</uicfg>

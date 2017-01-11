@@ -1,0 +1,12 @@
+<uicfg desc="传真收发明细按钮">
+	<items>-></items>
+	<items>
+		<text>保存通知回执信息</text>
+		<iconCls>save-icon</iconCls>
+		<handler type="object">
+			function() {
+				this.manager.saveLineRecord();
+			}
+		</handler>
+	</items>
+</uicfg>

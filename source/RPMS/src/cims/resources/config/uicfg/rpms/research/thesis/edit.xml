@@ -1,0 +1,68 @@
+<uicfg desc="论文编辑主界面">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">1000</winWidth>
+	<component>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/research/thesis/edittbar</viewPath>
+		</items>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/research/thesis/editform</viewPath>
+		</items>
+		<items>
+			<object>listthesisbar</object>
+			<xtype>liontoolbar</xtype>
+			<hidden type="object">true</hidden>
+			<viewPath>rpms/research/thesis/listthesisbar</viewPath>
+			<autoWidth type="object">true</autoWidth>
+		</items>
+		<items>
+			<object>listthesisgrid</object>
+			<isLine type="boolean">true</isLine>
+			<lineName>ResearchThesisTalent</lineName>
+			<fkName>obj.mainId</fkName>
+			<xtype>lioneditorgrid</xtype>
+			<viewPath>rpms/research/thesis/listthesisgrid</viewPath>
+			<height type="object">120</height>
+			<autoWidth type="object">true</autoWidth>
+			<hidden type="object">true</hidden>
+		</items>
+		<items>
+			<object>dataLineGrid</object>
+			<isLine type="boolean">true</isLine>
+            <title>获奖信息</title>
+			<lineName>ResearchThesisLine</lineName>
+			<fkName>obj.mainId</fkName>
+			<xtype>lioneditorgrid</xtype>
+			<viewPath>rpms/research/thesis/listlinegrid</viewPath>
+			<height type="object">250</height>
+			<autoWidth type="object">true</autoWidth>
+		</items>
+		<items>
+			<object>uploadFileGrid</object>
+			<xtype>lionuploadfile</xtype>
+            <title>附件</title>
+			<isLine type="boolean">true</isLine>
+			<lineName>documents</lineName>
+			<fkId type="object">this.mainId</fkId>
+			<fkName>obj.docFk</fkName>
+			<columnWidth type="integer">3</columnWidth>
+			<allowUpload type="object">this.editable</allowUpload>
+			<allowDelete type="object">this.editable</allowDelete>
+			<height type="object">250</height>
+		</items>
+	</component>
+    <container>
+        <items>editTbar</items>
+        <items>editForm</items>
+        <items>
+            <xtype>tabpanel</xtype>
+            <activeTab type="object">0</activeTab>
+			<items>dataLineGrid</items>
+            <items>uploadFileGrid</items>
+        </items>
+    </container>
+</uicfg>

@@ -1,0 +1,274 @@
+<uicfg desc="工作面信息管理录入表单">
+	<loadtUrl>base/loadFace.html</loadtUrl>
+	<submitUrl>base/saveFace.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">4</columns>
+	<height type="integer">290</height>
+	<defaults>
+		<border type="object">false</border>
+		<layout>column</layout>
+		<labelWidth type="object">100</labelWidth>
+	</defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<items>
+		<xtype>lioncodefield</xtype>
+		<name>faceCd</name>
+		<fieldLabel>工作面编号</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+		<type>1</type>
+		<params>
+			<code>BaseFace</code>
+		</params>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>faceName</name>
+		<fieldLabel>工作面名称</fieldLabel>
+		<maxLength type="integer">30</maxLength>
+		<maxLengthText>工作面名称最大允许输入30个字符</maxLengthText>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>faceSimp</name>
+		<fieldLabel>工作面简拼</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<name>reportDate</name>
+		<fieldLabel>日期</fieldLabel>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>reportStatus</hiddenName>
+		<fieldLabel>状态</fieldLabel>
+		<keyType>base_prds_commit_status</keyType>
+		<value>0001</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>coalSeamCd</name>
+		<fieldLabel>所属煤层</fieldLabel>
+		<keyType>base_prds_coalSeam</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>coalSeamGrpCd</hiddenName>
+		<fieldLabel>煤层分组</fieldLabel>
+		<keyType>base_prds_coalseam_grp</keyType>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>coalSeamKindCd</hiddenName>
+		<fieldLabel>煤层性质</fieldLabel>
+		<keyType>base_prds_coalseam_kind</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<name>faceLength</name>
+		<fieldLabel>面长</fieldLabel>
+		<maxLength>12</maxLength>
+		<anchor>90%</anchor>
+		<regex type="object">/^(\d+(\.\d+)?)|(\-1)$/</regex>
+		<unitText>(米)</unitText>
+		<unitWidth type="object">20</unitWidth>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<name>boostLength</name>
+		<fieldLabel>总长</fieldLabel>
+		<maxLength>12</maxLength>
+		<anchor>90%</anchor>
+		<regex type="object">/^(\d+(\.\d+)?)|(\-1)$/</regex>
+		<unitText>(米)</unitText>
+		<unitWidth type="object">20</unitWidth>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<name>repeatSpan</name>
+		<fieldLabel>循环进度</fieldLabel>
+		<maxLength>12</maxLength>
+		<anchor>90%</anchor>
+		<regex type="object">/^(\d+(\.\d+)?)|(\-1)$/</regex>
+		<regexText>请正确输入数字</regexText>
+		<unitText>(米)</unitText>
+		<unitWidth type="object">20</unitWidth>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>horizontalCd</hiddenName>
+		<fieldLabel>所属水平面</fieldLabel>
+		<keyType>base_prds_horizontal_f</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>mineAreaCd</hiddenName>
+		<fieldLabel>所属采区</fieldLabel>
+		<keyType>base_prds_mine_area</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>suppCd</hiddenName>
+		<fieldLabel>支护方式</fieldLabel>
+		<keyType>base_prds_supp</keyType>
+		<hidden type='object'>true</hidden>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>declineCd</hiddenName>
+		<fieldLabel>落煤方式</fieldLabel>
+		<keyType>base_prds_decline</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>ifCal</hiddenName>
+		<fieldLabel>是否核子秤计量</fieldLabel>
+		<keyType>base_prds_is_include</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<name>coalDeep</name>
+		<fieldLabel>煤厚</fieldLabel>
+		<maxLength>12</maxLength>
+		<anchor>90%</anchor>
+		<regex type="object">/^(\d+(\.\d+)?)|(\-1)$/</regex>
+		<regexText>请正确输入数字</regexText>
+		<unitText>(米)</unitText>
+		<unitWidth type="object">20</unitWidth>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<name>specificGravity</name>
+		<fieldLabel>容重</fieldLabel>
+		<maxLength>12</maxLength>
+		<anchor>80%</anchor>
+		<regex type="object">/^(\d+(\.\d+)?)|(\-1)$/</regex>
+		<regexText>请正确输入数字</regexText>
+		<unitText>(t/m3)</unitText>
+		<unitWidth type="object">40</unitWidth>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<name>obliquity</name>
+		<fieldLabel>倾角</fieldLabel>
+		<maxLength>12</maxLength>
+		<anchor>90%</anchor>
+		<regex type="object">/^(\d+(\.\d+)?)|(\-1)$/</regex>
+		<unitText>(度)</unitText>
+		<unitWidth type="object">20</unitWidth>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<name>coalStore</name>
+		<fieldLabel>可采储量</fieldLabel>
+		<maxLength>12</maxLength>
+		<anchor>80%</anchor>
+		<regex type="object">/^(\d+(\.\d+)?)|(\-1)$/</regex>
+		<regexText>请正确输入数字</regexText>
+		<unitText>(万吨)</unitText>
+		<unitWidth type="object">40</unitWidth>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<name>productionDate</name>
+		<fieldLabel>投产日期</fieldLabel>
+		<format>Y-m-d</format>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<name>beginDate</name>
+		<fieldLabel>开始日期</fieldLabel>
+		<format>Y-m-d</format>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<name>endDate</name>
+		<fieldLabel>结束日期</fieldLabel>
+		<format>Y-m-d</format>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>statusCd</hiddenName>
+		<fieldLabel>生产状态</fieldLabel>
+		<keyType>base_prds_status</keyType>
+		<value>0001</value>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>valid</hiddenName>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+		<value>1</value>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createUser</name>
+		<fieldLabel>创建人</fieldLabel>
+		<value type="object">FW.userName</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyUser</name>
+		<fieldLabel>修改人</fieldLabel>
+		<value type="object">FW.userName</value>
+		<hidden type="boolean">true</hidden>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+		<hidden type="boolean">true</hidden>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>remark</name>
+		<fieldLabel>备注</fieldLabel>
+		<columnWidth type="integer">4</columnWidth>
+	</items>
+</uicfg>

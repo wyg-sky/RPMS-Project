@@ -1,0 +1,117 @@
+<uicfg desc="数据导入配置表单">
+	<loadtUrl>system/loadImportSetting.html</loadtUrl>
+	<submitUrl>system/saveImportSetting.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="integer">4</columns>
+	<height type="integer">115</height>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="boolean">true</hidden>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>name</name>
+		<fieldLabel>名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>code</name>
+		<fieldLabel>编码</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>status</hiddenName>
+		<keyType>cims_effective</keyType>
+		<fieldLabel>是否有效</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<value>1</value>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>isLine</hiddenName>
+		<keyType>cims_boolean</keyType>
+		<fieldLabel>是否子表</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<value>0</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>tableName</name>
+		<fieldLabel>数据库表</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<listeners type="object">{
+			'change' : function(field,newValue,oldValue) {
+				this.manager.loadLineFormTable(this,newValue);
+			},
+			scope : this
+		}</listeners>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>tempTableName</name>
+		<fieldLabel>临时表</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>importUtilClass</name>
+		<fieldLabel>工具类</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<value>com.lion.system.excel.service.ExcelConvert</value>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<name>startRow</name>
+		<fieldLabel>起始行</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<allowNegative type="boolean">false</allowNegative>
+		<allowDecimals type="boolean">false</allowDecimals>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>precautions</name>
+		<fieldLabel>注意事项</fieldLabel>
+		<columnWidth type="integer">4</columnWidth>
+		<height type="integer">40</height>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<hidden type="boolean">true</hidden>
+		<fieldLabel>创建人</fieldLabel>
+		<propertyName>createUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<hidden type="boolean">true</hidden>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<hidden type="boolean">true</hidden>
+		<fieldLabel>修改人</fieldLabel>
+		<propertyName>modifyUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<hidden type="boolean">true</hidden>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+</uicfg>

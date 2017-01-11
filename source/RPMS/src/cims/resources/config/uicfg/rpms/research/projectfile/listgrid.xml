@@ -1,0 +1,72 @@
+<uicfg desc="通知管理管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>createTime desc</orderBy>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<store>
+		<url>rpms/listProjectFile.html</url>
+		<autoLoad type="object">true</autoLoad>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>fileCode</name>
+		</fields>
+		<fields>
+			<name>fileName</name>
+		</fields>
+		<fields>
+			<name>tileType</name>
+		</fields>
+		<fields>
+			<name>fileTime</name>
+		</fields>
+		<fields>
+			<name>approveUser</name>
+		</fields>
+		<fields>
+			<name>status</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>文件编号</header>
+			<dataIndex>fileCode</dataIndex>
+			<width type="integer">50</width>
+		</columns>
+		<columns>
+			<header>文件名称</header>
+			<dataIndex>fileName</dataIndex>
+		</columns>
+		<columns>
+			<header>文件类型</header>
+			<dataIndex>tileType</dataIndex>
+			<keyType>rpms_notice_type</keyType>
+			<width type="integer">50</width>
+		</columns>
+		<columns>
+			<header>文件时间</header>
+			<dataIndex>fileTime</dataIndex>
+			<width type="integer">50</width>
+		</columns>
+		<columns>
+			<header>审批人</header>
+			<dataIndex>approveUser</dataIndex>
+			<width type="integer">50</width>
+		</columns>
+		<columns>
+			<header>状态</header>
+			<dataIndex>status</dataIndex>
+			<keyType>rpms_file_status</keyType>
+			<width type="integer">50</width>
+		</columns>
+	</cm>
+</uicfg>

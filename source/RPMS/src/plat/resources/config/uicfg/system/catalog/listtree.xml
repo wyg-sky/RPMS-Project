@@ -1,0 +1,20 @@
+<uicfg desc="选择树">
+	<title>分类查询</title>
+	<iconCls>user-icon</iconCls>
+	<autoHeight type="object">true</autoHeight>
+	<autoWidth type="object">false</autoWidth>
+	<autoScroll type="object">false</autoScroll>
+	<nodeClick type="object">false</nodeClick>
+	<loader>
+		<dataUrl>
+		</dataUrl>
+	</loader>
+	<root type="object">
+		{
+			draggable: false,
+    		children: [
+			   {text : '按角色',iconCls:'role-icon',id:'role_root',type:'role',leaf:false,url:'system/listRoleTree.html'}
+			]
+	   }
+	</root>
+</uicfg>

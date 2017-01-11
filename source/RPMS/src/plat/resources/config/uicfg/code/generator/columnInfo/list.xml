@@ -1,0 +1,16 @@
+<uicfg desc="字段管理">
+	<items>
+		<object>listtbar</object>
+		<xtype>liontoolbar</xtype>
+		<manager type="object">this</manager>
+		<viewPath>code/generator/columnInfo/listtbar</viewPath>
+	</items>
+	<items>
+		<object>dataGrid</object>
+		<xtype>lioneditorgrid</xtype>
+		<height type="object">500</height>
+		<manager type="object">this</manager>
+		<bodyStyle type="object">'border-width:0px 0px 0px 0px;'</bodyStyle>
+		<viewPath>code/generator/columnInfo/listgrid</viewPath>
+	</items>
+</uicfg>

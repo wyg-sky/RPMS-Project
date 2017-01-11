@@ -1,0 +1,123 @@
+<uicfg desc="代码子表编辑">
+	<loadtUrl>system/loadCodeLine.html</loadtUrl>
+	<submitUrl>system/saveCodeLine.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">2</columns>
+	<height type="integer">260</height>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>codeid</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+		<value type="object">this.manager.codeId</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>itemValue</name>
+		<fieldLabel>编码</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>itemText</name>
+		<fieldLabel>显示文本</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncolorfield</xtype>
+		<name>renderColor</name>
+		<fieldLabel>渲染颜色</fieldLabel>
+		<value>#000000</value>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>valid</hiddenName>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+		<value>1</value>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<name>itemLevel</name>
+		<fieldLabel>代码级数</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>codetree</xtype>
+		<fieldLabel>父节点</fieldLabel>
+		<propertyName>parent</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>itemText</hiddenDisplayName>
+		<valueField>id</valueField>
+		<params>
+			<codeId type="object">this.manager.codeId</codeId>
+		</params>
+		<listeners type="object">{
+			'select':function(combox, fireValue, node){
+				if(fireValue == this.manager.editForm.findField("id").getValue()) {
+					combox.clearValue();
+					Ext.MessageBox.show({
+						title : '提示',
+						msg : '父节点不能为当前节点！',
+						buttons : Ext.MessageBox.OK,
+						icon : Ext.MessageBox.WARNING ,
+						scope : this
+					});
+				}
+			},scope:this
+		}</listeners>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<name>sortorder</name>
+		<fieldLabel>排序</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>创建人</fieldLabel>
+		<propertyName>createUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>修改人</fieldLabel>
+		<propertyName>modifyUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>description</name>
+		<fieldLabel>描述</fieldLabel>
+		<columnWidth type="integer">2</columnWidth>
+	</items>
+</uicfg>

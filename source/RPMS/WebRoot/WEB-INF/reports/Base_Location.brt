@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<report version="5.0">
+	<head>
+		<property name="type">0</property>
+		<name><![CDATA[Base_Location]]></name>
+		<dataSets>
+			<dataSet name="location" type="DB_SQL" >
+				<property name="dataSource">Oracle_120</property>
+				<property name="desc"><![CDATA[使用地点]]></property>
+				<property name="query"><![CDATA[select t.location_cd, t.location_name, t.valid from base_location t where 1 = 1 ${condition}]]></property>
+				<property name="beginRow">0</property>
+				<property name="endRow">0</property>
+			</dataSet>
+		</dataSets>
+		<parameters/>
+		<variables>
+			<variable name="condition" type="">
+				<property name="default"></property>
+				<property name="desc"></property>
+				<property name="valueCalc">false</property>
+			</variable>
+		</variables>
+	</head>
+	<body>
+		<sheet id="sheet1">
+			<page>
+			</page>
+			<grid row="3" col="3">
+				<properties>
+				</properties>
+				<rows>
+					<row id="1">
+						<property name="type">1</property>
+						<property name="height">30</property>
+					</row>
+					<row id="2">
+						<property name="type">2</property>
+						<property name="height">30</property>
+					</row>
+					<row id="3">
+					</row>
+				</rows>
+				<columns>
+					<column id="1">
+						<property name="width">120</property>
+					</column>
+					<column id="2">
+						<property name="width">120</property>
+					</column>
+					<column id="3">
+						<property name="width">120</property>
+					</column>
+				</columns>
+				<cells>
+					<cell id="1,1" type="0" colspan="3" >
+						<property name="value"><![CDATA[使用地点]]></property>
+						<property name="font-size">14</property>
+						<property name="bold">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="2,1" type="0" >
+						<property name="value"><![CDATA[地点编码]]></property>
+						<property name="bold">0</property>
+						<property name="background"><![CDATA[='226,226,226']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,2" type="0" >
+						<property name="value"><![CDATA[地点名称]]></property>
+						<property name="bold">0</property>
+						<property name="background"><![CDATA[='226,226,226']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,3" type="0" >
+						<property name="value"><![CDATA[是否有效]]></property>
+						<property name="bold">0</property>
+						<property name="background"><![CDATA[='226,226,226']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,1" type="0" >
+						<property name="value"><![CDATA[=location.select(LOCATION_CD)]]></property>
+						<property name="ext-direction">3</property>
+						<property name="align">0</property>
+						<property name="indent">2</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="2">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,2" type="0" >
+						<property name="value"><![CDATA[=location.select(LOCATION_NAME)]]></property>
+						<property name="align">0</property>
+						<property name="indent">2</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,3" type="0" >
+						<property name="value"><![CDATA[=location.select(VALID)]]></property>
+						<property name="view"><![CDATA[=map(list("0","1"),list("无效","有效"))]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+				</cells>
+			</grid>
+		</sheet>
+	</body>
+</report>

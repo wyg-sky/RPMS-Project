@@ -1,0 +1,75 @@
+<uicfg desc="博士后课题管理查询表单">
+	<columns type="integer">5</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<!-- <items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                this.findField("platInstitution.id").setValue({value:'',text:''});
+                this.findField("platInstitution.id").clearValue();
+                this.manager.query();
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.findField("platCenter.id"));
+                this.manager.query();
+            },scope:this
+        }
+        </listeners>
+    </items> -->
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>课题名称</fieldLabel>
+		<name>topic</name>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>开始日期</fieldLabel>
+		<name>startDate</name>
+		<allowBlank type="boolean">true</allowBlank>
+		<format>Y-m-d</format>
+		<listeners type="object">{
+			select:function(){
+				this.manager.query();	
+			},
+			scope:this
+		}</listeners>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>状态</fieldLabel>
+		<keyType>rpms_postdoctor_status</keyType>
+		<name>state</name>
+		<listeners type="object">{
+			select:function(){
+				this.manager.query();	
+			},
+			scope:this
+		}</listeners>
+	</items>
+</uicfg>

@@ -1,0 +1,129 @@
+<uicfg desc="创新计划编辑表单">
+	<loadtUrl>rpms/loadProjectPlanned.html</loadtUrl>
+	<submitUrl>rpms/saveProjectPlanned.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<height type="integer">320</height>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<hidden type="object">true</hidden>
+		<propertyName>platInstitution</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>platName</hiddenDisplayName>
+	    <value type="object">
+			{"value" : PlatUtil.currentCenterId, "text" : PlatUtil.currentCenterName}
+	    </value>
+	</items>
+    <items>
+        <xtype>lioncomboboxyearfield</xtype>
+        <name>plannedYear</name>
+        <fieldLabel>计划年度</fieldLabel>
+        <format>Y</format>
+        <value type="object">new Date().format('Y')</value>
+		<allowBlank type="object">false</allowBlank>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>计划名称</fieldLabel>
+		<name>plannedName</name>
+		<allowBlank type="object">false</allowBlank>
+        <columnWidth type="integer">2</columnWidth>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>计划类型</fieldLabel>
+		<name>plannedType</name>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>编制单位</fieldLabel>
+		<name>plannedDept</name>
+	</items>
+	<items>
+	    <xtype>liondatefield</xtype>
+		<name>plannedTime</name>
+		<fieldLabel>编制时间</fieldLabel>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>计划等级</fieldLabel>
+		<name>grade</name>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>实施状态</fieldLabel>
+		<name>plannedStatus</name>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>valid</hiddenName>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+		<value>1</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombowindow</xtype>
+		<fieldLabel>所属规划</fieldLabel>
+		<propertyName>planId</propertyName>
+		<hiddenName>id</hiddenName>
+		<displayField>planName</displayField>
+		<hiddenDisplayName>planName</hiddenDisplayName>
+		<window>
+			<viewPathOfUi>rpms/research/projectplan/list</viewPathOfUi>
+			<hql type="object">" and obj.valid='1'"</hql>
+			<title>规划选择</title>
+			<width type="integer">1100</width>
+			<height type="integer">550</height>
+		</window>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<name>createUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>发展目标</fieldLabel>
+		<name>plannedTarget</name>
+		<height type="object">60</height>
+		<columnWidth type="integer">3</columnWidth>
+		<allowBlank type="object">true</allowBlank>
+	</items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>主要内容</fieldLabel>
+		<name>mainContent</name>
+		<height type="object">60</height>
+		<columnWidth type="integer">3</columnWidth>
+		<allowBlank type="object">true</allowBlank>
+	</items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>备注</fieldLabel>
+		<name>remark</name>
+		<height type="object">60</height>
+		<columnWidth type="integer">3</columnWidth>
+	</items>
+</uicfg>

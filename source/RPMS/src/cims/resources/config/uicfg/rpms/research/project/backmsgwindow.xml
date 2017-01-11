@@ -1,0 +1,15 @@
+<uicfg desc="项目立项退回">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">300</winWidth>
+	<winHeight type="integer">150</winHeight>
+	<component>
+		<items>
+			<object>backmsgform</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/research/project/backmsgform</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>backmsgform</items>
+	</container>
+</uicfg>

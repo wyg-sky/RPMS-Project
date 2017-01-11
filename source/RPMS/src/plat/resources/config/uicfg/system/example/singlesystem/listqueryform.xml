@@ -1,0 +1,20 @@
+<uicfg desc="单点链接查询器界面编辑">
+	<columns type="integer">3</columns>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>systemName</name>
+		<fieldLabel>系统名称</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>systemType</hiddenName>
+		<fieldLabel>系统类型</fieldLabel>
+		<keyType>system_single_type</keyType>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>systemEnable</hiddenName>
+		<fieldLabel>是否启用</fieldLabel>
+		<keyType>boolean</keyType>
+	</items>
+</uicfg>

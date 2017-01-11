@@ -1,0 +1,20 @@
+<uicfg desc="栏目管理编辑">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">680</winWidth>
+	<component>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>system/catalog/editform</viewPath>
+		</items>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>system/catalog/edittbar</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+	</container>
+</uicfg>

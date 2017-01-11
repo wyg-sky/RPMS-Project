@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- Configuration for the default package. -->
+	<package name="default" extends="struts-default">
+		<global-results>
+			<result name="default" type="redirectAction">login</result>
+			<result name="error">/framework/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping
+				exception="org.springframework.dao.DataAccessException"
+				result="dataAccessFailure" />
+			<exception-mapping
+				exception="com.lion.system.license.engine.LicenseVerifiedException"
+				result="licenseVerifiedFailure" />
+			<exception-mapping
+				exception="com.lion.system.license.engine.LicenseNotFoundException"
+				result="licenseVerifiedFailure" />
+		</global-exception-mappings>
+		<action name="login" class="loginAction" method="login">
+			<result name="success11" type="redirectAction">framework/portal</result>
+			<result name="success12" type="redirectAction">framework/portal</result>
+			<result name="success21">/systemmain.jsp</result>
+			<result name="success22">/treemain.jsp</result>
+			<result name="success31">/desktop.jsp</result>
+			<result name="success32">/main.jsp</result>
+			<result name="success41">/modulemain.jsp</result>
+			<result name="success42">/modulemain.jsp</result>
+			<result name="input">/login.jsp</result>
+			<result name="error">/framework/error.jsp</result>
+		</action>
+		
+		<action name="list*Tree" class="{1}Action" method="listTree"></action>
+		
+		<action name="list*" class="{1}Action" method="list"></action>
+		<action name="load*" class="{1}Action" method="load"></action>
+		<action name="saveAndDo*Task" class="{1}Action" method="saveAndDoTask"></action>
+		<action name="saveAndSubmit*" class="{1}Action" method="saveAndSubmit"></action>
+		<action name="save*" class="{1}Action" method="save"></action>
+		<action name="delete*" class="{1}Action" method="delete"></action>
+		<action name="change*Status" class="{1}Action" method="changeStatus"></action>
+		<action name="check*Status" class="{1}Action" method="checkStatus"></action>
+	</package>
+	
+	<package name="framework" extends="default" namespace="/framework" >
+		<!-- 门户开始 -->
+		<action name="portal" class="PortalAction" method="portal">
+			<result name="success" >/framework/portal/main.jsp</result>
+			<result name="treemain" type="redirect">../treemain.jsp</result>
+		</action>
+		<action name="getHtml" class="PortalAction" method="getHtml"/>
+		<!-- 更改布局 -->
+		<action name="changeScale" class="PortalAction" method="changeScale"/>
+		<!-- 更改顺序 -->
+		<action name="changeOrder" class="PortalAction" method="changeOrder"/>
+		<!-- 密码修改 -->
+		<action name="changePassword" class="PortalAction" method="changePassword"/>
+		<!-- 单点登录用户名密码修改  -->
+		<action name="singleSetting" class="PortalAction" method="singleSetting"/>
+		<!-- 门户结束 -->
+		
+		<action name="lockWindow" class="logoutAction" method="lockWindow"></action>
+		<action name="unLockWindow" class="loginAction" method="unLockWindow"></action>
+		<action name="loadPrivileges" class="loginAction" method="loadPrivileges"></action>
+		<action name="loadSystems" class="loginAction" method="loadSystems"></action>
+		<action name="loadOnLineUser" class="loginAction" method="loadOnLineUser"></action>
+		<action name="loadModuleChildren" class="loginAction" method="loadModuleChildren"></action>
+		
+		<!-- 动态加载js -->
+		<action name="loadJs" class="jsLoaderAction" method="loadJs"></action>
+		<!-- 退出 -->
+		<action name="out" class="logoutAction" method="loginOut">
+			<result name="success">/login.jsp</result>
+		</action>
+		
+		<action name="loadUiConfig" class="WidgetsAction" method="loadUiConfig"></action>
+		<action name="weatherReport" class="WeatherReportAction" method="weatherReport">
+			<result name="success1">/framework/portal/weather/weather.jsp</result>
+			<result name="success2">/framework/portal/weather/weatherInfo.jsp</result>
+		</action>
+	</package>
+	
+	<!--系统管理-->
+	<package name="system" extends="default" namespace="/system" >
+		<!--用户开始-->
+		<action name="userChangePsw" class="UserAction" method="userChangePsw"></action>
+		<action name="userChangePW" class="UserAction" method="userChangePW"></action>
+		<action name="changeThemeSetting" class="UserAction" method="changeThemeSetting"></action>
+		<!--用户结束-->
+		
+		<!--权限管理开始-->
+		<action name="listPowerTree" class="RoleAction" method="listPowerTree"></action>
+		<action name="saveRolePower" class="RoleAction" method="saveRolePower"></action>
+		<action name="getDataPowerOfOrg" class="RoleAction" method="getDataPowerOfOrg"></action>
+		<action name="saveDataPowerOfOrg" class="RoleAction" method="saveDataPowerOfOrg"></action>
+		<action name="getDataPowerOfDept" class="RoleAction" method="getDataPowerOfDept"></action>
+		<action name="saveDataPowerOfDept" class="RoleAction" method="saveDataPowerOfDept"></action>
+		<!--权限管理结束-->
+		
+		<!--快捷方式开始-->
+		<action name="listShortCutsForUser" class="ShortCutAction" method="listShortCutsForUser"></action>
+		<action name="listShortCutsForCustom" class="ShortCutAction" method="listShortCutsForCustom"></action>
+		<action name="saveShortCutsForUser" class="ShortCutAction" method="saveShortCutsForUser"></action>
+		<!--快捷方式结束-->
+		
+		<!--单点系统开始-->
+		<action name="listSingleSystemsForAuthorize" class="SingleSystemAction" method="listSingleSystemsForAuthorize"></action>
+		<action name="saveSingleSystemsForRole" class="SingleSystemAction" method="saveSingleSystemsForRole"></action>
+		<!--快捷方式结束-->
+		
+		<!--代码开始-->
+		<action name="listCodeType" class="CodeAction" method="listCodeType"></action>
+		<action name="listCodeTypeTree" class="CodeLineAction" method="listTypeTree"></action>
+		<!--代码结束-->
+		
+		<!--单位开始-->
+		<action name="listOrganizationForCombolist" class="OrganizationAction" method="listForCombolist"></action>
+		<!--单位结束-->
+		
+		<!--消息开始-->
+		<action name="listViewCondition" class="UserNoticeAction" method="listViewCondition"></action>
+		<!--消息结束-->
+		
+		<!--编码生成开始-->
+		<action name="genBusinessCode" class="CodeGeneratorAction" method="genBusinessCode"></action>
+		<action name="genOrderCode" class="CodeGeneratorAction" method="genOrderCode"></action>
+		<action name="genTreeCode" class="CodeGeneratorAction" method="genTreeCode"></action>
+		<action name="genSortOrder" class="CodeGeneratorAction" method="genSortOrder"></action>
+		<!--编码生成结束-->
+		
+		<!--文档管理开始-->
+		<action name="moveDocuments" class="DocumentAction" method="moveDocuments"></action>
+		<action name="upLoadImage" class="DocumentAction" method="upLoadImage"></action>
+		<action name="upLoadPicture" class="DocumentAction" method="upLoadPicture"></action>
+		<action name="upLoadDocument" class="DocumentAction" method="upLoadDocument"></action>
+		<action name="downloadDocument" class="DocumentAction" method="downloadDocument">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${fileObjectFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="previewDocument" class="DocumentAction" method="previewDocument"></action>
+		<action name="deletePreViewFile" class="DocumentAction" method="deletePreViewFile"></action>
+		<action name="genUploadPathById" class="DocumentTypeAction" method="genUploadPathById"></action>
+		<!--文档管理结束-->
+		
+		<!--操作日志管理开始-->
+		<action name="deleteLastYearLogs" class="OperateLogAction" method="deleteLastYearLogs"></action>
+		<action name="deleteLastMonthLogs" class="OperateLogAction" method="deleteLastMonthLogs"></action>
+		<action name="deleteAllLogs" class="OperateLogAction" method="deleteAllLogs"></action>
+		<!--操作日志管理结束-->
+		
+		<!--数据导入导出开始-->
+		<action name="importData" class="ExcelAction" method="importData"></action>
+		<action name="exportData" class="ExcelAction" method="exportData">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">excelInputStream</param>
+				<param name="contentDisposition">attachment;filename="${excelFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="checkSettingCode" class="ImportSettingAction" method="checkSettingCode"></action>
+		<!--数据导入导出结束-->
+		
+		<action name="loadTableInfo" class="GenerateInfoAction" method="loadTableInfo"></action>
+		<action name="loadMainInfoFormDutyId" class="GenerateInfoAction" method="loadMainInfoFormDutyId"></action>
+		<action name="listLineInfoFormDutyId" class="GenerateInfoAction" method="listLineInfoFormDutyId"></action>
+		<action name="saveGeneratorInfo" class="GenerateInfoAction" method="saveGeneratorInfo"></action>
+		<action name="saveMainTable" class="GenerateInfoAction" method="saveMainTable"></action>
+		<action name="saveLineTable" class="GenerateInfoAction" method="saveLineTable"></action>
+		<action name="listAllPojos" class="GenerateInfoAction" method="listAllPojos"></action>
+		<action name="listColumnsForSelect" class="GenerateInfoAction" method="listColumnsForSelect"></action>
+		<action name="listFieldsForSelect" class="GenerateInfoAction" method="listFieldsForSelect"></action>
+		<action name="listColumnsForModel" class="GenerateInfoAction" method="listColumnsForModel"></action>
+		<action name="listColumnsForWidget" class="GenerateInfoAction" method="listColumnsForWidget"></action>
+		<action name="listClassForSelect" class="GenerateInfoAction" method="listClassForSelect"></action>
+		<action name="checkGenerateInfo" class="GenerateInfoAction" method="checkGenerateInfo"></action>
+		<action name="getSystemNameAndPackageName" class="GenerateInfoAction" method="getSystemNameAndPackageName"></action>
+		<action name="generatePage" class="GenerateInfoAction" method="generatePage"></action>
+		<action name="generateWidget" class="GenerateInfoAction" method="generateWidget"></action>
+		<action name="generateTbar" class="GenerateInfoAction" method="generateTbar"></action>
+		<action name="generateTbarByTemplate" class="GenerateInfoAction" method="generateTbarByTemplate"></action>
+		<action name="listButtonByTbar" class="GenerateInfoAction" method="listButtonByTbar"></action>
+		<action name="deleteWidgetFile" class="GenerateInfoAction" method="deleteWidgetFile"></action>
+		<action name="decideViewPath" class="GenerateInfoAction" method="decideViewPath"></action>
+		<action name="addFormToGrid" class="GenerateInfoAction" method="addFormToGrid"></action>
+		<action name="readFileByViewPath" class="GenerateInfoAction" method="readFileByViewPath"></action>
+		<action name="saveFileByViewPath" class="GenerateInfoAction" method="saveFileByViewPath"></action>
+		<action name="listDefaultWidgetsAndPage" class="GenerateInfoAction" method="listDefaultWidgetsAndPage"></action>
+		<action name="isServer" class="GenerateInfoAction" method="isServer"></action>
+		<action name="downloadAllFiles" class="GenerateInfoAction" method="downloadAllFiles">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${zipFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+		<action name="makeUpParamsToWidget" class="WidgetParamAction" method="makeUpParamsToWidget"></action>
+		<action name="listPageParams" class="WidgetParamAction" method="listPageParams"></action>
+		<action name="listWidgetParams" class="WidgetParamAction" method="listWidgetParams"></action>
+		<action name="listDefaultWidgets" class="WidgetBaseAction" method="listDefaultWidgets"></action>
+		<action name="saveDefaultWidgets" class="WidgetBaseAction" method="saveDefaultWidgets"></action>
+		<action name="loadPathImage" class="LionImageFieldAction" method="loadPathImage"></action>
+	</package>
+</struts>

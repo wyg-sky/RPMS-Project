@@ -1,0 +1,159 @@
+<uicfg desc="季度检查项目管理编辑表单">
+	<loadtUrl>rpms/loadInnovateQuarterCheck.html</loadtUrl>
+	<submitUrl>rpms/saveInnovateQuarterCheck.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<height type="integer">475</height>
+	<defaultFocusIndex>-1</defaultFocusIndex>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<hidden type="object">true</hidden>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<!-- <items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>分中心</fieldLabel>
+		<name>platCenter</name>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>分中心机构</fieldLabel>
+		<name>platInstitution</name>
+	</items> -->
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>分类</fieldLabel>
+		<name>type</name>
+		<keyType>rpms_check_type</keyType>
+		<value>01</value>
+		<allowBlank type="object">false</allowBlank>
+		<listeners type="object">
+			{
+             	'beforequery' : function(e){
+                   var combo = e.combo;
+                   combo.store.filterBy(function(record){
+	                	var id = record.get("id");
+		                return id.length==2 || id.length==1;
+             	 	});
+	             	combo.onLoad();
+	             	return false;
+           		},select:function(){
+           			this.findField("checkItem").setValue('');
+           		},scope:this
+            }
+		</listeners>
+	</items>
+	
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>检查项目</fieldLabel>
+		<name>checkItem</name>
+		<keyType>rpms_check_type</keyType>
+		<value>0101</value>
+		<allowBlank type="object">false</allowBlank>
+		<listeners type="object">
+			{
+                 beforequery : function(e){
+                 	var combo = e.combo;
+           			var typeValue = this.findField("type").getValue();
+                   	combo.store.filterBy(function(record){
+	                	var id = record.get("id");
+	                	if(id.length == 2 || typeValue==''){
+	                		return false;
+	                	}
+		                return id.substring(0,2)==typeValue;
+             	 	});
+	             	combo.onLoad();
+	             	return false;
+           		},scope:this
+            }
+		</listeners>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>检查内容</fieldLabel>
+		<name>checkContent</name>
+		<columnWidth type="object">3</columnWidth>
+		<maxLength type="object">333</maxLength>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>评分标准</fieldLabel>
+		<name>checkStandar</name>
+		<columnWidth type="object">3</columnWidth>
+		<maxLength type="object">333</maxLength>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>工作要求</fieldLabel>
+		<name>requirement</name>
+		<columnWidth type="object">3</columnWidth>
+		<maxLength type="object">333</maxLength>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>应有资料</fieldLabel>
+		<name>requireData</name>
+		<columnWidth type="object">3</columnWidth>
+		<maxLength type="object">333</maxLength>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<fieldLabel>标准分</fieldLabel>
+		<name>standarScore</name>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>是否有效</fieldLabel>
+		<name>valid</name>
+		<value>1</value>
+		<keyType>cims_effective</keyType>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<name>createUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改人</fieldLabel>
+		<name>modifyUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>备注</fieldLabel>
+		<name>remark</name>
+		<columnWidth type="integer">3</columnWidth>
+		<maxLength type="object">666</maxLength>
+	</items>
+</uicfg>

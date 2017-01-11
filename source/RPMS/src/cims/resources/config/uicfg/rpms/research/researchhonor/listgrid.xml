@@ -1,0 +1,127 @@
+<uicfg desc="荣誉管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>honorDate desc,createTime desc</orderBy>
+	<editable type="object">false</editable>
+    <showEditButton type="object">Ext.isAllowed('rpms_researchhonor_edit')</showEditButton>
+	<showCopyButton type="object">false</showCopyButton>
+	<store>
+		<url>rpms/listResearchHonor.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+            <name>organization.id</name>
+        </fields>
+        <fields>
+            <name>organization.name</name>
+        </fields>
+        <fields>
+            <name>honorNum</name>
+        </fields>
+		<fields>
+			<name>honorName</name>
+		</fields>
+		<fields>
+			<name>honorType</name>
+		</fields>
+		<fields>
+			<name>grade</name>
+		</fields>
+		<fields>
+			<name>chargeDepartnent</name>
+		</fields>
+		<fields>
+			<name>honorDate</name>
+		</fields>
+		<!--
+		<fields>
+            <name>certificateNumber</name>
+        </fields>
+        -->
+        <fields>
+            <name>honorReward</name>
+        </fields>
+		<fields>
+            <name>projectId</name>
+        </fields>
+		<fields>
+            <name>createTime</name>
+        </fields>
+        <fields>
+            <name>assistOrg</name>
+        </fields>
+        <fields>
+            <name>remark</name>
+        </fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+            <header>单位</header>
+            <dataIndex>organization.name</dataIndex>
+			<width type="integer">70</width>
+        </columns>
+        <columns>
+            <header>证书编号</header>
+            <dataIndex>honorNum</dataIndex>
+        </columns>
+		<columns>
+			<header>荣誉名称</header>
+			<dataIndex>honorName</dataIndex>
+		</columns>
+		<columns>
+			<header>荣誉分类</header>
+			<dataIndex>honorType</dataIndex>
+			<keyType>rpms_hornor_type</keyType>
+			<width type="integer">50</width>
+		</columns>
+		<columns>
+			<header>荣誉等级</header>
+			<dataIndex>grade</dataIndex>
+			<keyType>rpms_hornor_grade</keyType>
+			<width type="integer">50</width>
+		</columns>
+		<columns>
+			<header>颁奖单位</header>
+			<dataIndex>chargeDepartnent</dataIndex>
+		</columns>
+		<columns>
+			<header>获奖时间</header>
+			<dataIndex>honorDate</dataIndex>
+			<width type="integer">50</width>
+		</columns>
+		<!--
+		<columns>
+            <header>证书编号</header>
+            <dataIndex>certificateNumber</dataIndex>
+            <hidden type="object">true</hidden>
+        </columns>
+        -->
+        <columns>
+            <header>奖励金额(万元)</header>
+            <dataIndex>honorReward</dataIndex>
+            <hidden type="object">true</hidden>
+        </columns>
+		<columns>
+			<header>项目名称</header>
+			<dataIndex>projectId</dataIndex>
+		</columns>
+		<columns>
+            <header>协助单位</header>
+            <dataIndex>assistOrg</dataIndex>
+            <hidden type="object">true</hidden>
+        </columns>
+		<columns>
+            <header>备注</header>assistOrg
+            <dataIndex>remark</dataIndex>
+            <hidden type="object">true</hidden>
+        </columns>
+	</cm>
+</uicfg>

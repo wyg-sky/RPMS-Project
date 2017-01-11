@@ -1,0 +1,63 @@
+<uicfg desc="快捷方式管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>moduleId.code asc</orderBy>
+	<showCopyButton type="boolean">false</showCopyButton>
+	<editable type="object">false</editable>
+	<store>
+		<url>system/listShortCut.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>name</name>
+		</fields>
+		<fields>
+			<name>type</name>
+		</fields>
+		<fields>
+			<name>url</name>
+		</fields>
+		<fields>
+			<name>icon</name>
+		</fields>
+		<fields>
+			<name>description</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>名称</header>
+			<dataIndex>name</dataIndex>
+			<width type="integer">80</width>
+		</columns>
+		<columns>
+			<header>类型</header>
+			<dataIndex>type</dataIndex>
+			<width type="integer">80</width>
+			<keyType>sys_shortcut_type</keyType>
+		</columns>
+		<columns>
+			<header>URL</header>
+			<dataIndex>url</dataIndex>
+			<width type="integer">150</width>
+		</columns>
+		<columns>
+			<header>图标</header>
+			<dataIndex>icon</dataIndex>
+			<width type="integer">150</width>
+		</columns>
+		<columns>
+			<header>描述</header>
+			<dataIndex>description</dataIndex>
+			<width type="integer">150</width>
+		</columns>
+	</cm>
+</uicfg>

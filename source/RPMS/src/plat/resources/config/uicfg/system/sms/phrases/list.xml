@@ -1,0 +1,22 @@
+<uicfg desc="常用短信管理">
+	<objectName>businessObject</objectName>
+	<editView>system/sms/phrases/edit</editView>
+	<deleteUrl>system/deletePhrases.html</deleteUrl>
+	<component>
+		<items>
+			<object>dataGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<region>center</region>
+			<viewPath>system/sms/phrases/listgrid</viewPath>
+		</items>
+		<items>
+			<object>listTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>system/sms/phrases/listtbar</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>listTbar</items>
+		<items>dataGrid</items>
+	</container>
+</uicfg>

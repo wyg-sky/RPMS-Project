@@ -1,0 +1,92 @@
+<uicfg desc="短信发送表单">
+	<loadtUrl>system/loadMessages.html</loadtUrl>
+	<submitUrl>system/saveMessages.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">2</columns>
+	<height type="integer">250</height>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>发送人</fieldLabel>
+		<propertyName>sendUserId</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>sendTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>发送时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>sendMethod</name>
+		<fieldLabel>发送方式</fieldLabel>
+		<hidden type="boolean">true</hidden>
+		<value>0001</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>sendStatus</name>
+		<fieldLabel>发送状态</fieldLabel>
+		<hidden type="boolean">true</hidden>
+		<value>0001</value>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>sendContent</name>
+		<fieldLabel>发送内容</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<columnWidth type="integer">2</columnWidth>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>receivers</name>
+		<fieldLabel>接收人</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<columnWidth type="integer">2</columnWidth>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>创建人</fieldLabel>
+		<propertyName>createUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>修改人</fieldLabel>
+		<propertyName>modifyUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+</uicfg>

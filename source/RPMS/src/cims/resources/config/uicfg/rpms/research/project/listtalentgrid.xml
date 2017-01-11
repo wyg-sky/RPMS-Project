@@ -1,0 +1,156 @@
+<uicfg desc="项目人员明细列表">
+    <rownum type="boolean">true</rownum>
+    <orderBy>id asc</orderBy>
+    <editable type="object">true</editable>
+    <showLookButton type="object">false</showLookButton>
+    <showEditButton type="object">false</showEditButton>
+    <showCopyButton type="object">false</showCopyButton>
+    <allowPage type="boolean">false</allowPage>
+    <clicksToEdit type="integer">1</clicksToEdit>
+    <bodyStyle type="object">'border-width:1px 1px 1px 1px;'</bodyStyle>
+    <store>
+        <url>rpms/listProjectTalent.html</url>
+        <baseParams>
+            <fieldValues type="object">this.mainId</fieldValues>
+            <operatorValues>=</operatorValues>  
+            <queryFields>obj.mainId</queryFields>
+        </baseParams>
+        <fields>
+            <name>id</name>
+        </fields>
+        <fields>
+            <name>mainId</name>
+        </fields>
+        <fields>
+            <name>projectDivision</name>
+        </fields>
+        <fields>
+            <name>talentId.id</name>
+        </fields>
+        <fields>
+            <name>talentId.talentName</name>
+        </fields>
+        <fields>
+            <name>talentId.platCenter.platName</name>
+        </fields>
+        <fields>
+            <name>talentId.platInstitution.platName</name>
+        </fields>
+        <fields>
+            <name>talentId.organization.name</name>
+        </fields>
+        <fields>
+            <name>talentId.deptIn.name</name>
+        </fields>
+        <fields>
+            <name>talentId.adminiPosition</name>
+        </fields>
+        <fields>
+            <name>talentId.position</name>
+        </fields>
+        <fields>
+            <name>talentId.grade</name>
+        </fields>
+        <fields>
+            <name>talentId.title</name>
+        </fields>
+        <fields>
+            <name>talentId.discipline</name>
+        </fields>
+    </store>
+    <sm>
+        <xtype>checkboxsm</xtype>
+        <singleSelect type="boolean">false</singleSelect>
+    </sm>
+    <cm>
+        <defaults>
+            <sortable type="boolean">true</sortable>
+        </defaults>
+        <columns>
+            <header>项目分工</header>
+            <dataIndex>projectDivision</dataIndex>
+            <keyType>rpms_project_work</keyType>
+            <editor>
+                <xtype>lioncombobox</xtype>
+                <dataIndex>projectDivision</dataIndex>
+                <keyType>rpms_project_work</keyType>
+            </editor>
+        </columns>
+        <columns>
+            <header>人员</header>
+            <dataIndex>talentId.talentName</dataIndex>
+            <cascadeIndex>talentId.id</cascadeIndex>
+            <width type="object">140</width>
+            <editor>
+                <xtype>lioncombowindow</xtype>
+                <fieldLabel>人才选择</fieldLabel>
+                <propertyName>talentId</propertyName>
+                <hiddenName>id</hiddenName>
+                <displayField>talentName</displayField>
+                <hiddenDisplayName>talentName</hiddenDisplayName>
+                <allowBlank type="boolean">true</allowBlank>
+                <queryParam type="object">['talentName']</queryParam>  
+                <window>
+                    <viewPathOfUi>rpms/base/researchtalent/list</viewPathOfUi>
+                    <title>人才选择</title>
+                </window>
+                <listeners type="object"><![CDATA[{
+                    'after_comfirm_click' : function(records) {
+                        var record = this.manager.talentGrid.getSelectionModel().getSelected();
+                        record.set('talentId.position',records[0].get('position'));
+                        record.set('talentId.grade',records[0].get('grade'));
+                        record.set('talentId.title',records[0].get('title'));
+                        record.set('talentId.discipline',records[0].get('discipline'));
+                        record.set('talentId.platCenter.platName',records[0].get('platCenter.platName'));
+                        record.set('talentId.platInstitution.platName',records[0].get('platInstitution.platName'));
+                        record.set('talentId.organization.name',records[0].get('organization.name'));
+                        record.set('talentId.deptIn.name',records[0].get('deptIn.name'));
+                        record.set('talentId.adminiPosition',records[0].get('adminiPosition'));
+                    },
+                    scope : this
+                }]]>
+                </listeners>
+            </editor>
+        </columns>
+         <columns>
+            <header>分中心</header>
+            <dataIndex>talentId.platCenter.platName</dataIndex>
+        </columns>
+         <columns>
+            <header>分中心机构</header>
+            <dataIndex>talentId.platInstitution.platName</dataIndex>
+        </columns>
+         <columns>
+            <header>所在单位</header>
+            <dataIndex>talentId.organization.name</dataIndex>
+        </columns>
+         <columns>
+            <header>所在部门</header>
+            <dataIndex>talentId.deptIn.name</dataIndex>
+        </columns>
+         <columns>
+            <header>部门职务</header>
+            <dataIndex>talentId.adminiPosition</dataIndex>
+        </columns>
+        <columns>
+            <header>机构职务</header>
+            <dataIndex>talentId.position</dataIndex>
+            <keyType>rpms_institution_duty</keyType>
+        </columns>
+        <columns>
+            <header>职称</header>
+            <dataIndex>talentId.title</dataIndex>
+            <keyType>rpms_title</keyType>
+        </columns>
+        <columns>
+            <header>学科专业</header>
+            <dataIndex>talentId.discipline</dataIndex>
+        </columns>
+    </cm>
+    <tbar>
+        <xtype>liontoolbar</xtype>
+        <hidden type="object">!this.manager.editable</hidden>
+        <manager type="object">this.manager</manager>
+        <viewPath>rpms/research/project/listtalentbar</viewPath>      
+    </tbar>
+</uicfg>

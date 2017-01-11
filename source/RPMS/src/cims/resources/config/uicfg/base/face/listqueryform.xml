@@ -1,0 +1,32 @@
+<uicfg desc="工作面信息管理查询表单">
+	<columns type="integer">5</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<defaults>
+		<layout>column</layout>
+		<labelWidth type="integer">70</labelWidth>
+	</defaults>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+	    <xtype>liontextfield</xtype>
+		<name>faceCd</name>
+		<fieldLabel>工作面编号</fieldLabel>
+    </items>
+	<items>
+	    <xtype>liontextfield</xtype>
+		<name>faceName</name>
+		<fieldLabel>工作面名称</fieldLabel>
+    </items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>reportStatus</hiddenName>
+		<fieldLabel>状态</fieldLabel>
+		<keyType>base_prds_commit_status</keyType>
+	</items>
+</uicfg>

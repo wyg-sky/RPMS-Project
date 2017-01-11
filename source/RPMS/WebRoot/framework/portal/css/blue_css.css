@@ -1,0 +1,115 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	margin: 0;
+	padding: 0;
+}
+
+/*TAB页样式BEGIN*/
+
+/*TAB页样式END*/
+.big_bale {
+	margin: 0;
+}
+
+.tab_top {
+	text-align: left;
+	font-size: 12px;
+	background: url(../images/tab_top_center.gif) repeat-x center;
+	font-weight: bold;
+	line-height: 20px;
+	height: 30px;
+	color: #2e759e;
+}
+
+.tab_top img {
+	border: none;
+}
+
+.tab_search {
+	border-bottom: 1px solid #ccdeec;
+	border-top: 1px solid #fdfeff;
+	background-color: #f0f5f9;
+	height: 30px;
+	line-height: 24px;
+	color: #366184;
+	font-size: 12px;
+}
+
+.tab_sc{
+	height: 30px;
+	line-height: 24px;
+	color: #366184;
+	font-size: 12px
+}
+
+
+.tab_search input {
+	width: 90px;
+	padding-left: 5px;
+	color: #366184;
+	line-height: 18px;
+	border: #7ca7c9 solid 1px;
+}
+
+.tab_search img {
+	border: none;
+}
+
+/*table部分样式*/
+.tableborder {
+	background-color: #ADC5E5;
+	margin: 0;
+	padding: 0;
+}
+
+.text_lan {
+	font-family: "宋体";
+	font-size: 12px;
+	text-align: center;
+	border-left:none;
+	font-size: 12px;
+	color: #396f99;
+	height: 26px;
+	line-height: 26px;
+	text-decoration: none;
+}
+
+.tr_change_color_white {
+	line-height: 24px;
+	background-color: #FFFFFF;
+	border-left: none; font-size : 12px;
+	color: #4f88b4;
+	text-align: center;
+	font-size: 12px;
+}
+
+.tr_change_color_blue {
+	line-height: 24px;
+	border-left: none;
+	background-color: #f4f8fe;
+	font-size: 12px;
+	color: #4f88b4;
+	text-align: center;
+}
+
+.text_caption {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #0033CC;
+	text-decoration: none;
+}
+
+.altbg2 {
+	line-height: 24px;
+	background-color: #F2F6F9;
+	background-image: url("../images/table_top_bg.jpg");
+	background-repeat: repeat-x;
+	margin: 2px;
+}
+
+.altbg2-1 {
+	line-height: 24px;
+	background-color: #fff;
+	margin: 2px;
+}

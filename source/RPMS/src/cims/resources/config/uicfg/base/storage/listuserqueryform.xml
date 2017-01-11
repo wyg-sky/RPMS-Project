@@ -1,0 +1,72 @@
+<uicfg desc="用户管理查询表单">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<defaults>
+		<border type="object">false</border>
+		<layout>column</layout>
+		<labelWidth type="object">50</labelWidth>
+	</defaults>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>userName</name>
+		<fieldLabel>姓名</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>loginName</name>
+		<fieldLabel>用户名</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>code</name>
+		<fieldLabel>工号</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>bopomofo</name>
+		<fieldLabel>全拼</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>sex</name>
+		<fieldLabel>性别</fieldLabel>
+		<keyType>cims_sex</keyType>
+	</items>
+	<items>
+		<xtype>orgtree</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<allowBlank type="boolean">true</allowBlank>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+		<hidden type='object'>true</hidden>
+		<listeners type="object">{
+			'select':function(combox, fireValue, node){
+				this.manager.queryForm.findField("department.id").clearValue();
+			},scope:this
+		}</listeners>
+	</items>
+	<items>
+		<xtype>depttree</xtype>
+		<fieldLabel>部门</fieldLabel>
+		<propertyName>department</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<allowBlank type="boolean">true</allowBlank>
+		<listeners type="object">{
+			'focus':function(tree) {
+				tree.cascadeOrgTree(this.manager.queryForm.findField("organization.id"));
+			},scope:this
+		}</listeners>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>checkCode</name>
+		<fieldLabel>考勤号</fieldLabel>
+	</items>
+</uicfg>

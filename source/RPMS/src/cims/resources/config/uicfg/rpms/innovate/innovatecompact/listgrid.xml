@@ -1,0 +1,164 @@
+<uicfg desc="合同管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy></orderBy>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<store>
+		<url>rpms/listInnovateCompact.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>platCenter.id</name>
+		</fields>
+		<fields>
+            <name>platCenter.platName</name>
+        </fields>
+		<fields>
+			<name>platInstitution.id</name>
+		</fields>
+		<fields>
+            <name>platInstitution.platName</name>
+        </fields>
+        <fields>
+            <name>organization.name</name>
+        </fields>
+		<fields>
+			<name>compactName</name>
+		</fields>
+		<fields>
+			<name>projectId</name>
+		</fields>
+		<fields>
+			<name>compactNum</name>
+		</fields>
+		<fields>
+			<name>firstParty</name>
+		</fields>
+		<fields>
+			<name>secondParty</name>
+		</fields>
+		<fields>
+			<name>thirdParty</name>
+		</fields>
+		<fields>
+			<name>signDate</name>
+		</fields>
+		<fields>
+			<name>signAddress</name>
+		</fields>
+		<fields>
+			<name>startDate</name>
+		</fields>
+		<fields>
+			<name>endDate</name>
+		</fields>
+		<fields>
+			<name>sum</name>
+		</fields>
+		<fields>
+			<name>sumPaid</name>
+		</fields>
+		<fields>
+			<name>paidStatus</name>
+		</fields>
+		<fields>
+			<name>valid</name>
+		</fields>
+		<fields>
+			<name>paid</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>单位</header>
+			<dataIndex>organization.name</dataIndex>
+		</columns>
+		<columns>
+			<header>分中心</header>
+			<dataIndex>platCenter.platName</dataIndex>
+		</columns>
+		<columns>
+			<header>分中心机构</header>
+			<hidden type="object">true</hidden>
+			<dataIndex>platInstitution.platName</dataIndex>
+		</columns>
+		<columns>
+			<header>合同名称</header>
+			<dataIndex>compactName</dataIndex>
+			<width type="object">250</width>
+		</columns>
+		<columns>
+			<header>依托项目</header>
+			<dataIndex>projectId</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>合同编号</header>
+			<dataIndex>compactNum</dataIndex>
+		</columns>
+		<columns>
+			<header>委托方（甲方）</header>
+			<dataIndex>firstParty</dataIndex>
+		</columns>
+		<columns>
+			<header>研究开发方（乙方）</header>
+			<dataIndex>secondParty</dataIndex>
+		</columns>
+		<columns>
+			<header>丙方</header>
+			<dataIndex>thirdParty</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>金额</header>
+			<dataIndex>sum</dataIndex>
+		</columns>
+		<columns>
+			<header>签订日期</header>
+			<dataIndex>signDate</dataIndex>
+		</columns>
+		<columns>
+			<header>签订地点</header>
+			<dataIndex>signAddress</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>有效期限开始</header>
+			<dataIndex>startDate</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>有效期限截止</header>
+			<dataIndex>endDate</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>已支付金额</header>
+			<dataIndex>sumPaid</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>支付完毕</header>
+			<dataIndex>paid</dataIndex>
+			<hidden type="object">false</hidden>
+			<keyType>cims_boolean</keyType>
+		</columns>
+		<!-- <columns>
+			<header>合同支付情况</header>
+			<dataIndex>paidStatus</dataIndex>
+		</columns> -->
+		<!-- <columns>
+			<header>是否有效</header>
+			<dataIndex>valid</dataIndex>
+		</columns> -->
+	</cm>
+</uicfg>

@@ -1,0 +1,20 @@
+<uicfg desc="人员职责表编辑主界面">
+    <objectName>businessObject</objectName>
+    <winWidth type="integer">750</winWidth>
+    <component>
+        <items>
+            <object>editTbar</object>
+            <xtype>liontoolbar</xtype>
+            <viewPath>rpms/base/projectstaff/edittbar</viewPath>
+        </items>
+        <items>
+            <object>editForm</object>
+            <xtype>lionform</xtype>
+            <viewPath>rpms/base/projectstaff/editform</viewPath>
+        </items>
+    </component>
+    <container>
+        <items>editTbar</items>
+        <items>editForm</items>
+    </container>
+</uicfg>

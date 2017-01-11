@@ -1,0 +1,102 @@
+<uicfg desc="用户管理编辑">
+	<loadtUrl>system/loadSingleSystem.html</loadtUrl>
+	<submitUrl>system/saveSingleSystem.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="integer">2</columns>
+	<height type="integer">200</height>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>orgtree</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>systemName</name>
+		<fieldLabel>系统名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>systemType</hiddenName>
+		<fieldLabel>系统类型</fieldLabel>
+		<keyType>sys_single_type</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>systemUrl</name>
+		<fieldLabel>系统URL</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>systemUserVariable</name>
+		<fieldLabel>用户变量</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>systemPwdVariable</name>
+		<fieldLabel>密码变量</fieldLabel>
+	</items>
+	<items>
+		<xtype>lionsortfield</xtype>
+		<name>sort</name>
+		<fieldLabel>排序</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<autoLoad type="object">this.manager.actionMode == '1'</autoLoad>
+		<params>
+			<className>SingleSystem</className>
+			<codeProperty>sort</codeProperty>
+		</params>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>systemEnable</hiddenName>
+		<fieldLabel>是否启用</fieldLabel>
+		<keyType>cims_boolean</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+		<value>1</value>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>创建人</fieldLabel>
+		<propertyName>createUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>修改人</fieldLabel>
+		<propertyName>modifyUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+</uicfg>

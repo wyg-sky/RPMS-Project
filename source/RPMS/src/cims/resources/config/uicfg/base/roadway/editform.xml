@@ -1,0 +1,210 @@
+<uicfg desc="巷道基础信息管理录入表单">
+	<loadtUrl>base/loadRoadway.html</loadtUrl>
+	<submitUrl>base/saveRoadway.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">4</columns>
+	<height type="integer">260</height>
+	<defaults>
+		<border type="object">false</border>
+		<layout>column</layout>
+		<labelWidth type="object">100</labelWidth>
+	</defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<hidden type="boolean">true</hidden>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<items>
+		<xtype>lioncodefield</xtype>
+		<name>roadway</name>
+		<fieldLabel>巷道编号</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+		<type>1</type>
+		<params>
+			<code>BaseRoadway</code>
+		</params>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>roadwayName</name>
+		<fieldLabel>巷道名称</fieldLabel>
+		<maxLength type="integer">30</maxLength>
+		<maxLengthText>巷道名称最大允许输入30个字符</maxLengthText>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>roadwaySimp</name>
+		<fieldLabel>巷道简拼</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>roadwayTypeCd</name>
+		<fieldLabel>巷道类别</fieldLabel>
+		<keyType>base_prds_roadway_type</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+	    <xtype>liondatefield</xtype>
+		<name>reportDate</name>
+		<fieldLabel>日期</fieldLabel>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>horizontalCd</name>
+		<fieldLabel>水平面</fieldLabel>
+		<keyType>base_prds_horizontal</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>coalSeamCd</name>
+		<fieldLabel>煤层</fieldLabel>
+		<keyType>base_prds_coalSeam</keyType>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>drivageTypeCd</name>
+		<fieldLabel>掘进方式</fieldLabel>
+		<keyType>base_prds_drivage</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>digLoadCd</name>
+		<fieldLabel>扒装方式</fieldLabel>
+		<keyType>base_prds_dig_load</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>lithologyCd</name>
+		<fieldLabel>岩性</fieldLabel>
+		<keyType>base_prds_lithology</keyType>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>suppCd</name>
+		<fieldLabel>支护方式</fieldLabel>
+		<keyType>base_prds_supp</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>transportCd</name>
+		<fieldLabel>运输方式</fieldLabel>
+		<keyType>base_prds_transprot</keyType>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>reportStatus</name>
+		<fieldLabel>状态</fieldLabel>
+		<keyType>base_prds_commit_status</keyType>
+		<value>0001</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>statusCd</name>
+		<fieldLabel>生产状态</fieldLabel>
+		<keyType>base_prds_status</keyType>
+		<value>0001</value>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>designLength</name>
+		<fieldLabel>设计长度</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextunitfield</xtype>
+		<name>sectionSquare</name>
+		<fieldLabel>断面</fieldLabel>
+		<maxLength>12</maxLength>
+		<anchor>73%</anchor>
+		<regex type="object">/^(\d+(\.\d+)?)|(\-1)$/</regex>
+		<unitText>(平方米)</unitText>
+		<unitWidth type="object">60</unitWidth>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>valid</name>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType> 
+		<value>1</value>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+	    <xtype>liondatefield</xtype>
+		<name>checkDate</name>
+		<fieldLabel>验收时间</fieldLabel>
+		<format>Y-m-d</format>
+	</items>
+	<items>
+	    <xtype>liondatefield</xtype>
+		<name>beginDate</name>
+		<fieldLabel>开始日期</fieldLabel>
+		<format>Y-m-d</format>
+	</items>
+	<items>
+	    <xtype>liondatefield</xtype>
+		<name>endDate</name>
+		<fieldLabel>结束日期</fieldLabel>
+		<format>Y-m-d</format>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createUser</name>
+		<fieldLabel>创建人</fieldLabel>
+		<value type="object">FW.userName</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyUser</name>
+		<fieldLabel>修改人</fieldLabel>
+		<value type="object">FW.userName</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>remark</name>
+		<fieldLabel>备注</fieldLabel>
+		<columnWidth type="integer">4</columnWidth>
+	</items>
+</uicfg>

@@ -1,0 +1,9 @@
+<uicfg desc="单项工程列表工具栏">
+    <items>-></items>
+    <items>
+        <text>查询</text>
+        <iconCls>search-d-icon</iconCls>
+        <scope type="object">this.manager</scope>
+        <handler type="object">this.manager.queryProjectSingleReport</handler>
+    </items>
+</uicfg>

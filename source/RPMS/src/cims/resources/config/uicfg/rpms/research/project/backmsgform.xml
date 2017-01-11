@@ -1,0 +1,30 @@
+<uicfg desc="数据导入界面">
+	<columns type="object">1</columns>
+	<height type="integer">150</height>
+	<defaults>
+		<layout>column</layout>
+		<labelWidth type="integer">50</labelWidth>
+	</defaults>
+	<items>
+		<xtype>liontextarea</xtype>
+		<allowBlank type="object">false</allowBlank>
+		<name>backMsg</name>
+		<readOnly type="boolean">false</readOnly>
+		<fieldLabel>原因</fieldLabel>
+	</items>
+	<buttonAlign>center</buttonAlign>
+	<buttons>
+		<text>确定</text>
+		<width type="integer">50</width>
+		<scope type="object">this.manager</scope>
+		<handler type="object">function() {
+		      this.updateBackMsg();
+		}</handler>
+	</buttons>
+	<buttons>
+		<text>取消</text>
+		<width type="integer">50</width>
+		<handler type="object">function() {this.ownerCt.close()}</handler>
+		<scope type="object">this</scope>
+	</buttons>
+</uicfg>

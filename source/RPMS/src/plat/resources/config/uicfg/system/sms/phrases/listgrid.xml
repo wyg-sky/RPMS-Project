@@ -1,0 +1,46 @@
+<uicfg desc="常用短信管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<editable type="object">false</editable>
+	<formViewPath>system/sms/phrases/listgridform</formViewPath>
+	<showDeleteButton type="object">true</showDeleteButton>
+	<store>
+		<url>system/listPhrases.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>templateContent</name>
+		</fields>
+		<fields>
+			<name>createUser.userName</name>
+		</fields>
+		<fields>
+			<name>createTime</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>短信内容</header>
+			<dataIndex>templateContent</dataIndex>
+			<width type="integer">300</width>
+		</columns>
+		<columns>
+			<header>创建人</header>
+			<dataIndex>createUser.userName</dataIndex>
+			<width type="integer">80</width>
+		</columns>
+		<columns>
+			<header>创建时间</header>
+			<dataIndex>createTime</dataIndex>
+			<width type="integer">80</width>
+		</columns>
+	</cm>
+</uicfg>

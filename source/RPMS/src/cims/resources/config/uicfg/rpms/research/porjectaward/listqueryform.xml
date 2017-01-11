@@ -1,0 +1,86 @@
+<uicfg desc="项目报奖查询表单">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+    <items>
+        <xtype>lioncomboboxyearfield</xtype>
+        <name>awardYear</name>
+        <fieldLabel>年度</fieldLabel>
+        <format>Y</format>
+    </items>
+	<items>
+		<xtype>lioncombowindow</xtype>
+		<fieldLabel>成果编号</fieldLabel>
+		<propertyName>projectId</propertyName>
+		<hiddenName>id</hiddenName>
+		<displayField>achievementNum</displayField>
+		<hiddenDisplayName>achievementNum</hiddenDisplayName>
+		<allowBlank type="boolean">true</allowBlank>
+		<window>
+			<viewPathOfUi>rpms/research/researchachievement/list</viewPathOfUi>
+			<title>成果选择</title>
+			<width type="integer">1100</width>
+			<height type="integer">550</height>
+		</window>
+	</items>
+    <items>
+        <xtype>orgtree</xtype>
+        <fieldLabel>单位</fieldLabel>
+        <propertyName>organizations</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+    <items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>achievementType</hiddenName>
+		<fieldLabel>报奖类型</fieldLabel>
+		<keyType>rpms_achievement_type</keyType>
+	</items>
+    <items>
+        <xtype>plattree</xtype>
+        <hidden>true</hidden>
+        <propertyName>platInstitutions</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+    <items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>specialty</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>专业</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                    <type>"zy"</type>
+                </baseParams >
+            </loader>
+        </tree>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>评奖机构</fieldLabel>
+        <name>awardsAgency</name>
+        <keyType>rpms_awards_agency</keyType>
+    </items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>status</hiddenName>
+		<fieldLabel>状态</fieldLabel>
+		<keyType>cims_report_status</keyType>
+	</items>
+</uicfg>

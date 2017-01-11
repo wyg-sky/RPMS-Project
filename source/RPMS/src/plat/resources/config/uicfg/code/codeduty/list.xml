@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<uicfg desc="任务管理list布局页面"> 
+	<objectName>businessObject</objectName>  
+	<deleteUrl>system/deleteCodeDuty.html</deleteUrl>  
+	<changeStatusUrl>system/changeCodeDutyStatus.html</changeStatusUrl>
+	<editView>code/codeduty/edit</editView>
+	<component> 
+		<items> 
+			<xtype>liontoolbar</xtype>  
+			<object>listTbar</object>  
+			<viewPath>code/codeduty/listtbar</viewPath> 
+		</items>  
+		<items> 
+			<xtype>lionform</xtype>  
+			<object>queryForm</object>  
+			<viewPath>code/codeduty/listqueryform</viewPath>  
+			<runMode>4</runMode> 
+		</items>  
+		<items> 
+			<xtype>liongrid</xtype>  
+			<object>dataGrid</object>  
+			<viewPath>code/codeduty/listgrid</viewPath> 
+		</items> 
+	</component>  
+	<container> 
+		<items>listTbar</items>  
+		<items>queryForm</items>  
+		<items>dataGrid</items> 
+	</container>  
+</uicfg>

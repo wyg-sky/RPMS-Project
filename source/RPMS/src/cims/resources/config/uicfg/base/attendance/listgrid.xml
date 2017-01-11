@@ -1,0 +1,73 @@
+<uicfg desc="班次信息管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>shiftCd desc</orderBy>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<statusCtrl>
+		<field>valid</field>
+		<value>1</value>
+		<text>有效</text>
+	</statusCtrl>
+	<store>
+		<url>base/listAttendance.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>shiftCd</name>
+		</fields>
+		<fields>
+			<name>shiftName</name>
+		</fields>
+		<fields>
+			<name>shiftBeginTime</name>
+		</fields>
+		<fields>
+			<name>shiftEndTime</name>
+		</fields>
+		<fields>
+			<name>valid</name>
+		</fields>
+		<fields>
+			<name>reportStatus</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>班次编号</header>
+			<dataIndex>shiftCd</dataIndex>
+		</columns>
+		<columns>
+			<header>班次名称</header>
+			<dataIndex>shiftName</dataIndex>
+			<keyType>prds_shift</keyType>
+		</columns>
+		<columns>
+			<header>开始时间</header>
+			<dataIndex>shiftBeginTime</dataIndex>
+		</columns>
+		<columns>
+			<header>结束时间</header>
+			<dataIndex>shiftEndTime</dataIndex>
+		</columns>
+		<columns>
+			<header>是否有效</header>
+			<dataIndex>valid</dataIndex>
+			<keyType>cims_effective</keyType>
+		</columns>
+		<columns>
+			<header>状态</header>
+			<dataIndex>reportStatus</dataIndex>
+			<keyType>prds_commit_status</keyType>
+			<hidden type="boolean">true</hidden>
+		</columns>
+	</cm>
+</uicfg>

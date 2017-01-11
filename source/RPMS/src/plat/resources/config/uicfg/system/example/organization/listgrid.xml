@@ -1,0 +1,93 @@
+<uicfg desc="单位管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>sortOrder asc</orderBy>
+	<editable type="object">true</editable>
+	<formViewPath>system/example/organization/listgridform</formViewPath>
+	<masterColumnId>code</masterColumnId>
+	<allowPage type="boolean">false</allowPage>
+	<store>
+		<xtype>liontreestore</xtype>
+		<parentFieldName>businessObject.parent</parentFieldName>
+		<leafFieldName>businessObject.leaf</leafFieldName>
+		<autoExpand type="object">true</autoExpand>
+		<url>system/listOrganization.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>name</name>
+		</fields>
+		<fields>
+			<name>code</name>
+		</fields>
+		<fields>
+			<name>parent</name>
+		</fields>
+		<fields>
+			<name>organiztionType</name>
+		</fields>
+		<fields>
+			<name>sortOrder</name>
+		</fields>
+		<fields>
+			<name>description</name>
+		</fields>
+		<fields>
+			<name>leaf</name>
+			<convert type="object">function() {return false;}</convert>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+		<ctrlKeyPress type="boolean">false</ctrlKeyPress>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<id>code</id>
+			<header>单位编码</header>
+			<dataIndex>code</dataIndex>
+		</columns>
+		<columns>
+			<id>name</id>
+			<header>名称</header>
+			<dataIndex>name</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>类别</header>
+			<dataIndex>organiztionType</dataIndex>
+			<keyType>organization_type</keyType>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<keyType>organization_type</keyType>
+			</editor>
+		</columns>
+		<columns>
+			<header>排序</header>
+			<dataIndex>sortOrder</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+			<renderer type="object">
+				FW.renderRed
+			</renderer>
+		</columns>
+		<columns>
+			<header>描述</header>
+			<dataIndex>description</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+			<renderer type="object">
+				FW.renderBlue
+			</renderer>
+		</columns>
+	</cm>
+</uicfg>

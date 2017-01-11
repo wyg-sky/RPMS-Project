@@ -1,0 +1,89 @@
+<uicfg desc="代码管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>sortorder asc</orderBy>
+	<formViewPath>system/code/listgridform</formViewPath>
+	<masterColumnId>itemValue</masterColumnId>
+	<showDeleteButton type="object">true</showDeleteButton>
+	<allowPage type="boolean">false</allowPage>
+	<statusCtrl>
+		<field>valid</field>
+		<value>1</value>
+		<editable type="boolean">false</editable>
+		<text>有效</text>
+	</statusCtrl>
+	<store>
+		<xtype>liontreestore</xtype>
+		<url>system/listCodeLine.html</url>
+		<parentFieldName>parent</parentFieldName>
+		<leafFieldName>leaf</leafFieldName>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>codeid</name>
+		</fields>
+		<fields>
+			<name>parent</name>
+		</fields>
+		<fields>
+			<name>itemValue</name>
+		</fields>
+		<fields>
+			<name>itemText</name>
+		</fields>
+		<fields>
+			<name>itemLevel</name>
+		</fields>
+		<fields>
+			<name>valid</name>
+		</fields>
+		<fields>
+			<name>renderColor</name>
+		</fields>
+		<fields>
+			<name>sortorder</name>
+		</fields>
+		<fields>
+			<name>description</name>
+		</fields>
+		<fields>
+			<name>leaf</name>
+			<convert type="object">function() { return false;}</convert>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<id>itemValue</id>
+			<header>编码</header>
+			<dataIndex>itemValue</dataIndex>
+			<width type="integer">80</width>
+		</columns>
+		<columns>
+			<header>显示文本</header>
+			<dataIndex>itemText</dataIndex>
+			<renderer type="object">this.manager.renderColor</renderer>
+		</columns>
+		<columns>
+			<header>代码级数</header>
+			<dataIndex>itemLevel</dataIndex>
+		</columns>
+		<columns>
+			<header>是否有效</header>
+			<dataIndex>valid</dataIndex>
+			<keyType>cims_effective</keyType>
+		</columns>
+		<columns>
+			<header>描述</header>
+			<dataIndex>description</dataIndex>
+			<width type="integer">100</width>
+		</columns>
+	</cm>
+</uicfg>

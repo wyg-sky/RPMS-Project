@@ -1,0 +1,99 @@
+<uicfg desc="组件参数列表">
+	<rownum type="boolean">true</rownum>
+	<editable type="object">true</editable>
+	<orderBy>sortOrder asc</orderBy>
+	<showLookButton type="object">false</showLookButton>
+	<showEditButton type="object">false</showEditButton>
+	<showCopyButton type="object">false</showCopyButton>
+	<allowPage type="boolean">false</allowPage>
+	<clicksToEdit type="integer">1</clicksToEdit>
+	<store>
+		<url>system/listWidgetParam.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>mainId</name>
+		</fields>
+		<fields>
+			<name>sortOrder</name>
+		</fields>
+		<fields>
+			<name>paramName</name>
+		</fields>
+		<fields>
+			<name>paramPath</name>
+		</fields>
+		<fields>
+			<name>paramType</name>
+		</fields>
+		<fields>
+			<name>paramValue</name>
+		</fields>
+		<fields>
+			<name>paramValueType</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>排序</header>
+			<dataIndex>sortOrder</dataIndex>
+			<editor>
+				<xtype>lionnumberfield</xtype>
+				<allowBlank type="object">false</allowBlank>
+			</editor>
+		</columns>
+		<columns>
+			<header>参数名称</header>
+			<dataIndex>paramName</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+				<allowBlank type="object">false</allowBlank>
+			</editor>
+		</columns>
+		<columns>
+			<header>参数路径</header>
+			<dataIndex>paramPath</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+				<allowBlank type="object">false</allowBlank>
+			</editor>
+		</columns>
+		<columns>
+			<header>参数类型</header>
+			<dataIndex>paramType</dataIndex>
+			<keyType>sys_param_type</keyType>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<hiddenName>paramType</hiddenName>
+				<keyType>sys_param_type</keyType>
+				<allowBlank type="object">false</allowBlank>
+			</editor>
+		</columns>
+		<columns>
+			<header>参数值</header>
+			<dataIndex>paramValue</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>参数值类型</header>
+			<dataIndex>paramValueType</dataIndex>
+			<keyType>sys_defaultValue_type</keyType>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<hiddenName>paramValueType</hiddenName>
+				<keyType>sys_defaultValue_type</keyType>
+				<allowBlank type="object">false</allowBlank>
+			</editor>
+		</columns>
+	</cm>
+</uicfg>

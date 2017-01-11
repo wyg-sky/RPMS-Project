@@ -1,0 +1,50 @@
+<uicfg desc="科技活动费用编辑工具栏">
+	<items>-></items>
+	<items>
+		<text>填报</text>
+		<iconCls>new-edit-icon</iconCls>
+		<xaction>rpms_technologycosts_add</xaction>
+		<scope type="object">this.manager</scope>
+		<handler type="object">this.manager.fillReport</handler>
+        <hidden type="object">this.manager.isgather</hidden>
+	</items>
+	<items>
+        <text>上报</text>
+        <iconCls>submit-icon</iconCls>
+		<xaction>rpms_technologycosts_report</xaction>
+        <scope type="object">this.manager</scope>
+        <handler type="object">
+            function() {
+                  this.changeReportStatus("0002")
+            }
+        </handler>
+    </items>
+	<items>
+        <text>审批</text>
+        <iconCls>enable-ip-icon</iconCls>
+		<xaction>rpms_technologycosts_check</xaction>
+        <scope type="object">this.manager</scope>
+        <handler type="object">
+            function() {
+                  this.changeReportStatus("0003")
+            }
+        </handler>
+    </items>
+	<items>
+        <text>打回</text>
+        <iconCls>delete-all-icon</iconCls>
+		<xaction>rpms_technologycosts_back</xaction>
+        <scope type="object">this.manager</scope>
+        <handler type="object">
+            function() {
+                  this.changeReportStatus("0004")
+            }
+        </handler>
+    </items>
+	<items>
+		<text>查询</text>
+		<iconCls>search-d-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<handler type="object">this.manager.queryReport</handler>
+	</items>
+</uicfg>

@@ -1,0 +1,171 @@
+<uicfg desc="工作任务管理编辑表单">
+	<loadtUrl>rpms/loadInnovateTask.html</loadtUrl>
+	<submitUrl>rpms/saveInnovateTask.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<height type="integer">475</height>
+	<defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">100</labelWidth>
+    </defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<hidden type="object">true</hidden>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<!-- <items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                this.findField("platInstitution.id").setValue({value:'',text:''});
+                this.findField("platInstitution.id").clearValue();
+            },
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },
+            scope:this
+        }
+        </listeners>
+        <value type="object">
+			{"value" : PlatUtil.currentCenterId, "text" : PlatUtil.currentCenterName}
+		</value>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.findField("platCenter.id"));
+            }, 'beforeselect':function(combo, record){
+            	return record.isLeaf();
+            },scope:this
+        }
+        </listeners>
+    </items> -->
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>任务类型</fieldLabel>
+		<name>taskType</name>
+		<keyType>rpms_task_type</keyType>
+		<value>0002</value>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>任务名称</fieldLabel>
+		<name>taskName</name>
+		<maxLength type="object">66</maxLength>
+		<columnWidth type="object">3</columnWidth>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>任务执行人</fieldLabel>
+		<name>executor</name>
+		<allowBlank type="object">false</allowBlank>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>计划开始时间</fieldLabel>
+		<name>planStartDate</name>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>计划完成时间</fieldLabel>
+		<name>palnCompleteDate</name>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>实际完成时间</fieldLabel>
+		<name>actualCompleteDate</name>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>状态</fieldLabel>
+		<name>status</name>
+		<keyType>rpsm_task_status</keyType>
+		<value>0001</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>是否有效</fieldLabel>
+		<name>valid</name>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<name>createUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改人</fieldLabel>
+		<name>modifyUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>lionhtmleditor</xtype>
+		<fieldLabel>任务内容</fieldLabel>
+		<name>taskContent</name>
+		<columnWidth type="object">3</columnWidth>
+		<allowBlank type="object">false</allowBlank>
+		<height type="object">200</height>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>完成情况</fieldLabel>
+		<name>performance</name>
+		<columnWidth type="object">3</columnWidth>
+		<maxLength type="object">666</maxLength>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>备注</fieldLabel>
+		<name>remark</name>
+		<columnWidth type="integer">3</columnWidth>
+	</items>
+</uicfg>

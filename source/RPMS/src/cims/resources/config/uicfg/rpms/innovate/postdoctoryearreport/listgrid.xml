@@ -1,0 +1,75 @@
+<uicfg desc="年报评估管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy></orderBy>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<store>
+		<url>rpms/listPostdoctorYearReport.html</url>
+		<autoLoad type="object">true</autoLoad>
+		<baseParams>
+			<hql type="object">" and obj.type = 'year_report'"</hql>
+		</baseParams>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>platCenter.id</name>
+		</fields>
+		<fields>
+            <name>platCenter.platName</name>
+        </fields>
+		<fields>
+			<name>platInstitution.id</name>
+		</fields>
+		<fields>
+            <name>platInstitution.platName</name>
+        </fields>
+		<fields>
+			<name>fileName</name>
+		</fields>
+		<fields>
+			<name>summary</name>
+		</fields>
+		<fields>
+			<name>year</name>
+		</fields>
+		<fields>
+			<name>type</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>分中心</header>
+			<dataIndex>platCenter.platName</dataIndex>
+		</columns>
+		<columns>
+			<header>分中心机构</header>
+			<dataIndex>platInstitution.platName</dataIndex>
+		</columns>
+		<columns>
+			<header>文件名称</header>
+			<dataIndex>fileName</dataIndex>
+		</columns>
+		<columns>
+			<header>年度</header>
+			<dataIndex>year</dataIndex>
+		</columns>
+		<!-- <columns>
+			<header>简介</header>
+			<dataIndex>summary</dataIndex>
+		</columns> -->
+		
+		<!-- <columns>
+			<header>类型</header>
+			<dataIndex>type</dataIndex>
+		</columns> -->
+	</cm>
+</uicfg>

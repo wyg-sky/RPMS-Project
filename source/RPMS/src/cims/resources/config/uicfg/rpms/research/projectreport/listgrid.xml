@@ -1,0 +1,110 @@
+<uicfg desc="外部项目申报列表">
+    <rownum type="boolean">true</rownum>
+    <objectName>businessObject</objectName>
+    <orderBy>status asc,createTime desc </orderBy>
+    <editable type="object">false</editable>
+    <showEditButton type="object">Ext.isAllowed('rpms_report_edit')</showEditButton>
+    <showCopyButton type="object">false</showCopyButton>
+    <statusCtrl>
+        <field>status</field>
+        <value>0004,0005</value>
+        <text>等待审批,已完成</text>
+    </statusCtrl>
+    <store>
+        <url>rpms/listProjectReport.html</url>
+        <fields>
+            <name>id</name>
+        </fields>
+        <fields>
+            <name>projectId.projectName</name>
+        </fields>
+        <fields>
+            <name>platCenter.platName</name>
+        </fields>
+        <fields>
+            <name>platInstitution.platName</name>
+        </fields>
+        <fields>
+            <name>outprojectCode</name>
+        </fields>
+        <fields>
+            <name>outfileCode</name>
+        </fields>
+        <fields>
+            <name>outdept</name>
+        </fields>
+        <fields>
+            <name>outannual</name>
+        </fields>
+        <fields>
+            <name>projectLevel</name>
+        </fields>
+        <fields>
+            <name>outbatch</name>
+        </fields>
+        <fields>
+            <name>status</name>
+        </fields>
+    </store>
+    <sm>
+        <xtype>checkboxsm</xtype>
+        <singleSelect type="boolean">false</singleSelect>
+    </sm>
+    <cm>
+        <defaults>
+            <sortable type="boolean">true</sortable>
+        </defaults>
+        <columns>
+            <header>项目名称</header>
+            <dataIndex>projectId.projectName</dataIndex>
+            <width type="integer">90</width>
+        </columns>
+        <columns>
+            <header>分中心</header>
+            <dataIndex>platCenter.platName</dataIndex>
+            <width type="integer">60</width>
+        </columns>
+        <columns>
+            <header>机构</header>
+            <dataIndex>platInstitution.platName</dataIndex>
+            <width type="integer">80</width>
+        </columns>
+        <columns>
+            <header>外部项目编号</header>
+            <dataIndex>outprojectCode</dataIndex>
+            <width type="integer">70</width>
+        </columns>
+        <columns>
+            <header>外部项目文件编号</header>
+            <dataIndex>outfileCode</dataIndex>
+            <width type="integer">90</width>
+        </columns>
+        <columns>
+            <header>外部立项部门</header>
+            <dataIndex>outdept</dataIndex>
+            <width type="integer">70</width>
+        </columns>
+        <columns>
+            <header>立项年度</header>
+            <dataIndex>outannual</dataIndex>
+            <width type="integer">50</width>
+        </columns>
+        <columns>
+            <header>项目级别</header>
+            <dataIndex>projectLevel</dataIndex>
+            <keyType>rpms_grade</keyType>
+            <width type="integer">50</width>
+        </columns>
+        <columns>
+            <header>批次</header>
+            <dataIndex>outbatch</dataIndex>
+            <width type="integer">50</width>
+        </columns>
+        <columns>
+            <header>状态</header>
+            <dataIndex>status</dataIndex>
+            <keyType>rpms_evaluation_status</keyType>
+            <width type="integer">50</width>
+        </columns>
+    </cm>
+</uicfg>    

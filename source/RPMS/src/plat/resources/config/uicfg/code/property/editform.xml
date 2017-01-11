@@ -1,0 +1,67 @@
+<uicfg desc="属性管理编辑表单">
+	<loadtUrl>system/loadProperty.html</loadtUrl>
+	<submitUrl>system/saveProperty.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">2</columns>
+	<height type="integer">200</height>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>propertyName</name>
+		<fieldLabel>属性名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>propertyPath</name>
+		<fieldLabel>属性路径</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>propertyType</hiddenName>
+		<fieldLabel>属性类型</fieldLabel>
+		<keyType>sys_param_type</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>defaultValue</name>
+		<fieldLabel>缺省值</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>defaultValueType</hiddenName>
+		<fieldLabel>缺省值类型</fieldLabel>
+		<keyType>sys_defaultValue_type</keyType>
+		<value>0001</value>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>type</hiddenName>
+		<fieldLabel>所属分类</fieldLabel>
+		<keyType>sys_widget_type</keyType>
+	</items>
+	<items>
+		<xtype>lioncombowindow</xtype>
+		<fieldLabel>所属组件</fieldLabel>
+		<propertyName>widgetId</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<displayField>name</displayField>
+		<window>
+			<viewPathOfUi>code/widgetbase/list</viewPathOfUi>
+			<title>组件选择</title>
+		</window>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>remark</name>
+		<fieldLabel>备注</fieldLabel>
+		<columnWidth type="integer">2</columnWidth>
+	</items>
+</uicfg>

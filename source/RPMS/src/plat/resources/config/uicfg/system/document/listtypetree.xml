@@ -1,0 +1,17 @@
+<uicfg desc="选择树">
+	<title>选择树</title>
+	<autoHeight type="object">true</autoHeight>
+	<autoWidth type="object">false</autoWidth>
+	<autoScroll type="object">false</autoScroll>
+	<loader>
+		<dataUrl>system/listDocumentTypeTree.html</dataUrl>
+	</loader>
+	<root type="object">
+		{
+			draggable: false,
+    		children: [
+			   {text : '文档分类',iconCls:'type-icon',id:'type_root',type:'documentType',leaf:false,expanded:true,url:'system/listDocumentTypeTree.html'}
+			]
+	   }
+	</root>
+</uicfg>

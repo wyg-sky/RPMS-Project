@@ -1,0 +1,24 @@
+<uicfg desc="仓库管理员按钮">
+	<items>-></items>
+	<items>
+		<text>新增</text>
+		<iconCls>new-new-icon</iconCls>
+		<handler type="object">
+			function() {
+				this.manager.addLineObject();
+			}
+		</handler>
+	</items>
+	<items>
+		<text>删除</text>
+		<iconCls>delete-selected-icon</iconCls>
+		<handler type="object">this.deleteLineClick</handler>
+	</items>
+	<items>
+		<text>数据导入</text>
+		<iconCls>import-icon</iconCls>
+		<hidden type="object">true</hidden>
+		<scope type="object">this.manager</scope>
+		<handler type="object">this.manager.importStorageLine</handler>
+	</items>
+</uicfg>

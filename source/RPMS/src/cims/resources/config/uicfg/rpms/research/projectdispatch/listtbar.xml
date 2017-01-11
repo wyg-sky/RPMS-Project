@@ -1,0 +1,154 @@
+<uicfg desc="项目调度管理列表工具栏">
+    <items>-></items>
+    <items>
+        <text>最新调度</text>
+        <iconCls>new-new-icon</iconCls>
+        <xaction>rpms_dispatch_com</xaction>
+        <handler type="object">function() {
+			this.manager.genNewDispatch();
+		}</handler>
+    </items>
+    <items>
+        <text>新增</text>
+        <iconCls>new-new-icon</iconCls>
+        <xaction>rpms_dispatch_add</xaction>
+        <hidden type="object">false</hidden>
+        <handler type="object">this.addClick</handler>
+    </items>
+    <items>
+        <text>编辑</text>
+        <xaction>rpms_dispatch_edit</xaction>
+        <iconCls>new-edit-icon</iconCls>
+        <handler type="object">this.editClick</handler>
+    </items>
+    <items>
+        <text>删除</text>
+        <xaction>rpms_dispatch_del</xaction>
+        <iconCls>delete-selected-icon</iconCls>
+        <handler type="object">this.deleteClick</handler>
+    </items>
+    <items>
+        <text>上报</text>
+        <xaction>rpms_dispatch_rep</xaction>
+        <iconCls>submit-icon</iconCls>
+        <handler type="object">
+            function() {
+                var records = this.manager.dataGrid.getSelectionModel().getSelections();
+                var flag = true;
+                for(var i=records.length-1;i>=0;i--){
+                   if(records[i].get('status') =='0003' || records[i].get('status') =='0004' || records[i].get('status') =='0005'){
+                      flag = false;
+                   }
+                }
+                if(flag == true){
+                    this.manager.changeStatus('status', '0003', '上报');
+                }else{
+                    Ext.MessageBox.show({
+                        title : '系统提示',
+                        msg : '等待审批、已审批、已完成单据不能上报！',
+                        buttons : Ext.MessageBox.OK,
+                        icon : Ext.MessageBox.WARNING,
+                        scope : this
+                    });
+                }
+            }
+        </handler>
+    </items>
+    <items>
+        <text>审批</text>
+        <xaction>rpms_dispatch_app</xaction>
+        <iconCls>enable-ip-icon</iconCls>
+        <handler type="object">
+            function() {
+                this.manager.approvePro();
+            }
+        </handler>
+    </items>
+    <items>
+        <text>完成</text>
+        <xaction>rpms_dispatch_com</xaction>
+        <iconCls>enable-ip-icon</iconCls>
+        <handler type="object">
+            function() {
+                var records = this.manager.dataGrid.getSelectionModel().getSelections();
+                var flag = true;
+                for(var i=records.length-1;i>=0;i--){
+                   if(records[i].get('status') !='0004'){
+                      flag = false;
+                   }
+                }
+                if(flag == true){
+                     this.manager.changeStatus('status', '0005', '审批完成');
+                }else{
+                    Ext.MessageBox.show({
+                        title : '系统提示',
+                        msg : '只有已审批的单据才能审批完成！',
+                        buttons : Ext.MessageBox.OK,
+                        icon : Ext.MessageBox.WARNING,
+                        scope : this
+                    });
+                }
+            }
+        </handler>
+    </items>
+    <items>
+        <text>退回</text>
+        <xaction>rpms_dispatch_back</xaction>
+        <hidden type="object">false</hidden>
+        <iconCls>delete-all-icon</iconCls>
+        <handler type="object">function() {
+            var records = this.manager.dataGrid.getSelectionModel().getSelections();
+            var flag = true;
+             for(var i=records.length-1;i>=0;i--){
+              if(records[i].get('status') =='0003'||records[i].get('status') =='0004'){
+                  flag = true;
+               }else{
+                   flag = false;
+               }
+            }
+            if(flag == true){
+                this.manager.changeStatus('status', '0002', '退回');
+            }else{
+                Ext.MessageBox.show({
+                    title : '系统提示',
+                    msg : '只有等待审批或已审批的单据才能退回！',
+                    buttons : Ext.MessageBox.OK,
+                    icon : Ext.MessageBox.WARNING,
+                    scope : this
+                });
+            }
+        }</handler>
+    </items>
+    <items>
+        <text>导出</text>
+        <iconCls>export-icon</iconCls>
+        <scope type="object">this.manager</scope>
+        <handler type="object">function() {
+            this.exportData({
+                object : 'projectDispatch',
+                manager : 'projectDispatchManager',
+                excelType : ''
+            });
+        }</handler>
+    </items>
+    <items>
+        <text>查看</text>
+        <iconCls>view-icon</iconCls>
+        <handler type="object">this.viewClick</handler>
+    </items>
+    <items>
+        <text>查询</text>
+        <iconCls>search-d-icon</iconCls>
+        <handler type="object">this.query</handler>
+    </items>
+    <items>
+        <text>全部数据</text>
+        <iconCls>ff-clear-icon</iconCls>
+        <handler type="object">this.clear</handler>
+    </items>
+    <items>
+        <iconCls>expand-icon</iconCls>
+        <tooltip>展开/收起查询区</tooltip>
+        <handler type="object">this.expandQueryField</handler>
+    </items>
+</uicfg>

@@ -1,0 +1,112 @@
+<uicfg desc="项目验收管理列表">
+    <rownum type="boolean">true</rownum>
+    <objectName>businessObject</objectName>
+    <orderBy>certificationDate desc,status asc </orderBy>
+    <editable type="object">false</editable>
+    <showEditButton type="object">Ext.isAllowed('rpms_acceptance_edit')</showEditButton>
+    <showCopyButton type="object">false</showCopyButton>
+    <statusCtrl>
+        <field>status</field>
+        <value>0003,0004,0005</value>
+        <text>等待中心审核,中心已审核,已完成</text>
+    </statusCtrl>
+    <store>
+        <url>rpms/listProjectAcceptance.html</url>
+        <baseParams  type="object">
+            <hql type="object"> " and obj.type='0002'"</hql>
+        </baseParams>
+        <fields>
+            <name>id</name>
+        </fields>
+        <fields>
+            <name>projectId.projectCode</name>
+        </fields>
+        <fields>
+            <name>projectName</name>
+        </fields>
+         <fields>
+            <name>organization.name</name>
+        </fields>
+        <fields>
+            <name>platCenter.platName</name>
+        </fields>
+        <fields>
+            <name>platInstitution.platName</name>
+        </fields>
+        <fields>
+            <name>specialty.specialtyName</name>
+        </fields>
+         <fields>
+            <name>researchCost</name>
+        </fields>
+        <fields>
+            <name>economicBenefits</name>
+        </fields>
+        <fields>
+            <name>certificationDate</name>
+        </fields>
+        <fields>
+            <name>status</name>
+        </fields>
+    </store>
+    <sm>
+        <xtype>checkboxsm</xtype>
+        <singleSelect type="boolean">false</singleSelect>
+    </sm>
+    <cm>
+        <defaults>
+            <sortable type="boolean">true</sortable>
+        </defaults>
+        <columns>
+            <header>项目登记编号</header>
+            <dataIndex>projectId.projectCode</dataIndex>
+            <width type="integer">80</width>
+        </columns>
+        <columns>
+            <header>项目名称</header>
+            <dataIndex>projectName</dataIndex>
+            <width type="integer">80</width>
+        </columns>
+        <columns>
+            <header>单位</header>
+            <dataIndex>organization.name</dataIndex>
+            <width type="integer">100</width>
+        </columns>
+        <columns>
+            <header>分中心</header>
+            <dataIndex>platCenter.platName</dataIndex>
+            <width type="integer">100</width>
+        </columns>
+        <columns>
+            <header>分中心机构</header>
+            <dataIndex>platInstitution.platName</dataIndex>
+            <width type="integer">100</width>
+        </columns>
+        <columns>
+            <header>专业</header>
+            <dataIndex>specialty.specialtyName</dataIndex>
+            <width type="integer">100</width>
+        </columns>
+        <columns>
+            <header>研发成本</header>
+            <dataIndex>researchCost</dataIndex>
+            <width type="integer">50</width>
+        </columns>
+        <columns>
+            <header>经济效益</header>
+            <dataIndex>economicBenefits</dataIndex>
+            <width type="integer">50</width>
+        </columns>
+        <columns>
+            <header>鉴定时间</header>
+            <dataIndex>certificationDate</dataIndex>
+            <width type="integer">50</width>
+        </columns>
+        <columns>
+            <header>状态</header>
+            <dataIndex>status</dataIndex>
+            <keyType>rpms_acceptance_status</keyType>
+            <width type="integer">50</width>
+        </columns>
+    </cm>
+</uicfg>    

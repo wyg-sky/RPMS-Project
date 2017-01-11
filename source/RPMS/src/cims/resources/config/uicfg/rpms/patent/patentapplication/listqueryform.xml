@@ -1,0 +1,152 @@
+<uicfg desc="专利申请管理查询表单">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>orgtree</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<hidden type="object">false</hidden>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<allowBlank type="object">true</allowBlank>
+		<!-- <value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value> -->
+		<listeners type="object">
+			{
+           		select:function(){
+           			this.findParentByType("form").manager.query();
+           		}
+            }
+		</listeners>
+	</items>
+	<items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hidden type="object">true</hidden>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                this.findField("platInstitution.id").setValue({value:'',text:''});
+                this.findField("platInstitution.id").clearValue();
+                this.manager.query();
+            }, 'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hidden type="object">true</hidden>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.findField("platCenter.id"));
+            },select:function(){
+            	 this.manager.query();
+            }, 'beforeselect':function(combo, record){
+            	return record.isLeaf();
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>specialty</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>专业</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                    <type>"zy"</type>
+                </baseParams >
+            </loader>
+        </tree>
+       <listeners type="object">
+			{
+           		select:function(){
+           			this.findParentByType("form").manager.query();
+           		}
+            }
+		</listeners>
+    </items>
+    <items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>分类</fieldLabel>
+		<name>type</name>
+		<keyType>rpms_patent_type</keyType>
+		<allowBlank type="object">true</allowBlank>
+		<listeners type="object">
+			{
+           		select:function(){
+           			this.findParentByType("form").manager.query();
+           		}
+            }
+		</listeners>	
+	</items>
+	<items>
+		<xtype>lioncomboboxyearfield</xtype>
+		<fieldLabel>申请日期</fieldLabel>
+		<format>Y-m-d</format>
+		<name>applyDate</name>
+		<allowBlank type="object">true</allowBlank>
+		<forceSelection type="object">false</forceSelection>
+		<listeners type="object">
+			{
+           		select:function(){
+           			this.findParentByType("form").manager.query();
+           		}
+            }
+		</listeners>	
+	</items>
+	<items>
+		<xtype>lioncomboboxyearfield</xtype>
+		<fieldLabel>受理日期</fieldLabel>
+		<name>acceptDate</name>
+		<editable type="object">true</editable>
+		<forceSelection type="object">false</forceSelection>
+		<listeners type="object">
+			{
+           		select:function(){
+           			this.findParentByType("form").manager.query();
+           		}
+            }
+		</listeners>	
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>专利名称</fieldLabel>
+		<name>patentName</name>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>状态</fieldLabel>
+		<name>status</name>
+		<keyType>rpms_patent_status</keyType>
+		<allowBlank type="boolean">true</allowBlank>
+		<listeners type="object">
+			{
+           		select:function(){
+           			this.findParentByType("form").manager.query();
+           		}
+            }
+		</listeners>
+	</items>
+	
+</uicfg>

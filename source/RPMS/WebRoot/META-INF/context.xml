@@ -1,0 +1,9 @@
+<Context>
+	<WatchedResource>WEB-INF/web.xml</WatchedResource>
+	<Resource name="BIOS_DS" auth="Container" type="javax.sql.DataSource"
+		url="jdbc:oracle:thin:@172.31.122.120:1521:cims"
+		username="cims_jszx"
+		password="cims"
+		driverClassName="oracle.jdbc.driver.OracleDriver"
+		maxActive="100" maxIdle="5" maxWait="3000" />
+</Context>

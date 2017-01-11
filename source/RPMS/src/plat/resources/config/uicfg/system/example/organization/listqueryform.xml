@@ -1,0 +1,35 @@
+<uicfg desc="单位管理查询表单">
+	<columns type="integer">5</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaults>
+		<layout>column</layout>
+		<labelWidth type="integer">40</labelWidth>
+	</defaults>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>name</name>
+		<fieldLabel>名称</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>code</name>
+		<fieldLabel>编码</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>organiztionType</hiddenName>
+		<fieldLabel>类别</fieldLabel>
+		<keyType>organization_type</keyType>
+		<operator>=</operator>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>sortOrder</name>
+		<fieldLabel>排序</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>description</name>
+		<fieldLabel>描述</fieldLabel>
+	</items>
+</uicfg>

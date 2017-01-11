@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+	http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"  default-lazy-init ="false" >
+   
+	<!-- Hibernate SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocations">
+			<list>
+				<value>classpath:hibernate.cfg*.xml</value>
+				<value>classpath:config/hibernate/hibernate.cfg-*.xml</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.Oracle10gDialect
+				hibernate.show_sql=true
+				hibernate.format_sql=false
+				hibernate.query.substitutions=true '1', false '0'
+				hibernate.cache.use_second_level_cache=true
+				hibernate.connection.autocommit = false
+				<!-- hibernate.cache.provider_class=org.hibernate.cache.HashtableCacheProvider -->
+				hibernate.cache.provider_class=com.opensymphony.oscache.hibernate.OSCacheProvider
+				hibernate.search.default.directory_provider=org.hibernate.search.store.FSDirectoryProvider
+				<!-- hibernate.search.default.indexBase=${hibernate.search.default.indexBase} -->
+
+				<!-- Turn batching off for better error messages under PostgreSQL -->
+				hibernate.jdbc.batch_size=50
+			</value>
+		</property>
+		<!-- for oracle clob blob -->
+		<!-- <property name="lobHandler" ref="lobHandler"/> -->
+		<property name="eventListeners">
+			<map>
+				<entry key="merge">
+					<list>
+						<bean class="org.hibernate.event.def.DefaultMergeEventListener" />
+						<!-- <bean class="com.dhcc.itsm.core.dao.event.AuditListener" /> -->
+					</list>
+				</entry>
+				<entry key="post-delete">
+					<bean class="com.lion.system.common.event.DeleteEventListener"/>
+			    </entry>
+			</map>
+		</property>
+	</bean>
+	
+	<!--加载属性文件 -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+				<value>classpath:mail.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- JNDI数据源配置 -->
+	<!--<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/itsm"/>-->
+	
+	<!-- 使用DBCP数据库连接池进行数据源的配置 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="maxActive" value="100"/>
+		<property name="maxWait" value="1000"/>
+		<property name="poolPreparedStatements" value="true"/>
+		<property name="maxOpenPreparedStatements" value="40"/>
+		<property name="defaultAutoCommit" value="false"/>
+	</bean>
+    
+	<!-- =================================================================== -->
+	<!-- AOP: Configuration and Aspects -->
+	<!-- =================================================================== -->
+	<aop:config>
+		<aop:advisor id="managerTx" advice-ref="txAdvice" pointcut="execution(* com.lion.*..manager.*Manager.*(..))" order="2"/>
+		<aop:advisor id="ServiceTx" advice-ref="txAdvice" pointcut="execution(* com.lion.*..service.*Service.*(..))" order="3"/>
+	</aop:config>
+    
+	<!-- 启用@Transactional支持 -->
+	<tx:annotation-driven/>    
+    
+	<!-- 启用@AspectJ支持  -->
+	<aop:aspectj-autoproxy/>
+    
+	<!-- 启用@Configured支持 -->
+	<aop:spring-configured/>
+    
+	<tx:advice id="txAdvice">
+		<tx:attributes>
+			<!-- Read-only commented out to make things easier for end-users -->
+			<!-- http://issues.appfuse.org/browse/APF-556 -->
+			<!--tx:method name="get*" read-only="true"/-->
+			<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>
+    
+	<!-- for oracle clob blob -->
+	<bean id="lobHandler" lazy-init="true"
+		class="org.springframework.jdbc.support.lob.DefaultLobHandler" />
+
+	<!-- 配置事务管理器bean,使用HibernateTransactionManager事务管理器(也可以用JTA替代) -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<!-- 为事务管理器注入sessionFactory" -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 使用C3P0数据库连接池进行数据源的配置 -->
+	<!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+			<property name="driverClass" value="${jdbc.driverClassName}"></property>
+			<property name="jdbcUrl" value="${jdbc.url}"/>
+			<property name="username" value="${jdbc.username}"/>
+			<property name="password" value="${jdbc.password}"/>
+			<property name="acquireIncrement" value="2"></property>
+			<property name="initialPoolSize" value="3"></property>
+			<property name="minPoolSize" value="2"></property>
+			<property name="maxPoolSize" value="40"></property>
+			<property name="maxIdleTime" value="25000"></property>
+			<property name="idleConnectionTestPeriod" value="18000"></property>
+			<property name="maxStatements" value="100"></property>
+			<property name="numHelperThreads" value="10"></property>
+		</bean>-->
+		
+	<!-- 引入cxf配置文件 -->
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	
+	<!-- 配置cxf拦截器,实现调用webservice的用户身份验证 -->
+	<bean id="authInterceptor" class="com.lion.core.webapp.filter.AuthInterceptor">
+		<property name="operateLogManager" ref="operateLogManager" />
+	</bean>
+	
+	<!-- 定义清理日志任务 -->
+	<bean id="clearOperateLogJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<bean class="com.lion.system.taskjob.ClearOperateLogJob">
+				<property name="operateLogManager" ref="operateLogManager" />
+			</bean>
+		</property>
+		<property name="targetMethod" value="deleteOperateLog" />
+		<property name="concurrent" value="false" /><!-- 作业不并发调度 -->
+	</bean>
+	
+	<!-- 定义日志清理任务的触发器 -->
+	<bean id="clearOperateLogTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail" ref="clearOperateLogJob" />
+		<property name="startDelay" value="10800000" /><!-- 调度工厂实例化后，第一次执行时间 -->
+		<property name="repeatInterval" value="1296000000" /><!--调用频率-->
+	</bean>
+	
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="clearOperateLogTrigger" />
+			</list>
+		</property>
+	</bean>
+</beans>

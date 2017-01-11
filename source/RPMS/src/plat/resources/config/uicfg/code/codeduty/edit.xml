@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<uicfg desc="任务管理edit布局页面">
+	<objectName>businessObject</objectName>
+	<component>
+		<items>
+			<xtype>liontoolbar</xtype>
+			<object>editTbar</object>
+			<viewPath>code/codeduty/edittbar</viewPath>
+		</items>
+		<items>
+			<xtype>lionform</xtype>
+			<object>editForm</object>
+			<viewPath>code/codeduty/editform</viewPath>
+		</items>
+		<items>
+			<xtype>liontoolbar</xtype>
+			<object>listlineTbar</object>
+			<hidden type="object">!this.editable</hidden>
+			<viewPath>code/codeduty/listlinetbar</viewPath>
+		</items>
+		<items>
+			<xtype>lioneditorgrid</xtype>
+			<object>dataLineGrid</object>
+			<isLine type="boolean">true</isLine>
+			<height type="integer">200</height>
+			<lineName>codeDutyLine</lineName>
+			<fkName>obj.mainId</fkName>
+			<viewPath>code/codeduty/listlinegrid</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+		<items>listlineTbar</items>
+		<items>dataLineGrid</items>
+	</container>
+</uicfg>

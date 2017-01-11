@@ -1,0 +1,115 @@
+<uicfg desc="模块管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>id asc</orderBy>
+	<formViewPath>system/module/listgridform</formViewPath>
+	<masterColumnId>name</masterColumnId>
+	<allowPage type="boolean">false</allowPage>
+	<showDeleteButton type="object">true</showDeleteButton>
+    <bodyStyle>border-width:1px 0 0 1px;</bodyStyle>
+	<statusCtrl>
+		<field>active</field>
+		<value>1</value>
+		<editable type="boolean">false</editable>
+		<text>有效</text>
+	</statusCtrl>
+	<store>
+		<xtype>liontreestore</xtype>
+		<url>system/listModule.html</url>
+		<parentFieldName>parent</parentFieldName>
+		<leafFieldName>businessObject.leaf</leafFieldName>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>name</name>
+		</fields>
+		<fields>
+			<name>code</name>
+		</fields>		
+		<fields>
+			<name>parent</name>
+		</fields>
+		<fields>
+			<name>url</name>
+		</fields>
+		<fields>
+			<name>icon</name>
+		</fields>
+		<fields>
+			<name>shortCutIcon</name>
+		</fields>
+		<fields>
+			<name>type</name>
+		</fields>
+		<fields>
+			<name>platType</name>
+		</fields>
+		<fields>
+			<name>active</name>
+		</fields>
+		<fields>
+			<name>sortOrder</name>
+		</fields>
+		<fields>
+			<name>description</name>
+		</fields>
+		<fields>
+			<name>leaf</name>
+			<convert type="object">function(v) {if(v)return '1'; else return '0';}</convert>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<id>name</id>
+			<header>模块名称</header>
+			<dataIndex>name</dataIndex>
+			<width type="integer">80</width>
+		</columns>
+		<columns>
+			<header>模块编码</header>
+			<dataIndex>code</dataIndex>
+			<width type="integer">50</width>
+		</columns>
+		<columns>
+			<header>图片路径</header>
+			<dataIndex>icon</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>模块类型</header>
+			<dataIndex>type</dataIndex>
+			<keyType>sys_module_type</keyType>
+			<width type="integer">40</width>
+		</columns>
+		<columns>
+			<header>平台类型</header>
+			<dataIndex>platType</dataIndex>
+			<keyType>sys_plat_type</keyType>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>模块访问地址</header>
+			<dataIndex>url</dataIndex>
+			<width type="integer">100</width>
+		</columns>
+		<columns>
+			<header>描述</header>
+			<dataIndex>description</dataIndex>
+			<width type="integer">100</width>
+		</columns>
+		<columns>
+			<header>是否有效</header>
+			<dataIndex>active</dataIndex>
+			<keyType>cims_effective</keyType>
+			<width type="integer">40</width>
+		</columns>
+	</cm>
+</uicfg>

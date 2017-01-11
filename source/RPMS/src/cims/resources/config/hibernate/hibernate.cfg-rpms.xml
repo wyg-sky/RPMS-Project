@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+        <!-- 创新平台管理开始 -->
+        <mapping class="com.lion.rpms.base.researchplat.model.ResearchPlat"/>
+        <!-- 创新平台管理结束 -->
+        
+        <!-- 单位平台映射开始 -->
+        <mapping class="com.lion.rpms.base.platorganization.model.Platorganization"/>
+        <!-- 单位平台映射结束 -->
+        
+        <!-- 创新人才管理开始 -->
+        <mapping class="com.lion.rpms.base.researchtalent.model.ResearchTalent"/>
+        <!-- 创新人才管理结束 -->
+        
+        <!-- 创新设备管理开始 -->
+        <mapping class="com.lion.rpms.base.researchequipment.model.ResearchEquipment"/>
+        <!-- 创新设备管理结束 -->
+        
+		<!--项目规划-->
+		<mapping class = "com.lion.rpms.research.projectplan.model.ProjectPlan" />
+		<!--项目规划 End-->
+		
+		<!--人员职责管理开始-->
+        <mapping class="com.lion.rpms.base.projectstaff.model.ProjectStaff" />
+        <mapping class="com.lion.rpms.base.projectstaff.model.StaffUser" />
+        <mapping class="com.lion.rpms.base.projectstaff.model.StaffPlat" />
+        <!--人员职责管理结束-->
+        
+		<!--项目立项管理开始-->
+        <mapping class="com.lion.rpms.research.project.model.Project" />
+        <mapping class="com.lion.rpms.research.project.model.ProjectFunds" />
+        <mapping class="com.lion.rpms.research.project.model.ProjectPartners" />
+        <mapping class="com.lion.rpms.research.project.model.ProjectTalent" />
+        <mapping class="com.lion.rpms.research.project.model.ProjectCostTotal" />
+        <!--项目立项管理结束-->
+        
+        <!--外部项目申报开始-->
+        <mapping class="com.lion.rpms.research.projectreport.model.ProjectReport" />
+        <!--外部项目申报结束-->
+        
+        <!--项目调度管理开始-->
+        <mapping class="com.lion.rpms.research.projectdispatch.model.ProjectDispatch" />
+        <!--项目调度管理结束-->
+        
+        <!--项目验收管理开始-->
+        <mapping class="com.lion.rpms.research.projectacceptance.model.ProjectAcceptance" />
+        <!--项目验收管理结束-->
+        
+        <!--验收专家组明细管理开始-->
+        <mapping class="com.lion.rpms.research.projectacceptance.model.AcceptanceExpert" />
+        <!--验收专家组明细管理结束-->
+        
+        <!--项目后评价管理开始-->
+        <mapping class="com.lion.rpms.research.projectevaluation.model.ProjectEvaluation" />
+        <!--项目后评价管理结束-->
+        
+        <!-- 专利申请管理开始 -->
+		<mapping class="com.lion.rpms.patent.patentapplication.model.PatentApplication"/>
+		<mapping class="com.lion.rpms.patent.patentapplication.model.PatentApplicationLine"/>
+		<!-- 专利申请管理结束 -->
+		
+		<!-- 工作任务管理开始 -->
+		<mapping class="com.lion.rpms.innovate.innovatetask.model.InnovateTask"/>
+		<!-- 工作任务管理结束 -->
+		<!--通知管理开始-->
+		<mapping class="com.lion.rpms.research.projectfile.model.ProjectFile" />
+		<mapping class="com.lion.rpms.research.projectfile.model.ProjectFileLine" />
+		<!--通知管理结束-->
+		
+		<!-- 合同管理开始 -->
+		<mapping class="com.lion.rpms.innovate.innovatecompact.model.InnovateCompact"/>
+		<!-- 合同管理结束 -->
+		
+		<!-- 季度检查标准管理开始 -->
+		<mapping class="com.lion.rpms.innovate.innovatequartercheck.model.InnovateQuarterCheck"/>
+		<!-- 季度检查标准管理结束 -->
+		
+		<!-- 项目推广管理开始 -->
+        <mapping class="com.lion.rpms.research.projectspread.model.ProjectSpread"/>
+        <!-- 项目推广管理结束 -->
+        
+        <!-- 季度检查打分管理开始 -->
+		<mapping class="com.lion.rpms.innovate.innovatequartergrade.model.InnovateQuarterGrade"/>
+		<!-- 季度检查打分管理结束 -->
+		
+        <!-- 标准制定管理开始 -->
+        <mapping class="com.lion.rpms.base.standardenact.model.StandardEnact"/>
+        <!-- 标准制定管理结束 -->
+		<!--项目报奖管理开始-->
+		<mapping class="com.lion.rpms.research.porjectaward.model.ProjectAward" />
+		<mapping class="com.lion.rpms.research.porjectaward.model.ProjectAwardLine" />
+		<!--项目报奖管理结束-->
+		
+		<!-- 年度考核标准管理开始 -->
+		<mapping class="com.lion.rpms.innovate.innovateyearcheck.model.InnovateYearCheck"/>
+		<!-- 年度考核标准管理结束 -->
+		
+		<!-- 年度考核打分管理开始 -->
+		<mapping class="com.lion.rpms.innovate.innovateyeargrade.model.InnovateYearGrade"/>
+		<!-- 年度考核打分管理结束 -->
+		
+		<!-- 博士后课题管理开始 -->
+		<mapping class="com.lion.rpms.innovate.postdoctortopic.model.PostdoctorTopic"/>
+		<!-- 博士后课题管理结束 -->
+		
+		<!-- 论文评比管理开始 -->
+		<mapping class="com.lion.rpms.thesis.thesisapplication.model.ThesisApplication"/>
+		<!-- 论文评比管理结束 -->
+		<!--专利管理开始-->
+		<mapping class="com.lion.rpms.research.researchpatent.model.ResearchPatent" />
+		<mapping class="com.lion.rpms.research.researchpatent.model.ResearchPatentLine" />
+		<!--专利管理结束-->
+		<!--成果管理开始-->
+		<mapping class="com.lion.rpms.research.researchachievement.model.ResearchAchievement" />
+		<!--成果管理结束-->
+		<!--标准管理开始-->
+		<mapping class="com.lion.rpms.research.researchstandar.model.ResearchStandar" />
+		<!--标准管理结束-->
+		<!--荣誉管理开始-->
+		<mapping class="com.lion.rpms.research.researchhonor.model.ResearchHonor" />
+		<!--荣誉管理结束-->
+		
+		<!-- 创新制度管理开始 -->
+		<mapping class="com.lion.rpms.innovate.innovateinstitution.model.InnovateInstitution"/>
+		<!-- 创新制度管理结束 -->
+		<!--论文管理开始-->
+		<mapping class="com.lion.rpms.research.thesis.model.ResearchThesis" />
+		<mapping class="com.lion.rpms.research.thesis.model.ResearchThesisLine" />
+		<mapping class="com.lion.rpms.research.thesis.model.ResearchThesisTalent" />
+		<!--论文管理结束-->
+		<!--评价管理开始-->
+		<mapping class="com.lion.rpms.research.researchevaluate.model.ResearchEvaluate" />
+		<!--评价管理结束-->
+		<!--创新计划开始-->
+		<mapping class="com.lion.rpms.research.projectplanned.model.ProjectPlanned" />
+		<!--创新计划理结束-->
+		<!--项目合并包涵项目明细开始-->
+        <mapping class="com.lion.rpms.research.projectreport.model.ProjectItem" />
+        <!--项目合并包涵项目明细结束-->
+        <!--项目进度阶段开始-->
+        <mapping class="com.lion.rpms.research.project.model.ProjectStage" />
+        <!--项目进度阶段结束-->
+        <!-- 年报评估管理开始 -->
+		<mapping class="com.lion.rpms.innovate.postdoctoryearreport.model.PostdoctorYearReport"/>
+		<!-- 年报评估管理结束 -->
+		<!--科技活动费用开始 -->
+		<mapping class="com.lion.rpms.research.scienceactivity.model.ScienceActivity"/>
+		<!--科技活动费用结束 -->
+		<!-- 专利续费申请管理开始 -->
+        <mapping class="com.lion.rpms.patent.patentrenewal.model.PatentRenewal"/>
+        <!-- 专利续费申请管理结束 -->
+        <!-- 单位概况管理开始 -->
+		<mapping class="com.lion.rpms.organizationgeneral.model.OrganizationGeneral"/>
+		<!-- 单位概况管理结束 -->
+	</session-factory>
+</hibernate-configuration>

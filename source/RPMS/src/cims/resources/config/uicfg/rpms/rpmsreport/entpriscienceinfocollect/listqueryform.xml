@@ -1,0 +1,68 @@
+<uicfg desc="企业科技情况报表查询表单">
+    <columns type="integer">5</columns>
+    <autoHeight type="boolean">true</autoHeight>
+    <defaultFunction type="object">this.manager.query</defaultFunction>
+    <defaultScope type="object">this.manager</defaultScope>
+    <defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">60</labelWidth>
+    </defaults>
+    <items>
+        <xtype>lionblankfield</xtype>
+    </items>
+    <items>
+        <xtype>lionblankfield</xtype>
+    </items>
+    <items>
+        <xtype>lionblankfield</xtype>
+    </items>
+    <items>
+        <xtype>lioncomboboxyearfield</xtype>
+        <fieldLabel>年份</fieldLabel>
+        <name>year</name>
+        <format>Y</format>
+        <value type="object">new Date().format('Y')</value>
+        <listeners type="object">
+			{
+           		select:function(){
+           			this.findParentByType("form").manager.collect =true;
+           			this.findParentByType("form").manager.queryReport();
+           		}
+            }
+		</listeners>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>半年度</fieldLabel>
+        <name>halfYear</name>
+        <keyType>rpms_half_year</keyType>
+        <value>1</value>
+         <listeners type="object">
+			{
+           		select:function(){
+           			this.findParentByType("form").manager.collect =true;
+           			this.findParentByType("form").manager.queryReport();
+           		}
+            }
+		</listeners>
+    </items>
+    <items>
+		<xtype>orgtree</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<hidden type="object">true</hidden>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<allowBlank type="object">true</allowBlank>
+		<!-- <value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value> -->
+		<listeners type="object">
+			{
+           		select:function(){
+           			this.findParentByType("form").manager.queryReport();
+           		}
+            }
+		</listeners>
+	</items>
+</uicfg>

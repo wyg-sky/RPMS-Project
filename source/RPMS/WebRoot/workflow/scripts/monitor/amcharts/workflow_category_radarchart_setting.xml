@@ -1,0 +1,36 @@
+<settings>
+  <background>
+    <alpha>100</alpha>
+  </background>
+  <axes>
+    <tick_length>7</tick_length>
+    <width>1</width>
+    <color>FF3300</color>
+    <alpha>47</alpha>
+    <labels>
+      <text_color>000000</text_color>
+      <text_size>11</text_size>
+      <distance>16</distance>
+      <width>196</width>
+    </labels>
+  </axes>
+  <balloon>
+    <show>{axis}:{value}</show>
+  </balloon>
+  <legend>
+    <align>center</align>
+  </legend>
+  <radar>
+    <radius>50%</radius>
+    <grow_time>1</grow_time>
+    <grow_effect>regular</grow_effect>
+  </radar>
+  <graphs>
+    <graph gid="1">
+      <title>变更流程类别</title>
+      <color>CCCC33</color>
+      <line_width>1</line_width>
+      <bullet>round</bullet>
+    </graph>
+  </graphs>
+</settings>

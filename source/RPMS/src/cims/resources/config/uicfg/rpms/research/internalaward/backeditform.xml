@@ -1,0 +1,9 @@
+<uicfg desc="项目内部报奖退回原来录入表单">
+	<items>
+		<anchor>99%</anchor>
+        <xtype>liontextarea</xtype>
+        <fieldLabel>退回原因</fieldLabel>
+        <name>backReason</name>
+        <columnWidth type="integer">3</columnWidth>
+    </items>
+</uicfg>

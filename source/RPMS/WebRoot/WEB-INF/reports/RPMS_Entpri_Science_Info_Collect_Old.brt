@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<report version="5.0">
+	<head>
+		<property name="type">0</property>
+		<name><![CDATA[RPMS_Entpri_Science_Info_Collect_Old]]></name>
+		<dataSets>
+			<dataSet name="info" type="DB_SQL" >
+				<property name="dataSource">CIMS</property>
+				<property name="desc"><![CDATA[]]></property>
+				<property name="query"><![CDATA[SELECT * FROM RPMS_SCIENCE_INFO
+where 
+year = ?
+and report_status in ('0002','0004')]]></property>
+				<property name="beginRow">0</property>
+				<property name="endRow">0</property>
+				<queryParam name="year" />
+			</dataSet>
+			<dataSet name="prosrc" type="DB_SQL" >
+				<property name="dataSource">CIMS</property>
+				<property name="desc"><![CDATA[]]></property>
+				<property name="query"><![CDATA[SELECT
+	*
+FROM
+	BASE_CLASSIFY
+WHERE
+	classify_cd LIKE '0202%'
+AND classify_cd <> '0202']]></property>
+				<property name="beginRow">0</property>
+				<property name="endRow">0</property>
+			</dataSet>
+			<dataSet name="cooper" type="DB_SQL" >
+				<property name="dataSource">CIMS</property>
+				<property name="desc"><![CDATA[]]></property>
+				<property name="query"><![CDATA[SELECT
+	*
+FROM
+	BASE_CLASSIFY
+WHERE
+	classify_cd LIKE '0201%'
+AND classify_cd <> '0201']]></property>
+				<property name="beginRow">0</property>
+				<property name="endRow">0</property>
+			</dataSet>
+			<dataSet name="achievent" type="DB_SQL" >
+				<property name="dataSource">CIMS</property>
+				<property name="desc"><![CDATA[]]></property>
+				<property name="query"><![CDATA[SELECT
+	*
+FROM
+	BASE_CLASSIFY
+WHERE
+	classify_cd LIKE '0204%'
+AND classify_cd <> '0204']]></property>
+				<property name="beginRow">0</property>
+				<property name="endRow">0</property>
+			</dataSet>
+			<dataSet name="aim" type="DB_SQL" >
+				<property name="dataSource">CIMS</property>
+				<property name="desc"><![CDATA[]]></property>
+				<property name="query"><![CDATA[SELECT
+	*
+FROM
+	BASE_CLASSIFY
+WHERE
+	classify_cd LIKE '0203%'
+AND classify_cd <> '0203']]></property>
+				<property name="beginRow">0</property>
+				<property name="endRow">0</property>
+			</dataSet>
+			<dataSet name="stage" type="DB_SQL" >
+				<property name="dataSource">CIMS</property>
+				<property name="desc"><![CDATA[]]></property>
+				<property name="query"><![CDATA[SELECT
+	*
+FROM
+	BASE_CLASSIFY
+WHERE
+	classify_cd LIKE '0205%'
+AND classify_cd <> '0205']]></property>
+				<property name="beginRow">0</property>
+				<property name="endRow">0</property>
+			</dataSet>
+			<dataSet name="org" type="DB_SQL" >
+				<property name="dataSource">CIMS</property>
+				<property name="desc"><![CDATA[]]></property>
+				<property name="query"><![CDATA[select * from ITSM_ORGANIZATION]]></property>
+				<property name="beginRow">0</property>
+				<property name="endRow">0</property>
+			</dataSet>
+		</dataSets>
+		<parameters>
+			<parameter name="year" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc">查询年份</property>
+				<property name="valueCalc">false</property>
+			</parameter>
+			<parameter name="orgId" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc"></property>
+				<property name="valueCalc">false</property>
+			</parameter>
+		</parameters>
+		<variables>
+			<variable name="con" type="">
+				<property name="default"></property>
+				<property name="desc"></property>
+				<property name="valueCalc">false</property>
+			</variable>
+		</variables>
+	</head>
+	<body>
+		<sheet id="sheet1">
+			<page>
+				<property name="pageRowNum">25</property>
+				<property name="pageColNum">20</property>
+				<property name="pageDirection">0</property>
+			</page>
+			<grid row="10" col="20">
+				<properties>
+				</properties>
+				<rows>
+					<row id="1">
+						<property name="height">8</property>
+					</row>
+					<row id="2">
+						<property name="height">39</property>
+					</row>
+					<row id="3">
+					</row>
+					<row id="4">
+						<property name="height">16</property>
+					</row>
+					<row id="5">
+						<property name="height">20</property>
+					</row>
+					<row id="6">
+						<property name="height">20</property>
+					</row>
+					<row id="7">
+						<property name="height">17</property>
+					</row>
+					<row id="8">
+						<property name="height">62</property>
+					</row>
+					<row id="9">
+						<property name="height">47</property>
+						<property name="fillin_add">0</property>
+						<property name="fillin_remove">0</property>
+					</row>
+					<row id="10">
+						<property name="height">30</property>
+					</row>
+				</rows>
+				<columns>
+					<column id="1">
+						<property name="width">5</property>
+					</column>
+					<column id="2">
+						<property name="width">46</property>
+					</column>
+					<column id="3">
+						<property name="visible"><![CDATA[1]]></property>
+					</column>
+					<column id="4">
+					</column>
+					<column id="5">
+						<property name="width">56</property>
+					</column>
+					<column id="6">
+						<property name="width">89</property>
+					</column>
+					<column id="7">
+						<property name="width">45</property>
+					</column>
+					<column id="8">
+						<property name="width">87</property>
+					</column>
+					<column id="9">
+						<property name="width">35</property>
+					</column>
+					<column id="10">
+						<property name="width">48</property>
+					</column>
+					<column id="11">
+						<property name="width">64</property>
+					</column>
+					<column id="12">
+						<property name="width">73</property>
+					</column>
+					<column id="13">
+						<property name="width">86</property>
+					</column>
+					<column id="14">
+						<property name="width">87</property>
+					</column>
+					<column id="15">
+						<property name="width">68</property>
+					</column>
+					<column id="16">
+						<property name="width">60</property>
+					</column>
+					<column id="17">
+						<property name="width">69</property>
+					</column>
+					<column id="18">
+						<property name="width">76</property>
+					</column>
+					<column id="19">
+						<property name="width">30</property>
+					</column>
+					<column id="20">
+						<property name="visible"><![CDATA[1]]></property>
+						<property name="width">51</property>
+					</column>
+				</columns>
+				<cells>
+					<cell id="1,1" type="0" >
+					</cell>
+					<cell id="1,2" type="0" >
+					</cell>
+					<cell id="1,3" type="0" >
+					</cell>
+					<cell id="1,4" type="0" >
+					</cell>
+					<cell id="1,5" type="0" >
+					</cell>
+					<cell id="1,6" type="0" >
+					</cell>
+					<cell id="1,7" type="0" >
+					</cell>
+					<cell id="1,8" type="0" >
+					</cell>
+					<cell id="1,9" type="0" >
+					</cell>
+					<cell id="1,10" type="0" >
+					</cell>
+					<cell id="1,11" type="0" >
+					</cell>
+					<cell id="1,12" type="0" >
+					</cell>
+					<cell id="1,13" type="0" >
+					</cell>
+					<cell id="1,14" type="0" >
+					</cell>
+					<cell id="1,15" type="0" >
+					</cell>
+					<cell id="1,16" type="0" >
+					</cell>
+					<cell id="1,17" type="0" >
+					</cell>
+					<cell id="1,18" type="0" >
+					</cell>
+					<cell id="1,19" type="0" >
+					</cell>
+					<cell id="1,20" type="0" >
+					</cell>
+					<cell id="2,1" type="0" >
+					</cell>
+					<cell id="2,2" type="0" colspan="19" >
+						<property name="value"><![CDATA[企业科技项目情况]]></property>
+						<property name="font-size">14</property>
+					</cell>
+					<cell id="3,1" type="0" >
+					</cell>
+					<cell id="3,2" type="0" colspan="4" >
+					</cell>
+					<cell id="3,6" type="0" >
+					</cell>
+					<cell id="3,7" type="0" >
+					</cell>
+					<cell id="3,8" type="0" >
+					</cell>
+					<cell id="3,9" type="0" >
+					</cell>
+					<cell id="3,10" type="0" >
+					</cell>
+					<cell id="3,11" type="0" colspan="2" >
+						<property name="value"><![CDATA[报告期：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="3,13" type="0" colspan="2" >
+						<property name="value"><![CDATA[=@year]]></property>
+						<property name="align">0</property>
+					</cell>
+					<cell id="3,15" type="0" >
+					</cell>
+					<cell id="3,16" type="0" >
+					</cell>
+					<cell id="3,17" type="0" >
+					</cell>
+					<cell id="3,18" type="0" >
+					</cell>
+					<cell id="3,19" type="0" >
+					</cell>
+					<cell id="3,20" type="0" >
+					</cell>
+					<cell id="4,1" type="0" >
+					</cell>
+					<cell id="4,2" type="0" >
+					</cell>
+					<cell id="4,3" type="0" >
+					</cell>
+					<cell id="4,4" type="0" >
+					</cell>
+					<cell id="4,5" type="0" >
+					</cell>
+					<cell id="4,6" type="0" >
+					</cell>
+					<cell id="4,7" type="0" >
+					</cell>
+					<cell id="4,8" type="0" >
+					</cell>
+					<cell id="4,9" type="0" >
+					</cell>
+					<cell id="4,10" type="0" >
+					</cell>
+					<cell id="4,11" type="0" >
+					</cell>
+					<cell id="4,12" type="0" >
+					</cell>
+					<cell id="4,13" type="0" >
+					</cell>
+					<cell id="4,14" type="0" >
+					</cell>
+					<cell id="4,15" type="0" colspan="2" >
+						<property name="value"><![CDATA[表    号：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="4,17" type="0" colspan="2" >
+						<property name="value"><![CDATA[B107-1表]]></property>
+						<property name="align">0</property>
+					</cell>
+					<cell id="4,19" type="0" >
+					</cell>
+					<cell id="4,20" type="0" >
+					</cell>
+					<cell id="5,1" type="0" >
+					</cell>
+					<cell id="5,2" type="0" colspan="4" >
+						<property name="value"><![CDATA[单位详细名称：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="5,6" type="0" colspan="4" >
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="5,10" type="0" >
+					</cell>
+					<cell id="5,11" type="0" >
+					</cell>
+					<cell id="5,12" type="0" >
+					</cell>
+					<cell id="5,13" type="0" >
+					</cell>
+					<cell id="5,14" type="0" >
+					</cell>
+					<cell id="5,15" type="0" colspan="2" >
+						<property name="value"><![CDATA[制定机关：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="5,17" type="0" colspan="2" >
+						<property name="value"><![CDATA[国家统计局]]></property>
+						<property name="align">0</property>
+					</cell>
+					<cell id="5,19" type="0" >
+					</cell>
+					<cell id="5,20" type="0" >
+					</cell>
+					<cell id="6,1" type="0" >
+					</cell>
+					<cell id="6,2" type="0" colspan="4" >
+						<property name="value"><![CDATA[组织机构代码：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="6,6" type="0" colspan="4" >
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="6,10" type="0" >
+					</cell>
+					<cell id="6,11" type="0" >
+					</cell>
+					<cell id="6,12" type="0" >
+					</cell>
+					<cell id="6,13" type="0" >
+					</cell>
+					<cell id="6,14" type="0" >
+					</cell>
+					<cell id="6,15" type="0" colspan="2" >
+						<property name="value"><![CDATA[文    号：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="6,17" type="0" colspan="2" >
+						<property name="value"><![CDATA[国统字(2012)84号]]></property>
+						<property name="align">0</property>
+					</cell>
+					<cell id="6,19" type="0" >
+					</cell>
+					<cell id="6,20" type="0" >
+					</cell>
+					<cell id="7,1" type="0" >
+					</cell>
+					<cell id="7,2" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,3" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,4" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,5" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,6" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,7" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,8" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,9" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,10" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,11" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,12" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,13" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,14" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,15" type="0" colspan="2" >
+						<property name="value"><![CDATA[有效期至：]]></property>
+						<property name="align">2</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="7,17" type="0" colspan="2" >
+						<property name="value"><![CDATA[20   年     月]]></property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="7,19" type="0" >
+					</cell>
+					<cell id="7,20" type="0" >
+					</cell>
+					<cell id="8,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,2" type="0" >
+						<property name="value"><![CDATA[序号]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,3" type="0" >
+						<property name="value"><![CDATA[单位ID]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,4" type="0" >
+						<property name="value"><![CDATA[单位]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,5" type="0" colspan="3" >
+						<property name="value"><![CDATA[项目名称]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,8" type="0" >
+						<property name="value"><![CDATA[项目来源]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,9" type="0" colspan="2" >
+						<property name="value"><![CDATA[项目合作形式]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,11" type="0" >
+						<property name="value"><![CDATA[项目成果形式]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,12" type="0" >
+						<property name="value"><![CDATA[项目技术经济目标]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,13" type="0" >
+						<property name="value"><![CDATA[项目起始日期]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,14" type="0" >
+						<property name="value"><![CDATA[项目完成日期]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,15" type="0" >
+						<property name="value"><![CDATA[跨年项目所处进展阶段]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,16" type="0" >
+						<property name="value"><![CDATA[参加项目人员(人)]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,17" type="0" >
+						<property name="value"><![CDATA[项目人员实际工作时间(人/月)]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,18" type="0" >
+						<property name="value"><![CDATA[项目经费内部支出(千元)]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="8,19" type="0" >
+					</cell>
+					<cell id="8,20" type="0" >
+					</cell>
+					<cell id="9,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,2" type="0" >
+						<property name="value"><![CDATA[=row()-8]]></property>
+						<property name="ext-left"><![CDATA[E9]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,3" type="0" >
+						<property name="value"><![CDATA[=info.group(ORGANIZATION)]]></property>
+						<property name="ext-direction">3</property>
+						<property name="web-url"><![CDATA[="javascript:parent.entpriScienceInfoManager.showData('"+C6+"','"+A8+"');"]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,4" type="0" >
+						<property name="value"><![CDATA[=org.getone(NAME,ID=info.ORGANIZATION)]]></property>
+						<property name="web-url"><![CDATA[="javascript:parent.entpriScienceInfoManager.showRptByOrg('"+C9+"','"+D9+"');"]]></property>
+						<property name="web-target"><![CDATA[_self]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,5" type="0" colspan="3" >
+						<property name="value"><![CDATA[=info.select(PROJECT_NAME)]]></property>
+						<property name="ext-direction">3</property>
+						<property name="ext-left"><![CDATA[C9]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,8" type="0" >
+						<property name="value"><![CDATA[=info.select(PROJECT_SRC)]]></property>
+						<property name="view"><![CDATA[=prosrc.select(CLASSIFY_NAME,true,tostr(SORT)=@value)]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,9" type="0" colspan="2" >
+						<property name="value"><![CDATA[=info.select(PROJECT_COOPER)]]></property>
+						<property name="view"><![CDATA[=cooper.select(CLASSIFY_NAME,true,tostr(SORT)=@value)]]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,11" type="0" >
+						<property name="value"><![CDATA[=info.select(PROJECT_ACHIEVE)]]></property>
+						<property name="view"><![CDATA[=achievent.select(CLASSIFY_NAME,true,tostr(SORT)=@value)]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,12" type="0" >
+						<property name="value"><![CDATA[=info.select(PROJECT_AIM)]]></property>
+						<property name="view"><![CDATA[=aim.select(CLASSIFY_NAME,true,tostr(SORT)=@value)]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,13" type="0" >
+						<property name="value"><![CDATA[=info.select(PROJECT_START)]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,14" type="0" >
+						<property name="value"><![CDATA[=info.select(PROJECT_END)]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,15" type="0" >
+						<property name="value"><![CDATA[=info.select(PROJECT_STAGE)]]></property>
+						<property name="view"><![CDATA[=stage.select(CLASSIFY_NAME,true,tostr(SORT)=@value)]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,16" type="0" >
+						<property name="value"><![CDATA[=info.select(PROJECT_PEOPLE)]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,17" type="0" >
+						<property name="value"><![CDATA[=info.select(PROJECT_WORKTIME)]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,18" type="0" >
+						<property name="value"><![CDATA[=info.select(PROJECT_EXPEND)]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="9,19" type="0" >
+					</cell>
+					<cell id="9,20" type="0" >
+						<property name="value"><![CDATA[=nvl(info.select(ID),myuuid())]]></property>
+					</cell>
+					<cell id="10,1" type="0" >
+					</cell>
+					<cell id="10,2" type="0" colspan="4" >
+						<property name="value"><![CDATA[单位负责人：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="10,6" type="0" >
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="10,7" type="0" colspan="2" >
+						<property name="value"><![CDATA[统计负责人：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="10,9" type="0" colspan="2" >
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="10,11" type="0" >
+						<property name="value"><![CDATA[填表人：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="10,12" type="0" >
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="10,13" type="0" >
+						<property name="value"><![CDATA[电话：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="10,14" type="0" colspan="2" >
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="10,16" type="0" colspan="2" >
+						<property name="value"><![CDATA[报出日期:]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="10,18" type="0" >
+						<property name="value"><![CDATA[=nvl(info.first(REPORT_DATE),now())]]></property>
+						<property name="view"><![CDATA[=now()]]></property>
+						<property name="view-format">4|yyyy-M-d</property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="10,19" type="0" >
+					</cell>
+					<cell id="10,20" type="0" >
+					</cell>
+				</cells>
+			</grid>
+		</sheet>
+	</body>
+</report>

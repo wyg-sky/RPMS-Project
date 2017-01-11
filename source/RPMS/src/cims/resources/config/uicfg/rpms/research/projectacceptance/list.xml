@@ -1,0 +1,36 @@
+<uicfg desc="项目验收管理列表界面">
+    <objectName>businessObject</objectName>
+    <editView>rpms/research/projectacceptance/edit</editView>
+    <deleteUrl>rpms/deleteProjectAcceptance.html</deleteUrl>
+    <changeStatusUrl>rpms/changeProjectAcceptanceStatus.html</changeStatusUrl>
+    <component>
+        <items>
+            <object>listTbar</object>
+            <xtype>liontoolbar</xtype>
+            <viewPath>rpms/research/projectacceptance/listtbar</viewPath>
+        </items>
+        <items>
+            <object>queryForm</object>
+            <xtype>lionform</xtype>
+            <region>north</region>
+            <viewPath>rpms/research/projectacceptance/listqueryform</viewPath>
+            <runMode>4</runMode>
+        </items>
+        <items>
+            <object>dataGrid</object>
+            <xtype>lioneditorgrid</xtype>
+            <region>center</region>
+            <viewPath>rpms/research/projectacceptance/listgrid</viewPath>
+        </items>
+    </component>
+    <container>
+        <items>listTbar</items>
+        <items>
+            <xtype>panel</xtype>
+            <layout>border</layout>
+            <border type="boolean">false</border>
+            <items>queryForm</items>
+            <items>dataGrid</items>
+        </items>
+    </container>
+</uicfg>

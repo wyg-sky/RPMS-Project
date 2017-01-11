@@ -1,0 +1,55 @@
+<uicfg desc="操作日志管理编辑">
+	<loadtUrl>system/loadOperateLog.html</loadtUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">2</columns>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>operatorIp</name>
+		<fieldLabel>操作者IP</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>operatorId</name>
+		<fieldLabel>操作者ID</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>operatorName</name>
+		<fieldLabel>操作者名称</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>operateType</hiddenName>
+		<fieldLabel>操作类型</fieldLabel>
+		<keyType>sys_operatelog_type</keyType>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>operateStatus</hiddenName>
+		<fieldLabel>操作状态</fieldLabel>
+		<keyType>sys_operatelog_status</keyType>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>operateTime</name>
+		<fieldLabel>操作时间</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>operateDescription</name>
+		<fieldLabel>操作描述</fieldLabel>
+		<columnWidth type="integer">2</columnWidth>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>operateDetails</name>
+		<fieldLabel>操作明细</fieldLabel>
+		<columnWidth type="integer">2</columnWidth>
+	</items>
+</uicfg>

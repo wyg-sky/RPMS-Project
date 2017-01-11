@@ -1,0 +1,65 @@
+<uicfg desc="年度考核打分管理查询表单">
+	<columns type="integer">5</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                this.manager.query();
+            },
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },
+            scope:this
+        }
+        </listeners>
+        <value type="object">
+			{"value" : PlatUtil.currentCenterId, "text" : PlatUtil.currentCenterName}
+		</value>
+    </items>
+    <items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>分类</fieldLabel>
+		<name>checkItem.type</name>
+		<keyType>rpms_year_check</keyType>
+		<listeners type="object">{
+           	'beforequery' : function(e){
+                 var combo = e.combo;
+                 combo.store.filterBy(function(record){
+	               	var id = record.get("id");
+	                return id.length==2 || id.length==1;
+	           	 	});
+	            	combo.onLoad();
+	            	return false;
+         	},select:function(){
+         		this.manager.query();
+         	},scope:this
+          }
+		</listeners>
+	</items>
+	<items>
+		<xtype>lioncomboboxyearfield</xtype>
+		<fieldLabel>年度</fieldLabel>
+		<name>year</name>
+		<allowBlank type="boolean">true</allowBlank>
+		<listeners type="object">{
+			select:function(){
+				this.manager.query();
+			},scope:this	
+		}</listeners>
+		<value type="object">new Date().getFullYear()</value>
+	</items>
+</uicfg>

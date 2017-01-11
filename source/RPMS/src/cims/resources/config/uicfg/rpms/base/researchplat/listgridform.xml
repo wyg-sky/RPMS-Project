@@ -1,0 +1,187 @@
+<uicfg desc="创新平台管理编辑表单">
+    <loadtUrl>rpms/loadResearchPlat.html</loadtUrl>
+    <submitUrl>rpms/saveResearchPlat.html</submitUrl>
+    <objectName>businessObject</objectName>
+    <columns type="object">3</columns>
+    <height type="integer">260</height>
+    <defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">80</labelWidth>
+    </defaults>
+    <items>
+        <xtype>lionhiddenfield</xtype>
+        <name>id</name>
+        <hidden type="object">true</hidden>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+    <items>
+        <xtype>lioncodefield</xtype>
+        <fieldLabel>机构编号</fieldLabel>
+        <name>platCode</name>
+        <readOnly type="boolean">true</readOnly>
+        <allowBlank type="boolean">false</allowBlank>
+        <autoLoad type="object">true</autoLoad>
+        <type>3</type>
+        <params>
+            <className>ResearchPlat</className>
+            <parentId type="object">this.manager.parentId</parentId>
+            <codeProperty>platCode</codeProperty>
+            <length>4</length>
+        </params>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>机构名称</fieldLabel>
+        <name>platName</name>
+        <allowBlank type="boolean">false</allowBlank>
+        <maxLength type="integer">50</maxLength>
+        <maxLengthText>机构名称最大允许输入50个字符</maxLengthText>
+    </items>
+    <!--父节点-->
+    <items>
+        <xtype>lioncombowindow</xtype>
+        <fieldLabel>父节点</fieldLabel>
+        <propertyName>parent</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <displayField>platName</displayField>
+        <readOnly type="boolean">true</readOnly>
+        <allowBlank type="boolean">true</allowBlank>
+        <hidden type="object">true</hidden>
+        <window>
+            <viewPathOfUi>rpms/base/researchplat/list</viewPathOfUi>
+            <title>上级平台选择</title>
+        </window>
+        <value type="object">{value: this.manager.parentId, text: this.manager.parentName}</value>
+        <listeners type="object">{
+            'after_comfirm_click':function(recode){
+                this.manager.editForm.findField("platCode").load({parentId : recode[0].get('id')});
+            },
+            'change':function(){
+                this.manager.parentChange();
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>创新层级</fieldLabel>
+        <name>hierarchy</name>
+        <keyType>rpms_innovation_level</keyType>
+        <editable type="object">false</editable>
+        <allowBlank type="boolean">false</allowBlank>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>等级</fieldLabel>
+        <name>grade</name>
+        <keyType>rpms_grade</keyType>
+        <editable type="object">false</editable>
+        <allowBlank type="boolean">false</allowBlank>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>专业</fieldLabel>
+        <name>specialty</name>
+        <allowBlank type="boolean">false</allowBlank>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>平台类型</fieldLabel>
+        <name>platType</name>
+        <keyType>rpms_plat_type</keyType>
+        <editable type="object">false</editable>
+        <allowBlank type="boolean">false</allowBlank>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>批准部门</fieldLabel>
+        <name>approvalDept</name>
+        <maxLength type="integer">50</maxLength>
+        <maxLengthText>批准部门最大允许输入50个字符</maxLengthText>
+    </items>
+    <items>
+        <xtype>liondatefield</xtype>
+        <fieldLabel>批准时间</fieldLabel>
+        <name>approvalTime</name>
+        <editable>false</editable>
+        <format>Y-m-d</format>
+        <value type="object">new Date()</value>
+        <allowBlank type="boolean">true</allowBlank>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>文件名称编号</fieldLabel>
+        <name>fileCode</name>
+        <maxLength type="integer">50</maxLength>
+        <maxLengthText>文件名称编号最大允许输入50个字符</maxLengthText>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>是否有效</fieldLabel>
+        <name>valid</name>
+        <keyType>cims_effective</keyType>
+        <value>0</value>
+        <editable type="object">false</editable>
+        <readOnly type="object">true</readOnly>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>创建人</fieldLabel>
+        <name>createUser</name>
+        <value type="object">FW.userName</value>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <name>createTime</name>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>创建时间</fieldLabel>
+        <value type="object">new Date().format('Y-m-d H:i:s')</value>
+    </items>
+    <items>
+        <xtype>lionreadonlyfield</xtype>
+        <fieldLabel>组织单位</fieldLabel>
+        <name>organization</name>
+        <propertyName>organization</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <value type="object">
+            {"value" : FW.organizationId, "text" : FW.organizationName}
+        </value>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>修改人</fieldLabel>
+        <name>modifyUser</name>
+        <value type="object">FW.userName</value>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <name>modifyTime</name>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>修改时间</fieldLabel>
+        <value type="object">new Date().format('Y-m-d H:i:s')</value>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+        <xtype>liontextarea</xtype>
+        <fieldLabel>平台描述</fieldLabel>
+        <name>description</name>
+        <columnWidth type="integer">3</columnWidth>
+        <maxLength type="integer">1000</maxLength>
+        <maxLengthText>平台描述最大允许输入1000个字符</maxLengthText>
+    </items>
+    <items>
+        <xtype>liontextarea</xtype>
+        <fieldLabel>备注</fieldLabel>
+        <name>remark</name>
+        <columnWidth type="integer">3</columnWidth>
+        <maxLength type="integer">1000</maxLength>
+        <maxLengthText>备注最大允许输入1000个字符</maxLengthText>
+    </items>
+</uicfg>

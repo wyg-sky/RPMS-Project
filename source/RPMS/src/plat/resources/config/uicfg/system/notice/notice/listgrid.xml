@@ -1,0 +1,60 @@
+<uicfg desc="消息管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>sendTime desc</orderBy>
+	<editable type="object">false</editable>
+	<formViewPath>system/notice/notice/listgridform</formViewPath>
+	<showEditButton type="boolean">false</showEditButton>
+	<showCopyButton type="boolean">false</showCopyButton>
+	<store>
+		<url>system/listNotice.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>noticeType.name</name>
+		</fields>
+		<fields>
+			<name>status</name>
+		</fields>
+		<fields>
+			<name>title</name>
+		</fields>
+		<fields>
+			<name>content</name>
+		</fields>
+		<fields>
+			<name>sendTime</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>类型</header>
+			<dataIndex>noticeType.name</dataIndex>
+		</columns>
+		<columns>
+			<header>标题</header>
+			<dataIndex>title</dataIndex>
+		</columns>
+		<columns>
+			<header>内容</header>
+			<dataIndex>content</dataIndex>
+		</columns>
+		<columns>
+			<header>消息状态</header>
+			<dataIndex>status</dataIndex>
+			<keyType>sys_notice_status</keyType>
+		</columns>
+		<columns>
+			<header>发送时间</header>
+			<dataIndex>sendTime</dataIndex>
+		</columns>
+	</cm>
+</uicfg>

@@ -1,0 +1,60 @@
+<uicfg desc="用户消息管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>recieveTime desc</orderBy>
+	<showCopyButton type="boolean">false</showCopyButton>
+	<showEditButton type="boolean">false</showEditButton>
+	<editable type="object">false</editable>
+	<formViewPath>system/notice/usernotice/listgridform</formViewPath>
+	<store>
+		<url>system/listUserNotice.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>notice.title</name>
+		</fields>
+		<fields>
+			<name>notice.content</name>
+		</fields>
+		<fields>
+			<name>recieveTime</name>
+		</fields>
+		<fields>
+			<name>viewOrNot</name>
+		</fields>
+		<fields>
+			<name>viewTime</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>消息标题</header>
+			<dataIndex>notice.title</dataIndex>
+		</columns>
+		<columns>
+			<header>消息内容</header>
+			<dataIndex>notice.content</dataIndex>
+		</columns>
+		<columns>
+			<header>接收时间</header>
+			<dataIndex>recieveTime</dataIndex>
+		</columns>
+		<columns>
+			<header>阅读状态</header>
+			<dataIndex>viewOrNot</dataIndex>
+			<keyType>sys_view_status</keyType>
+		</columns>
+		<columns>
+			<header>阅读时间</header>
+			<dataIndex>viewTime</dataIndex>
+		</columns>
+	</cm>
+</uicfg>

@@ -1,0 +1,131 @@
+<uicfg desc="角色管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>roleType asc,sortOrder asc</orderBy>
+	<editable type="object">false</editable>
+	<showDeleteButton type="object">true</showDeleteButton>
+	<store>
+		<url>system/listRole.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>name</name>
+		</fields>
+		<fields>
+			<name>code</name>
+		</fields>
+		<fields>
+			<name>roleType</name>
+		</fields>
+		<fields>
+			<name>description</name>
+		</fields>
+		<fields>
+			<name>sortOrder</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>类型</header>
+			<dataIndex>roleType</dataIndex>
+			<width type="integer">50</width>
+			<keyType>sys_role_type</keyType>
+			<editor>
+				<xtype>lioncombobox</xtype>
+				<keyType>sys_role_type</keyType>
+			</editor>
+		</columns>
+		<columns>
+			<header>名称</header>
+			<dataIndex>name</dataIndex>
+			<width type="integer">80</width>
+			<editor>
+				<xtype>textfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>编码</header>
+			<dataIndex>code</dataIndex>
+			<hidden type="object">true</hidden>
+			<editor>
+				<xtype>textfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>描述</header>
+			<dataIndex>description</dataIndex>
+			<width type="integer">140</width>
+			<editor>
+				<xtype>textfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>输出顺序</header>
+			<dataIndex>sortOrder</dataIndex>
+			<width type="integer">40</width>
+			<editor>
+				<xtype>textfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header><![CDATA[<img src='styles/default/images/new-recource-icon.png' height='11' alt='模块与资源权限' title='模块与资源权限'/> 模块与资源权限]]></header>
+			<dataIndex>module</dataIndex>
+			<hidden type="object">this.runMode == '2'</hidden>
+			<width type="integer">70</width>
+			<align>center</align>
+			<isPrint type="boolean">false</isPrint>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='styles/default/images/new-recource-icon.png' title='模块与资源权限' alt='模块与资源权限'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+		<columns>
+			<header><![CDATA[<img src='images/portal/icon/org.gif' height='11' alt='单位数据权限' title='单位数据权限'/> 单位数据权限]]></header>
+			<dataIndex>dataOfOrg</dataIndex>
+			<hidden type="object">this.runMode == '2'</hidden>
+			<width type="integer">60</width>
+			<align>center</align>
+			<isPrint type="boolean">false</isPrint>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='images/portal/icon/org.gif' title='单位数据权限' alt='单位数据权限'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+		<columns>
+			<header><![CDATA[<img src='images/portal/icon/department.gif' height='11' alt='部门数据权限' title='部门数据权限'/> 部门数据权限]]></header>
+			<dataIndex>dataOfDept</dataIndex>
+			<hidden type="object">this.runMode == '2'</hidden>
+			<width type="integer">60</width>
+			<align>center</align>
+			<isPrint type="boolean">false</isPrint>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='images/portal/icon/department.gif' title='部门数据权限' alt='部门数据权限'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+		<columns>
+			<header><![CDATA[<img src='images/portal/icon/singlelogin.png' height='11' alt='单点系统权限' title='单点系统权限'/> 单点系统权限]]></header>
+			<dataIndex>singleSystemAuthorize</dataIndex>
+			<hidden type="object">this.runMode == '2'</hidden>
+			<width type="integer">60</width>
+			<align>center</align>
+			<isPrint type="boolean">false</isPrint>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='images/portal/icon/singlelogin.png' title='单点系统权限' alt='单点系统权限'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+	</cm>
+</uicfg>

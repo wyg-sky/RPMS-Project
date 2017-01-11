@@ -1,0 +1,65 @@
+<uicfg desc="设备位置管理查询表单">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<defaults>
+		<layout>column</layout>
+		<labelWidth type="integer">70</labelWidth>
+	</defaults>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>locationCd</name>
+		<fieldLabel>地点编码</fieldLabel>
+		<enableKeyEvents type="object">true</enableKeyEvents>
+		<!--<listeners type="object"><![CDATA[{
+			'keyup':function(locationName,e){
+				var code = this.queryForm.findField("locationCd").getValue();
+			    var text = this.queryForm.findField("locationName").getValue();
+		        var codere = new RegExp(Ext.escapeRe(code), 'g');
+		        var namere = new RegExp(Ext.escapeRe(text), 'g');
+		        this.dataGrid.store.filterBy(function(record) {
+		        	var bool = (code=='' || code==record.get(this.dataGrid.getFieldName('locationCd'))) && namere.test(record.get(this.dataGrid.getFieldName('locationName')));
+		        	record.data.sign="1";
+		        	if(!bool) {
+		        	    var parent = this.dataGrid.store.getNodeParent(record);
+		        		if(parent != undefined) {
+			        		bool = (code=='' || code==parent.get(this.dataGrid.getFieldName('locationCd'))) && namere.test(parent.get(this.dataGrid.getFieldName('locationName')));
+			        		if(!bool) {
+			        	    	record.data.sign="0";
+			        		}
+		        		}
+		        	} else {
+						if(code!='') {
+							this.dataGrid.store.expandNode(record);
+		        		}
+		        	}
+		            return bool;
+	            },this);
+		    },
+			scope:this.manager
+		}]]>
+		</listeners>-->
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>locationName</name>
+		<fieldLabel>地点名称</fieldLabel>
+		<enableKeyEvents type="object">true</enableKeyEvents>
+	</items>
+	<buttonAlign>center</buttonAlign>
+	<buttons>
+		<text>查询</text>
+		<width type="integer">50</width>
+		<iconCls>search-d-icon</iconCls>
+		<handler type="object">function() {this.manager.query()}</handler>
+		<scope type="object">this</scope>
+	</buttons>
+	<buttons>
+		<text>重置</text>
+		<width type="integer">50</width>
+		<iconCls>ff-clear-icon</iconCls>
+		<handler type="object">function() {this.manager.clearQuery()}</handler>
+		<scope type="object">this</scope>
+	</buttons>
+</uicfg>

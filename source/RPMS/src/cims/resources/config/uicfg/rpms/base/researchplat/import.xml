@@ -1,0 +1,15 @@
+<uicfg desc="导入数据">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">300</winWidth>
+	<winHeight type="integer">200</winHeight>
+	<component>
+		<items>
+			<object>importForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/base/researchplat/importform</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>importForm</items>
+	</container>
+</uicfg>

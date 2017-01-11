@@ -1,0 +1,20 @@
+<uicfg desc="生成页面编辑">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">650</winWidth>
+	<component>
+		<items>
+			<object>previewForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>code/generatepage/preview/previewform</viewPath>
+		</items>
+		<items>
+			<object>previewTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>code/generatepage/preview/previewtbar</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>previewTbar</items>
+		<items>previewForm</items>
+	</container>
+</uicfg>

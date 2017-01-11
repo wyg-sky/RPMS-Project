@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<mapping class="com.lion.system.user.model.User" />
+		<mapping class="com.lion.system.user.model.UserView" />
+		<mapping class="com.lion.system.user.model.UserRole" />
+		<mapping class="com.lion.system.user.model.UserShortCut" />
+		<mapping class="com.lion.system.user.model.UserSetting" />
+		<mapping class="com.lion.system.organization.model.Organization" />
+		<mapping class="com.lion.system.department.model.Department" />
+		<mapping class="com.lion.system.role.model.Role" />
+		<mapping class="com.lion.system.module.model.Module" />
+		<mapping class="com.lion.system.resource.model.Resource" />
+		<mapping class="com.lion.system.job.model.JobTitle" />
+		<mapping class="com.lion.system.code.model.Code" />
+		<mapping class="com.lion.system.code.model.CodeLine" />
+		<mapping class="com.lion.system.codegenerator.model.CodeGenerator" />
+		<mapping class="com.lion.system.singlesystem.model.SingleSystem" />
+		<mapping class="com.lion.system.catalog.model.Catalog" />
+		<mapping class="com.lion.system.catalog.model.CatalogRole" />
+		<mapping class="com.lion.system.sms.model.Contacts" />
+		<mapping class="com.lion.system.sms.model.Messages" />
+		<mapping class="com.lion.system.sms.model.Phrases" />
+		<mapping class="com.lion.system.theme.model.Theme" />
+		<mapping class="com.lion.system.shortcut.model.ShortCut" />
+		<mapping class="com.lion.system.notice.model.Notice" />
+		<mapping class="com.lion.system.notice.model.NoticeType" />
+		<mapping class="com.lion.system.notice.model.UserNotice" />
+		<mapping class="com.lion.system.document.model.Document" />
+		<mapping class="com.lion.system.document.model.DocumentType" />
+		<mapping class="com.lion.code.widgets.model.WidgetBase" />
+		<mapping class="com.lion.code.widgets.model.WidgetParam" />
+		<mapping class="com.lion.code.widgets.model.Property" />
+		<mapping class="com.lion.code.objects.codeduty.model.CodeDuty" />
+		<mapping class="com.lion.code.objects.codeduty.model.CodeDutyLine" />
+		<mapping class="com.lion.system.operatelog.model.OperateLog" />
+		<mapping class="com.lion.system.excel.model.ImportSetting" />
+		<mapping class="com.lion.system.excel.model.ImportSettingLine" />
+	</session-factory>
+</hibernate-configuration>

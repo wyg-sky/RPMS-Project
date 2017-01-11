@@ -1,0 +1,61 @@
+<uicfg desc="评价管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>evaluateYear desc</orderBy>
+	<editable type="object">false</editable>
+    <showEditButton type="object">Ext.isAllowed('rpms_researchevaluate_edit')</showEditButton>
+	<showCopyButton type="object">false</showCopyButton>
+	<store>
+		<url>rpms/listResearchEvaluate.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>platCenter.id</name>
+		</fields>
+		<fields>
+			<name>platCenter.platName</name>
+		</fields>
+		<fields>
+			<name>platInstitution.id</name>
+		</fields>
+		<fields>
+			<name>platInstitution.platName</name>
+		</fields>
+		<fields>
+			<name>evaluateYear</name>
+		</fields>
+		<fields>
+			<name>evaluation</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>分中心</header>
+			<dataIndex>platCenter.platName</dataIndex>
+			<width type="integer">50</width>
+		</columns>
+		<columns>
+			<header>分中心机构</header>
+			<dataIndex>platInstitution.platName</dataIndex>
+			<width type="integer">50</width>
+		</columns>
+		<columns>
+			<header>年度</header>
+			<dataIndex>evaluateYear</dataIndex>
+			<width type="integer">30</width>
+		</columns>
+		<columns>
+			<header>评价情况</header>
+			<dataIndex>evaluation</dataIndex>
+			<width type="integer">200</width>
+		</columns>
+	</cm>
+</uicfg>

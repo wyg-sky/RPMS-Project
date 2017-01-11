@@ -1,0 +1,14 @@
+<uicfg desc="消息阅读情况">
+	<objectName>businessObject</objectName>
+	<component>
+		<items>
+			<object>viewDataGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<region>center</region>
+			<viewPath>system/notice/usernotice/viewlistgrid</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>viewDataGrid</items>
+	</container>
+</uicfg>

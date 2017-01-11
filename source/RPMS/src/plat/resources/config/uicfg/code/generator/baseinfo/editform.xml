@@ -1,0 +1,81 @@
+<uicfg desc="生成信息编辑表单">
+	<objectName>businessObject</objectName>
+	<columns type="object">2</columns>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>systemName</hiddenName>
+		<fieldLabel>所属系统</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<keyType>sys_systemType</keyType>
+	</items>
+	<items>
+		<xtype>lioncomboboxtree</xtype>
+		<fieldLabel>上级模块</fieldLabel>
+		<propertyName>parentModule</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<allowBlank type="boolean">true</allowBlank>
+		<tree>
+			<loader>
+				<dataUrl>system/listModuleTree.html</dataUrl>
+			</loader>
+		</tree>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>tableName</name>
+		<fieldLabel>表名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<listeners type="object">{
+			'change' : function(field,newValue,oldValue) {
+				this.manager.loadTableInfo(this,newValue,true);
+			},
+			scope : this
+		}</listeners>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>moduleName</name>
+		<fieldLabel>模块名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>packageName</name>
+		<fieldLabel>包名</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>className</name>
+		<fieldLabel>类名称</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>classRemark</name>
+		<fieldLabel>类注释</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>extendsClassPath</hiddenName>
+		<fieldLabel>继承父类</fieldLabel>
+		<keyType>sys_superclass</keyType>
+		<forceSelection type="boolean">false</forceSelection>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createUser</name>
+		<fieldLabel>创建人</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<name>createDate</name>
+		<fieldLabel>创建时间</fieldLabel>
+		<format>Y-m-d H:i:s</format>
+		<allowBlank type="boolean">false</allowBlank>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+</uicfg>

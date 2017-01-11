@@ -1,0 +1,97 @@
+<uicfg desc="专利申请管理明细列表">
+	<rownum type="boolean">true</rownum>
+	<orderBy></orderBy>
+	<editable type="object">true</editable>
+	<showLookButton type="object">false</showLookButton>
+	<showEditButton type="object">false</showEditButton>
+	<showCopyButton type="object">false</showCopyButton>
+	<store>
+		<url>rpms/listPatentApplicationLine.html</url>
+		<baseParams>
+            <fieldValues type="object">this.mainId</fieldValues>
+            <operatorValues>=</operatorValues>  
+            <queryFields>obj.mainId</queryFields>
+        </baseParams>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>mainId</name>
+		</fields>
+		<fields>
+			<name>talentId.id</name>
+		</fields>
+		<fields>
+			<name>talentId.talentName</name>
+		</fields>
+		<fields>
+			<name>talentId.position</name>
+		</fields>
+		<fields>
+			<name>talentId.grade</name>
+		</fields>
+		<fields>
+			<name>talentId.title</name>
+		</fields>
+		<fields>
+			<name>talentId.discipline</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>专利</header>
+			<dataIndex>mainId</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>发明人</header>
+			<dataIndex>talentId.talentName</dataIndex>
+			<cascadeIndex>talentId.id</cascadeIndex>
+			<!-- <editor>
+				<xtype>lioncombowindow</xtype>
+				<propertyName>talentId</propertyName>
+				<hiddenName>id</hiddenName>
+				<hiddenDisplayName>talentName</hiddenDisplayName>
+				<displayField>talentName</displayField>
+				<window>
+					<viewPathOfUi>rpms/base/researchtalent/list</viewPathOfUi>
+					<title>人员选择</title>
+					<hql> and obj.valid='1' </hql>
+				</window>
+			</editor> -->
+		</columns>
+		<columns>
+			<header>机构职务</header>
+			<dataIndex>talentId.position</dataIndex>
+			<keyType>rpms_institution_duty</keyType>
+		</columns>
+		<columns>
+			<header>专家等级</header>
+			<dataIndex>talentId.grade</dataIndex>
+			<keyType>rpms_grade</keyType>
+		</columns>
+		<columns>
+			<header>职称</header>
+			<dataIndex>talentId.title</dataIndex>
+			<keyType>rpms_title</keyType>
+		</columns>
+		<columns>
+			<header>学科专业</header>
+			<dataIndex>talentId.discipline</dataIndex>
+			<keyType>rpms_discipline</keyType>
+		</columns>
+	</cm>
+	<tbar>
+        <xtype>liontoolbar</xtype>
+        <hidden type="object">!this.manager.editable</hidden>
+        <manager type="object">this.manager</manager>
+        <viewPath>rpms/patent/patentapplication/listtlinebar</viewPath>      
+    </tbar>
+</uicfg>

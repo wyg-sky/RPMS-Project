@@ -1,0 +1,82 @@
+<uicfg desc="设备位置管理按钮">
+	<items>-></items>
+	<items>
+		<text>新增</text>
+		<xaction>mate_location_add</xaction>
+		<iconCls>new-new-icon</iconCls>
+		<handler type="object">
+			function() {
+				this.manager.addObject();
+			}
+		</handler>
+	</items>
+	<items>
+		<text>编辑</text>
+		<xaction>mate_location_edit</xaction>
+		<iconCls>new-edit-icon</iconCls>
+		<handler type="object">this.editClick</handler>
+	</items>
+	<items>
+		<text>删除</text>
+		<xaction>mate_location_delete</xaction>
+		<hidden type="boolean">true</hidden>
+		<iconCls>delete-selected-icon</iconCls>
+		<handler type="object">this.deleteClick</handler>
+	</items>
+	<items>
+		<text>查看</text>
+		<iconCls>view-icon</iconCls>
+		<hidden type="object">true</hidden>
+		<handler type="object">this.viewClick</handler>
+	</items>
+	<items>
+		<text>置为有效</text>
+		<xaction>mate_location_valid</xaction>
+		<iconCls>pass-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<handler type="object">function() {
+			this.changeStatus('valid', '1', '置为有效');
+		}</handler>
+	</items>
+	<items>
+		<text>置为无效</text>
+		<xaction>mate_location_invalid</xaction>
+		<iconCls>unvalid-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<handler type="object">function() {
+			this.changeStatus('valid', '0', '置为无效');
+		}</handler>
+	</items>
+	<items>
+		<text>数据导入</text>
+		<xaction>mate_location_import</xaction>
+		<iconCls>import-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<handler type="object">this.manager.importLocation</handler>
+	</items>
+	<items>
+		<text>生成报表</text>
+		<iconCls>print-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<handler type="object">function() {
+			this.genReport();
+		}</handler>
+	</items>
+	<items>
+		<text>查询</text>
+		<iconCls>search-d-icon</iconCls>
+		<hidden type="object">true</hidden>
+		<handler type="object">this.query</handler>
+	</items>
+	<items>
+		<text>清空</text>
+		<iconCls>ff-clear-icon</iconCls>
+		<hidden type="object">true</hidden>
+		<handler type="object">this.clear</handler>
+	</items>
+	<items>
+		<iconCls>expand-icon</iconCls>
+		<tooltip>展开/收起查询区</tooltip>
+		<handler type="object">this.expandQueryField</handler>
+	</items>
+</uicfg>

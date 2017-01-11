@@ -1,0 +1,14 @@
+<uicfg desc="导入仓库">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">300</winWidth>
+	<component>
+		<items>
+			<object>importLineForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>base/storage/importlineform</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>importForm</items>
+	</container>
+</uicfg>

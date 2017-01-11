@@ -1,0 +1,89 @@
+<uicfg desc="供应商管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>modifyTime desc</orderBy>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">Ext.isAllowed('mate_factory_add')</showCopyButton>
+	<showEditButton type="object">Ext.isAllowed('mate_factory_edit')</showEditButton>
+	<showDeleteButton type="object">Ext.isAllowed('mate_factory_delete')</showDeleteButton>
+	<store>
+		<url>base/listFactory.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+		    <name>factoryCd</name>
+		</fields>
+		<fields>
+		    <name>factoryName</name>
+		</fields>
+		<fields>
+		    <name>factoryType</name>
+		</fields>
+		<fields>
+		    <name>linkman</name>
+		</fields>
+		<fields>
+		    <name>phonenum</name>
+		</fields>
+		<fields>
+		    <name>valid</name>
+		</fields>
+		<fields>
+		    <name>dataType</name>
+		</fields>
+		<fields>
+		    <name>organization.id</name>
+		</fields>
+		<fields>
+			<name>organization.name</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>供应商编码</header>
+			<dataIndex>factoryCd</dataIndex>
+		    <width type="integer">80</width>
+		</columns>
+		<columns>
+			<header>供应商名称</header>
+			<dataIndex>factoryName</dataIndex>
+			<width type="integer">120</width>
+		</columns>
+		<columns>
+			<header>厂商类别</header>
+			<dataIndex>factoryType</dataIndex>
+			<keyType>mate_factory_type</keyType>
+			<width type="integer">70</width>
+		</columns>
+		<columns>
+			<header>联系人</header>
+			<dataIndex>linkman</dataIndex>
+			<width type="integer">70</width>
+		</columns>
+		<columns>
+			<header>联系电话</header>
+			<dataIndex>phonenum</dataIndex>
+			<width type="integer">70</width>
+		</columns>
+		<columns>
+			<header>数据类型</header>
+			<dataIndex>dataType</dataIndex>
+			<keyType>mate_dataType</keyType>
+			<width type="integer">50</width>
+		</columns>
+		<columns>
+			<header>是否有效</header>
+			<dataIndex>valid</dataIndex>
+			<keyType>cims_effective</keyType>
+			<width type="integer">50</width>
+		</columns>
+	</cm>
+</uicfg>

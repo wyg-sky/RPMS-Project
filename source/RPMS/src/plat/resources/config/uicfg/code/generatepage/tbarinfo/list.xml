@@ -1,0 +1,37 @@
+<uicfg desc="组件管理">
+	<winWidth type="integer">650</winWidth>
+	<component>
+		<items>
+			<object>tbarsGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<height type="integer">200</height>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/tbarinfo/tbarsgrid</viewPath>
+		</items>
+		<items>
+			<object>tbarsTbar</object>
+			<xtype>liontoolbar</xtype>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/tbarinfo/tbarstbar</viewPath>
+		</items>
+		<items>
+			<object>barparamsGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<height type="integer">150</height>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/tbarinfo/barparamsgrid</viewPath>
+		</items>
+		<items>
+			<object>barparamsTbar</object>
+			<xtype>liontoolbar</xtype>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/tbarinfo/barparamstbar</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>tbarsTbar</items>
+		<items>tbarsGrid</items>
+		<items>barparamsTbar</items>
+		<items>barparamsGrid</items>
+	</container>
+</uicfg>

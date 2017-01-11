@@ -1,0 +1,42 @@
+<uicfg desc="创新计划查询表单">
+	<columns type="integer">5</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+    <items>
+        <xtype>lioncomboboxyearfield</xtype>
+        <name>plannedYear</name>
+        <fieldLabel>计划年度</fieldLabel>
+        <format>Y</format>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>计划名称</fieldLabel>
+		<name>plannedName</name>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>valid</hiddenName>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+	</items>
+	<items>
+		<xtype>lioncombowindow</xtype>
+		<fieldLabel>所属规划</fieldLabel>
+		<propertyName>planId</propertyName>
+		<hiddenName>id</hiddenName>
+		<displayField>planName</displayField>
+		<hiddenDisplayName>planName</hiddenDisplayName>
+		<window>
+			<viewPathOfUi>rpms/research/projectplan/list</viewPathOfUi>
+			<hql type="object">" and obj.valid='1'"</hql>
+			<title>规划选择</title>
+			<width type="integer">1100</width>
+			<height type="integer">550</height>
+		</window>
+	</items>
+</uicfg>

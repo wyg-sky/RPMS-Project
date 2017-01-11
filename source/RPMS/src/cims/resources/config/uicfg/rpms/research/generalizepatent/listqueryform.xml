@@ -1,0 +1,133 @@
+<uicfg desc="专利查询表单">
+	<columns type="integer">4</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>专利名称</fieldLabel>
+		<name>patentName</name>
+	</items>
+	<items>
+		<xtype>orgtree</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<hidden type="object">false</hidden>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<allowBlank type="object">true</allowBlank>
+		<!-- <value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value> -->
+		<listeners type="object">{
+           		select:function(){
+           			this.findParentByType("form").manager.query();
+           		}
+            }
+		</listeners>
+	</items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                this.manager.queryForm.findField("platInstitution.id").setValue({value:'',text:''});
+                this.manager.queryForm.findField("platInstitution.id").clearValue();
+            },
+            'focus':function(tree) {
+                tree.cascadePlatTree(2);
+            },
+            scope:this
+        }
+        </listeners>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.manager.queryForm.findField("platCenter.id"));
+            },scope:this
+        }
+        </listeners>
+        <hidden type="object">true</hidden>
+    </items>
+	
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>专利编号</fieldLabel>
+		<name>patentNum</name>
+	</items>
+	<items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>specialty</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>专业</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                    <type>"zy"</type>
+                </baseParams >
+            </loader>
+        </tree>
+       <listeners type="object">
+			{
+           		select:function(){
+           			this.findParentByType("form").manager.query();
+           		}
+            }
+		</listeners>
+    </items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>type</hiddenName>
+		<fieldLabel>分类</fieldLabel>
+		<keyType>rpms_patent_type</keyType>
+		<listeners type="object">{
+           		select:function(){
+           			this.findParentByType("form").manager.query();
+           		}
+            }
+		</listeners>
+	</items>
+	<items>
+		<xtype>lioncomboboxyearfield</xtype>
+		<fieldLabel>授权日期</fieldLabel>
+		<name>privilegeDate</name>
+		<editable type="object">true</editable>
+		<format>Y-m-d</format>
+		<forceSelection type="object">false</forceSelection>
+		<listeners type="object">
+			{
+           		select:function(){
+           			this.findParentByType("form").manager.query();
+           		}
+            }
+		</listeners>	
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>spreadType</hiddenName>
+		<fieldLabel>推广类别</fieldLabel>
+		<keyType>rpms_promotion_category</keyType>
+		<listeners type="object">
+			{
+           		select:function(){
+           			this.findParentByType("form").manager.query();
+           		}
+            }
+		</listeners>
+	</items>
+</uicfg>

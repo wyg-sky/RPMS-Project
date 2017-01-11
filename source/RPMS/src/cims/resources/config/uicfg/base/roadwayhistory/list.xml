@@ -1,0 +1,27 @@
+<uicfg desc="巷道历史信息主界面">
+	<objectName>businessObject</objectName>
+	<editView>base/roadwayhistory/edit</editView>
+	<component>
+		<items>
+			<object>dataGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<viewPath>base/roadwayhistory/listgrid</viewPath>
+		</items>
+		<items>
+			<object>queryForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>base/roadwayhistory/listqueryform</viewPath>
+			<runMode>4</runMode>
+		</items>
+		<items>
+			<object>listTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>base/roadwayhistory/listtbar</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>listTbar</items>
+		<items>queryForm</items>
+		<items>dataGrid</items>
+	</container>
+</uicfg>

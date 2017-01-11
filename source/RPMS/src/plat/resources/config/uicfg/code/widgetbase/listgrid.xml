@@ -1,0 +1,80 @@
+<uicfg desc="组件管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>type asc, sortOrder asc</orderBy>
+	<editable type="object">false</editable>
+	<store>
+		<url>system/listWidgetBase.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>name</name>
+		</fields>
+		<fields>
+			<name>xtype</name>
+		</fields>
+		<fields>
+			<name>type</name>
+		</fields>
+		<fields>
+			<name>version</name>
+		</fields>
+		<fields>
+			<name>versionDetail</name>
+		</fields>
+		<fields>
+			<name>sortOrder</name>
+		</fields>
+		<fields>
+			<name>ftlFileName</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>名称</header>
+			<dataIndex>name</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>xtype</header>
+			<dataIndex>xtype</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>类型</header>
+			<dataIndex>type</dataIndex>
+			<keyType>sys_widget_type</keyType>
+			<width type="integer">50</width>
+		</columns>
+		<columns>
+			<header>版本号</header>
+			<dataIndex>version</dataIndex>
+			<width type="integer">30</width>
+		</columns>
+		<columns>
+			<header>版本简介</header>
+			<dataIndex>versionDetail</dataIndex>
+			<width type="integer">200</width>
+		</columns>
+		<columns>
+			<header>排序</header>
+			<dataIndex>sortOrder</dataIndex>
+			<hidden type="boolean">true</hidden>
+			<width type="integer">20</width>
+		</columns>
+		<columns>
+			<header>模版文件</header>
+			<dataIndex>ftlFileName</dataIndex>
+			<hidden type="boolean">true</hidden>
+			<width type="integer">20</width>
+		</columns>
+	</cm>
+</uicfg>

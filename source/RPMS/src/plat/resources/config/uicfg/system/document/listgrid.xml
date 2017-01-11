@@ -1,0 +1,118 @@
+<uicfg desc="文档管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>docName asc</orderBy>
+	<editable type="object">false</editable>
+	<showLookButton type="object">false</showLookButton>
+	<showEditButton type="object">false</showEditButton>
+	<showCopyButton type="object">false</showCopyButton>
+	<store>
+		<url>system/listDocument.html?userLimit=false</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>docName</name>
+		</fields>
+		<fields>
+			<name>docType.typeName</name>
+		</fields>
+		<fields>
+			<name>docPath</name>
+		</fields>
+		<fields>
+			<name>docSize</name>
+		</fields>
+		<fields>
+			<name>docDescription</name>
+		</fields>
+		<fields>
+			<name>docDownloadName</name>
+		</fields>
+		<fields>
+			<name>createTime</name>
+		</fields>
+		<fields>
+			<name>createUser.userName</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>名称</header>
+			<dataIndex>docDownloadName</dataIndex>
+			<width type="integer">120</width>
+			<renderer type="object">this.manager.rendererDocName</renderer>
+		</columns>
+		<columns>
+			<header>类型</header>
+			<dataIndex>docType.typeName</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>路径</header>
+			<dataIndex>docPath</dataIndex>
+			<width type="integer">200</width>
+		</columns>
+		<columns>
+			<header>大小</header>
+			<dataIndex>docSize</dataIndex>
+			<width type="integer">60</width>
+			<renderer>
+				function(v) {
+					var d = (v/1024).toFixed(2);
+					return d + "KB";
+				}
+			</renderer>
+		</columns>
+		<columns>
+			<header>创建人</header>
+			<dataIndex>createUser.userName</dataIndex>
+		</columns>
+		<columns>
+			<header>上传时间</header>
+			<dataIndex>createTime</dataIndex>
+		</columns>
+		<columns>
+			<header>描述</header>
+			<dataIndex>docDescription</dataIndex>
+		</columns>
+		<columns>
+			<header>预览</header>
+			<dataIndex>preview</dataIndex>
+			<width type="integer">30</width>
+			<hidden type="boolean">true</hidden>
+			<renderer type="object"><![CDATA[
+				function(v,metadata,record,rowindex,colIndex,store){
+					return "<img src='styles/default/images/new-supersearch-icon.png' alt='预览'>";
+				}
+			]]>
+			</renderer>
+		</columns>
+		<columns>
+			<header>下载</header>
+			<dataIndex>loadFile</dataIndex>
+			<width type="integer">30</width>
+			<renderer type="object"><![CDATA[
+				function(v,metadata,record,rowindex,colIndex,store){
+	       			var attId = record.get("id");
+		   			var loadIp = record.get("loadIp");
+		   			var operCol = "";
+					if(loadIp) {
+						operCol = "<a href='" + loadIp + "?id="+attId+"'><img src='images/cmdb/download_file.gif' alt='下载' onclick='javascript:isRefresh = true;'></a>";
+					} else {
+						operCol = "<a href='system/downloadDocument.html?id="+attId+"'><img src='images/cmdb/download_file.gif' alt='下载' onclick='javascript:isRefresh = true;'></a>";
+					}
+					return operCol;
+				}
+			]]>
+			</renderer>
+		</columns>
+	</cm>
+</uicfg>

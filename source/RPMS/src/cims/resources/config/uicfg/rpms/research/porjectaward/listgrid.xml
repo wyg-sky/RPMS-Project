@@ -1,0 +1,140 @@
+<uicfg desc="报奖列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>awardYear desc,reportTime desc,status asc</orderBy>
+	<editable type="object">false</editable>
+    <showEditButton type="object">Ext.isAllowed('rpms_projectawards_edit')</showEditButton>
+	<showCopyButton type="object">false</showCopyButton>
+	<masterColumnId>projectId.organization</masterColumnId>
+	<store>
+		<url>rpms/listProjectAward.html</url>
+		<autoLoad type="object">true</autoLoad>
+		<baseParams>
+			<hql type="object">" and obj.awardType ='0002'"</hql>
+		</baseParams>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>awardYear</name>
+		</fields>
+		<fields>
+			<name>projectId.achievementNum</name>
+		</fields>
+		<fields>
+			<name>projectId.achievementName</name>
+		</fields>
+		<fields>
+			<name>organizations.name</name>
+		</fields>
+		<fields>
+			<name>platCenter.platName</name>
+		</fields>
+		<fields>
+			<name>platInstitutions.platName</name>
+		</fields>
+		<fields>
+			<name>specialty.specialtyName</name>
+		</fields>
+		<fields>
+			<name>projectId.reviewMechanism</name>
+		</fields>
+		<fields>
+			<name>projectId.achievementLevel</name>
+		</fields>
+		<fields>
+			<name>awardsAgency</name>
+		</fields>
+		<fields>
+			<name>status</name>
+		</fields>
+		<fields>
+			<name>reportTime</name>
+		</fields>
+		<fields>
+			<name>award</name>
+		</fields>
+		<fields>
+			<name>awardAmount</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>年度</header>
+			<dataIndex>awardYear</dataIndex>
+			<width type="integer">40</width>
+		</columns>
+		<columns>
+			<header>成果编号</header>
+			<dataIndex>projectId.achievementNum</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>成果名称</header>
+			<dataIndex>projectId.achievementName</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>单位</header>
+			<dataIndex>organizations.name</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>分中心</header>
+			<dataIndex>platCenter.platName</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>分中心机构</header>
+			<dataIndex>platInstitutions.platName</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>专业</header>
+			<dataIndex>specialty.specialtyName</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>鉴定评议机构</header>
+			<dataIndex>projectId.reviewMechanism</dataIndex>
+			<keyType>rpms_review_unit</keyType>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>成果水平</header>
+			<dataIndex>projectId.achievementLevel</dataIndex>
+			<keyType>rpms_achievement_level</keyType>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>获奖等级</header>
+			<dataIndex>award</dataIndex>
+			<keyType>rpms_porjectaward_award</keyType>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>获得金额(万元)</header>
+			<dataIndex>awardAmount</dataIndex>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>评奖机构</header>
+			<dataIndex>awardsAgency</dataIndex>
+			<keyType>rpms_review_unit</keyType>
+			<width type="integer">60</width>
+		</columns>
+		<columns>
+			<header>状态</header>
+			<dataIndex>status</dataIndex>
+			<keyType>cims_report_status</keyType>
+			<width type="integer">60</width>
+		</columns>
+	</cm>
+</uicfg>

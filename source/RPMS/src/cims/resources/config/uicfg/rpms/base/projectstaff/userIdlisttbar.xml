@@ -1,0 +1,27 @@
+<uicfg desc="人员职责管理列表工具栏">
+	<items>-></items>
+	<items>
+		<text>新增</text>
+		<iconCls>new-new-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<handler type="object">this.manager.addUserIds</handler>
+	</items>
+	<items>
+		<text>删除</text>
+		<iconCls>delete-selected-icon</iconCls>
+		<scope type="object">this.manager</scope>
+		<handler type="object">this.manager.deleteUserIds</handler>
+	</items>
+	<items>
+		<text>保存</text>
+		<scope type="object">this.manager</scope>
+		<iconCls>save-icon</iconCls>
+		<handler type="object">this.manager.saveUserIds</handler>
+	</items>
+	<items>
+		<text>关闭</text>
+		<scope type="object">this.manager</scope>
+		<iconCls>close-icon</iconCls>
+		<handler type="object">this.manager.closeClickSetUser</handler>
+	</items>
+</uicfg>

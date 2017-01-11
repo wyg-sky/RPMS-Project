@@ -1,0 +1,21 @@
+<uicfg desc="专业词典编辑主界面">
+	<objectName>businessObject</objectName>
+	<objectLineName>specialtyDictionaryLine</objectLineName>
+	<winWidth type="integer">750</winWidth>
+	<component>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/base/specialtydictionary/edittbar</viewPath>
+		</items>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/base/specialtydictionary/editform</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+	</container>
+</uicfg>

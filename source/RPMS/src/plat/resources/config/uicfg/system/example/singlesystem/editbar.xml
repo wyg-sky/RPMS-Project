@@ -1,0 +1,18 @@
+<uicfg desc="表单编辑按钮">
+	<items>-></items>
+	<items>
+		<text>保存</text>
+		<iconCls>save-icon</iconCls>
+		<hidden type="object">this.isHidden()</hidden>
+		<handler>
+			<![CDATA[
+			function(){
+				this.save();
+			}]]>
+		</handler>
+	</items>
+	<items>
+		<text>完成</text>
+		<iconCls>new-check-icon</iconCls>
+	</items>
+</uicfg>

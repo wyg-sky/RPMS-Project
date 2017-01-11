@@ -1,0 +1,28 @@
+<uicfg desc="设备供应商编辑按钮">
+	<items>-></items>
+	<items>
+		<text>保存</text>
+		<iconCls>save-icon</iconCls>
+		<hidden type="object">this.isHidden()</hidden>
+		<handler type="object">this.saveClick</handler>
+	</items>
+	<items>
+		<text>关闭</text>
+		<iconCls>close-icon</iconCls>
+		<handler type="object">this.closeClick</handler>
+	</items>
+	<items>
+		<tooltip>展开/收起主表信息</tooltip>
+		<iconCls>expand-icon</iconCls>
+		<handler type="object">
+			function(button) {
+				if(button.iconCls == 'expand-icon') {
+					button.setIconClass('collapse-icon');
+				} else {
+					button.setIconClass('expand-icon');
+				}
+				this.manager.expandEditForm();
+			}
+		</handler>
+	</items>
+</uicfg>

@@ -1,0 +1,30 @@
+<uicfg desc="列信息管理按钮">
+	<items>-></items>
+	<items>
+		<text>新增</text>
+		<iconCls>new-new-icon</iconCls>
+		<handler type="object">function() {
+			var dataGrid = this.manager.items.items[1];
+			var RecordType = dataGrid.getRecordType();
+			var r = new RecordType();
+			dataGrid.store.add(r);
+		}</handler>
+	</items>
+	<items>
+		<text>删除</text>
+		<iconCls>delete-selected-icon</iconCls>
+		<handler type="object">function() {
+			var dataGrid = this.manager.items.items[1];
+			var records = dataGrid.getSelections(true);
+			if(records.length != 0) {
+				Ext.MessageBox.minWidth = 230;
+				var m = Ext.MessageBox.confirm("提示", "确定要删除这" + records.length + "记录吗？",function(ret) {
+					if (ret == 'yes') {
+						dataGrid.getStore().remove(dataGrid.getSelections());
+					}
+				},this);
+				Ext.MessageBox.minWidth = 150;
+			}
+		}</handler>
+	</items>
+</uicfg>

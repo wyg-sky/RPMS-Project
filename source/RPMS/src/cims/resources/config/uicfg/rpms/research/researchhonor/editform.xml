@@ -1,0 +1,229 @@
+<uicfg desc="荣誉管理编辑表单">
+	<loadtUrl>rpms/loadResearchHonor.html</loadtUrl>
+	<submitUrl>rpms/saveResearchHonor.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<height type="integer">420</height>
+	<defaultFocusIndex>-1</defaultFocusIndex>
+	<defaults>
+		<border type="object">false</border>
+		<layout>column</layout>
+		<labelWidth type="object">90</labelWidth>
+	</defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+	</items>
+	<!--
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+		<hidden type="object">true</hidden>
+	    <value type="object">
+			{"value" : PlatUtil.currentCenterId, "text" : PlatUtil.currentCenterName}
+	    </value>
+        <listeners type="object">{
+            'select':function(){
+                this.manager.editForm.findField("platInstitution.id").setValue({value:'',text:''});
+                this.manager.editForm.findField("platInstitution.id").clearValue();
+            },
+            'focus':function(tree) {
+                tree.cascadePlatTree(2);
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+		<hidden type="object">true</hidden>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.manager.editForm.findField("platCenter.id"));
+            },scope:this
+        }
+        </listeners>
+    </items>
+    -->
+	<items>
+		<xtype>orgtree</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<allowBlank type="object">false</allowBlank>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+    <items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>specialty</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>专业</fieldLabel>
+        <hidden type="object">true</hidden>
+        <allowBlank type="object">true</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+            </loader>
+        </tree>
+        <listeners type="object">{
+            'select':function(){
+                this.manager.editForm.findField("business.id").setValue({value:'',text:''});
+                this.manager.editForm.findField("business.id").clearValue();
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+     <items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>business</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>业务</fieldLabel>
+        <hidden type="object">true</hidden>
+        <allowBlank type="object">true</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                	<parentId> </parentId>
+                </baseParams >
+            </loader>
+            <root>
+                <id>root_id</id>
+                <text>专业业务</text>
+            </root>
+        </tree>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.findField("specialty.id"));
+            },scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>证书编号</fieldLabel>
+        <name>honorNum</name>
+        <maxLength type="integer">33</maxLength>
+        <maxLengthText>项目名称最大允许输入33个字符</maxLengthText>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>荣誉名称</fieldLabel>
+		<name>honorName</name>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>honorType</hiddenName>
+		<fieldLabel>荣誉分类</fieldLabel>
+		<keyType>rpms_hornor_type</keyType>
+		<allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'select':function(record){
+                if(record.getValue() != 0003){
+                	 this.manager.editForm.findField("projectId").setDisabled(true);
+                }else{
+                	 this.manager.editForm.findField("projectId").setDisabled(false);
+                }
+            },
+            scope:this
+        }
+        </listeners>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>grade</hiddenName>
+		<fieldLabel>荣誉等级</fieldLabel>
+		<keyType>rpms_hornor_grade</keyType>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>颁奖单位</fieldLabel>
+		<name>chargeDepartnent</name>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+	    <xtype>lioncomboboxyearfield</xtype>
+		<name>honorDate</name>
+		<fieldLabel>获奖时间</fieldLabel>
+		<format>Y</format>
+		<value type="object">new Date().format('Y')</value>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>奖励金额(万元)</fieldLabel>
+        <name>honorReward</name>
+        <regex type="object">/^(\d+(\.\d+)?)|(\-1)$/</regex>
+        <regexText>请正确输入数字</regexText>
+    </items>
+	<items>
+		<anchor>99.3%</anchor>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>项目名称</fieldLabel>
+        <name>projectId</name>
+        <maxLength type="integer">33</maxLength>
+        <maxLengthText>项目名称最大允许输入33个字符</maxLengthText>
+        <columnWidth type="integer">3</columnWidth>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<name>createUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+        <xtype>lionblankfield</xtype>
+    </items>
+    <items>
+        <anchor>99.3%</anchor>
+        <xtype>liontextarea</xtype>
+        <fieldLabel>协助单位</fieldLabel>
+        <name>assistOrg</name>
+        <height>100</height>
+        <maxLength type="integer">100</maxLength>
+        <maxLengthText>协助单位最大允许输入100个字符</maxLengthText>
+        <columnWidth type="integer">3</columnWidth>
+    </items>
+	<items>
+		<anchor>99.3%</anchor>
+        <xtype>liontextarea</xtype>
+        <fieldLabel>备注</fieldLabel>
+        <name>remark</name>
+        <height>140</height>
+        <columnWidth type="integer">3</columnWidth>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>证书编号</fieldLabel>
+        <name>certificateNumber</name>
+        <readOnly type="boolean">true</readOnly>
+        <hidden type="object">true</hidden>
+    </items>
+</uicfg>

@@ -1,0 +1,138 @@
+<uicfg desc="项目验收管理列表工具栏">
+    <items>-></items>
+    <items>
+        <text>新增</text>
+        <iconCls>new-new-icon</iconCls>
+        <xaction>rpms_acceptance_add</xaction>
+        <handler type="object">this.addClick</handler>
+    </items>
+    <items>
+        <text>编辑</text>
+        <xaction>rpms_acceptance_edit</xaction>
+        <iconCls>new-edit-icon</iconCls>
+        <handler type="object">this.editClick</handler>
+    </items>
+    <items>
+        <text>删除</text>
+        <xaction>rpms_acceptance_del</xaction>
+        <iconCls>delete-selected-icon</iconCls>
+        <handler type="object">this.deleteClick</handler>
+    </items>
+    <items>
+        <text>上报</text>
+        <xaction>rpms_acceptance_rep</xaction>
+        <iconCls>submit-icon</iconCls>
+        <handler type="object">
+            function() {
+                var records = this.manager.dataGrid.getSelectionModel().getSelections();
+                var flag = true;
+                for(var i=records.length-1;i>=0;i--){
+                   if(records[i].get('status') =='0004' || records[i].get('status') =='0005'){
+                      flag = false;
+                   }
+                }
+                if(flag == true){
+                    this.manager.changeStatus('status', '0003', '上报');
+                }else{
+                    Ext.MessageBox.show({
+                        title : '系统提示',
+                        msg : '已完成单据以及等待审批单据不能上报！',
+                        buttons : Ext.MessageBox.OK,
+                        icon : Ext.MessageBox.WARNING,
+                        scope : this
+                    });
+                }
+            }
+        </handler>
+    </items>
+    <items>
+        <text>审批</text>
+        <xaction>rpms_acceptance_app</xaction>
+        <iconCls>enable-ip-icon</iconCls>
+        <handler type="object">
+            function() {
+                this.manager.approvePro();
+            }
+        </handler>
+    </items>
+    <items>
+        <text>完成</text>
+        <xaction>rpms_acceptance_com</xaction>
+        <iconCls>enable-ip-icon</iconCls>
+        <handler type="object">
+            function() {
+                this.manager.completePro();
+            }
+        </handler>
+    </items>
+     <items>
+        <text>成果录入</text>
+        <xaction>rpms_acceptance_input</xaction>
+        <iconCls>enable-ip-icon</iconCls>
+        <handler type="object">
+            function() {
+                this.manager.inputPro();
+            }
+        </handler>
+    </items>
+    <items>
+        <text>退回</text>
+        <xaction>rpms_acceptance_back</xaction>
+        <hidden type="object">false</hidden>
+        <iconCls>delete-all-icon</iconCls>
+        <handler type="object">function() {
+            var records = this.manager.dataGrid.getSelectionModel().getSelections();
+            var flag = true;
+            for(var i=records.length-1;i>=0;i--){
+              if(records[i].get('status') =='0003'||records[i].get('status') =='0004'){
+                  flag = true;
+               }else{
+                   flag = false;
+               }
+            }
+            if(flag == true || FW.isAdmin == true){
+                this.manager.changeStatus('status', '0002', '退回');
+            }else{
+                Ext.MessageBox.show({
+                    title : '系统提示',
+                    msg : '只有等待审批或已审批的单据才能退回！',
+                    buttons : Ext.MessageBox.OK,
+                    icon : Ext.MessageBox.WARNING,
+                    scope : this
+                });
+            }
+        }</handler>
+    </items>
+    <items>
+        <text>导出</text>
+        <iconCls>export-icon</iconCls>
+        <scope type="object">this.manager</scope>
+        <handler type="object">function() {
+            this.exportData({
+                object : 'projectAcceptance',
+                manager : 'projectAcceptanceManager',
+                excelType : ''
+            });
+        }</handler>
+    </items>
+    <items>
+        <text>查看</text>
+        <iconCls>view-icon</iconCls>
+        <handler type="object">this.viewClick</handler>
+    </items>
+    <items>
+        <text>查询</text>
+        <iconCls>search-d-icon</iconCls>
+        <handler type="object">this.query</handler>
+    </items>
+    <items>
+        <text>重置查询</text>
+        <iconCls>ff-clear-icon</iconCls>
+        <handler type="object">this.clear</handler>
+    </items>
+    <items>
+        <iconCls>expand-icon</iconCls>
+        <tooltip>展开/收起查询区</tooltip>
+        <handler type="object">this.expandQueryField</handler>
+    </items>
+</uicfg>

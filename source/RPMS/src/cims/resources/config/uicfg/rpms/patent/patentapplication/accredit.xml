@@ -1,0 +1,50 @@
+<uicfg desc="专利申请管理授权编辑主界面">
+	<objectName>businessObject</objectName>
+	<objectLineName>patentApplicationLine</objectLineName>
+	<winWidth type="integer">950</winWidth>
+	<component>
+		<items>
+			<object>accreditTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/patent/patentapplication/accredittbar</viewPath>
+		</items>
+		<items>
+			<object>accreditForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/patent/patentapplication/accreditform</viewPath>
+		</items>
+		<items>
+			<object>listtlinebar</object>
+			<xtype>liontoolbar</xtype>
+			<hidden type="object">!this.editable</hidden>
+			<viewPath>rpms/patent/patentapplication/listtlinebar</viewPath>
+		</items>
+		<items>
+			<object>dataLineGrid</object>
+			<title>专利发明人</title>
+			<isLine type="boolean">true</isLine>
+			<lineName>patentApplicationLines</lineName>
+			<xtype>lioneditorgrid</xtype>
+			<fkName>obj.mainId</fkName>
+			<height type="object">200</height>
+			<viewPath>rpms/patent/patentapplication/listlinegrid</viewPath>
+		</items>
+		<items>
+			<object>fileLineGrid</object>
+			<xtype>lionuploadfile</xtype>
+			<isLine type="boolean">true</isLine>
+			<lineName>documents</lineName> 
+			<fkId type="object">this.mainId</fkId>
+			<height type="object">200</height>
+			<fkName>obj.docFk</fkName>
+			<allowUpload type="object">this.editable</allowUpload>
+			<allowDelete type="object">this.editable</allowDelete>
+			<fileTypeParent>2c9082b34d269927014d2764ff700096</fileTypeParent>
+		</items>
+	</component>
+	<container>
+		<items>accreditTbar</items>
+		<items>accreditForm</items>
+		<items>fileLineGrid</items>
+	</container>
+</uicfg>

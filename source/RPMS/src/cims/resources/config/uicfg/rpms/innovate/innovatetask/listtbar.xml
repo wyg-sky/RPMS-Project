@@ -1,0 +1,54 @@
+<uicfg desc="工作任务管理列表工具栏">
+	<items>-></items>
+	<items>
+		<text>新增</text>
+		<iconCls>new-new-icon</iconCls>
+		<xaction>innovate_task_add</xaction>
+		<handler type="object">this.addClick</handler>
+	</items>
+	<items>
+		<text>编辑</text>
+		<iconCls>new-edit-icon</iconCls>
+		<xaction>innovate_task_edit</xaction>
+		<handler type="object">this.editClick</handler>
+	</items>
+	<items>
+		<text>删除</text>
+		<iconCls>delete-selected-icon</iconCls>
+		<xaction>innovate_task_delete</xaction>
+		<handler type="object">this.deleteClick</handler>
+	</items>
+	<items>
+		<text>查看</text>
+		<iconCls>view-icon</iconCls>
+		<handler type="object">this.viewClick</handler>
+	</items>
+	<items>
+		<text>查询</text>
+		<iconCls>search-d-icon</iconCls>
+		<handler type="object">this.query</handler>
+	</items>
+	<items>
+        <text>导出</text>
+        <iconCls>export-icon</iconCls>
+        <xaction>innovate_task_export</xaction>
+        <scope type="object">this.manager</scope>
+        <handler type="object">function() {
+            this.exportData({
+                object : 'innovateTask',
+                manager : 'innovateTaskManager',
+                excelType : ''
+            });
+        }</handler>
+    </items>
+	<items>
+		<text>重置查询</text>
+		<iconCls>ff-clear-icon</iconCls>
+		<handler type="object">this.clear</handler>
+	</items>
+	<items>
+		<iconCls>expand-icon</iconCls>
+		<tooltip>展开/收起查询区</tooltip>
+		<handler type="object">this.expandQueryField</handler>
+	</items>
+</uicfg>

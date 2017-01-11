@@ -1,0 +1,114 @@
+<uicfg desc="班次信息管理录入表单">
+	<loadtUrl>base/loadAttendance.html</loadtUrl>
+	<submitUrl>base/saveAttendance.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<height type="integer">200</height>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="boolean">true</hidden>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<items>
+		<xtype>lioncodefield</xtype>
+		<name>shiftCd</name>
+		<fieldLabel>班次编号</fieldLabel>
+		<autoLoad type ="object">this.manager.actionMode == '1'</autoLoad>
+		<allowBlank type="boolean">false</allowBlank>
+		<type>2</type>
+		<params>
+			<className>Attendance</className>
+			<codeProperty>shiftCd</codeProperty>
+			<length>3</length>
+		</params>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>shiftName</name>
+		<fieldLabel>班次名称</fieldLabel>
+		<keyType>prds_shift</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+	    <xtype>liondatefield</xtype>
+		<name>reportDate</name>
+		<fieldLabel>日期</fieldLabel>
+		<format>Y-m-d</format>
+		<value type="object">new Date()</value>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+	    <xtype>liontextfield</xtype>
+		<name>shiftBeginTime</name>
+		<fieldLabel>开始时间</fieldLabel>
+		<value>'00:00'</value>
+		<allowBlank type="boolean">false</allowBlank>
+	   </items>
+	<items>
+	    <xtype>liontextfield</xtype>
+		<name>shiftEndTime</name>
+		<fieldLabel>结束时间</fieldLabel>
+		<value>'00:00'</value>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>valid</name>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType> 
+		<value>1</value>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<name>reportStatus</name>
+		<fieldLabel>状态</fieldLabel>
+		<keyType>prds_commit_status</keyType>
+		<value>0001</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createUser</name>
+		<fieldLabel>创建人</fieldLabel>
+		<value type="object">FW.userName</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyUser</name>
+		<fieldLabel>修改人</fieldLabel>
+		<value type="object">FW.userName</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>remark</name>
+		<fieldLabel>备注</fieldLabel>
+		<columnWidth type="integer">4</columnWidth>
+	</items>
+</uicfg>

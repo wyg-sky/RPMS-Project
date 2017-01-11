@@ -1,0 +1,110 @@
+<uicfg desc="分类定义管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>classifyCd asc</orderBy>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<formViewPath>base/classify/listgridform</formViewPath>
+	<masterColumnId>classifyCd</masterColumnId>
+	<allowPage type="boolean">false</allowPage>
+	<store>
+		<xtype>liontreestore</xtype>
+		<parentFieldName>parent</parentFieldName>
+		<leafFieldName>leaf</leafFieldName>
+		<url>base/listClassify.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>classifyCd</name>
+		</fields>
+		<fields>
+			<name>classifyName</name>
+		</fields>
+		<fields>
+			<name>classifyTypeCd</name>
+		</fields>
+		<fields>
+			<name>sort</name>
+		</fields>
+		<fields>
+			<name>parent</name>
+		</fields>
+		<fields>
+			<name>organization.id</name>
+		</fields>
+		<fields>
+			<name>organization.name</name>
+		</fields>
+		<fields>
+			<name>module.code</name>
+		</fields>
+		<fields>
+			<name>module.id</name>
+		</fields>
+		<fields>
+			<name>module.name</name>
+		</fields>
+		<fields>
+			<name>valid</name>
+		</fields>
+		<fields>
+			<name>unit</name>
+		</fields>
+		<fields>
+			<name>leaf</name>
+			<convert type="object">function() {return false;}</convert>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+		<ctrlKeyPress type="boolean">false</ctrlKeyPress>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<id>classifyCd</id>
+			<header>分类编号</header>
+			<dataIndex>classifyCd</dataIndex>
+		</columns>
+		<columns>
+			<header>分类名称</header>
+			<dataIndex>classifyName</dataIndex>
+		</columns>
+        <columns>
+            <header>计量单位</header>
+            <dataIndex>unit</dataIndex>
+            <keyType>rpms_unit</keyType>
+		</columns>
+		<columns>
+			<header>指标类型</header>
+			<dataIndex>classifyTypeCd</dataIndex>
+			<keyType>rpms_classify_type</keyType>
+		</columns>
+		<columns>
+			<header>排序</header>
+			<dataIndex>sort</dataIndex>
+		</columns>
+		<columns>
+			<header>是否有效</header>
+			<dataIndex>valid</dataIndex>
+			<keyType>cims_effective</keyType>
+		</columns>
+		<columns>
+			<header><![CDATA[<img src='images/portal/icon/department.gif' height='11' alt='新增下级' title='新增下级'/> 新增下级]]></header>
+			<dataIndex>dataOfClassify</dataIndex>
+			<hidden type="object">this.runMode == '2'</hidden>
+			<width type="integer">50</width>
+			<align>center</align>
+			<isPrint type="boolean">false</isPrint>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='images/portal/icon/department.gif' title='新增下级' alt='新增下级'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+	</cm>
+</uicfg>

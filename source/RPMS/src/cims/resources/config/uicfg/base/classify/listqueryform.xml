@@ -1,0 +1,31 @@
+<uicfg desc="分类定义管理查询表单">
+	<columns type="integer">5</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<defaults>
+		<layout>column</layout>
+		<labelWidth type="integer">70</labelWidth>
+	</defaults>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+		<xtype>lionblankfield</xtype>
+	</items>
+	<items>
+	    <xtype>liontextfield</xtype>
+		<name>classifyCd</name>
+		<fieldLabel>分类编号</fieldLabel>
+		<enableKeyEvents type="object">true</enableKeyEvents>
+    </items>
+	<items>
+	    <xtype>liontextfield</xtype>
+		<name>classifyName</name>
+		<fieldLabel>分类名称</fieldLabel>
+		<enableKeyEvents type="object">true</enableKeyEvents>
+    </items>
+</uicfg>

@@ -1,0 +1,106 @@
+<uicfg desc="专利申请管理列表工具栏">
+	<items>-></items>
+	<items>
+		<text>新增</text>
+		<iconCls>new-new-icon</iconCls>
+		<xaction>patent_application_add</xaction>
+		<handler type="object">
+			function() {
+				this.manager.addObject();
+			}
+		</handler>
+	</items>
+	<items>
+		<text>编辑</text>
+		<iconCls>new-edit-icon</iconCls>
+		<handler type="object">this.editClick</handler>
+		<xaction>patent_application_edit</xaction>
+	</items>
+	<items>
+		<text>删除</text>
+		<iconCls>delete-selected-icon</iconCls>
+		<handler type="object">this.deleteClick</handler>
+		<xaction>patent_application_delete</xaction>
+	</items>
+	<items>
+		<text>上报</text>
+		<iconCls>submit-icon</iconCls>
+		<handler type="object">function(){
+			this.manager.changeStatus("status","0002","上报");
+		}</handler>
+		<xaction>patent_application_upreport</xaction>
+	</items>
+	<items>
+		<text>退回</text>
+		<iconCls>delete-all-icon</iconCls>
+		<handler type="object">function(){
+			this.manager.changeStatus("status","0004","退回");
+		}</handler>
+		<xaction>patent_application_back</xaction>
+	</items>
+	<items>
+		<text>审核</text>
+		<iconCls>enable-ip-icon</iconCls>
+		<handler type="object">function(){
+			this.manager.changeStatus("status","0003","审核");
+		}</handler>
+		<xaction>patent_application_approve</xaction>
+	</items>
+	<items>
+		<text>批准</text>
+		<iconCls>enable-ip-icon</iconCls>
+		<handler type="object">function(){
+			this.manager.changeStatus("status","0007","批准");
+		}</handler>
+		<xaction>patent_application_check</xaction>
+	</items>
+	<items>
+		<text>受理</text>
+		<iconCls>send-message-icon</iconCls>
+		<handler type="object">function(){
+			this.manager.acceptShow();
+		}</handler>
+		<xaction>patent_application_accept</xaction>
+	</items>
+	<items>
+		<text>授权</text>
+		<iconCls>pass-icon</iconCls>
+		<handler type="object">function(){
+			this.manager.accreditShow();
+		}</handler>
+		<xaction>patent_application_accredit</xaction>
+	</items>
+	<items>
+        <text>导出</text>
+        <iconCls>export-icon</iconCls>
+        <scope type="object">this.manager</scope>
+        <handler type="object">function() {
+            this.exportData({
+                object : 'patentApplication',
+                manager : 'patentApplicationManager',
+                excelType : '',
+                viewPath:'rpms/patent/patentapplication/exportlistgrid'
+            });
+        }</handler>
+    </items>
+	<items>
+		<text>查看</text>
+		<iconCls>view-icon</iconCls>
+		<handler type="object">this.viewClick</handler>
+	</items>
+	<items>
+		<text>查询</text>
+		<iconCls>search-d-icon</iconCls>
+		<handler type="object">this.query</handler>
+	</items>
+	<items>
+		<text>重置查询</text>
+		<iconCls>ff-clear-icon</iconCls>
+		<handler type="object">this.clear</handler>
+	</items>
+	<items>
+		<iconCls>expand-icon</iconCls>
+		<tooltip>展开/收起查询区</tooltip>
+		<handler type="object">this.expandQueryField</handler>
+	</items>
+</uicfg>

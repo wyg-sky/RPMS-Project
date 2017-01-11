@@ -1,0 +1,24 @@
+<uicfg desc="创新平台选择树">
+	<title>创新平台选择树</title>
+	<iconCls>user-icon</iconCls>
+	<autoHeight type="object">true</autoHeight>
+	<autoWidth type="object">true</autoWidth>
+	<autoScroll type="object">false</autoScroll>
+	<nodeClick type="object">false</nodeClick>
+	<rootVisible type="boolean">false</rootVisible>
+	<checked type="object">false</checked>
+	<!--checkModel>cascadeChildren</checkModel-->
+	<loader>
+		<dataUrl>
+			rpms/getStaffPlatTree.html?checkBoxtree=0
+		</dataUrl>
+	</loader>
+	<root type="object">
+		{
+    		draggable: false,
+    		children: [
+       		   {text : '创新平台',iconCls:'org-icon',id:'root',type:'0',leaf:false,url:''}
+       		]   
+   		}
+	</root>
+</uicfg>

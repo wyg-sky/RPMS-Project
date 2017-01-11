@@ -1,0 +1,20 @@
+<uicfg desc="组件管理">
+	<objectName>businessObject</objectName>
+	<component>
+		<items>
+			<object>defaultGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<height type="integer">200</height>
+			<viewPath>code/widgetbase/defaultlistgrid</viewPath>
+		</items>
+		<items>
+			<object>defaultTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>code/widgetbase/defaultlisttbar</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>defaultTbar</items>
+		<items>defaultGrid</items>
+	</container>
+</uicfg>

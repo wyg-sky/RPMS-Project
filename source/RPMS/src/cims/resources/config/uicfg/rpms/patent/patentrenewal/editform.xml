@@ -1,0 +1,245 @@
+<uicfg desc="专利续费申请管理编辑表单">
+	<loadtUrl>rpms/loadPatentRenewal.html</loadtUrl>
+	<submitUrl>rpms/savePatentRenewal.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<height type="integer">480</height>
+	<defaultFocusIndex>-1</defaultFocusIndex>
+	<defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">85</labelWidth>
+    </defaults>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+        <anchor>99%</anchor>
+        <xtype>lioncombowindow</xtype>
+        <propertyName>patentId</propertyName>
+        <fieldLabel>专利名称</fieldLabel>
+        <hiddenName>id</hiddenName>
+        <displayField>patentName</displayField>
+        <hiddenDisplayName>patentName</hiddenDisplayName>
+        <allowBlank type="object">false</allowBlank>
+        <window>
+            <viewPathOfUi>rpms/research/researchpatent/patentrenewallist</viewPathOfUi>
+            <title>保护到期专利选择</title>
+            <hql> and obj.valid='0002' </hql>
+            <width type="integer">1100</width>
+            <height type="integer">550</height>
+        </window>
+        <listeners type="object">{           
+            'after_comfirm_click' : function(records){
+                    this.manager.getPatentIdInfo(records);
+            },scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>专利号</fieldLabel>
+        <name>patentId.patentNum</name>
+        <allowBlank type="boolean">true</allowBlank>
+        <readOnly type="boolean">true</readOnly>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>保护到期时间</fieldLabel>
+        <name>protectDate</name>
+        <allowBlank type="boolean">true</allowBlank>
+        <readOnly type="boolean">true</readOnly>
+    </items>
+	<items>
+        <anchor>99%</anchor>
+        <xtype>orgtree</xtype>
+        <fieldLabel>单位</fieldLabel>
+        <propertyName>organization</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <hidden type="object">false</hidden>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+	<items>
+        <anchor>99%</anchor>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                this.manager.editForm.findField("platInstitution.id").setValue({value:'',text:''});
+                this.manager.editForm.findField("platInstitution.id").clearValue();
+            },
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.manager.editForm.findField("platCenter.id"));
+            },scope:this
+        }
+        </listeners>
+    </items>
+	<items>
+        <anchor>99%</anchor>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>specialty</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>专业</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                    <type>"zy"</type>
+                </baseParams >
+            </loader>
+        </tree>
+        <listeners type="object">{
+            'select':function(){
+                this.manager.editForm.findField("business.id").setValue({value:'',text:''});
+                this.manager.editForm.findField("business.id").clearValue();
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>business</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>specialtyName</hiddenDisplayName>
+        <fieldLabel>业务</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listSpecialtyDictionaryTree.html</dataUrl>
+                <baseParams>
+                    <parentId> </parentId>
+                </baseParams >
+            </loader>
+            <root>
+                <id>root_id</id>
+                <text>专业业务</text>
+            </root>
+        </tree>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.findField("specialty.id"));
+            },scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>liontextfield</xtype>
+        <readOnly type="boolean">true</readOnly>
+        <fieldLabel>创建人</fieldLabel>
+        <name>createUser</name>
+        <value type="object">FW.userName</value>
+    </items>
+	<items>
+		<anchor>90%</anchor>
+        <xtype>liontextunitfield</xtype>
+        <fieldLabel>续费金额</fieldLabel>
+        <name>renewalMoney</name>
+        <unitText>(元)</unitText>
+        <regex type="object">/^[0-9]+(.[0-9]{1,2})?$/</regex>
+        <regexText>请输入正确格式的金额，如：180或180.00</regexText>
+        <maxLength type="integer">13</maxLength>
+        <maxLengthText>续费金额最大允许输入13个字符</maxLengthText>
+        <unitWidth type="object">30</unitWidth>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+    <items>
+        <anchor>90%</anchor>
+        <xtype>liontextunitfield</xtype>
+        <fieldLabel>续费年限</fieldLabel>
+        <name>renewalYear</name>
+        <unitText>(年)</unitText>
+        <regex type="object">/^[0-9]*[1-9][0-9]*$/</regex>
+        <regexText>请输入正整数</regexText>
+        <maxLength type="integer">13</maxLength>
+        <maxLengthText>续费年限最大允许输入13个字符</maxLengthText>
+        <unitWidth type="object">30</unitWidth>
+        <allowBlank type="object">false</allowBlank>
+    </items>
+	<items>
+        <anchor>99%</anchor>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>是否有效</fieldLabel>
+        <name>valid</name>
+        <keyType>cims_effective</keyType>
+        <value>1</value>
+        <editable type="object">false</editable>
+        <readOnly type="object">true</readOnly>
+        <hidden type="object">true</hidden>
+    </items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改人</fieldLabel>
+		<name>modifyUser</name>
+		<value type="object">FW.userName</value>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<anchor>99%</anchor>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<anchor>99.5%</anchor>
+        <xtype>liontextarea</xtype>
+        <fieldLabel>续费说明</fieldLabel>
+        <name>renewalDesc</name>
+        <height type="integer">180</height>
+        <columnWidth type="integer">3</columnWidth>
+        <maxLength type="integer">1000</maxLength>
+        <maxLengthText>续费说明最大允许输入1000个字符</maxLengthText>
+    </items>
+	<items>
+		<anchor>99.5%</anchor>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>备注</fieldLabel>
+		<name>remark</name>
+		<height type="integer">150</height>
+		<columnWidth type="integer">3</columnWidth>
+		<maxLength type="integer">1000</maxLength>
+        <maxLengthText>备注说明最大允许输入1000个字符</maxLengthText>
+	</items>
+</uicfg>

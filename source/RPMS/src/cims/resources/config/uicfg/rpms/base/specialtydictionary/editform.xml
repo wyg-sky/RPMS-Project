@@ -1,0 +1,130 @@
+<uicfg desc="专业词典编辑表单">
+	<loadtUrl>rpms/base/loadSpecialtyDictionary.html</loadtUrl>
+	<submitUrl>rpms/base/saveSpecialtyDictionary.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<height type="integer">175</height>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<hidden type="object">true</hidden>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<items>
+		<xtype>lioncodefield</xtype>
+		<name>specialtyCode</name>
+		<fieldLabel>分类编号</fieldLabel>
+		<readOnly type="boolean">true</readOnly>
+		<type>3</type>
+		<autoLoad type ="object">true</autoLoad>
+		<params>
+			<className>SpecialtyDictionary</className>
+			<parentId type="object">this.manager.parentId</parentId>
+			<codeProperty>specialtyCode</codeProperty>
+			<length>2</length>
+		</params>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>专业名称</fieldLabel>
+		<name>specialtyName</name>
+	</items>
+	<items>
+		<xtype>lioncombowindow</xtype>
+		<fieldLabel>父节点</fieldLabel>
+		<id>parent</id>
+		<propertyName>parent</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>specialtyName</hiddenDisplayName>
+		<displayField>specialtyName</displayField>
+		<window>
+			<viewPathOfUi>rpms/base/specialtydictionary/list</viewPathOfUi>
+			<title>父节点选择</title>
+		</window>
+		<value type="object">
+			{value: this.manager.parentId, text: this.manager.parentName}
+		</value>
+		<listeners type="object">{
+			'after_comfirm_click':function(recode){
+				this.manager.editForm.findField("specialtyCode").load({parentId : recode[0].get('id')});
+			},
+			'change':function(){
+        		this.manager.parentChange();
+        	},
+			scope:this
+		}
+		</listeners>
+	</items>
+	<items>
+        <xtype>lioncomboboxtree</xtype>
+        <propertyName>checkOrganization</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>name</hiddenDisplayName>
+        <fieldLabel>关联单位</fieldLabel>
+        <tree>
+            <loader>
+                <dataUrl>rpms/listOrgTree.html</dataUrl>
+                <baseParams>
+                    <hql>"  and org.organiztionType ='0002'" </hql>
+                </baseParams >
+            </loader>
+            <root>
+                <id>root_id</id>
+            </root>
+        </tree>
+    </items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>valid</hiddenName>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>cims_effective</keyType>
+		<value>1</value>
+		<allowBlank type="boolean">false</allowBlank>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<name>createUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改人</fieldLabel>
+		<name>modifyUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>备注</fieldLabel>
+		<name>remark</name>
+		<columnWidth type="integer">3</columnWidth>
+	</items>
+</uicfg>

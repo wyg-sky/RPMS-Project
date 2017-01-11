@@ -1,0 +1,41 @@
+<uicfg desc="组件参数管理按钮">
+	<items>-></items>
+	<items>
+		<text>新增自定义参数</text>
+		<iconCls>new-new-icon</iconCls>
+		<handler type="object">function(){
+			this.manager.addLine(this.manager.propertysGrid);
+		}</handler>
+	</items>
+	<items>
+		<text>新增</text>
+		<iconCls>new-new-icon</iconCls>
+		<handler type="object">function(){
+			var records = this.manager.columnsGrid.getSelections(false);
+			var widgetId = records[0].get('widget.id');
+			var widgetType = records[0].get('widgetType');
+			var className = this.manager.widgetForm.findField('className.id').getValue();
+			var paramKey = [];
+			var paramValue = [];
+			for(var i = 0; i != 6; i++) {
+				paramKey.push(records[0].fields.items[i].name);
+				paramValue.push(records[0].get(records[0].fields.items[i].name));
+			}
+			this.manager.addLineObject(this.manager.propertysGrid, widgetId, widgetType, className, paramKey, paramValue);
+		}</handler>
+	</items>
+	<items>
+		<text>删除</text>
+		<iconCls>delete-selected-icon</iconCls>
+		<handler type="object">function(){
+			this.manager.deleteObject(this.manager.propertysGrid);
+		}</handler>
+	</items>
+	<items>
+		<text>保存</text>
+		<iconCls>search-d-icon</iconCls>
+		<handler type="object">function() {
+			this.manager.widgetSave(this.manager.columnsGrid, this.manager.propertysGrid);
+		}</handler>
+	</items>
+</uicfg>

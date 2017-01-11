@@ -1,0 +1,73 @@
+<uicfg desc="专业词典列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>specialtyCode</orderBy>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<masterColumnId>specialtyCode</masterColumnId>
+	<allowPage type="boolean">false</allowPage>
+	<store>
+		<xtype>liontreestore</xtype>
+		<parentFieldName>parent</parentFieldName>
+		<leafFieldName>leaf</leafFieldName>
+		<url>rpms/base/listSpecialtyDictionary.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>specialtyCode</name>
+		</fields>
+		<fields>
+			<name>specialtyName</name>
+		</fields>
+		<fields>
+			<name>parent</name>
+		</fields>
+		<fields>
+			<name>valid</name>
+		</fields>
+		<fields>
+			<name>checkOrganization.name</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<id>specialtyCode</id>
+			<header>专业编号</header>
+			<dataIndex>specialtyCode</dataIndex>
+		</columns>
+		<columns>
+			<header>专业名称</header>
+			<dataIndex>specialtyName</dataIndex>
+		</columns>
+		<columns>
+			<header>关联单位</header>
+			<dataIndex>checkOrganization.name</dataIndex>
+		</columns>
+		<columns>
+			<header>是否有效</header>
+			<dataIndex>valid</dataIndex>
+			<keyType>cims_effective</keyType>
+		</columns>
+		<columns>
+			<header><![CDATA[<img src='images/portal/icon/department.gif' height='11' alt='新增下级' title='新增下级'/> 新增下级]]></header>
+			<dataIndex>addChild</dataIndex>
+			<hidden type="object">this.runMode == '2'</hidden>
+			<width type="integer">50</width>
+			<align>center</align>
+			<isPrint type="boolean">false</isPrint>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='images/portal/icon/department.gif' title='新增下级' alt='新增下级'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+	</cm>
+</uicfg>

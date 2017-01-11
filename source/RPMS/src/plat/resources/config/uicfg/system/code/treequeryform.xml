@@ -1,0 +1,8 @@
+<uicfg desc="代码查询字段">
+	<columns type="integer">1</columns>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>queryKey</name>
+		<fieldLabel>关键字</fieldLabel>
+	</items>
+</uicfg>

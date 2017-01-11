@@ -1,0 +1,8 @@
+<uicfg desc="表单编辑按钮">
+	<items>-></items>
+	<items>
+		<text>关闭</text>
+		<iconCls>close-icon</iconCls>
+		<handler type="object">this.closeClick</handler>
+	</items>
+</uicfg>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page>
+  <components>
+    <layout>
+      <column colspan="1" width="33.333333%" id="c_01">
+        <pagelet id="m_0_0" border="false" height="244">
+          <title class="column_01_01" value="本矿日报" link="#"/>
+          <options><![CDATA[../portal/genDailyReportData.html]]></options>
+        </pagelet>
+        <pagelet id="m_0_2" height="243">
+          <title class="column_01_01" value="设备使用情况" link="#"/>
+          <options><![CDATA[../portal/genEquipmentStatusData.html]]></options>
+        </pagelet>
+        <pagelet id="m_0_4" border="false" height="217">
+          <title class="column_01_01" value="设备综合统计" link="#"/>
+          <options><![CDATA[../portal/genEquipmentCountData.html]]></options>
+        </pagelet>
+        <pagelet id="m_0_6" border="false" height="244">
+          <title class="column_01" value="日清日结分析" link="/portal/genAccountsByDayDataMore.html"/>
+          <options><![CDATA[../portal/genAccountsByDayData.html]]></options>
+        </pagelet>
+        <pagelet id="m_0_8" height="243">
+          <title class="column_01_01" value="经营考核报表" link="#"/>
+          <options><![CDATA[../portal/oams/oamsreport/oamsreport.jsp]]></options>
+        </pagelet>
+        <pagelet id="m_0_10" height="243">
+          <title class="column_01_01" value="材料报表" link="#"/>
+          <options><![CDATA[../portal/mate/matereport/matereport.jsp]]></options>
+        </pagelet>
+        <pagelet id="m_0_12" height="243">
+          <title class="column_01" value="实际领用情况" link="/portal/genMateFactPieDataMore.html"/>
+          <options><![CDATA[../portal/genMateFactPieData.html]]></options>
+        </pagelet>
+      </column>
+      <column colspan="2" width="66.666666%" id="c_02">
+        <pagelet id="m_0_1" height="243">
+          <title class="column_02_02" value="采煤逐日" link="#"/>
+          <options><![CDATA[../portal/genOutputDayData.html]]></options>
+        </pagelet>
+        <pagelet id="m_0_3" height="243">
+          <title class="column_02_02" value="掘进逐日" link="#"/>
+          <options><![CDATA[../portal/genDrivageDayData.html]]></options>
+        </pagelet>
+        <pagelet id="m_0_5" border="false" height="217">
+          <title class="column_02_02" value="煤销数据" link="#"/>
+          <options><![CDATA[../portal/genProsaleDayData.html]]></options>
+        </pagelet>
+        <pagelet id="m_0_7" height="243">
+          <title class="column_02" value="结算分析" link="/portal/genSettleByMonthDataMore.html"/>
+          <options><![CDATA[../portal/genSettleByMonthData.html]]></options>
+        </pagelet>
+        <pagelet id="m_0_9" height="243">
+          <title class="column_02" value="收支分析" link="/portal/genInOutByMonthDataMore.html"/>
+          <options><![CDATA[../portal/genInOutByMonthData.html]]></options>
+        </pagelet>
+        <pagelet id="m_0_11" border="false" height="244">
+          <title class="column_02" value="交易明细" link="/portal/genMateBusinessDetailDataMore.html"/>
+          <options><![CDATA[../portal/genMateBusinessDetailData.html]]></options>
+        </pagelet>
+        <pagelet id="m_0_13" height="243">
+          <title class="column_02" value="材料日消耗" link="/portal/genMateConsumptionDataMore.html"/>
+          <options><![CDATA[../portal/genMateConsumptionData.html]]></options>
+        </pagelet>
+      </column>
+    </layout>
+    <layout>
+      <column colspan="3" width="100%" id="c_11">
+        <pagelet id="m_1_0" border="false" height="125">
+          <title class="column_04" value="常用链接" link="/portal/genLinksDataMore.html"/>
+          <options><![CDATA[../portal/genLinksData.html]]></options>
+        </pagelet>
+      </column>
+    </layout>
+  </components>
+</page>

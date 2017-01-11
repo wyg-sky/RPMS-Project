@@ -1,0 +1,46 @@
+<uicfg desc="生成页面布局">
+	<winWidth type="integer">650</winWidth>
+	<component>
+		<items>
+			<object>pagetbar</object>
+			<xtype>liontoolbar</xtype>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/pageinfo/pagetbar</viewPath>
+		</items>
+		<items>
+			<object>pageForm</object>
+			<xtype>lionform</xtype>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/pageinfo/pageform</viewPath>
+		</items>
+		<items>
+			<object>paramstbar</object>
+			<xtype>liontoolbar</xtype>
+			<manager type="object">this</manager>
+			<viewPath>code/generatepage/pageinfo/paramstbar</viewPath>
+		</items>
+		<items>
+			<object>paramsGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<manager type="object">this</manager>
+			<height type="integer">150</height>
+			<bodyStyle type="object">'border-width:0px 0px 0px 0px;'</bodyStyle>
+			<viewPath>code/generatepage/pageinfo/paramsgrid</viewPath>
+		</items>
+		<items>
+			<object>widgetsGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<manager type="object">this</manager>
+			<height type="integer">150</height>
+			<bodyStyle type="object">'border-width:0px 0px 0px 0px;'</bodyStyle>
+			<viewPath>code/generatepage/pageinfo/widgetsgrid</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>pagetbar</items>
+		<items>pageForm</items>
+		<items>paramstbar</items>
+		<items>paramsGrid</items>
+		<items>widgetsGrid</items>
+	</container>
+</uicfg>

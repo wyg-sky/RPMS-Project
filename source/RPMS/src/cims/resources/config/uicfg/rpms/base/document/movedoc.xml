@@ -1,0 +1,34 @@
+<uicfg desc="文档迁移窗口">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">262</winWidth>
+	<component>
+		<items>
+			<object>listTypeTreeForMove</object>
+			<xtype>panel</xtype>
+			<region>west</region>
+			<bodyStyle>border-width:0 1px 0 0;</bodyStyle>
+			<autoScroll type="object">true</autoScroll>
+		    <width type="object">250</width>
+		    <height type="object">280</height>
+		    <split type="object">true</split>
+		    <minSize type="object">180</minSize>
+		    <maxSize type="object">180</maxSize>
+		    <collapsible type="object">false</collapsible>
+		    <lines type="object">false</lines>
+		    <collapseMode>mini</collapseMode>
+			<items>
+				<xtype>liontree</xtype>
+				<viewPath>rpms/base/document/listtypetree</viewPath>
+			</items>
+		</items>
+		<items>
+			<object>listTbarForMove</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/base/document/movedoctbar</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>listTbarForMove</items>
+		<items>listTypeTreeForMove</items>
+	</container>
+</uicfg>

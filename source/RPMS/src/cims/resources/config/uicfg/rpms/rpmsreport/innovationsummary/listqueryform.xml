@@ -1,0 +1,55 @@
+<uicfg desc="创新情况汇总表查询表单">
+    <columns type="integer">5</columns>
+    <autoHeight type="boolean">true</autoHeight>
+    <defaultFunction type="object">this.manager.query</defaultFunction>
+    <defaultScope type="object">this.manager</defaultScope>
+    <defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">60</labelWidth>
+    </defaults>
+    <items>
+        <xtype>lionblankfield</xtype>
+    </items>
+    <items>
+        <xtype>lionblankfield</xtype>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'select':function(){
+                var platName = this.manager.queryForm.findField("platCenter.id").selectNode.attributes.text;
+                this.manager.queryForm.findField("platName").setValue(platName);
+            },
+            'focus':function(tree) {
+                tree.cascadePlatTree(2);
+            },scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <anchor>99%</anchor>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>分中心全名</fieldLabel>
+        <name>platName</name>
+        <hidden type="object">true</hidden>
+    </items>
+    <items>
+        <xtype>lionmonthfield</xtype>
+        <fieldLabel>月份</fieldLabel>
+        <name>startDate</name>
+        <format>Y-m</format>
+        <value type="object">new Date().format('Y') + '-01'</value>
+    </items>
+    <items>
+        <xtype>lionmonthfield</xtype>
+        <fieldLabel>至</fieldLabel>
+        <name>endDate</name>
+        <format>Y-m</format>
+        <value type="object">new Date().format('Y-m') </value>
+    </items>
+</uicfg>

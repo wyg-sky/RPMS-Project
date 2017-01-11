@@ -1,0 +1,50 @@
+<uicfg desc="通知管理管理编辑主界面">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">750</winWidth>
+	<component>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/research/projectfile/edittbar</viewPath>
+		</items>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/research/projectfile/editform</viewPath>
+		</items>
+		<items>
+			<object>listlinebar</object>
+			<xtype>liontoolbar</xtype>
+			<hidden type="object">!this.editable</hidden>
+			<viewPath>rpms/research/projectfile/listlinebar</viewPath>
+		</items>
+		<items>
+			<object>dataLineGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<isLine type="boolean">true</isLine>
+			<lineName>projectFileLine</lineName>
+			<fkName>obj.mainId</fkName>
+			<height type="object">200</height>
+			<viewPath>rpms/research/projectfile/listlinegrid</viewPath>
+		</items>
+		<items>
+			<object>uploadFileGrid</object>
+			<xtype>lionuploadfile</xtype>
+			<isLine type="boolean">true</isLine>
+			<lineName>documents</lineName>
+			<fkId type="object">this.mainId</fkId>
+			<fkName>obj.docFk</fkName>
+			<columnWidth type="integer">3</columnWidth>
+			<allowUpload type="object">this.editable</allowUpload>
+			<allowDelete type="object">this.editable</allowDelete>
+			<height type="object">150</height>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+		<items>listlinebar</items>
+		<items>dataLineGrid</items>
+		<items>uploadFileGrid</items>
+	</container>
+</uicfg>

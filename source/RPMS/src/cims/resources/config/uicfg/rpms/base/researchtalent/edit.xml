@@ -1,0 +1,21 @@
+<uicfg desc="创新人才管理编辑主界面">
+	<objectName>businessObject</objectName>
+	<objectLineName>researchTalentLine</objectLineName>
+	<winWidth type="integer">1000</winWidth>
+	<component>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/base/researchtalent/edittbar</viewPath>
+		</items>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<viewPath>rpms/base/researchtalent/editform</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+	</container>
+</uicfg>

@@ -1,0 +1,1526 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<report version="5.0">
+	<head>
+		<property name="type">0</property>
+		<name><![CDATA[Rpms_Technology_Costs_Editor]]></name>
+		<dataSets>
+			<dataSet name="costslist" type="DB_SQL" >
+				<property name="dataSource">CIMS</property>
+				<property name="desc"><![CDATA[]]></property>
+				<property name="query"><![CDATA[select * from RPMS_SCIENCE_ACTIVITY ac where ac.dept=? and ac.years = ?]]></property>
+				<property name="beginRow">0</property>
+				<property name="endRow">0</property>
+				<queryParam name="platCenter" />
+				<queryParam name="costsMonths" />
+			</dataSet>
+			<dataSet name="platname" type="DB_SQL" >
+				<property name="dataSource">CIMS</property>
+				<property name="desc"><![CDATA[]]></property>
+				<property name="query"><![CDATA[select o.id,o.name from itsm_organization o
+where o.id = ?]]></property>
+				<property name="beginRow">0</property>
+				<property name="endRow">0</property>
+				<queryParam name="platCenter" />
+			</dataSet>
+			<dataSet name="projectlist" type="DB_SQL" >
+				<property name="dataSource">CIMS</property>
+				<property name="desc"><![CDATA[]]></property>
+				<property name="query"><![CDATA[select rp.id,rp.project_name from RPMS_PROJECT rp ]]></property>
+				<property name="beginRow">0</property>
+				<property name="endRow">0</property>
+			</dataSet>
+		</dataSets>
+		<parameters>
+			<parameter name="costsMonths" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc"></property>
+				<property name="valueCalc">false</property>
+			</parameter>
+			<parameter name="platCenter" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc"></property>
+				<property name="valueCalc">false</property>
+			</parameter>
+			<parameter name="countPsrson" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc"></property>
+				<property name="valueCalc">false</property>
+			</parameter>
+			<parameter name="reportPerson" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc"></property>
+				<property name="valueCalc">false</property>
+			</parameter>
+			<parameter name="phone" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc"></property>
+				<property name="valueCalc">false</property>
+			</parameter>
+			<parameter name="reportTime" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc"></property>
+				<property name="valueCalc">false</property>
+			</parameter>
+			<parameter name="user" type="6">
+				<property name="dateFormat"></property>
+				<property name="default"></property>
+				<property name="desc"></property>
+				<property name="valueCalc">false</property>
+			</parameter>
+		</parameters>
+		<variables/>
+	</head>
+	<body>
+		<sheet id="sheet1">
+			<page>
+				<property name="pageSize">3</property>
+			</page>
+			<grid row="12" col="33">
+				<properties>
+					<property name="report-name"><![CDATA[=科技活动费用情况表]]></property>
+				</properties>
+				<rows>
+					<row id="1">
+					</row>
+					<row id="2">
+					</row>
+					<row id="3">
+						<property name="height">50</property>
+					</row>
+					<row id="4">
+						<property name="height">100</property>
+					</row>
+					<row id="5">
+					</row>
+					<row id="6">
+						<property name="fillin_add">0</property>
+						<property name="fillin_remove">0</property>
+					</row>
+					<row id="7">
+					</row>
+					<row id="8">
+					</row>
+					<row id="9">
+					</row>
+					<row id="10">
+					</row>
+					<row id="11">
+					</row>
+					<row id="12">
+					</row>
+				</rows>
+				<columns>
+					<column id="1">
+						<property name="visible"><![CDATA[1]]></property>
+						<property name="width">182</property>
+					</column>
+					<column id="2">
+						<property name="width">25</property>
+					</column>
+					<column id="3">
+						<property name="width">180</property>
+					</column>
+					<column id="4">
+						<property name="visible"><![CDATA[1]]></property>
+					</column>
+					<column id="5">
+					</column>
+					<column id="6">
+						<property name="width">60</property>
+					</column>
+					<column id="7">
+						<property name="width">60</property>
+					</column>
+					<column id="8">
+						<property name="width">60</property>
+					</column>
+					<column id="9">
+						<property name="width">60</property>
+					</column>
+					<column id="10">
+						<property name="width">60</property>
+					</column>
+					<column id="11">
+						<property name="width">60</property>
+					</column>
+					<column id="12">
+						<property name="width">60</property>
+					</column>
+					<column id="13">
+						<property name="width">60</property>
+					</column>
+					<column id="14">
+					</column>
+					<column id="15">
+						<property name="width">60</property>
+					</column>
+					<column id="16">
+						<property name="width">62</property>
+					</column>
+					<column id="17">
+						<property name="width">65</property>
+					</column>
+					<column id="18">
+						<property name="width">60</property>
+					</column>
+					<column id="19">
+						<property name="width">60</property>
+					</column>
+					<column id="20">
+						<property name="width">77</property>
+					</column>
+					<column id="21">
+						<property name="width">60</property>
+					</column>
+					<column id="22">
+						<property name="width">65</property>
+					</column>
+					<column id="23">
+						<property name="width">60</property>
+					</column>
+					<column id="24">
+						<property name="width">60</property>
+					</column>
+					<column id="25">
+						<property name="width">60</property>
+					</column>
+					<column id="26">
+						<property name="width">60</property>
+					</column>
+					<column id="27">
+						<property name="width">60</property>
+					</column>
+					<column id="28">
+					</column>
+					<column id="29">
+						<property name="width">60</property>
+					</column>
+					<column id="30">
+						<property name="visible"><![CDATA[1]]></property>
+					</column>
+					<column id="31">
+						<property name="visible"><![CDATA[1]]></property>
+					</column>
+					<column id="32">
+						<property name="visible"><![CDATA[1]]></property>
+					</column>
+					<column id="33">
+						<property name="visible"><![CDATA[1]]></property>
+					</column>
+				</columns>
+				<cells>
+					<cell id="1,1" type="0" >
+					</cell>
+					<cell id="1,2" type="0" colspan="2" >
+						<property name="value"><![CDATA[=fill('  ',4)+case(AF6='0001', '未上报', AF6='0002', '己上报', AF6='0003', '己审批', AF6='0004', '己打回')]]></property>
+						<property name="font-color"><![CDATA[255,0,0]]></property>
+					</cell>
+					<cell id="1,4" type="0" >
+					</cell>
+					<cell id="1,5" type="0" >
+					</cell>
+					<cell id="1,6" type="0" >
+					</cell>
+					<cell id="1,7" type="0" >
+					</cell>
+					<cell id="1,8" type="0" >
+					</cell>
+					<cell id="1,9" type="0" >
+					</cell>
+					<cell id="1,10" type="0" >
+					</cell>
+					<cell id="1,11" type="0" >
+					</cell>
+					<cell id="1,12" type="0" >
+					</cell>
+					<cell id="1,13" type="0" colspan="5" >
+						<property name="value"><![CDATA[科技活动费用情况表]]></property>
+						<property name="font-size">18</property>
+						<property name="bold">0</property>
+					</cell>
+					<cell id="1,18" type="0" >
+					</cell>
+					<cell id="1,19" type="0" >
+					</cell>
+					<cell id="1,20" type="0" >
+					</cell>
+					<cell id="1,21" type="0" >
+					</cell>
+					<cell id="1,22" type="0" >
+					</cell>
+					<cell id="1,23" type="0" >
+					</cell>
+					<cell id="1,24" type="0" >
+					</cell>
+					<cell id="1,25" type="0" >
+					</cell>
+					<cell id="1,26" type="0" >
+					</cell>
+					<cell id="1,27" type="0" >
+					</cell>
+					<cell id="1,28" type="0" >
+					</cell>
+					<cell id="1,29" type="0" >
+					</cell>
+					<cell id="1,30" type="0" >
+					</cell>
+					<cell id="1,31" type="0" >
+					</cell>
+					<cell id="1,32" type="0" >
+					</cell>
+					<cell id="1,33" type="0" >
+					</cell>
+					<cell id="2,1" type="0" >
+					</cell>
+					<cell id="2,2" type="0" colspan="8" >
+						<property name="value"><![CDATA[=单位名称：+platname.getone(name)]]></property>
+						<property name="font-size">8</property>
+						<property name="align">0</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="2,10" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,11" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,12" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,13" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,14" type="0" colspan="3" >
+						<property name="value"><![CDATA[=left(@costsMonths,4)+'年'+right(@costsMonths,2)+'月']]></property>
+						<property name="font-size">8</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="2,17" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,18" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,19" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,20" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,21" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,22" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,23" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,24" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,25" type="0" colspan="2" >
+						<property name="value"><![CDATA[单位：万元]]></property>
+						<property name="font-size">8</property>
+						<property name="align">2</property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="2,27" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,28" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,29" type="0" >
+						<border type="1">1:0,0,0:1</border>
+					</cell>
+					<cell id="2,30" type="0" >
+					</cell>
+					<cell id="2,31" type="0" >
+					</cell>
+					<cell id="2,32" type="0" >
+					</cell>
+					<cell id="2,33" type="0" >
+					</cell>
+					<cell id="3,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,2" type="0" rowspan="2" >
+						<property name="value"><![CDATA[序号]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="3,3" type="0" rowspan="2" >
+						<property name="value"><![CDATA[项目名称]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="3,4" type="0" >
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,5" type="0" rowspan="2" >
+						<property name="value"><![CDATA[预算金额]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="3,6" type="0" rowspan="2" >
+						<property name="value"><![CDATA[主营业务收入]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="3,7" type="0" colspan="3" >
+						<property name="value"><![CDATA[1.人工费]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,10" type="0" >
+						<property name="value"><![CDATA[2.设计费]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,11" type="0" >
+						<property name="value"><![CDATA[3.装备调试费]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,12" type="0" colspan="3" >
+						<property name="value"><![CDATA[4.直接投入原材料、电力等费用]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,15" type="0" colspan="4" >
+						<property name="value"><![CDATA[5.折旧、租赁费用与长期费用摊销]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,19" type="0" >
+						<property name="value"><![CDATA[6.无形资产摊销]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,20" type="0" >
+						<property name="value"><![CDATA[7.其他费用]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,21" type="0" colspan="3" >
+						<property name="value"><![CDATA[8.委外研发(合同)费用外部支出]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,24" type="0" colspan="2" >
+						<property name="value"><![CDATA[当年形成用于科技活动的固定资产]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1;1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,26" type="0" >
+						<property name="value"><![CDATA[来自政府资金]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="3,27" type="0" rowspan="2" >
+						<property name="value"><![CDATA[金额合计]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="3,28" type="0" rowspan="2" >
+						<property name="value"><![CDATA[财务归集金额]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="3,29" type="0" rowspan="2" >
+						<property name="value"><![CDATA[科技投入比]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1;1:0,0,0:1</border>
+					</cell>
+					<cell id="3,30" type="0" >
+					</cell>
+					<cell id="3,31" type="0" >
+					</cell>
+					<cell id="3,32" type="0" >
+					</cell>
+					<cell id="3,33" type="0" >
+					</cell>
+					<cell id="4,1" type="0" >
+						<property name="value"><![CDATA[ID]]></property>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,4" type="0" >
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,7" type="0" >
+						<property name="value"><![CDATA[科技人员费用]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,8" type="0" >
+						<property name="value"><![CDATA[科技管理和服务人员]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,9" type="0" >
+						<property name="value"><![CDATA[熟练技术工人]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,10" type="0" >
+						<property name="value"><![CDATA[设计费]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,11" type="0" >
+						<property name="value"><![CDATA[装备调试费]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,12" type="0" >
+						<property name="value"><![CDATA[投入原材料及辅助材料]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,13" type="0" >
+						<property name="value"><![CDATA[水煤气和电]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,14" type="0" >
+						<property name="value"><![CDATA[试验模具、样品、样机费及检验费]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,15" type="0" >
+						<property name="value"><![CDATA[仪器和设备折旧]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,16" type="0" >
+						<property name="value"><![CDATA[在用建筑物折旧]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,17" type="0" >
+						<property name="value"><![CDATA[仪器、设备租用费]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,18" type="0" >
+						<property name="value"><![CDATA[研发设施长期摊销]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,19" type="0" >
+						<property name="value"><![CDATA[购入的专有技术等费用摊销]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,20" type="0" >
+						<property name="value"><![CDATA[办公、通信、专利申请维护费等相关费用]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,21" type="0" >
+						<property name="value"><![CDATA[支付境内企业机构]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,22" type="0" >
+						<property name="value"><![CDATA[支付境内高等学校]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,23" type="0" >
+						<property name="value"><![CDATA[支付境外支出]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,24" type="0" >
+						<property name="value"><![CDATA[购置的仪器、设备原价]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,25" type="0" >
+						<property name="value"><![CDATA[建筑物原价（分摊）]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,26" type="0" >
+						<property name="value"><![CDATA[来自政府资金]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="4,30" type="0" >
+					</cell>
+					<cell id="4,31" type="0" >
+					</cell>
+					<cell id="4,32" type="0" >
+					</cell>
+					<cell id="4,33" type="0" >
+					</cell>
+					<cell id="5,1" type="0" >
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,2" type="0" >
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,3" type="0" >
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,4" type="0" >
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,5" type="0" >
+						<property name="value"><![CDATA[0]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,6" type="0" >
+						<property name="value"><![CDATA[1]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,7" type="0" >
+						<property name="value"><![CDATA[2]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,8" type="0" >
+						<property name="value"><![CDATA[3]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,9" type="0" >
+						<property name="value"><![CDATA[4]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,10" type="0" >
+						<property name="value"><![CDATA[5]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,11" type="0" >
+						<property name="value"><![CDATA[6]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,12" type="0" >
+						<property name="value"><![CDATA[7]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,13" type="0" >
+						<property name="value"><![CDATA[8]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,14" type="0" >
+						<property name="value"><![CDATA[9]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,15" type="0" >
+						<property name="value"><![CDATA[10]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,16" type="0" >
+						<property name="value"><![CDATA[11]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,17" type="0" >
+						<property name="value"><![CDATA[12]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,18" type="0" >
+						<property name="value"><![CDATA[13]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,19" type="0" >
+						<property name="value"><![CDATA[14]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,20" type="0" >
+						<property name="value"><![CDATA[15]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,21" type="0" >
+						<property name="value"><![CDATA[16]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,22" type="0" >
+						<property name="value"><![CDATA[17]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,23" type="0" >
+						<property name="value"><![CDATA[18]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,24" type="0" >
+						<property name="value"><![CDATA[19]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,25" type="0" >
+						<property name="value"><![CDATA[20]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,26" type="0" >
+						<property name="value"><![CDATA[21]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,27" type="0" >
+						<property name="value"><![CDATA[22]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,28" type="0" >
+						<property name="value"><![CDATA[23]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,29" type="0" >
+						<property name="value"><![CDATA[24]]></property>
+						<property name="background"><![CDATA[='230,230,230']]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="5,30" type="0" >
+						<property name="value"><![CDATA[=nvl(costslist.getone(create_user,id=A6),@user)]]></property>
+					</cell>
+					<cell id="5,31" type="0" >
+						<property name="value"><![CDATA[=nvl(costslist.getone(CREATE_TIME,id=A6),AE6)]]></property>
+						<property name="view-format">5|yyyy-M-d H:mm:ss</property>
+					</cell>
+					<cell id="5,32" type="0" >
+					</cell>
+					<cell id="5,33" type="0" >
+					</cell>
+					<cell id="6,1" type="0" >
+						<property name="value"><![CDATA[=nvl(costslist.select(ID,DEPT=A7 and YEARS=A8),myuuid())]]></property>
+						<property name="ext-direction">3</property>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,2" type="0" >
+						<property name="value"><![CDATA[=row()-5]]></property>
+						<property name="ext-left"><![CDATA[C6]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,3" type="0" >
+						<property name="value"><![CDATA[=if(costslist.getone(PROJECT_ID,id=A6) == null,'',costslist.getone(PROJECT_ID,id=A6))]]></property>
+						<property name="size-adjust">1</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,4" type="0" >
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,5" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(BUDGET_AMOUNT,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.####;-###0.####</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,6" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(BUSINESS_INCOME,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,7" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(PSESON_COST,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,8" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(SCIDENC_SERVICE,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,9" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(WORK_FEE,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,10" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(DESIGN_FEE,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,11" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(DEGUGGING_FEE,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,12" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(MATERIAL_FEE,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,13" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(GAS_ELECTRICITY,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,14" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(MOULE_EXAM,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,15" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(INSTRUMENT_EQUI,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,16" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(USE_BUILDING,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,17" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(EQUI_RENTAL,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,18" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(FACLITIES_FEE,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,19" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(TECHNOLOGY_FEE,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,20" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(OFFICE_FEE,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,21" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(ENTERPRICE_FEE,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,22" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(SCHOOL_FEE,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,23" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(ABROAD_FEE,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,24" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(EQUI_PRICE,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,25" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(BUILDING_PRICE,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,26" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(GOVERNMENT_FUNDS,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,27" type="0" >
+						<property name="value"><![CDATA[=G6+H6+I6+J6+K6+L6+M6+N6+O6+P6+Q6+R6+S6+T6+U6+V6+W6+X6+Y6+Z6]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,28" type="0" >
+						<property name="value"><![CDATA[=costslist.getone(IMPUTATION_AMOUNT,id=A6)]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.####;-###0.####</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,29" type="0" >
+						<property name="value"><![CDATA[=if(F6=0,F6*1,(G6+H6+I6+J6+K6+L6+M6+N6+O6+P6+Q6+R6+S6+T6+U6+V6+W6)/F6*1)]]></property>
+						<property name="view-format">1|###0.##%;-###0.##%</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="6,30" type="0" >
+						<property name="value"><![CDATA[=@user]]></property>
+					</cell>
+					<cell id="6,31" type="0" >
+						<property name="value"><![CDATA[=now()]]></property>
+						<property name="view-format">5|yyyy-M-d H:mm:ss</property>
+					</cell>
+					<cell id="6,32" type="0" >
+						<property name="value"><![CDATA[=nvl(costslist.getone(STATUS,id=A6),'0001')]]></property>
+					</cell>
+					<cell id="6,33" type="0" >
+					</cell>
+					<cell id="7,1" type="0" >
+						<property name="value"><![CDATA[=@platCenter]]></property>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,2" type="0" >
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,3" type="0" >
+						<property name="value"><![CDATA[累计]]></property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,4" type="0" >
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,5" type="0" >
+						<property name="value"><![CDATA[=sum(E6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.####;-###0.####</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,6" type="0" >
+						<property name="value"><![CDATA[=sum(F6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.####;-###0.####</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,7" type="0" >
+						<property name="value"><![CDATA[=sum(G6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,8" type="0" >
+						<property name="value"><![CDATA[=sum(H6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,9" type="0" >
+						<property name="value"><![CDATA[=sum(I6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,10" type="0" >
+						<property name="value"><![CDATA[=sum(J6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,11" type="0" >
+						<property name="value"><![CDATA[=sum(K6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,12" type="0" >
+						<property name="value"><![CDATA[=sum(L6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,13" type="0" >
+						<property name="value"><![CDATA[=sum(M6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,14" type="0" >
+						<property name="value"><![CDATA[=sum(N6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,15" type="0" >
+						<property name="value"><![CDATA[=sum(O6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,16" type="0" >
+						<property name="value"><![CDATA[=sum(P6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,17" type="0" >
+						<property name="value"><![CDATA[=sum(Q6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,18" type="0" >
+						<property name="value"><![CDATA[=sum(R6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,19" type="0" >
+						<property name="value"><![CDATA[=sum(S6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,20" type="0" >
+						<property name="value"><![CDATA[=sum(T6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,21" type="0" >
+						<property name="value"><![CDATA[=sum(U6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,22" type="0" >
+						<property name="value"><![CDATA[=sum(V6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,23" type="0" >
+						<property name="value"><![CDATA[=sum(W6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,24" type="0" >
+						<property name="value"><![CDATA[=sum(X6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,25" type="0" >
+						<property name="value"><![CDATA[=sum(Y6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,26" type="0" >
+						<property name="value"><![CDATA[=sum(Z6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,27" type="0" >
+						<property name="value"><![CDATA[=sum(AA6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.##;-###0.##</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,28" type="0" >
+						<property name="value"><![CDATA[=sum(AB6{})]]></property>
+						<property name="view"><![CDATA[=if(@value=0,'',@value)]]></property>
+						<property name="view-format">1|###0.####;-###0.####</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,29" type="0" >
+						<property name="value"><![CDATA[=if(F7=0,F7*1,(G7+H7+I7+J7+K7+L7+M7+N7+O7+P7+Q7+R7+S7+T7+U7+V7+W7)/F7*1)]]></property>
+						<property name="view-format">1|###0.##%;-###0.##%</property>
+						<border type="1">1:0,0,0:1</border>
+						<border type="3">1:0,0,0:1</border>
+					</cell>
+					<cell id="7,30" type="0" >
+					</cell>
+					<cell id="7,31" type="0" >
+					</cell>
+					<cell id="7,32" type="0" >
+					</cell>
+					<cell id="7,33" type="0" >
+					</cell>
+					<cell id="8,1" type="0" >
+						<property name="value"><![CDATA[=@costsMonths]]></property>
+					</cell>
+					<cell id="8,2" type="0" >
+					</cell>
+					<cell id="8,3" type="0" >
+						<property name="value"><![CDATA[统计负责人：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="8,4" type="0" >
+					</cell>
+					<cell id="8,5" type="0" >
+					</cell>
+					<cell id="8,6" type="0" colspan="2" >
+						<property name="value"><![CDATA[=costslist.getone(COUNT_PERSON,id=A6)]]></property>
+					</cell>
+					<cell id="8,8" type="0" >
+					</cell>
+					<cell id="8,9" type="0" >
+					</cell>
+					<cell id="8,10" type="0" >
+					</cell>
+					<cell id="8,11" type="0" >
+					</cell>
+					<cell id="8,12" type="0" >
+						<property name="value"><![CDATA[填报人：]]></property>
+					</cell>
+					<cell id="8,13" type="0" colspan="2" >
+						<property name="value"><![CDATA[=costslist.getone(REPORT_PERSON,id=A6)]]></property>
+					</cell>
+					<cell id="8,15" type="0" colspan="2" >
+						<property name="value"><![CDATA[联系电话：]]></property>
+						<property name="align">2</property>
+					</cell>
+					<cell id="8,17" type="0" colspan="2" >
+						<property name="value"><![CDATA[=costslist.getone(PHONE,id=A6)]]></property>
+					</cell>
+					<cell id="8,19" type="0" >
+					</cell>
+					<cell id="8,20" type="0" >
+					</cell>
+					<cell id="8,21" type="0" >
+					</cell>
+					<cell id="8,22" type="0" >
+						<property name="value"><![CDATA[报出日期：]]></property>
+					</cell>
+					<cell id="8,23" type="0" colspan="2" >
+						<property name="value"><![CDATA[=nvl(costslist.getone(REPORT_TIME,id=A6),now())]]></property>
+						<property name="view-format">4|yyyy年M月d日</property>
+					</cell>
+					<cell id="8,25" type="0" >
+					</cell>
+					<cell id="8,26" type="0" >
+					</cell>
+					<cell id="8,27" type="0" >
+					</cell>
+					<cell id="8,28" type="0" >
+					</cell>
+					<cell id="8,29" type="0" >
+					</cell>
+					<cell id="8,30" type="0" >
+					</cell>
+					<cell id="8,31" type="0" >
+					</cell>
+					<cell id="8,32" type="0" >
+					</cell>
+					<cell id="8,33" type="0" >
+					</cell>
+					<cell id="9,1" type="0" >
+					</cell>
+					<cell id="9,2" type="0" >
+					</cell>
+					<cell id="9,3" type="0" >
+					</cell>
+					<cell id="9,4" type="0" >
+					</cell>
+					<cell id="9,5" type="0" >
+					</cell>
+					<cell id="9,6" type="0" >
+					</cell>
+					<cell id="9,7" type="0" >
+					</cell>
+					<cell id="9,8" type="0" >
+					</cell>
+					<cell id="9,9" type="0" >
+					</cell>
+					<cell id="9,10" type="0" >
+					</cell>
+					<cell id="9,11" type="0" >
+					</cell>
+					<cell id="9,12" type="0" >
+					</cell>
+					<cell id="9,13" type="0" >
+					</cell>
+					<cell id="9,14" type="0" >
+					</cell>
+					<cell id="9,15" type="0" >
+					</cell>
+					<cell id="9,16" type="0" >
+					</cell>
+					<cell id="9,17" type="0" >
+					</cell>
+					<cell id="9,18" type="0" >
+					</cell>
+					<cell id="9,19" type="0" >
+					</cell>
+					<cell id="9,20" type="0" >
+					</cell>
+					<cell id="9,21" type="0" >
+					</cell>
+					<cell id="9,22" type="0" >
+					</cell>
+					<cell id="9,23" type="0" >
+					</cell>
+					<cell id="9,24" type="0" >
+					</cell>
+					<cell id="9,25" type="0" >
+					</cell>
+					<cell id="9,26" type="0" >
+					</cell>
+					<cell id="9,27" type="0" >
+					</cell>
+					<cell id="9,28" type="0" >
+					</cell>
+					<cell id="9,29" type="0" >
+					</cell>
+					<cell id="9,30" type="0" >
+					</cell>
+					<cell id="9,31" type="0" >
+					</cell>
+					<cell id="9,32" type="0" >
+					</cell>
+					<cell id="9,33" type="0" >
+					</cell>
+					<cell id="10,1" type="0" >
+					</cell>
+					<cell id="10,2" type="0" >
+					</cell>
+					<cell id="10,3" type="0" >
+					</cell>
+					<cell id="10,4" type="0" >
+					</cell>
+					<cell id="10,5" type="0" >
+					</cell>
+					<cell id="10,6" type="0" >
+					</cell>
+					<cell id="10,7" type="0" >
+					</cell>
+					<cell id="10,8" type="0" >
+					</cell>
+					<cell id="10,9" type="0" >
+					</cell>
+					<cell id="10,10" type="0" >
+					</cell>
+					<cell id="10,11" type="0" >
+					</cell>
+					<cell id="10,12" type="0" >
+					</cell>
+					<cell id="10,13" type="0" >
+					</cell>
+					<cell id="10,14" type="0" >
+					</cell>
+					<cell id="10,15" type="0" >
+					</cell>
+					<cell id="10,16" type="0" >
+					</cell>
+					<cell id="10,17" type="0" >
+					</cell>
+					<cell id="10,18" type="0" >
+					</cell>
+					<cell id="10,19" type="0" >
+					</cell>
+					<cell id="10,20" type="0" >
+					</cell>
+					<cell id="10,21" type="0" >
+					</cell>
+					<cell id="10,22" type="0" >
+					</cell>
+					<cell id="10,23" type="0" >
+					</cell>
+					<cell id="10,24" type="0" >
+					</cell>
+					<cell id="10,25" type="0" >
+					</cell>
+					<cell id="10,26" type="0" >
+					</cell>
+					<cell id="10,27" type="0" >
+					</cell>
+					<cell id="10,28" type="0" >
+					</cell>
+					<cell id="10,29" type="0" >
+					</cell>
+					<cell id="10,30" type="0" >
+					</cell>
+					<cell id="10,31" type="0" >
+					</cell>
+					<cell id="10,32" type="0" >
+					</cell>
+					<cell id="10,33" type="0" >
+					</cell>
+					<cell id="11,1" type="0" >
+					</cell>
+					<cell id="11,2" type="0" >
+					</cell>
+					<cell id="11,3" type="0" >
+					</cell>
+					<cell id="11,4" type="0" >
+					</cell>
+					<cell id="11,5" type="0" >
+					</cell>
+					<cell id="11,6" type="0" >
+					</cell>
+					<cell id="11,7" type="0" >
+					</cell>
+					<cell id="11,8" type="0" >
+					</cell>
+					<cell id="11,9" type="0" >
+					</cell>
+					<cell id="11,10" type="0" >
+					</cell>
+					<cell id="11,11" type="0" >
+					</cell>
+					<cell id="11,12" type="0" >
+					</cell>
+					<cell id="11,13" type="0" >
+					</cell>
+					<cell id="11,14" type="0" >
+					</cell>
+					<cell id="11,15" type="0" >
+					</cell>
+					<cell id="11,16" type="0" >
+					</cell>
+					<cell id="11,17" type="0" >
+					</cell>
+					<cell id="11,18" type="0" >
+					</cell>
+					<cell id="11,19" type="0" >
+					</cell>
+					<cell id="11,20" type="0" >
+					</cell>
+					<cell id="11,21" type="0" >
+					</cell>
+					<cell id="11,22" type="0" >
+					</cell>
+					<cell id="11,23" type="0" >
+					</cell>
+					<cell id="11,24" type="0" >
+					</cell>
+					<cell id="11,25" type="0" >
+					</cell>
+					<cell id="11,26" type="0" >
+					</cell>
+					<cell id="11,27" type="0" >
+					</cell>
+					<cell id="11,28" type="0" >
+					</cell>
+					<cell id="11,29" type="0" >
+					</cell>
+					<cell id="11,30" type="0" >
+					</cell>
+					<cell id="11,31" type="0" >
+					</cell>
+					<cell id="11,32" type="0" >
+					</cell>
+					<cell id="11,33" type="0" >
+					</cell>
+					<cell id="12,1" type="0" >
+					</cell>
+					<cell id="12,2" type="0" >
+					</cell>
+					<cell id="12,3" type="0" >
+					</cell>
+					<cell id="12,4" type="0" >
+					</cell>
+					<cell id="12,5" type="0" >
+					</cell>
+					<cell id="12,6" type="0" >
+					</cell>
+					<cell id="12,7" type="0" >
+					</cell>
+					<cell id="12,8" type="0" >
+					</cell>
+					<cell id="12,9" type="0" >
+					</cell>
+					<cell id="12,10" type="0" >
+					</cell>
+					<cell id="12,11" type="0" >
+					</cell>
+					<cell id="12,12" type="0" >
+					</cell>
+					<cell id="12,13" type="0" >
+					</cell>
+					<cell id="12,14" type="0" >
+					</cell>
+					<cell id="12,15" type="0" >
+					</cell>
+					<cell id="12,16" type="0" >
+					</cell>
+					<cell id="12,17" type="0" >
+					</cell>
+					<cell id="12,18" type="0" >
+					</cell>
+					<cell id="12,19" type="0" >
+					</cell>
+					<cell id="12,20" type="0" >
+					</cell>
+					<cell id="12,21" type="0" >
+					</cell>
+					<cell id="12,22" type="0" >
+					</cell>
+					<cell id="12,23" type="0" >
+					</cell>
+					<cell id="12,24" type="0" >
+					</cell>
+					<cell id="12,25" type="0" >
+					</cell>
+					<cell id="12,26" type="0" >
+					</cell>
+					<cell id="12,27" type="0" >
+					</cell>
+					<cell id="12,28" type="0" >
+					</cell>
+					<cell id="12,29" type="0" >
+					</cell>
+					<cell id="12,30" type="0" >
+					</cell>
+					<cell id="12,31" type="0" >
+					</cell>
+					<cell id="12,32" type="0" >
+					</cell>
+					<cell id="12,33" type="0" >
+					</cell>
+				</cells>
+			</grid>
+		</sheet>
+	</body>
+</report>

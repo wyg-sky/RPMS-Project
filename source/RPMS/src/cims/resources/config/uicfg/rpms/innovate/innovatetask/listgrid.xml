@@ -1,0 +1,117 @@
+<uicfg desc="工作任务管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy></orderBy>
+	<editable type="object">false</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<store>
+		<url>rpms/listInnovateTask.html</url>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>platCenter.id</name>
+		</fields>
+		<fields>
+            <name>platCenter.platName</name>
+        </fields>
+		<fields>
+			<name>platInstitution.id</name>
+		</fields>
+		<fields>
+            <name>platInstitution.platName</name>
+        </fields>
+		<fields>
+			<name>taskName</name>
+		</fields>
+		<fields>
+			<name>taskType</name>
+		</fields>
+		<fields>
+			<name>planStartDate</name>
+		</fields>
+		<fields>
+			<name>palnCompleteDate</name>
+		</fields>
+		<fields>
+			<name>actualCompleteDate</name>
+		</fields>
+		<fields>
+			<name>taskContent</name>
+		</fields>
+		<fields>
+			<name>performance</name>
+		</fields>
+		<fields>
+			<name>status</name>
+		</fields>
+		<fields>
+			<name>executor</name>
+		</fields>
+		<fields>
+			<name>valid</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<!-- <columns>
+			<header>分中心</header>
+			<dataIndex>platCenter.platName</dataIndex>
+		</columns>
+		<columns>
+			<header>分中心机构</header>
+			<dataIndex>platInstitution.platName</dataIndex>
+		</columns> -->
+		<columns>
+			<header>任务名称</header>
+			<dataIndex>taskName</dataIndex>
+			<width type="object">200</width>
+		</columns>
+		<columns>
+			<header>任务类型</header>
+			<dataIndex>taskType</dataIndex>
+			<keyType>rpms_task_type</keyType>
+		</columns>
+		<columns>
+			<header>计划开始时间</header>
+			<dataIndex>planStartDate</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>计划完成时间</header>
+			<dataIndex>palnCompleteDate</dataIndex>
+			<hidden type="object">true</hidden>
+		</columns>
+		<columns>
+			<header>实际完成时间</header>
+			<dataIndex>actualCompleteDate</dataIndex>
+		</columns>
+		<!-- <columns>
+			<header>任务内容</header>
+			<dataIndex>taskContent</dataIndex>
+		</columns> 
+		<columns>
+			<header>完成情况</header>
+			<dataIndex>performance</dataIndex>
+		</columns>-->
+		<columns>
+			<header>状态</header>
+			<dataIndex>status</dataIndex>
+			<keyType>rpsm_task_status</keyType>
+		</columns>
+		<columns>
+			<header>任务执行人</header>
+			<dataIndex>executor</dataIndex>
+		</columns>
+		<!-- <columns>
+			<header>是否有效</header>
+			<dataIndex>valid</dataIndex>
+		</columns> -->
+	</cm>
+</uicfg>

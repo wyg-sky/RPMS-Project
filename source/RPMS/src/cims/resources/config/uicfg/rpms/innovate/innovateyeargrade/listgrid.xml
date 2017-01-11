@@ -1,0 +1,148 @@
+<uicfg desc="年度考核打分管理列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<orderBy>checkItem.checkItem</orderBy>
+	<editable type="object">true</editable>
+	<showCopyButton type="object">false</showCopyButton>
+	<formViewPath>rpms/innovate/innovateyeargrade/selfeditform</formViewPath>
+	<store>
+		<url>rpms/listInnovateYearGrade.html</url>
+		<autoLoad type="object">false</autoLoad>
+		<fields>
+			<name>id</name>
+		</fields>
+		<fields>
+			<name>platCenter.id</name>
+		</fields>
+		<fields>
+			<name>platCenter.platName</name>
+		</fields>
+		<fields>
+			<name>platInstitution</name>
+		</fields>
+		<fields>
+			<name>checkItem.id</name>
+		</fields>
+		<fields>
+			<name>checkItem.type</name>
+		</fields>
+		<fields>
+			<name>checkItem.checkItem</name>
+		</fields>
+		<fields>
+			<name>checkItem.checkContent</name>
+		</fields>
+		<fields>
+			<name>checkItem.checkStandar</name>
+		</fields>
+		<fields>
+			<name>checkItem.checkMothod</name>
+		</fields>
+		<fields>
+			<name>checkItem.standarScore</name>
+		</fields>
+		<fields>
+			<name>year</name>
+		</fields>
+		<fields>
+			<name>systemScore</name>
+		</fields>
+		<fields>
+			<name>selfCheckScore</name>
+		</fields>
+		<fields>
+			<name>checkScore</name>
+		</fields>
+		<fields>
+			<name>situation</name>
+		</fields>
+		<fields>
+			<name>checker</name>
+		</fields>
+		<fields>
+			<name>checkDate</name>
+		</fields>
+		<fields>
+			<name>valid</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>年度</header>
+			<dataIndex>year</dataIndex>
+		</columns>
+		<columns>
+			<header>分中心</header>
+			<dataIndex>platCenter.platName</dataIndex>
+		</columns>
+		<!-- <columns>
+			<header>分中心机构</header>
+			<dataIndex>platInstitution</dataIndex>
+		</columns> -->
+		<columns>
+			<header>考核分类</header>
+			<dataIndex>checkItem.type</dataIndex>
+			<keyType>rpms_year_check</keyType>
+		</columns>
+		<columns>
+			<header>考核项目</header>
+			<dataIndex>checkItem.checkItem</dataIndex>
+			<keyType>rpms_year_check</keyType>
+		</columns>
+		<columns>
+			<header>检查内容</header>
+			<dataIndex>checkItem.checkContent</dataIndex>
+		</columns>
+		<columns>
+			<header>评分标准</header>
+			<dataIndex>checkItem.checkStandar</dataIndex>
+		</columns>
+		<columns>
+			<header>检查要求</header>
+			<dataIndex>checkItem.checkMothod</dataIndex>
+		</columns>
+		<columns>
+			<header>标准分</header>
+			<dataIndex>checkItem.standarScore</dataIndex>
+		</columns>
+		<columns>
+			<header>系统得分</header>
+			<dataIndex>systemScore</dataIndex>
+			<hidden type="object">!Ext.isAllowed('innovate_year_system_grade')</hidden>
+			<renderer type="object">function(value){
+				return Ext.util.Format.number(value, '0.00' ) 
+			}</renderer>
+		</columns>
+		<columns>
+			<header>自查得分</header>
+			<dataIndex>selfCheckScore</dataIndex>
+		</columns>
+		<columns>
+			<header>实际得分</header>
+			<dataIndex>checkScore</dataIndex>
+		</columns>
+		<!-- <columns>
+			<header>情况说明</header>
+			<dataIndex>situation</dataIndex>
+		</columns>
+		<columns>
+			<header>检查人</header>
+			<dataIndex>checker</dataIndex>
+		</columns>
+		<columns>
+			<header>检查时间</header>
+			<dataIndex>checkDate</dataIndex>
+		</columns>
+		<columns>
+			<header>是否有效</header>
+			<dataIndex>valid</dataIndex>
+		</columns> -->
+	</cm>
+</uicfg>

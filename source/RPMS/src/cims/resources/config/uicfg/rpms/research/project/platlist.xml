@@ -1,0 +1,13 @@
+<uicfg desc="创新平台管理列表界面">
+    <objectName>businessObject</objectName>
+    <component>
+        <items>
+            <object>dataGrid</object>
+            <xtype>liontreegrid</xtype>
+            <viewPath>rpms/research/project/platlistgrid</viewPath>
+        </items>
+    </component>
+    <container>
+        <items>dataGrid</items>
+    </container>
+</uicfg>

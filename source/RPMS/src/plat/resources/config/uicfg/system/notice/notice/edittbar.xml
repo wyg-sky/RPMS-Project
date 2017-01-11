@@ -1,0 +1,24 @@
+<uicfg desc="消息编辑表单按钮">
+	<items>-></items>
+	<items>
+		<text>存草稿</text>
+		<iconCls>save-icon</iconCls>
+		<hidden type="object">this.isHidden()</hidden>
+		<handler type="object">this.saveClick</handler>
+	</items>
+	<items>
+		<text>发送</text>
+		<iconCls>save-icon</iconCls>
+		<hidden type="object">this.isHidden()</hidden>
+		<handler type="object">function(){
+			this.manager.editForm.findField('status').setValue('0002');
+			this.manager.editForm.findField('sendTime').setValue(new Date().format('Y-m-d H:i:s'));
+			this.saveClick();
+		}</handler>
+	</items>
+	<items>
+		<text>关闭</text>
+		<iconCls>close-icon</iconCls>
+		<handler type="object">this.closeClick</handler>
+	</items>
+</uicfg>

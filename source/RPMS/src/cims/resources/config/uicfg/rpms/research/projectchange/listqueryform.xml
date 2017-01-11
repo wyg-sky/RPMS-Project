@@ -1,0 +1,32 @@
+<uicfg desc="项目变更管理查询表单">
+    <columns type="integer">4</columns>
+    <autoHeight type="boolean">true</autoHeight>
+    <defaultFunction type="object">this.manager.query</defaultFunction>
+    <defaultScope type="object">this.manager</defaultScope>
+    <defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">90</labelWidth>
+    </defaults>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>项目登记编号</fieldLabel>
+        <name>projectId.projectCode</name>
+    </items>
+    <items>
+        <xtype>liontextfield</xtype>
+        <fieldLabel>项目名称</fieldLabel>
+        <name>projectId.projectName</name>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>变更类型</fieldLabel>
+        <name>changeType</name>
+        <keyType>rpms_change_type</keyType>
+    </items>
+    <items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>状态</fieldLabel>
+        <name>status</name>
+        <keyType>rpms_evaluation_status</keyType>
+    </items>
+</uicfg>

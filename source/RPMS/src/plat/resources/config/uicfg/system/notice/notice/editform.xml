@@ -1,0 +1,85 @@
+<uicfg desc="消息管理编辑表单">
+	<loadtUrl>system/loadNotice.html</loadtUrl>
+	<submitUrl>system/saveNotice.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">2</columns>
+	<height type="integer">200</height>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombowindow</xtype>
+		<propertyName>noticeType</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<displayField>name</displayField>
+		<fieldLabel>消息类型</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+		<window>
+			<viewPathOfUi>system/notice/noticetype/list</viewPathOfUi>
+			<title>消息类型选择</title>
+		</window>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>title</name>
+		<fieldLabel>标题</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>content</name>
+		<fieldLabel>内容</fieldLabel>
+		<columnWidth type="integer">2</columnWidth>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>创建人</fieldLabel>
+		<propertyName>createUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>修改人</fieldLabel>
+		<propertyName>modifyUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>status</hiddenName>
+		<fieldLabel>消息状态</fieldLabel>
+		<keyType>sys_notice_status</keyType>
+		<hidden type="boolean">true</hidden>
+		<value>0001</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>sendTime</name>
+		<hidden type="boolean">true</hidden>
+		<fieldLabel>发送时间</fieldLabel>
+	</items>
+</uicfg>

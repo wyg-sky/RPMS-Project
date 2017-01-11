@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- Configuration for the default package. -->
+	<package name="base" extends="default" namespace="/base">
+	<!-- 仓库查询全部 开始-->
+	<action name="listStorageAll" class="StorageAction" method="listStorageAll"></action>
+	<!-- 仓库查询全部 结束-->
+	<!-- 工作面信息 开始-->
+	<action name="importFace" class="FaceAction" method="importFace"></action>
+	<!-- 工作面信息 结束-->
+	<!-- 巷道信息 开始-->
+	<action name="importRoadway" class="RoadwayAction" method="importRoadway"></action>
+	<!-- 巷道信息 结束-->
+	<!--单项工程开始-->
+		<action name="importProjectSingle" class="ProjectSingleAction" method="importProjectSingle"></action>
+	<!--单项工程结束-->
+	<!--供应商开始-->
+		<action name="importFactory" class="FactoryAction" method="importFactoryMothod"></action>
+	<!--供应商结束-->
+	<!--仓库开始-->
+		<action name="importStorage" class="StorageAction" method="importStorageMothod"></action>
+		<action name="importStorageLine" class="StorageLineAction" method="importStorageLineMothod"></action>
+	<!--仓库结束-->
+	<!--设备位置开始-->
+		<action name="importLocation" class="LocationAction" method="importLocationMothod"></action>
+	<!--设备位置结束-->
+	<!-- 创新人才导入 开始 -->
+	<action name="importtalent" class="TalentImportAction" method="importTalent"></action>
+	<action name="importuser" class="TalentImportAction" method="importSysUser"></action>
+	<!-- 创新人才导入 结束-->
+	<!--分类定义开始-->
+	<action name="listClassifyTree" class="ClassifyAction" method="listTree"></action>
+	<action name="listClassifyForCombolist" class="ClassifyAction" method="listForCombolist"></action>
+	<!--分类定义结束-->
+	<!-- 显示照片  开始 -->
+	<action name="showPhoto" class="PhotoAction" method="showPhoto">
+	    <result type="stream">       
+	        <param name="contentType">image/jpeg</param>       
+	        <param name="inputName">inputStream</param>       
+	    </result>    
+	</action>
+	<!-- 显示照片  结束 -->  
+	</package>
+</struts>

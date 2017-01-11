@@ -1,0 +1,21 @@
+<uicfg desc="论文作者">
+	<items>-></items>
+	<items>
+		<text>选择论文作者</text>
+		<iconCls>new-new-icon</iconCls>
+		<handler type="object">
+			function() {
+				this.manager.addThesisObject();
+			}
+		</handler>
+	</items>
+	<items>
+		<text>删除</text>
+		<iconCls>delete-selected-icon</iconCls>
+		<handler type="object">
+			function() {
+				this.manager.deleteLineObject();
+			}
+		</handler>
+	</items>
+</uicfg>

@@ -1,0 +1,21 @@
+<uicfg desc="栏目设置">
+	<objectName>businessObject</objectName>
+	<winWidth type="integer">900</winWidth>
+	<component>
+		<items>
+			<object>catalogGrid</object>
+			<xtype>lioneditorgrid</xtype>
+			<height type="integer">400</height>
+			<viewPath>system/catalog/catalogrole/listgrid</viewPath>
+		</items>
+		<items>
+			<object>catalogTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>system/catalog/catalogrole/listtbar</viewPath>
+		</items>
+	</component>
+	<container>
+		<items>catalogTbar</items>
+		<items>catalogGrid</items>
+	</container>
+</uicfg>

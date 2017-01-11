@@ -1,0 +1,73 @@
+<uicfg desc="通知接收单位明细编辑">
+    <columns type="object">2</columns>
+	<height type="integer">160</height>
+    <defaults>
+        <layout>column</layout>
+        <labelWidth type="integer">60</labelWidth>
+    </defaults>
+    <items>
+        <xtype>lionhiddenfield</xtype>
+        <name>id</name>
+        <hidden type="object">true</hidden>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>mainId</name>
+		<hidden type="object">true</hidden>
+	</items>
+	<items>
+		<xtype>lioncombowindow</xtype>
+		<fieldLabel>接收单位</fieldLabel>
+		<propertyName>receiveUnit</propertyName>
+		<hiddenName>id</hiddenName>
+		<displayField>name</displayField>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<allowBlank type="boolean">true</allowBlank>
+		<readOnly type="boolean">true</readOnly>
+		<window>
+			<viewPathOfUi>system/organization/list</viewPathOfUi>
+			<title>接收单位</title>
+		</window>
+	</items>
+	<items>
+		<xtype>lioncombowindow</xtype>
+		<fieldLabel>查看人</fieldLabel>
+		<propertyName>receivePeople</propertyName>
+		<hiddenName>id</hiddenName>
+		<displayField>userName</displayField>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+		<allowBlank type="boolean">true</allowBlank>
+		<readOnly type="boolean">true</readOnly>
+		<window>
+			<viewPathOfUi>system/user/list</viewPathOfUi>
+			<title>查看人</title>
+		</window>
+		<value type="object">
+			{"value" : FW.userId, "text" : FW.userName}
+		</value>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>fileStatus</hiddenName>
+		<fieldLabel>查看状态</fieldLabel>
+		<keyType>sys_view_status</keyType>
+		<value>0002</value>
+		<readOnly type="boolean">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>fileChecktime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>查看时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>fileReceipt</name>
+		<fieldLabel>回执</fieldLabel>
+		<height type="object">77</height>
+		<readOnly type="boolean">false</readOnly>
+		<columnWidth type="integer">2</columnWidth>
+	</items>
+</uicfg>

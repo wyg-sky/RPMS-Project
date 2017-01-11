@@ -1,0 +1,184 @@
+<uicfg desc="用户管理编辑">
+	<loadtUrl>system/loadUser.html</loadtUrl>
+	<submitUrl>system/saveUser.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<editable type="object">true</editable>
+	<columns type="object">5</columns>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>version</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>userName</name>
+		<fieldLabel>姓名</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>loginName</name>
+		<fieldLabel>用户名</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>code</name>
+		<fieldLabel>工号</fieldLabel>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>checkCode</name>
+		<fieldLabel>考勤号</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>sex</hiddenName>
+		<fieldLabel>性别</fieldLabel>
+		<keyType>sex</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<name>birthday</name>
+		<fieldLabel>生日</fieldLabel>
+		<format>Y-m-d</format>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>schoolRecord</name>
+		<fieldLabel>学历</fieldLabel>
+	</items>
+	<items>
+		<xtype>orgtree</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>depttree</xtype>
+		<fieldLabel>部门</fieldLabel>
+		<propertyName>department</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>depttree</xtype>
+		<isLoad type="boolean">false</isLoad>
+		<allowBlank type="boolean">true</allowBlank>
+		<fieldLabel>班组</fieldLabel>
+		<propertyName>team</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>positionLevel</name>
+		<fieldLabel>职务级别</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>jobName</name>
+		<fieldLabel>职称</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>country</name>
+		<fieldLabel>国家</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>city</name>
+		<fieldLabel>城市</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>address</name>
+		<fieldLabel>地址</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>email</name>
+		<fieldLabel>email</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>phone</name>
+		<fieldLabel>座机</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>mobile</name>
+		<fieldLabel>手机</fieldLabel>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>isEnabled</hiddenName>
+		<fieldLabel>是否有效</fieldLabel>
+		<keyType>sex</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>isExpired</hiddenName>
+		<fieldLabel>是否过期</fieldLabel>
+		<keyType>sex</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>isLocked</hiddenName>
+		<fieldLabel>是否锁定</fieldLabel>
+		<keyType>sex</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<hiddenName>isBusy</hiddenName>
+		<fieldLabel>是否忙</fieldLabel>
+		<keyType>sex</keyType>
+		<allowBlank type="boolean">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>创建人</fieldLabel>
+		<propertyName>createUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d')</value>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>修改人</fieldLabel>
+		<propertyName>modifyUser</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>userName</hiddenDisplayName>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<name>remark</name>
+		<fieldLabel>备注</fieldLabel>
+		<columnWidth type="integer">5</columnWidth>
+	</items>
+</uicfg>

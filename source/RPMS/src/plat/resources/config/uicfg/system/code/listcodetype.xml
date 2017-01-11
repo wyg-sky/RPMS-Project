@@ -1,0 +1,9 @@
+<uicfg desc="选择树">
+	<title>代码分类选择树</title>
+	<autoHeight type="object">true</autoHeight>
+	<autoWidth type="object">false</autoWidth>
+	<autoScroll type="object">false</autoScroll>
+	<loader>
+		<dataUrl></dataUrl>
+	</loader>
+</uicfg>

@@ -1,0 +1,70 @@
+<uicfg desc="创新人才管理查询表单">
+	<columns type="integer">5</columns>
+	<autoHeight type="boolean">true</autoHeight>
+	<defaultFunction type="object">this.manager.query</defaultFunction>
+	<defaultScope type="object">this.manager</defaultScope>
+	<items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+    </items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>人员编号</fieldLabel>
+		<name>talentCode</name>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>姓名</fieldLabel>
+		<name>talentName</name>
+		<allowBlank type="boolean">true</allowBlank>
+	</items>
+	<items>
+        <xtype>lioncombobox</xtype>
+        <fieldLabel>职称</fieldLabel>
+        <name>title</name>
+        <keyType>rpms_title</keyType>
+        <editable type="boolean">false</editable>
+    </items>
+    <!--items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },scope:this
+        }
+        </listeners>
+    </items-->
+	<items>
+		<xtype>lioncombobox</xtype>
+        <fieldLabel>是否有效</fieldLabel>
+        <name>valid</name>
+        <keyType>cims_effective</keyType>
+        <editable type="object">true</editable>
+        <allowBlank type="boolean">true</allowBlank>
+        <hidden  type="boolean">true</hidden>
+	</items>
+</uicfg>

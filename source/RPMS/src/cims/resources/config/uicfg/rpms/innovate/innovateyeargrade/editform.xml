@@ -1,0 +1,244 @@
+<uicfg desc="年度考核打分管理编辑表单">
+	<loadtUrl>rpms/loadInnovateYearGrade.html</loadtUrl>
+	<submitUrl>rpms/saveInnovateYearGrade.html</submitUrl>
+	<objectName>businessObject</objectName>
+	<columns type="object">3</columns>
+	<height type="integer">480</height>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionhiddenfield</xtype>
+		<name>checkItem.id</name>
+		<hidden type="object">true</hidden>
+		<allowBlank type="object">false</allowBlank>
+	</items>
+	<items>
+		<xtype>lionreadonlyfield</xtype>
+		<fieldLabel>单位</fieldLabel>
+		<hidden type="object">true</hidden>
+		<propertyName>organization</propertyName>
+		<hiddenName>id</hiddenName>
+		<hiddenDisplayName>name</hiddenDisplayName>
+		<value type="object">
+			{"value" : FW.organizationId, "text" : FW.organizationName}
+		</value>
+	</items>
+	<items>
+        <xtype>plattree</xtype>
+        <propertyName>platCenter</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心</fieldLabel>
+        <allowBlank type="object">false</allowBlank>
+        <readOnly type="object">true</readOnly>
+        <listeners type="object">{
+            'select':function(){
+                this.findField("platInstitution.id").setValue({value:'',text:''});
+                this.findField("platInstitution.id").clearValue();
+            },
+            'focus':function(tree) {
+                tree.cascadePlatTree(1);
+            },
+            scope:this
+        }
+        </listeners>
+    </items>
+    <items>
+        <xtype>plattree</xtype>
+        <propertyName>platInstitution</propertyName>
+        <hiddenName>id</hiddenName>
+        <hiddenDisplayName>platName</hiddenDisplayName>
+        <fieldLabel>分中心机构</fieldLabel>
+        <readOnly type="object">true</readOnly>
+        <hidden type="object">true</hidden>
+        <allowBlank type="object">true</allowBlank>
+        <listeners type="object">{
+            'focus':function(tree) {
+                tree.cascadeTree(this.findField("platCenter.id"));
+            },'beforeselect':function(combo, record){
+            	return record.isLeaf();
+            },scope:this
+        }
+        </listeners>
+    </items>
+	<items>
+		<xtype>lioncomboboxyearfield</xtype>
+		<fieldLabel>年度</fieldLabel>
+		<name>year</name>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>分类</fieldLabel>
+		<name>checkItem.type</name>
+		<keyType>rpms_year_check</keyType>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>lioncombobox</xtype>
+		<fieldLabel>检查项目</fieldLabel>
+		<name>checkItem.checkItem</name>
+		<keyType>rpms_year_check</keyType>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<fieldLabel>标准分</fieldLabel>
+		<name>checkItem.standarScore</name>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<fieldLabel>系统得分</fieldLabel>
+		<name>systemScore</name>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>检查内容</fieldLabel>
+		<name>checkItem.checkContent</name>
+		<columnWidth type="object">3</columnWidth>
+		<maxLength type="object">333</maxLength>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>评分标准</fieldLabel>
+		<name>checkItem.checkStandar</name>
+		<columnWidth type="object">3</columnWidth>
+		<maxLength type="object">333</maxLength>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>工作要求</fieldLabel>
+		<name>checkItem.checkMothod</name>
+		<columnWidth type="object">3</columnWidth>
+		<maxLength type="object">333</maxLength>
+		<readOnly type="object">true</readOnly>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<fieldLabel>自查得分</fieldLabel>
+		<name>selfCheckScore</name>
+		<readOnly type="object">!Ext.isAllowed('innovate_year_branch_grade')</readOnly>
+		<validator type="object">function(value){
+			var reg = /^\d+(\.\d+)?$/;
+			if(value != null ){
+				if(value !=''){
+					if(!reg.test(value)){
+						return "请输入数字";
+					}
+				}
+			}
+			var standar = this.findParentByType('form').findField('checkItem.standarScore').getValue();
+			if(value > standar){
+				return '分数不能多于标准分';
+			}
+		}</validator>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>情况说明</fieldLabel>
+		<name>situation</name>
+		<readOnly type="object">!Ext.isAllowed('innovate_year_branch_grade')</readOnly>
+		<columnWidth type="object">3</columnWidth>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>整改情况</fieldLabel>
+		<name>recitfySituation</name>
+		<readOnly type="object">!Ext.isAllowed('innovate_year_branch_grade')</readOnly>
+		<columnWidth type="object">3</columnWidth>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>整改责任人</fieldLabel>
+		<name>rectifier</name>
+		<readOnly type="object">!Ext.isAllowed('innovate_year_branch_grade')</readOnly>
+	</items>
+	<items>
+		<xtype>lionnumberfield</xtype>
+		<fieldLabel>实际得分</fieldLabel>
+		<name>checkScore</name>
+		<readOnly type="object">!Ext.isAllowed('innovate_year_center_grade')</readOnly>
+		<validator type="object">function(value){
+			var reg = /^\d+(\.\d+)?$/;
+			if(value != null ){
+				if(value !=''){
+					if(!reg.test(value)){
+						return "请输入数字";
+					}
+				}
+			}
+			var standar = this.findParentByType('form').findField('checkItem.standarScore').getValue();
+			if(value > standar){
+				return '分数不能多于标准分';
+			}
+		}</validator>
+	</items>
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>存在问题及建议</fieldLabel>
+		<name>existiingProblem</name>
+		<readOnly type="object">!Ext.isAllowed('innovate_year_center_grade')</readOnly>
+		<columnWidth type="object">3</columnWidth>
+		<maxLength type="object">333</maxLength>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>检查人</fieldLabel>
+		<name>checker</name>
+		<readOnly type="object">!Ext.isAllowed('innovate_year_center_grade')</readOnly>
+	</items>
+	<items>
+		<xtype>liondatefield</xtype>
+		<fieldLabel>检查时间</fieldLabel>
+		<name>checkDate</name>
+		<format>Y-m-d</format>
+		<readOnly type="object">!Ext.isAllowed('innovate_year_center_grade')</readOnly>
+	</items>
+	<!-- <items>
+		<xtype>liontextfield</xtype>
+		<fieldLabel>是否有效</fieldLabel>
+		<name>valid</name>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建人</fieldLabel>
+		<name>createUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>createTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>创建时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改人</fieldLabel>
+		<name>modifyUser</name>
+		<value type="object">FW.userName</value>
+	</items>
+	<items>
+		<xtype>liontextfield</xtype>
+		<name>modifyTime</name>
+		<readOnly type="boolean">true</readOnly>
+		<fieldLabel>修改时间</fieldLabel>
+		<value type="object">new Date().format('Y-m-d H:i:s')</value>
+	</items> -->
+	<items>
+		<xtype>liontextarea</xtype>
+		<fieldLabel>备注</fieldLabel>
+		<name>remark</name>
+		<columnWidth type="integer">3</columnWidth>
+	</items>
+</uicfg>

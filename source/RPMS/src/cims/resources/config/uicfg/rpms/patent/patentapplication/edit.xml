@@ -1,0 +1,45 @@
+<uicfg desc="专利申请管理编辑主界面">
+	<objectName>businessObject</objectName>
+	<objectLineName>patentApplicationLine</objectLineName>
+	<winWidth type="integer">950</winWidth>
+	<component>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/patent/patentapplication/edittbar</viewPath>
+		</items>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<!-- <title>专利申请信息</title> -->
+			<viewPath>rpms/patent/patentapplication/editform</viewPath>
+		</items>
+		<items>
+			<object>dataLineGrid</object>
+			<title>专利发明人</title>
+			<isLine type="boolean">true</isLine>
+			<lineName>patentApplicationLines</lineName>
+			<xtype>lioneditorgrid</xtype>
+			<fkName>obj.mainId</fkName>
+			<viewPath>rpms/patent/patentapplication/listlinegrid</viewPath>
+		</items>
+		<items>
+			<object>fileLineGrid</object>
+			<!-- <title>专利申请材料</title> -->
+			<xtype>lionuploadfile</xtype>
+			<isLine type="boolean">true</isLine>
+			<lineName>documents</lineName>
+			<fkId type="object">this.mainId</fkId>
+			<height type="object">200</height>
+			<fkName>obj.docFk</fkName>
+			<allowUpload type="object">this.editable</allowUpload>
+			<allowDelete type="object">this.editable</allowDelete>
+			<fileTypeParent>2c9082b34d269927014d2764ff700096</fileTypeParent>
+		</items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>editForm</items>
+		<items>fileLineGrid</items>
+	</container>
+</uicfg>

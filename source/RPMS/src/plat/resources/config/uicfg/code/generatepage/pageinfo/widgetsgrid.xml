@@ -1,0 +1,113 @@
+<uicfg desc="组件列表">
+	<rownum type="boolean">true</rownum>
+	<objectName>businessObject</objectName>
+	<editable type="object">true</editable>
+	<showLookButton type="object">false</showLookButton>
+	<showEditButton type="object">false</showEditButton>
+	<showCopyButton type="object">false</showCopyButton>
+	<allowPage type="boolean">false</allowPage>
+	<store>
+		<autoLoad type="object">false</autoLoad>
+		<fields>
+			<name>name</name>
+		</fields>
+		<fields>
+			<name>objectName</name>
+		</fields>
+		<fields>
+			<name>xtype</name>
+		</fields>
+		<fields>
+			<name>viewPath</name>
+		</fields>
+		<fields>
+			<name>region</name>
+		</fields>
+		<fields>
+			<name>xml</name>
+		</fields>
+	</store>
+	<sm>
+		<xtype>checkboxsm</xtype>
+		<singleSelect type="boolean">false</singleSelect>
+	</sm>
+	<cm>
+		<defaults>
+			<sortable type="boolean">true</sortable>
+		</defaults>
+		<columns>
+			<header>名称</header>
+			<dataIndex>name</dataIndex>
+		</columns>
+		<columns>
+			<header>组件对象名称</header>
+			<dataIndex>objectName</dataIndex>
+		</columns>
+		<columns>
+			<header>xtype</header>
+			<dataIndex>xtype</dataIndex>
+		</columns>
+		<columns>
+			<header>布局位置</header>
+			<dataIndex>region</dataIndex>
+			<editor>
+				<xtype>liontextfield</xtype>
+			</editor>
+		</columns>
+		<columns>
+			<header>xml</header>
+			<dataIndex>xml</dataIndex>
+			<hidden type="boolean">true</hidden>
+		</columns>
+		<columns>
+			<header>上移</header>
+			<dataIndex>up</dataIndex>
+			<width type="integer">30</width>
+			<align>center</align>
+			<isPrint type="boolean">false</isPrint>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='images/shortcut/custom/move_up.gif' title='上移' alt='上移'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+		<columns>
+			<header>下移</header>
+			<dataIndex>down</dataIndex>
+			<width type="integer">30</width>
+			<align>center</align>
+			<isPrint type="boolean">false</isPrint>
+			<renderer type="object"><![CDATA[
+				function(){
+				    return "<a href='javascript:void(0)'><img src='images/shortcut/custom/move_down.gif' title='下移' alt='下移'/></a>";
+			    }]]>
+			</renderer>
+		</columns>
+	</cm>
+	<listeners type="object">{
+		'cellclick' : function(grid, rowIndex, columnIndex, e) {
+			var fieldName = grid.getColumnModel().getDataIndex(columnIndex);
+			if (fieldName == grid.getFieldName('up')) {
+				if(rowIndex == 0) {
+					return;
+				}
+				var record = grid.getStore().getAt(rowIndex);
+				grid.getStore().remove(record);
+				grid.getStore().insert(rowIndex-1, record);
+				grid.getView().refresh();
+				grid.getSelectionModel().selectRow(rowIndex-1);
+			} else if (fieldName == grid.getFieldName('down')) {
+				var length = grid.getStore().getRange().length;
+				if(rowIndex == length - 1) {
+					return;
+				}
+				var record = grid.getStore().getAt(rowIndex);
+				grid.getStore().remove(record);
+				grid.getStore().insert(rowIndex+1, record);
+				grid.getView().refresh();
+				grid.getSelectionModel().selectRow(rowIndex+1);
+			}
+		},
+		scope : this
+	}</listeners>
+</uicfg>

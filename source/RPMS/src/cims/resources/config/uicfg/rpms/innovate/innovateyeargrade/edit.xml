@@ -1,0 +1,40 @@
+<uicfg desc="年度考核打分管理编辑主界面">
+	<objectName>businessObject</objectName>
+	<objectLineName>innovateYearGradeLine</objectLineName>
+	<winWidth type="integer">750</winWidth>
+	<component>
+		<items>
+			<object>editTbar</object>
+			<xtype>liontoolbar</xtype>
+			<viewPath>rpms/innovate/innovateyeargrade/edittbar</viewPath>
+		</items>
+		<items>
+			<object>editForm</object>
+			<xtype>lionform</xtype>
+			<title>检查情况</title>
+			<viewPath>rpms/innovate/innovateyeargrade/editform</viewPath>
+		</items>
+		<items>
+            <object>uploadFileGrid</object>
+            <xtype>lionuploadfile</xtype>
+            <title>附件上传</title>
+            <isLine type="boolean">true</isLine>
+            <lineName>documents</lineName>
+            <fkId type="object">this.mainId</fkId>
+            <fkName>obj.docFk</fkName>
+            <columnWidth type="integer">3</columnWidth>
+            <allowUpload type="object">this.editable</allowUpload>
+            <allowDelete type="object">this.editable</allowDelete>
+            <height type="object">480</height>
+        </items>
+	</component>
+	<container>
+		<items>editTbar</items>
+		<items>
+            <xtype>tabpanel</xtype>
+            <activeTab type="object">0</activeTab>
+            <items>editForm</items>
+            <items>uploadFileGrid</items>
+        </items>
+	</container>
+</uicfg>
